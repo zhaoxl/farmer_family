@@ -24,6 +24,11 @@ return array(
 			'type' => 'text',
 			'limit' => 50,
 		),
+		'contact_phone' => array(
+			'title' => '联系电话',
+			'type' => 'text',
+			'limit' => 11,
+		),
 		/*'page_cache_lifetime' => array(
 			'title' => '页面缓存时间(分钟)',
 			'type' => 'number',
@@ -47,6 +52,7 @@ return array(
 	 */
 	'rules' => array(
 		'site_name' => 'required|max:50',
+		'contact_phone' => 'required|max:11',
 	),
 
 	/**
@@ -59,7 +65,7 @@ return array(
 	 */
 	'before_save' => function(&$data)
 	{
-		$data['site_name'] = $data['site_name'] . ' - The Blurst Site Ever';
+		//$data['site_name'] = $data['site_name'] . ' - The Blurst Site Ever';
 	},
 
 	/**

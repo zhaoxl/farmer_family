@@ -61,7 +61,8 @@ return array(
 		'已注销用户管理' => array('films'),
 		'站内信息' => array('films'),
 		'电影' => array('films', 'boxoffice'),
-		'系统' => array('settings.site'),
+		'系统' => array('settings.site', '修改密码' => 'page.administrator.change_pwd'),
+		'站内信息' => array('messages')
 	),
 
 	/**

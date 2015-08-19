@@ -1,0 +1,39 @@
+body{background: url("/images/index_bg.jpg") no-repeat scroll center top;}
+#index{width: 100%; margin: auto auto; }
+#index .header{width: 1000px; height: 50px; margin: auto auto;}
+#index .header, #index .header a{color: white;}
+#index .header .color_green{color: #61feaf;}
+#index .header .logo{margin-top: 15px; display: inline-block;}
+#index .header .area_links{margin:15px auto auto 30px; display: inline-block;}
+#index .header .login_links{float: right; margin-top: 15px; margin-right: 18px;}
+#index .header .qq_links{float: right; margin-top: 15px;}
+
+#index .content{width: 1000px; height: 452px; margin: 74px auto auto auto;}
+#index .content .find_box{width: 323px; height: 372px; background: url(/images/index_find_bg.jpg); float: left;}
+#index .content .find_box .reg_button{width: 250px; height: 52px; margin: 245px auto auto 47px; background: none; display: block;}
+#index .content .pub_box{width: 323px; height: 372px; background: url(/images/index_pub_bg.jpg); float: left; margin-left: 14px;}
+#index .content .pub_box .reg_button{width: 250px; height: 52px; margin: 245px auto auto 31px; background: none; display: block;}
+#index .content .login_box{width: 323px; height: 372px; background: url(/images/index_login_bg.jpg); float: left; margin-left: 17px;}
+#index .content .login_box .uname{width: 250px; height: 41px; margin: 94px auto auto 37px; border: none; line-height: 41px; padding-left: 10px; color: #dddddd;}
+#index .content .login_box .pwd{width: 250px; height: 41px; margin: 34px auto auto 37px; border: none; line-height: 41px; padding-left: 10px; color: #dddddd;}
+#index .content .login_box .submit{width: 250px; height: 53; margin: 35px auto auto 37px; border: none; line-height: 53px; background: none;}
+#index .content .login_box .links{width: 247px; height: 40px; margin: 16px auto auto 37px;}
+#index .content .login_box .links .checkbox{width: 19px; height: 17px; padding: 0 5px 0 0; background: url(/images/index_login_checkbox.jpg) no-repeat; display: block; clear: left; float: left; margin-top: 1px;}
+#index .content .login_box .links .autologin_title{line-height: 20px; color: white;}
+#index .content .login_box .links .forget{float: right; color: white;}
+
+#index .base_list{width: 1000px; margin: 41px auto auto auto;}
+#index .base_list, #index .base_list a{ color: #888888;}
+#index .base_list .find_list{width: 475px; float: left;}
+#index .base_list .title a{float: right;}
+#index .base_list .list{margin-top: 9px;}#index .base_list .list ul{padding: 0;}
+#index .base_list .list li{width: 100%; height: 40px; line-height: 40px; list-style: none;}
+#index .base_list .list li a{display: inline-block;}
+#index .base_list .list li .date{float: right; margin-right: 0px;}
+#index .base_list .list li .hot{color: #0AcF6C;}
+#index .base_list .find_list .title{width: 100%; height: 18px; background: url(/images/index_base_list_find_list_title.jpg) no-repeat;}
+#index .base_list .pub_list{width: 475px; float: left; margin-left: 48px;}
+#index .base_list .pub_list .title{width: 100%; height: 18px; background: url(/images/index_base_list_pub_list_title.jpg) no-repeat;}
+
+#index .footer{width: 100%; height: 46px; background: #666666; font-size: 16px; color: white; line-height: 46px;}
+#index .footer .context{width: 1000px; margin: auto auto;}

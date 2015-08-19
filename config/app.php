@@ -147,6 +147,7 @@ return [
 		'Frozennode\Administrator\AdministratorServiceProvider',
 		'Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
+		'Prettus\RequestLogger\Providers\LoggerServiceProvider',
 	],
 
 	/*

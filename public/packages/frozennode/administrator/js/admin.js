@@ -609,25 +609,7 @@
 					{
 						if (response.success)
 						{
-							if (isItem)
-							{
-								self.statusMessage(messages.success).statusMessageType('success');
-								self.setData(response.data);
-							}
-							else
-							{
-								self.globalStatusMessage(messages.success).globalStatusMessageType('success');
-							}
-
-							// if this is a redirect, redirect the user to the supplied url
-							if (response.redirect)
-								window.location.href = response.redirect;
-
-							//if there was a file download initiated, redirect the user to the file download address
-							if (response.download)
-								self.downloadFile(response.download);
-
-							self.updateRows();
+							alert(response);
 						}
 						else
 						{

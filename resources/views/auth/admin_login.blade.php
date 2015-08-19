@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Laravel</title>
+	<title>登陆</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
@@ -28,23 +28,22 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Laravel</a>
+				<a class="navbar-brand" href="#">后台管理</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="{{ url('/') }}">Home</a></li>
+					<li><a href="{{ url('/') }}">网站首页</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::admin()->guest())
-						<li><a href="{{ url('/auth/login') }}">Login</a></li>
-						<li><a href="{{ url('/auth/register') }}">Register</a></li>
+						<li><a href="{{ url('/auth/login') }}">登陆</a></li>
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::admin()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+								<li><a href="{{ url('/auth/logout') }}">退出</a></li>
 							</ul>
 						</li>
 					@endif
@@ -57,11 +56,11 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
-					<div class="panel-heading">Login</div>
+					<div class="panel-heading">登陆</div>
 					<div class="panel-body">
 						@if (count($errors) > 0)
 							<div class="alert alert-danger">
-								<strong>Whoops!</strong> There were some problems with your input.<br><br>
+								<strong>错误!</strong> 输入信息有误.<br><br>
 								<ul>
 									@foreach ($errors->all() as $error)
 										<li>{{ $error }}</li>
@@ -74,14 +73,14 @@
 							<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 							<div class="form-group">
-								<label class="col-md-4 control-label">E-Mail Address</label>
+								<label class="col-md-4 control-label">E-Mail</label>
 								<div class="col-md-6">
 									<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="col-md-4 control-label">Password</label>
+								<label class="col-md-4 control-label">密码</label>
 								<div class="col-md-6">
 									<input type="password" class="form-control" name="password">
 								</div>
@@ -91,7 +90,7 @@
 								<div class="col-md-6 col-md-offset-4">
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" name="remember"> Remember Me
+											<input type="checkbox" name="remember"> 记住我
 										</label>
 									</div>
 								</div>
@@ -99,9 +98,7 @@
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
-									<button type="submit" class="btn btn-primary">Login</button>
-
-									<a class="btn btn-link" href="{{ url('/password/email') }}">Forgot Your Password?</a>
+									<button type="submit" class="btn btn-primary">登陆</button>
 								</div>
 							</div>
 						</form>

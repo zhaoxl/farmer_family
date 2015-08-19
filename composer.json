@@ -14,7 +14,8 @@
 		"frozennode/administrator": "5.*",
 		"sboo/multiauth" : "4.0.*",
 		"machuga/authority" : "dev-master",
-		"maatwebsite/excel": "~2.0"
+		"maatwebsite/excel": "~2.0",
+		"prettus/laravel-request-logger": "1.0.*"
 	},
 	"autoload": {
 		"classmap": [

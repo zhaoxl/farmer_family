@@ -23,6 +23,8 @@ Route::controllers([
 
 //Admin
 Route::controller('auth_admin', 'Auth\AuthAdminController');
+Route::controller('admin_process', 'AdminProcess\AdminUserController');
+Route::resource('admin_process_message', 'AdminProcess\AdminMessageController');
 
 
 //Logo
