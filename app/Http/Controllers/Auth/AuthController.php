@@ -35,7 +35,20 @@ class AuthController extends Controller {
 		return redirect('/');
 	}
 	
-	public function getRegister()
+	#个人找活注册
+	public function getPresentRegister()
+	{
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		return view('auth.present_register')->with('area_provinces', $area_provinces);
+	}
+	#个人招工注册
+	public function getHireRegister()
+	{
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		return view('auth.register')->with('area_provinces', $area_provinces);
+	}
+	#企业注册
+	public function getCompanyRegister()
 	{
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		return view('auth.register')->with('area_provinces', $area_provinces);

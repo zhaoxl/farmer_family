@@ -1,0 +1,33 @@
+#register{width: 100%; margin: auto auto; background-color: #F5F5F5;}
+
+#register .reg_context{width: 1000px; border: solid 1px #DDDDDD; margin: 30px auto auto auto; background-color: #F4FBFF;}
+#register .reg_context .page_tabs{list-style: none;}
+#register .reg_context .page_tabs .space{width: 1px; height: 23px; margin-top: 24px; border-left: dashed 1px #DDDDDD; float: left; background: url(/images/register_page_tab_space.jpg) repeat-x;}
+#register .reg_context .page_tabs li{width: 332px; height: 69px; float: left; text-align: center;}
+#register .reg_context .page_tabs li a{width: 332px; height: 69px; line-height: 69px; display: block; font-size: 20px; color: #999999; background: url(/images/register_page_tab_bg.jpg) repeat-x;}
+#register .reg_context .page_tabs li .current{background: url(/images/register_page_tab_bg_current.jpg) repeat-x;}
+
+#register .reg_context .form{width: 100%; padding-top: 30px; background-color: #F4FBFF;}
+#register .reg_context .form .field{width: 100%;}
+#register .reg_context .form .field .title{width: 124px; height: 84px; margin-left: 54px; line-height: 84px; text-align: right; float: left;}
+#register .reg_context .form .field .require{color: red; display: inline-table; height: 16px; line-height: 16px; text-align: center; width: 15px;}
+#register .reg_context .form .field .input{width: 330px; height: 84px; float: left; line-height: 84px;  padding-left: 17px;}
+#register .reg_context .form .field .input input{
+	width: 306px;
+	height: 45px;
+	border-radius:6px;
+	border:1px solid #909090;
+	-webkit-transition: box-shadow 0.30s ease-in-out;
+	-moz-transition:  box-shadow 0.30s ease-in-out;
+}
+#register .reg_context .form .field .input input:focus{
+  outline:none;
+  border:#42D88D 1px solid;
+  box-shadow: 0 0 8px rgba(103, 166, 217, 1);
+}
+
+#register .reg_context .form .field .notice{width: 100px; height: 84px; float: left;}
+#register .reg_context .form .second_field .title{margin-left: 117px;}
+#register .reg_context .form .second_field .input input{width: 243px;}
+#register .reg_context .form .send_sms{width: 200px; height: 84px; line-height: 84px; margin-left: 8px; float: left;}
+#register .reg_context .form .send_sms .send_sms_btn{width: 182px; height: 43px; border: solid 1px #DFDFE0; background: white; color: #2CC378; line-height: 43px; text-align: center; font-size: 16px; padding: 0;}

@@ -26,7 +26,7 @@
 			</div>
 			<div class="content">
 				<div class="find_box">
-					<a href="#" class="reg_button"></a>
+					<a href="/auth/present-register/" class="reg_button"></a>
 				</div>
 				<div class="pub_box">
 					<a href="#" class="reg_button"></a>
