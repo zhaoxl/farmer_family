@@ -17,8 +17,11 @@ class Registrar implements RegistrarContract {
 	{
 		return Validator::make($data, [
 			'name' => 'required|max:255',
+			'mobile' => 'required|max:11',
 			'email' => 'required|email|max:255|unique:users',
+			'idcard' => 'required|min:18|max:18',
 			'password' => 'required|confirmed|min:6',
+			'captcha' => 'required|captcha',
 		]);
 	}
 
@@ -36,15 +39,21 @@ class Registrar implements RegistrarContract {
 			'mobile' => $data['mobile'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
-			'age' => $data['age'],
-			'gender' => $data['gender'],
-			'area_code' => $data['area_code'],
-			'area_name' => $data['area_name'],
+			/*'age' => $data['age'],
 			'hometown' => $data['hometown'],
-			'idcard' => $data['idcard'],
 			'expect_salary' => $data['expect_salary'],
+			'gender' => $data['gender'],*/
+			'province' => $data['area_province'],
+			'city' => $data['area_city'],
+			'street' => $data['area_street'],
+			'area_name' => $data['area_name'],
+			'idcard' => $data['idcard'],
 			'qq' => $data['qq'],
 			'weixin' => $data['weixin'],
+			'public_mobile' => isset($data['public_mobile']),
+			'public_qq' => isset($data['public_qq']),
+			'public_weixin' => isset($data['public_weixin']),
+			'public_email' => isset($data['public_email']),
 		]);
 	}
 

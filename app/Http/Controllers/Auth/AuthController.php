@@ -39,13 +39,14 @@ class AuthController extends Controller {
 	public function getPresentRegister()
 	{
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
-		return view('auth.present_register')->with('area_provinces', $area_provinces);
+		$cap = \Captcha::src();
+		return view('auth.present_register')->with('area_provinces', $area_provinces)->with('cap', $cap);
 	}
 	#个人招工注册
 	public function getHireRegister()
 	{
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
-		return view('auth.register')->with('area_provinces', $area_provinces);
+		return view('auth.hire_register')->with('area_provinces', $area_provinces);
 	}
 	#企业注册
 	public function getCompanyRegister()
@@ -55,7 +56,7 @@ class AuthController extends Controller {
 	}
 	
 	public function postRegister(Request $request)
-	{
+	{			
 		$registrar = new \App\Services\Registrar;
 		$validator = $registrar->validator($request->all());
 		if ($validator->fails())

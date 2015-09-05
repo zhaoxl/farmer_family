@@ -9,13 +9,15 @@
 
 #register .reg_context .form{width: 100%; padding-top: 30px; background-color: #F4FBFF;}
 #register .reg_context .form .field{width: 100%;}
-#register .reg_context .form .field .title{width: 124px; height: 84px; margin-left: 54px; line-height: 84px; text-align: right; float: left;}
+#register .reg_context .form .field .btn{width: 74px; height: 33px; line-height: 33px; background: #2CC378; border-left: solid 1px #4DCC8E; border-right: solid 1px #4DCC8E; color: white; border-top: none; border-bottom: none; float: left; margin-top: 18px; margin-right: 5px;}
+#register .reg_context .form .field .desc{color: #C00000; float: left; margin-top: 26px;}
+#register .reg_context .form .field .title{width: 124px; height: 70px; margin-left: 54px; line-height: 70px; text-align: right; float: left;}
 #register .reg_context .form .field .require{color: red; display: inline-table; height: 16px; line-height: 16px; text-align: center; width: 15px;}
-#register .reg_context .form .field .input{width: 330px; height: 84px; float: left; line-height: 84px;  padding-left: 17px;}
+#register .reg_context .form .field .input{width: 330px; height: 70px; float: left; line-height: 70px;  padding-left: 17px;}
 #register .reg_context .form .field .input input{
 	width: 306px;
 	height: 45px;
-	border-radius:6px;
+	border-radius: 4px;
 	border:1px solid #909090;
 	-webkit-transition: box-shadow 0.30s ease-in-out;
 	-moz-transition:  box-shadow 0.30s ease-in-out;
@@ -25,9 +27,26 @@
   border:#42D88D 1px solid;
   box-shadow: 0 0 8px rgba(103, 166, 217, 1);
 }
+#register .reg_context .form .field .input label{margin-right: 20px;}
+#register .reg_context .form .field .input .ck{width: 20px; height: 20px; border: solid 1px #DFE0E0; vertical-align: middle; margin-right: 5px;}
 
-#register .reg_context .form .field .notice{width: 100px; height: 84px; float: left;}
+#register .reg_context .form .field .valid_notice{width: 0px; height: 16px; float: left; margin-top: 28px;}
+#register .reg_context .form .field .corrent{width: 16px; background: url(/images/register_icon_corrent.png);}
+#register .reg_context .form .field .wrong{width: 16px; background: url(/images/register_icon_wrong.png);}
 #register .reg_context .form .second_field .title{margin-left: 117px;}
+#register .reg_context .form .second_field .input{width: 262px; height: 70px; float: left; line-height: 70px;  padding-left: 17px;}
 #register .reg_context .form .second_field .input input{width: 243px;}
-#register .reg_context .form .send_sms{width: 200px; height: 84px; line-height: 84px; margin-left: 8px; float: left;}
-#register .reg_context .form .send_sms .send_sms_btn{width: 182px; height: 43px; border: solid 1px #DFDFE0; background: white; color: #2CC378; line-height: 43px; text-align: center; font-size: 16px; padding: 0;}
+#register .reg_context .form .send_sms{width: 200px; height: 70px; line-height: 70px; margin-left: 8px; float: left;}
+#register .reg_context .form .send_sms .send_sms_btn{width: 182px; height: 43px; border: solid 1px #DFDFE0; background: white; color: #2CC378; line-height: 43px; text-align: center; font-size: 16px; padding: 0; margin-top: 14px;}
+#register .reg_context .form .cap .input{width: 184px;}
+#register .reg_context .form .cap .input input{width: 155px;}
+#register .reg_context .form .cap .img{float: left; margin-top: 18px;}
+#register .reg_context .form .cap .refresh_cap{color: #04BC74; display: block; float: left; margin-top: 28px; margin-left: 5px;}
+#register .reg_context .service_agree{width: 100%; text-align: center; color: #666666; margin-top: 60px;}
+#register .reg_context .service_agree a{color: #2CC378;}
+#register .reg_context .submit{width: 100%; margin: auto auto; width: 384px;}
+#register .reg_context .submit input{width: 384px; height: 66px; line-height: 66px; color: white; margin: 10px auto 100px auto; text-align: center; background: #42D88D; border: none;}
+
+#register .reg_context .form .transverse_field .title{margin-left: 5px;}
+#register .reg_context .form .transverse_field .input input{width: 243px;}
+#register .reg_context .form .weixin_field .title{width: 65px;}

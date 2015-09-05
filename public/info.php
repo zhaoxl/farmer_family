@@ -1,5 +1,5 @@
 <?php
 
-//echo phpinfo();
+echo phpinfo();
 
-echo class_exists(App\User);
+//echo class_exists(App\User);
