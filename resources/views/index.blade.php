@@ -9,7 +9,7 @@
 					<a href="/"><img src="/images/logo.jpg"></a>
 				</div>
 				<div class="area_links">
-					<span class="color_green">{{ $city_name }}</span> [ <a href="#" class="color_green">切换城市</a>  <a href="#">廊坊</a> <a href="#">天津</a> <a href="#">保定</a> ]
+					<span class="color_green">{{ $city_name }}</span> [ <a href="/area/changecity" class="color_green">切换城市</a>  <a href="#">廊坊</a> <a href="#">天津</a> <a href="#">保定</a> ]
 				</div>
 				<div class="qq_links">
 					联系QQ：<span class="color_green">458048940</span>

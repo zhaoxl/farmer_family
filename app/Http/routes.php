@@ -15,6 +15,8 @@ Route::get('/', 'IndexController@index');
 
 Route::get('home', 'HomeController@index');
 
+Route::controller('area', 'AreaController');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

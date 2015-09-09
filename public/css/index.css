@@ -1,4 +1,5 @@
 body{background: url("/images/index_bg.jpg") no-repeat scroll center top;}
+.header{width: 100%; background: none;}
 #index{width: 100%; margin: auto auto; }
 #index .header{width: 1000px; height: 50px; margin: auto auto;}
 #index .header, #index .header a{color: white;}
