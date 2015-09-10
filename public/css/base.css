@@ -373,5 +373,5 @@ ul{padding: 0px; margin: 0px;}
 .header .context .area_links{margin:15px auto auto 30px; display: inline-block;}
 .header .context .login_links{float: right; margin-top: 15px; margin-right: 18px;}
 .header .context .qq_links{float: right; margin-top: 15px;}
-.footer{}
+.footer{width: 1000px; height: 40px; margin: 20px auto auto auto; color: #999999;}
 

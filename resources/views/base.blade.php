@@ -13,6 +13,8 @@
 	<script src="/js/custom-form-elements.js"></script>
 	
 	@yield('content')
-
+	<div class="footer">
+		版权所有 农民之家 邮箱：12345@163.com  ICP备 938398501-4
+	</div>
 </body>
 </html>

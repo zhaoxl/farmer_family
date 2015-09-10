@@ -33,17 +33,129 @@
 					</div>
 				</form>
 			</div>
-			<div class="search_bottom"></div>
-			<div class="clearfix"></div>
 			<div class="area_list">
-				<span class="province">
-					山东
-				</span>
-				<span class="city">
-					<a href="#">济南</a>
-					<a href="#">青岛</a>
-					<a href="#">济南</a>
-				</span>
+				<div>
+					<div class="area_name">
+						华东
+					</div>
+					<div class="area_name_line"></div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="row">
+					<div class="province">
+						山东
+					</div>
+					<div class="city">
+						<a href="#">青岛</a>
+						<a href="#">济南</a>
+						<a href="#">烟台</a>
+						<a href="#">潍坊</a>
+						<a href="#">临沂</a>
+						<a href="#">淄博</a>
+						<a href="#">济宁</a>
+						<a href="#">泰安</a>
+						<a href="#">聊城</a>
+						<a href="#">威海</a>
+						<a href="#">枣庄</a>
+						<a href="#">德州</a>
+						<a href="#">日照</a>
+						<a href="#">东营</a>
+						<a href="#">菏泽</a>
+						<a href="#">滨州</a>
+						<a href="#">莱芜</a>
+					</div>
+					<div class="more">
+						<a href="#">更多>></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="province">
+						江苏
+					</div>
+					<div class="city">
+						<a href="#">济南</a>
+						<a href="#">青岛</a>
+						<a href="#">济南</a>
+					</div>
+					<div class="more">
+						<a href="#">更多>></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="province">
+						山东
+					</div>
+					<div class="city">
+						<a href="#">济南</a>
+						<a href="#">青岛</a>
+						<a href="#">济南</a>
+					</div>
+					<div class="more">
+						<a href="#">更多>></a>
+					</div>
+				</div>
+			</div>
+			<div class="area_list">
+				<div>
+					<div class="area_name">
+						华东
+					</div>
+					<div class="area_name_line"></div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="row">
+					<div class="province">
+						山东
+					</div>
+					<div class="city">
+						<a href="#">青岛</a>
+						<a href="#">济南</a>
+						<a href="#">烟台</a>
+						<a href="#">潍坊</a>
+						<a href="#">临沂</a>
+						<a href="#">淄博</a>
+						<a href="#">济宁</a>
+						<a href="#">泰安</a>
+						<a href="#">聊城</a>
+						<a href="#">威海</a>
+						<a href="#">枣庄</a>
+						<a href="#">德州</a>
+						<a href="#">日照</a>
+						<a href="#">东营</a>
+						<a href="#">菏泽</a>
+						<a href="#">滨州</a>
+						<a href="#">莱芜</a>
+					</div>
+					<div class="more">
+						<a href="#">更多>></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="province">
+						山东
+					</div>
+					<div class="city">
+						<a href="#">济南</a>
+						<a href="#">青岛</a>
+						<a href="#">济南</a>
+					</div>
+					<div class="more">
+						<a href="#">更多>></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="province">
+						山东
+					</div>
+					<div class="city">
+						<a href="#">济南</a>
+						<a href="#">青岛</a>
+						<a href="#">济南</a>
+					</div>
+					<div class="more">
+						<a href="#">更多>></a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
