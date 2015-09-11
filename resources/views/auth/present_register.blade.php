@@ -1,5 +1,4 @@
 @extends('base')
-
 @section('content')
 	<link href="{{ asset('/css/register.css') }}" rel="stylesheet">
 	<div id="register">
@@ -26,7 +25,7 @@
 				<li><a href="#">个人招工</a></li>
 				<div class="clearfix"></div>
 			</ul>
-			<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+			<form class="form-horizontal" id="register_form" role="form" method="POST" action="{{ url('/auth/register') }}">
 				<input type="hidden" name="category" value="0" />
 				<input type="hidden" name="area_name" id="area_name" />
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -36,7 +35,7 @@
 						<span><p class="require">*</p>姓名：</span>
 					</div>
 					<div class="input">
-						<input type="text" name="name" value="{{ old('name') }}" />
+						<input type="text" name="name" value="{{ old('name') }}" id="v_name" />
 					</div>
 					<div class="valid_notice {{count($errors) > 0 && $errors->default->has('name') ? 'wrong' : ''}}"></div>
 				</div>
@@ -46,7 +45,7 @@
 						<span><p class="require">*</p>联系方式：</span>
 					</div>
 					<div class="input">
-						<input type="text" name="mobile" value="{{ old('mobile') }}" />
+						<input type="text" name="mobile" id='v_mobile' value="{{ old('mobile') }}" />
 					</div>
 					<div class="send_sms">
 						<input type="button" class="send_sms_btn" value="发送验证码到手机" />
@@ -104,7 +103,7 @@
 					<div class="title">
 						<span><p class="require">*</p>公开联系方式：</span>
 					</div>
-					<div class="input">
+					<div class="input tb_input">
 						<label><input type="checkbox" class="ck" name="public_mobile" />手机</label>
 						<label><input type="checkbox" class="ck" name="public_qq" />QQ号</label>
 						<label><input type="checkbox" class="ck" name="public_weixin" />微信</label>
@@ -122,7 +121,7 @@
 					<div class="title">
 						<span><p class="require">*</p>所在区域：</span>
 					</div>
-					<div class="input">
+					<div class="input tb_input">
 						<select name="area_province" id="area_province" class="form-control">
 							<option value="">请选择地区</option>
 						@foreach ($area_provinces as $province)
@@ -226,7 +225,7 @@
 				<div class="service_agree">
 					<label><input type="checkbox" />我已阅读并同意</label><a href="#">《农民之家服务协议》</a>
 				</div>
-				<div class="post_result">
+				<!--<div class="post_result">
 					
 					@if (count($errors) > 0)
 					-------------------------------------------------
@@ -239,15 +238,67 @@
 							</ul>
 						</div>
 					@endif
-				</div>
+				</div>-->
 				<div class="submit">
-					<input type="submit" value="下一步" />
+					<input type="submit" value="下一步" id="submitBtn" />
 				</div>
 			</div>
 			</form>
 		</div>
 	</div>
-
+<script type="text/javascript" src="{{ asset('/js/jquery.validate.min.js') }}" ></script>
+<script>
+	  var validate = $("#register_form").validate({
+                debug: true, //调试模式取消submit的默认提交功能   
+                //errorClass: "label.error", //默认为错误的样式类为：error   
+                focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+                onkeyup: false,   
+                submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+                    alert("提交表单");   
+                    form.submit();   //提交表单   
+                },   
+                
+                rules:{
+                    name:{
+                        required:true
+                    },
+                    mobile:{
+                    	    required:true,
+                    	    phone:true
+                    }
+//                  ,
+//                  email:{
+//                      required:true,
+//                      email:true
+//                  },
+//                  password:{
+//                      required:true,
+//                      rangelength:[3,10]
+//                  },
+//                  confirm_password:{
+//                      equalTo:"#password"
+//                  }                    
+                },
+                messages:{
+                    name:{
+                        required:"必填"
+                    },
+                    mobile:{
+                    	   required:"必填",
+                    	   phone:'请输入正确的电话号码'
+                    }
+                                     
+                }
+                          
+            });    
+    jQuery.validator.addMethod("phone", function(value, element) {
+    var length = value.length;
+    var mobile =  /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/
+    return this.optional(element) || (length == 11 && mobile.test(value));
+}, "手机号码格式错误");  
+	
+	
+</script>
 <script type="text/javascript">
 $(function(){
 	//get cities
