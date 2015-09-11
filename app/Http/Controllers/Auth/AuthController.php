@@ -15,7 +15,7 @@ class AuthController extends Controller {
 	public function postLogin(Request $request)
 	{
 	    if(Auth::user()->attempt(array(
-	        'email'     => $request['email'],
+	        'mobile'     => $request['mobile'],
 	        'password'  => $request['password'],
 	    )))
 		{
@@ -23,7 +23,7 @@ class AuthController extends Controller {
 		}
 
 		return redirect('auth/login')
-					->withInput($request->only('email', 'remember'))
+					->withInput($request->only('mobile', 'remember'))
 					->withErrors([
 						'email' => '账号或密码错误',
 					]);
@@ -69,5 +69,11 @@ class AuthController extends Controller {
 		Auth::user()->login($registrar->create($request->all()));
 
 		return redirect('/');
+	}
+	
+	#忘记密码
+	public function getForget()
+	{
+		return view('auth.forget');
 	}
 }

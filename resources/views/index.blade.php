@@ -41,14 +41,15 @@
 				<a href="#" class="reg_button"></a>
 			</div>
 			<div class="login_box">
-				<form action="action" method="post">
-					<input type="text" class="uname" value="请输入手机号" />
-					<input type="text" class="pwd" />
-					<input type="submit" value="" class="submit" value="请输入登陆密码" />
+				<form class="form-horizontal" method="POST" action="{{ url('/auth/login') }}">
+					<input type="hidden" name="_token" value="{{ csrf_token() }}">
+					<input type="text" class="uname" name="mobile" value="请输入手机号" />
+					<input type="password" class="pwd" name="password" />
+					<input type="submit" class="submit" value="" />
 				</form>
 				<div class="links">
 			    <label><input type="checkbox" class="styled" /><span class="autologin_title">自动登录</span></label>
-					<a href="#" class="forget">忘记密码</a>
+					<a href="/auth/forget" class="forget">忘记密码</a>
 				</div>
 			</div>
 			<div class="clearfix"></div>
