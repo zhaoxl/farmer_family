@@ -13,16 +13,15 @@ class AuthController extends Controller {
 	}
 	
 	public function postLogin(Request $request)
-	{
-	    if(Auth::user()->attempt(array(
-	        'mobile'     => $request['mobile'],
-	        'password'  => $request['password'],
-	    )))
-		{
-			return redirect()->intended('/');
+	{		
+    if(Auth::user()->attempt(array(
+        'mobile'     => $request['mobile'],
+        'password'  => $request['password'],
+    ), $request['remember'] == 'on')){
+			return redirect()->intended('/my');
 		}
 
-		return redirect('auth/login')
+		return redirect()->back()
 					->withInput($request->only('mobile', 'remember'))
 					->withErrors([
 						'email' => '账号或密码错误',

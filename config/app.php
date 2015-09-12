@@ -198,6 +198,7 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Excel' 		=> 'Maatwebsite\Excel\Facades\Excel',
 		'Captcha'   => 'Mews\Captcha\Facades\Captcha',
+		'Debugbar' 	=> 'Barryvdh\Debugbar\Facade',
 	],
 
 ];

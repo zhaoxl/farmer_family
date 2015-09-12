@@ -1,0 +1,14 @@
+.header{background-color: #666666;}
+body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
+
+.body_context{width: 1000px; border: solid 1px #DDDDDD; margin: 30px auto auto auto; background-color: #F4FBFF;}
+
+.body_context .left_nav{width: 230px; float: left;}
+.body_context .left_nav ul{list-style: none;}
+.body_context .right{width: 768px; float: right;}
+.body_context .right .search{width: 100%;}
+.body_context .right .search .row{width: 100%; height: 65px; line-height: 65px;}
+.body_context .right .search .row .input{width: 312px; height: 41px; float: left;}
+.body_context .right .search .row .input .title{width: 88px; height: 51px; line-height: 51px; text-align: center; font-size: 16px; color: #666666; float: left; background: #EEEEEE;}
+.body_context .right .search .row .input .field{width: 222px; height: 49px; border: solid 1px #EEEEEE; float: left;}
+.body_context .right .search .row .submit{margin-left: 7px; width: 59px; height: 52px; background: url(/images/works_search_search_btn.jpg); border: none;}

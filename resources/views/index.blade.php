@@ -46,18 +46,18 @@
 					<input type="text" class="uname" name="mobile" value="请输入手机号" />
 					<input type="password" class="pwd" name="password" />
 					<input type="submit" class="submit" value="" />
+					<div class="links">
+				    <label><input type="checkbox" class="styled" name="remember" /><span class="autologin_title">自动登录</span></label>
+						<a href="/auth/forget" class="forget">忘记密码</a>
+					</div>
 				</form>
-				<div class="links">
-			    <label><input type="checkbox" class="styled" /><span class="autologin_title">自动登录</span></label>
-					<a href="/auth/forget" class="forget">忘记密码</a>
-				</div>
 			</div>
 			<div class="clearfix"></div>
 		</div>
 		<div class="base_list">
 			<div class="find_list">
 				<div class="title">
-					<a href="#">更多></a>
+					<a href="/works/find-list">更多></a>
 				</div>
 				<div class="list">
 					<ul>

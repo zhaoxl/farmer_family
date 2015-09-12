@@ -1,17 +1,17 @@
 .header{background-color: #666666;}
-#forget{width: 100%; margin: auto auto; background-color: #F5F5F5;}
+body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 
-#forget .for_context{width: 1000px; border: solid 1px #DDDDDD; margin: 30px auto auto auto; background-color: #F4FBFF;}
+.body_context{width: 1000px; border: solid 1px #DDDDDD; margin: 30px auto auto auto; background-color: #F4FBFF;}
 
-#forget .for_context .form{width: 100%; padding-top: 30px; background-color: #F4FBFF;}
-#forget .for_context .form .row{width: 100%;}
-#forget .for_context .form .row .btn{width: 74px; height: 33px; line-height: 33px; background: #2CC378; border-left: solid 1px #4DCC8E; border-right: solid 1px #4DCC8E; color: white; border-top: none; border-bottom: none; float: left; margin-top: 18px; margin-right: 5px;}
-#forget .for_context .form .row .desc{color: #C00000; float: left; margin-top: 26px;}
-#forget .for_context .form .row .title{width: 124px; height: 70px; margin-left: 54px; line-height: 70px; text-align: right; float: left;}
-#forget .for_context .form .row .require{color: red; display: inline-table; height: 16px; line-height: 16px; text-align: center; width: 15px;}
-#forget .for_context .form .row .text_field{width: 134px; height: 70px; float: left; line-height: 70px;  padding-left: 17px;}
-#forget .for_context .form .row .field{width: 330px; height: 70px; float: left; line-height: 70px;  padding-left: 17px;}
-#forget .for_context .form .row .field input{
+.body_context .form{width: 100%; padding-top: 30px; background-color: #F4FBFF;}
+.body_context .form .row{width: 100%;}
+.body_context .form .row .btn{width: 74px; height: 33px; line-height: 33px; background: #2CC378; border-left: solid 1px #4DCC8E; border-right: solid 1px #4DCC8E; color: white; border-top: none; border-bottom: none; float: left; margin-top: 18px; margin-right: 5px;}
+.body_context .form .row .desc{color: #C00000; float: left; margin-top: 26px;}
+.body_context .form .row .title{width: 124px; height: 70px; margin-left: 54px; line-height: 70px; text-align: right; float: left;}
+.body_context .form .row .require{color: red; display: inline-table; height: 16px; line-height: 16px; text-align: center; width: 15px;}
+.body_context .form .row .text_field{width: 134px; height: 70px; float: left; line-height: 70px;  padding-left: 17px;}
+.body_context .form .row .field{width: 330px; height: 70px; float: left; line-height: 70px;  padding-left: 17px;}
+.body_context .form .row .field input{
 	width: 306px;
 	height: 45px;
 	border-radius: 4px;
@@ -19,12 +19,12 @@
 	-webkit-transition: box-shadow 0.30s ease-in-out;
 	-moz-transition:  box-shadow 0.30s ease-in-out;
 }
-#forget .for_context .form .row .field input:focus{
+.body_context .form .row .field input:focus{
   outline:none;
   border:#42D88D 1px solid;
   box-shadow: 0 0 8px rgba(103, 166, 217, 1);
 }
-#forget .for_context .form .send_sms{width: 200px; height: 70px; line-height: 70px; margin-left: 8px; float: left;}
-#forget .for_context .form .send_sms .send_sms_btn{width: 182px; height: 43px; border: solid 1px #DFDFE0; background: white; color: #2CC378; line-height: 43px; text-align: center; font-size: 16px; padding: 0; margin-top: 14px;}
-#forget .for_context .submit{width: 100%; margin: auto auto auto 196px; width: 384px;}
-#forget .for_context .submit input{width: 384px; height: 66px; line-height: 66px; color: white; margin: 10px auto 100px auto; text-align: center; background: #42D88D; border: none;}
+.body_context .form .send_sms{width: 200px; height: 70px; line-height: 70px; margin-left: 8px; float: left;}
+.body_context .form .send_sms .send_sms_btn{width: 182px; height: 43px; border: solid 1px #DFDFE0; background: white; color: #2CC378; line-height: 43px; text-align: center; font-size: 16px; padding: 0; margin-top: 14px;}
+.body_context .submit{width: 100%; margin: auto auto auto 196px; width: 384px;}
+.body_context .submit input{width: 384px; height: 66px; line-height: 66px; color: white; margin: 10px auto 100px auto; text-align: center; background: #42D88D; border: none;}

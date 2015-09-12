@@ -10,10 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//My
+Route::group(['namespace' => 'My'], function()
+{
+	Route::controller('/my','IndexController');
+});
 
 Route::get('/', 'IndexController@index');
 
 Route::get('home', 'HomeController@index');
+
+//Works
+Route::controller('works', 'WorksController');
 
 Route::controller('area', 'AreaController');
 
@@ -34,3 +42,4 @@ Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 //Ajax
 Route::controller('ajax/area','Ajax\AreaController');
+
