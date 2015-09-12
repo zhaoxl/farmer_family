@@ -31,27 +31,27 @@
 			<div class="row person_center_wrap">
 				<div class="person_nav_left">
 					<ul>
-						<li class="current">
+						<li class="{{Request::path() == 'my' ? 'current' : ''}}">
 							<a href="/my">
 								注册信息管理
 							</a>
 						</li>
-						<li>
+						<li class="{{Request::path() == 'my/already-sends' ? 'current' : ''}}">
 							<a href="/my/already-sends">
 								已发布信息
 							</a>
 						</li>
-						<li>
+						<li class="{{Request::path() == 'my/messages' ? 'current' : ''}}">
 							<a href="/my/messages">
 								站内信
 							</a>
 						</li>
-						<li>
+						<li class="{{Request::path() == 'my/change-pwd' ? 'current' : ''}}">
 							<a href="/my/change-pwd">
 								修改密码
 							</a>
 						</li>
-						<li>
+						<li class="{{Request::path() == 'my/suicide' ? 'current' : ''}}">
 							<a href="/my/suicide">
 								注销用户
 							</a>
