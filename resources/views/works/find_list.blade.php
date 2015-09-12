@@ -10,45 +10,47 @@
 	</div>
 	<div class="right">
 		<div class="search">
-			<div class="row">
-				<span class="title">信息发布日期：</span>
-				<span>全部</span>
-				<span><a href="#">今天</a></span>
-				<span><a href="#">一周内</a></span>
-				<span><a href="#">2周内</a></span>
-				<span><a href="#">1个月内</a></span>
-				<span><a href="#">2个月内</a></span>
-			</div>
-			<div class="row">
-				<div class="input">
-					<div class="title">
-						服务类型
-					</div>
-					<input type="text" class="field" />
+			<form action="find-list" method="get" accept-charset="utf-8">
+				<div class="row date_filter">
+					<span class="title">信息发布日期：</span>
+					<span>全部</span>
+					<span><a href="#">今天</a></span>
+					<span><a href="#">一周内</a></span>
+					<span><a href="#">2周内</a></span>
+					<span><a href="#">1个月内</a></span>
+					<span><a href="#">2个月内</a></span>
 				</div>
-				<div class="input">
-					<div class="title">
-						所在区域
+				<div class="row">
+					<div class="input">
+						<div class="title">
+							服务类型
+						</div>
+						<input type="text" class="field" />
 					</div>
-					<input type="text" class="field" />
-				</div>
-			</div>
-			<div class="row">
-				<div class="input">
-					<div class="title">
-						工人性别
+					<div class="input">
+						<div class="title">
+							所在区域
+						</div>
+						<input type="text" class="field" />
 					</div>
-					<label><input type="radio" name="gender" value="male">&nbsp;&nbsp;男</label>
-					<label><input type="radio" name="gender" value="fmale">&nbsp;&nbsp;女</label>
 				</div>
-				<div class="input">
-					<div class="title">
-						工人年龄
+				<div class="row">
+					<div class="input">
+						<div class="title">
+							工人性别
+						</div>
+						<label><input type="radio" name="gender" value="male">&nbsp;&nbsp;男</label>
+						<label><input type="radio" name="gender" value="fmale">&nbsp;&nbsp;女</label>
 					</div>
-					<input type="text" class="field" />
+					<div class="input">
+						<div class="title">
+							工人年龄
+						</div>
+						<input type="text" class="field" />
+					</div>
+					<input type="submit" class="submit" value="" />
 				</div>
-				<input type="submit" class="submit" value="" />
-			</div>
+			</form>
 		</div>
 		<div class="list">
 			<div class="work">
