@@ -1,0 +1,8 @@
+.person_center_wrap{ width: 1000px;min-height: 1114px;_height:1114px; border: #dddddd solid 1px;border-radius: 2px; margin: 15px auto; overflow: hidden; height: auto;   box-sizing:content-box; }
+.person_nav_left{width: 230px;min-height: 1114px; height: auto; overflow: hidden; background: #fafafa; float: left; }
+.person_nav_left ul li{ height: 58px;  width: 229px; line-height: 58px;border-right: #DDDDDD solid 1px; box-sizing:content-box;}
+.person_nav_left ul li a{ color:#666666 ; font-size: 14px; padding-left: 20px; font-weight: bold;}
+.person_nav_left ul li.current{ width:227px ; background: #FFFFFF; border-left: #42d88d solid 2px;border-bottom: #DDDDDD solid 1px; border-right: #FFFFFF solid 1px;box-sizing:content-box;}
+.person_nav_left ul li.current a{ color: #42d88d;}
+.person_nav_left_bc{ width: 229px; height: 830px;border-right: #DDDDDD solid 1px;}
+.person_center_right{ width:760px ; float: left;min-height: 1114px; height: auto;}
