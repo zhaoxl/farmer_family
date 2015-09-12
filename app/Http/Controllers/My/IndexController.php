@@ -11,5 +11,24 @@ class IndexController extends Controller {
 	{
 		return view('my.index');
 	}
-
+	
+	public function getAlreadySends()
+	{
+		return view('my.already_sends');
+	}
+	
+	public function getMessages()
+	{
+		return view('my.messages');
+	}
+	
+	public function getChangePwd()
+	{
+		return view('my.change_pwd');
+	}
+	
+	public function getSuicide()
+	{
+		return view('my.suicide');
+	}
 }

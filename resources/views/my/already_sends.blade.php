@@ -1,6 +1,6 @@
 @extends('my.layout')
 @section('content')
 
-index
+already_sends
 
 @endsection

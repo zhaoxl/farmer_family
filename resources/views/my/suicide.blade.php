@@ -1,6 +1,6 @@
 @extends('my.layout')
 @section('content')
 
-index
+suicide
 
 @endsection
