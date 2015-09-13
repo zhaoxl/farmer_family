@@ -375,3 +375,7 @@ ul{padding: 0px; margin: 0px;}
 .header .context .qq_links{float: right; margin-top: 15px;}
 .footer{width: 1000px; height: 40px; margin: 20px auto auto auto; color: #999999;}
 
+.pagination{list-style: none; margin: 10px auto 80px 30px;}
+.pagination li{min-width: 26px; height: 26px; border: solid 1px #DDDDDD; float: left; text-align: center; line-height: 26px; margin-right: 5px; color: 666666;}
+.pagination li a{color: #666666;}
+.pagination .active{border-color: #29C376; background: #42D88D; color: white;}

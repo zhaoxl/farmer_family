@@ -23,6 +23,9 @@ Route::get('home', 'HomeController@index');
 //Works
 Route::controller('works', 'WorksController');
 
+//Staffs
+Route::controller('staffs', 'StaffsController');
+
 Route::controller('area', 'AreaController');
 
 Route::controllers([

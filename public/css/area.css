@@ -1,19 +1,18 @@
-#changecity{background: #F5F5F5;}
-#changecity .content{width: 1000px; border: solid 1px #DDDDDD; margin: 30px auto auto auto; background: white; padding-bottom: 30px;}
-#changecity .search{width: 100%; padding-top: 30px; padding-left: 32px;}
-#changecity .search .submit{width: 98px; height: 44px; border-left: solid 1px #A6EDC9; border-top: solid 1px #A6EDC9; border-bottom: none; border-right: none; background: #42D88D; color: white;}
-#changecity .search .text{width: 239px; height: 43px; border: solid 1px #DDDDDD; margin-left: 3px; }
-#changecity .search .hot{width: 607px; height: 40px; float: right; padding-top: 14px;}
-#changecity .search .hot .title{width: 40px; color: #666666;}
-#changecity .search .hot .links{width: 560px; }
-#changecity .search .hot .links a{color: #4db4e7; padding-left: 6px; padding-right: 6px;}
+.body_context{width: 1000px; border: solid 1px #DDDDDD; margin: 30px auto auto auto; background: white; padding-bottom: 30px;}
+.body_context .search{width: 100%; padding-top: 30px; padding-left: 32px;}
+.body_context .search .submit{width: 98px; height: 44px; border-left: solid 1px #A6EDC9; border-top: solid 1px #A6EDC9; border-bottom: none; border-right: none; background: #42D88D; color: white;}
+.body_context .search .text{width: 239px; height: 43px; border: solid 1px #DDDDDD; margin-left: 3px; }
+.body_context .search .hot{width: 607px; height: 40px; float: right; padding-top: 14px;}
+.body_context .search .hot .title{width: 40px; color: #666666;}
+.body_context .search .hot .links{width: 560px; }
+.body_context .search .hot .links a{color: #4db4e7; padding-left: 6px; padding-right: 6px;}
 
-#changecity .area_list{width: 100%; margin-top: 40px; margin-left: 33px;}
-#changecity .area_list .area_name{width: 42px; height: 20px; color: #DDDDDD; float: left;}
-#changecity .area_list .area_name_line{border-bottom: dotted 1px #b4b4b4; width: 860px; float: left; margin-top: 10px;}
-#changecity .area_list .row{margin-top: 10px; margin-bottom: 10px;}
-#changecity .area_list .row .province{width: 30px; float: left; color: #666666;}
-#changecity .area_list .row .city{width: 800px; float: left; margin-left: 10px;}
-#changecity .area_list .row .city a{padding-left: 10px; padding-right: 4px; color: #2fc479;}
-#changecity .area_list .row .more{width: 72px; float: left;}
-#changecity .area_list .row .more a{ color: #999999;}
+.body_context .area_list{width: 100%; margin-top: 40px; margin-left: 33px;}
+.body_context .area_list .area_name{width: 42px; height: 20px; color: #DDDDDD; float: left;}
+.body_context .area_list .area_name_line{border-bottom: dotted 1px #b4b4b4; width: 860px; float: left; margin-top: 10px;}
+.body_context .area_list .row{margin-top: 10px; margin-bottom: 10px;}
+.body_context .area_list .row .province{width: 43px; float: left; color: #666666;}
+.body_context .area_list .row .city{width: 800px; float: left; margin-left: 10px;}
+.body_context .area_list .row .city a{padding-left: 10px; padding-right: 4px; color: #2fc479;}
+.body_context .area_list .row .more{width: 72px; float: left;}
+.body_context .area_list .row .more a{ color: #999999;}

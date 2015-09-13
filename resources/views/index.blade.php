@@ -57,15 +57,13 @@
 		<div class="base_list">
 			<div class="find_list">
 				<div class="title">
-					<a href="/works/find-list">更多></a>
+					<a href="/staffs">更多></a>
 				</div>
 				<div class="list">
 					<ul>
-						<li><a href="#">工种：服务人员/高薪招聘网店客服</a><span class="date">[2015-08-04]</span></li>
-						<li><a href="#">工种：服务人员/大学计算机专业实习生</a><span class="date">[2015-08-04]</span></li>
-						<li><a href="#" class="hot">工种：服务人员/运营经理</a><span class="date">[2015-08-04]</span></li>
-						<li><a href="#">工种：服务人员/美工</a><span class="date">[2015-08-04]</span></li>
-						<li><a href="#">工种：服务人员/高薪聘淘宝网页设计师</a><span class="date">[2015-08-04]</span></li>
+						@foreach ($staffs as $staff)
+						<li><a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">服务类型：{{$staff->work_category_name}}</a><span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span></li>
+						@endforeach
 					</ul>
 				</div>
 			</div>
