@@ -11,6 +11,7 @@
 	<body>
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/custom-form-elements.js"></script>
+		<script src="/js/jquery.validate.min.js"></script>
 		<div class="header">
 			<div class="context">
 				<div class="logo">
@@ -31,7 +32,7 @@
 			<div class="row person_center_wrap">
 				<div class="person_nav_left">
 					<ul>
-						<li class="{{Request::path() == 'my' ? 'current' : ''}}">
+						<li class="{{Request::path() == 'my' ? 'current' : ''}}" style="border-top: none;">
 							<a href="/my">
 								注册信息管理
 							</a>

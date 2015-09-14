@@ -1,8 +1,56 @@
+li{ list-style: none;}
 .person_center_wrap{ width: 1000px;min-height: 1114px;_height:1114px; border: #dddddd solid 1px;border-radius: 2px; margin: 15px auto; overflow: hidden; height: auto;   box-sizing:content-box; }
 .person_nav_left{width: 230px;min-height: 1114px; height: auto; overflow: hidden; background: #fafafa; float: left; }
 .person_nav_left ul li{ height: 58px;  width: 229px; line-height: 58px;border-right: #DDDDDD solid 1px; box-sizing:content-box;}
 .person_nav_left ul li a{ color:#666666 ; font-size: 14px; padding-left: 20px; font-weight: bold;}
-.person_nav_left ul li.current{ width:227px ; background: #FFFFFF; border-left: #42d88d solid 2px;border-bottom: #DDDDDD solid 1px; border-right: #FFFFFF solid 1px;box-sizing:content-box;}
+.person_nav_left ul li.current{ width:227px ; background: #FFFFFF; border-left: #42d88d solid 2px;border-bottom: #DDDDDD solid 1px;border-top: #DDDDDD solid 1px; border-right: #FFFFFF solid 1px;box-sizing:content-box;}
 .person_nav_left ul li.current a{ color: #42d88d;}
 .person_nav_left_bc{ width: 229px; height: 830px;border-right: #DDDDDD solid 1px;}
 .person_center_right{ width:760px ; float: left;min-height: 1114px; height: auto;}
+
+.register_mes_box{ width: 100%; padding-top: 40px;}
+.register_mes_table td{ line-height: 30px; padding:8px 10px;}
+.btn_a_style1{ display: block; width: 100px; padding:5px 20px; background: #42d88e; color: #FFFFFF; margin-left: 60px; text-align: center; transition: 0.5s linear;}
+.btn_a_style1:hover{ text-decoration: none; color: #FFFFFF; background: #35af73;}
+.aleady_send_box{width: 90%; margin: auto;  padding: 30px 0px;}
+.aleady_send_box table{ border: #CCCCCC solid 1px;}
+.aleady_send_box table th,.aleady_send_box table td{ padding: 8px 10px;}
+.aleady_send_box table th{ background:#42d88e; color: #FFFFFF;}
+.aleady_send_box table tr{ border-bottom: #CCCCCC solid 1px;}
+.aleady_send_box table .time{border-right: #CCCCCC solid 1px;}
+.aleady_send_box table td a.more{  color: #42d88e; transition: 0.5s linear;   position: absolute; }
+.aleady_send_box table td a.more:hover{ color: #37b275;}
+
+.message_nav_box{ width: 90%;border: #CCCCCC solid 1px; border-bottom: none;  margin:20px auto 0px;}
+.message_nav_box ul li{float: left; line-height: 30px; padding:8px 0px; text-align: center; width: 50%; cursor: pointer;}
+.message_nav_box ul li.current{ background: #42d88e; color: #FFFFFF;}
+.message_table{ border: #CCCCCC solid 1px; width: 90%; margin: auto;}
+.message_table td,.message_table th{  border: #CCCCCC solid 1px; padding: 8px 10px;}
+.message_table tr td.more{ border-right: none;}
+.message_table tr td.delete{border-left: none;}
+.message_table span.num{ background: #42d88e; padding:1px 5px; margin-left: 5px;}
+
+
+.change_pwd{width: 90%;  margin:20px auto;}
+.change_table td{ padding: 10px;}
+.change_table td input[type='text'],.change_table td input[type='password']{ width: 100%; height: 36px; line-height: 36px; 
+border-radius:4px ; border: #CCCCCC solid 1px; padding-left: 10px;
+}
+.change_table td input.yzm{ width: 60%; float: left; }
+.change_table td .lab_yzm{ display: block; width: 40%; float: left; line-height: 36px;}
+.change_table .next_btn{ width: 70%; height: 36px; background: #2dc379; border: #2dc379 solid 1px; border-radius: 4px;transition: 0.5s linear;}
+.change_table .next_btn:hover{background: #25a566;}
+
+.suicide_box{ width: 90%;  margin:20px auto; }
+.suicide_box h2{ color: #2ebf7a; font-size: 18px; margin-left: 7%;}
+.suicide_table td{ padding: 8px 10px;}
+
+.suicide_table td .text_area{ width: 450px; margin-left: 6%; height: 180px; border:#CCCCCC solid 1px; border-radius: 5px; overflow: hidden;
+padding: 10px; text-align: left; line-height: 28px; color: #e7e7e7;
+}
+
+.suicide_table .btn_zx{ width: 30%; margin-left: 6%; height: 36px; background: #2dc379; border: #2dc379 solid 1px; border-radius: 4px; color: #FFFFFF;transition: 0.5s linear; }
+.suicide_table .btn_zx:hover{ background: #25a566;}
+.suicide_success h3{ font-size: 48px;  line-height: 70px; color: #2dc379;}
+.suicide_success p{ margin-left: 100px; font-size: 16px;}
+
