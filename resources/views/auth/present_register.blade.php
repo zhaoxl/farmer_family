@@ -132,7 +132,6 @@
 				
 			</div>
 			<div class="desc">
-				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -140,14 +139,14 @@
 			<div class="title">
 				<span><p class="require">*</p>性别：</span>
 			</div>
-			<div class="input">
-				<input type="text" name="idcard" value="{{ old('idcard') }}" />
+			<div class="input radios">
+				<label><input type="radio" name="gender" value="male">&nbsp;&nbsp;男</label>
+				<label><input type="radio" name="gender" value="fmale">&nbsp;&nbsp;女</label>
 			</div>
 			<div class="valid_notice">
 				
 			</div>
 			<div class="desc">
-				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -162,7 +161,6 @@
 				
 			</div>
 			<div class="desc">
-				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -177,7 +175,7 @@
 				
 			</div>
 			<div class="desc">
-				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
+				*您能够干哪些类型的活，例如耕种、厨师等,有几种就填几种
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -193,6 +191,23 @@
 			</div>
 			<div class="desc">
 				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="field">
+			<div class="title">
+				<span></span>
+			</div>
+			<div class="input">
+				<input type="text" />
+			</div>
+			<input type="button" value="添加" class="btn" />
+			<input type="button" value="上传" class="btn" />
+			<div class="valid_notice">
+				
+			</div>
+			<div class="desc">
+				*照片文件不大于500K
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -241,7 +256,7 @@
 				
 			</div>
 			<div class="desc">
-				*照片文件不大于500K
+				*可以是具体数字，例如200元一天，或50-100元一小时
 			</div>
 		</div>
 		<div class="clearfix"></div>

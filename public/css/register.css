@@ -62,7 +62,6 @@ body{background-color: #F5F5F5;}
 .body_context .form .company_tel_field .title{width: 75px;}
 .body_context .form .compact_transverse_field .title{margin-left: 5px;}
 
-
-
-
+.body_context .form .field .radios{padding-top: 26px}
+.body_context .form .field .radios input{width: 40px; height: auto;}
 
