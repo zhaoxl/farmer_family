@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class StaffsController extends Controller {
 
-	public function getIndex()
+	public function index()
 	{
 		$staffs = \App\Staff::select('users.*', 'staff.*')->join('users', 'users.id', '=', 'staff.user_id')->paginate(4);
 		return view('staffs.index')->with('staffs', $staffs);
+	}
+	
+	public function show($id)
+	{
+		$staff = \App\Staff::find($id);
+		return view('staffs.show')->with('staff', $staff);
 	}
 }

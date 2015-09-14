@@ -22,7 +22,7 @@ class CreateWorksTable extends Migration {
 			$table->float('price');
 			$table->integer('people_number');
 			$table->datetime('start_at');
-			$table->datetime('end_at');
+			$table->datetime('end_at')->nullable();
 			$table->string('province')->nullable();
 			$table->string('city')->nullable();
 			$table->string('street')->nullable();

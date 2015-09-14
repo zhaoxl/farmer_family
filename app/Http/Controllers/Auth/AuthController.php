@@ -41,17 +41,21 @@ class AuthController extends Controller {
 		$cap = \Captcha::src();
 		return view('auth.present_register')->with('area_provinces', $area_provinces)->with('cap', $cap);
 	}
-	#个人招工注册
-	public function getHireRegister()
-	{
-		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
-		return view('auth.hire_register')->with('area_provinces', $area_provinces);
-	}
 	#企业注册
 	public function getCompanyRegister()
 	{
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
-		return view('auth.register')->with('area_provinces', $area_provinces);
+		$industries = \App\Industry::orderBy('sort', 'asc')->get();
+		$cap = \Captcha::src();
+		return view('auth.company_register')->with('area_provinces', $area_provinces)->with('cap', $cap)->with('industries', $industries);
+	}
+	#个人招工注册
+	public function getHireRegister()
+	{
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$industries = \App\Industry::orderBy('sort', 'asc')->get();
+		$cap = \Captcha::src();
+		return view('auth.hire_register')->with('area_provinces', $area_provinces)->with('cap', $cap)->with('industries', $industries);
 	}
 	
 	public function postRegister(Request $request)
