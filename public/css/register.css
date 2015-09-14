@@ -12,7 +12,7 @@ body{background-color: #F5F5F5;}
 .body_context .form .field{width: 100%;}
 .body_context .form .field .btn{width: 74px; height: 33px; line-height: 33px; background: #2CC378; border-left: solid 1px #4DCC8E; border-right: solid 1px #4DCC8E; color: white; border-top: none; border-bottom: none; float: left; margin-top: 18px; margin-right: 5px;}
 .body_context .form .field .desc{color: #C00000; float: left; margin-top: 26px;}
-.body_context .form .field .title{width: 124px; height: 70px; margin-left: 54px; line-height: 70px; text-align: right; float: left;}
+.body_context .form .field .title{width: 124px; height: 70px; margin-left: 54px; line-height: 70px; text-align: right; float: left; color: #666666;}
 .body_context .form .field .require{color: red; display: inline-table; height: 16px; line-height: 16px; text-align: center; width: 15px;}
 .body_context .form .field .input{width: 330px; height: 55px; padding-top: 15px; float: left;   padding-left: 17px;}
 .body_context .form .field .tb_input{width: 330px; height: 55px; padding-top: 25px; float: left;   padding-left: 17px;}
@@ -23,7 +23,7 @@ body{background-color: #F5F5F5;}
 	height: 40px;
 	line-height: 40px;
 	border-radius: 4px;
-	border:1px solid #909090;
+	border:1px solid #dedede;
 	-webkit-transition: box-shadow 0.30s ease-in-out;
 	-moz-transition:  box-shadow 0.30s ease-in-out;
 }
@@ -41,6 +41,9 @@ body{background-color: #F5F5F5;}
 .body_context .form .second_field .title{}
 .body_context .form .second_field .input{width: 262px; height: 50px; float: left; line-height: 50px;  padding-left: 17px;}
 .body_context .form .second_field .input input{width: 243px;}
+.body_context .form .small_field .input{width: 170px;}
+.body_context .form .small_field .input input{width: 153px;}
+
 .body_context .form .send_sms{width: 200px; height: 70px; line-height: 70px; margin-left: 8px; float: left;}
 .body_context .form .send_sms .send_sms_btn{width: 182px; height: 43px; border: solid 1px #DFDFE0; background: white; color: #2CC378; line-height: 43px; text-align: center; font-size: 16px; padding: 0; margin-top: 14px;}
 .body_context .form .cap .input{width: 184px;}
@@ -55,4 +58,5 @@ body{background-color: #F5F5F5;}
 .body_context .form .transverse_field .title{margin-left: 5px;}
 .body_context .form .transverse_field .input input{width: 243px;}
 .body_context .form .weixin_field .title{width: 65px;}
-
+.body_context .form .company_tel_field .title{width: 75px;}
+.body_context .form .compact_transverse_field .title{margin-left: 5px;}

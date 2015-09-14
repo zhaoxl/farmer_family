@@ -26,7 +26,7 @@
 			<div class="login_links">
 				@if (Auth::user()->guest())
 					<a href="{{ url('/auth/login') }}">[登陆]</a>
-					<a href="{{ url('/auth/register') }}">[免费注册]</a>
+					<a href="{{ url('/auth/present-register') }}">[免费注册]</a>
 				@else
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->get()->name }} <span class="caret"></span></a>
 					[<a href="{{ url('/auth/logout') }}">退出</a>]
@@ -35,10 +35,10 @@
 		</div>
 		<div class="content">
 			<div class="find_box">
-				<a href="/auth/present-register/" class="reg_button"></a>
+				<a href="/auth/present-register" class="reg_button"></a>
 			</div>
 			<div class="pub_box">
-				<a href="#" class="reg_button"></a>
+				<a href="/auth/company-register" class="reg_button"></a>
 			</div>
 			<div class="login_box">
 				<form class="form-horizontal" method="POST" action="{{ url('/auth/login') }}">
@@ -69,15 +69,13 @@
 			</div>
 			<div class="pub_list">
 				<div class="title">
-					<a href="#">更多></a>
+					<a href="/works">更多></a>
 				</div>
 				<div class="list">
 					<ul>
-						<li><a href="#">工种：服务人员/高薪招聘网店客服</a><span class="date">[2015-08-04]</span></li>
-						<li><a href="#">工种：服务人员/大学计算机专业实习生</a><span class="date">[2015-08-04]</span></li>
-						<li><a href="#" class="hot">工种：服务人员/运营经理</a><span class="date">[2015-08-04]</span></li>
-						<li><a href="#">工种：服务人员/美工</a><span class="date">[2015-08-04]</span></li>
-						<li><a href="#">工种：服务人员/高薪聘淘宝网页设计师</a><span class="date">[2015-08-04]</span></li>
+						@foreach ($works as $work)
+						<li><a href="/works/{{$work->id}}" class="{{$work->flag ? 'hot':''}}">服务类型：{{$work->work_category_name}}</a><span class="date">[{{date('Y-m-d', strtotime($work->created_at))}}]</span></li>
+						@endforeach
 					</ul>
 				</div>
 			</div>

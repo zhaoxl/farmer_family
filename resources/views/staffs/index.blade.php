@@ -54,7 +54,7 @@
 		</div>
 		<div class="list">
 			@foreach ($staffs as $staff)
-			<div class="work">
+			<div class="item">
 				<div class="title">
 					<span class="name">
 						发布日期：{{date('Y-m-d', strtotime($staff->created_at))}}

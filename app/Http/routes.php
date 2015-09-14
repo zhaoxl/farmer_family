@@ -21,10 +21,12 @@ Route::get('/', 'IndexController@index');
 Route::get('home', 'HomeController@index');
 
 //Works
-Route::controller('works', 'WorksController');
+//Route::controller('works', 'WorksController');
+Route::resource('works', 'WorksController');
 
 //Staffs
-Route::controller('staffs', 'StaffsController');
+//Route::controller('staffs', 'StaffsController');
+Route::resource('staffs', 'StaffsController');
 
 Route::controller('area', 'AreaController');
 

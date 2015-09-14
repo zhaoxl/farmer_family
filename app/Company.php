@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class WorkCategory extends Model {
+class Company extends Model {
 
 	//
 

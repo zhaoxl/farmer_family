@@ -15,8 +15,9 @@ class IndexController extends Controller {
 		$city_id = json_decode($result, true)['data']['city_id'];
 		$city_name = \App\AreaCity::where('code', '=', $city_id)->first(array('name'))['name'];
 		$staffs = \App\Staff::orderBy('created_at', 'desc')->take(5)->get();
+		$works = \App\Work::orderBy('created_at', 'desc')->take(5)->get();
 		
-		return view('index')->with('city_id', $city_id)->with('city_name', $city_name)->with('staffs', $staffs);
+		return view('index')->with('city_id', $city_id)->with('city_name', $city_name)->with('staffs', $staffs)->with('works', $works);
 	}
 
 }

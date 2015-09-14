@@ -3,9 +3,9 @@
 	<link href="{{ asset('/css/register.css') }}" rel="stylesheet">
 	
 	<ul class="page_tabs">
-		<li><a href="#" class="current">个人找活</a></li>
+		<li><a href="/auth/present-register" >个人找活</a></li>
 		<li class="space"></li>
-		<li><a href="/auth/company-register">企业招工</a></li>
+		<li><a href="#" class="current">企业招工</a></li>
 		<li class="space"></li>
 		<li><a href="/auth/hire-register">个人招工</a></li>
 		<div class="clearfix"></div>
@@ -55,7 +55,7 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<div class="field second_field">
+		<div class="field second_field small_field">
 			<div class="title">
 				<span>QQ号：</span>
 			</div>
@@ -63,9 +63,17 @@
 				<input type="text" name="qq" value="{{ old('qq') }}" />
 			</div>
 		</div>
-		<div class="field transverse_field weixin_field">
+		<div class="field weixin_field small_field compact_transverse_field">
 			<div class="title">
 				<span>微信号：</span>
+			</div>
+			<div class="input">
+				<input type="text" name="weixin" value="{{ old('weixin') }}" />
+			</div>
+		</div>
+		<div class="field company_tel_field small_field compact_transverse_field">
+			<div class="title">
+				<span>公司电话：</span>
 			</div>
 			<div class="input">
 				<input type="text" name="weixin" value="{{ old('weixin') }}" />
@@ -123,82 +131,35 @@
 		<div class="clearfix"></div>
 		<div class="field">
 			<div class="title">
-				<span><p class="require">*</p>生日：</span>
+				<span><p class="require">*</p>企业名称：</span>
 			</div>
 			<div class="input">
-				<input type="text" name="idcard" value="{{ old('idcard') }}" />
+				<input type="text" name="company_name" value="{{ old('company_name') }}" />
 			</div>
 			<div class="valid_notice">
 				
 			</div>
 			<div class="desc">
-				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
 			</div>
 		</div>
 		<div class="clearfix"></div>
 		<div class="field">
 			<div class="title">
-				<span><p class="require">*</p>性别：</span>
+				<span><p class="require">*</p>公司地址：</span>
 			</div>
 			<div class="input">
-				<input type="text" name="idcard" value="{{ old('idcard') }}" />
+				<input type="text" name="address" value="{{ old('address') }}" />
 			</div>
 			<div class="valid_notice">
 				
 			</div>
 			<div class="desc">
-				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
 			</div>
 		</div>
 		<div class="clearfix"></div>
 		<div class="field">
 			<div class="title">
-				<span><p class="require">*</p>籍贯：</span>
-			</div>
-			<div class="input">
-				<input type="text" name="idcard" value="{{ old('idcard') }}" />
-			</div>
-			<div class="valid_notice">
-				
-			</div>
-			<div class="desc">
-				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<div class="field">
-			<div class="title">
-				<span><p class="require">*</p>所属工种：</span>
-			</div>
-			<div class="input">
-				<input type="text" name="idcard" value="{{ old('idcard') }}" />
-			</div>
-			<div class="valid_notice">
-				
-			</div>
-			<div class="desc">
-				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<div class="field">
-			<div class="title">
-				<span><p class="require">*</p>身份证：</span>
-			</div>
-			<div class="input">
-				<input type="text" name="idcard" value="{{ old('idcard') }}" />
-			</div>
-			<div class="valid_notice">
-				
-			</div>
-			<div class="desc">
-				*填写身份信息后您在网站上会显示为已认证用户，将提升您的信誉度
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<div class="field">
-			<div class="title">
-				<span>个人照片：</span>
+				<span>营业执照：</span>
 			</div>
 			<div class="input">
 				<input type="text" />
@@ -215,28 +176,30 @@
 		<div class="clearfix"></div>
 		<div class="field">
 			<div class="title">
-				<span>学历证书：</span>
+				<span><p class="require">*</p>所属行业：</span>
+			</div>
+			<div class="input tb_input">
+				<select name="area_province" id="area_province" class="form-control">
+					<option value="">请选择地区</option>
+				@foreach ($industries as $industry)
+					<option value="{{ $industry->industry_name }}">{{ $industry->industry_name }}</option>
+				@endforeach
+				</select>
+			</div>
+			<div class="valid_notice">
+				
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="field">
+			<div class="title">
+				<span>企业照片：</span>
 			</div>
 			<div class="input">
 				<input type="text" />
 			</div>
 			<input type="button" value="添加" class="btn" />
 			<input type="button" value="上传" class="btn" />
-			<div class="valid_notice">
-				
-			</div>
-			<div class="desc">
-				*照片文件不大于500K
-			</div>
-		</div>
-		<div class="clearfix"></div>
-		<div class="field">
-			<div class="title">
-				<span>期望收入：</span>
-			</div>
-			<div class="input">
-				<input type="text" />
-			</div>
 			<div class="valid_notice">
 				
 			</div>
