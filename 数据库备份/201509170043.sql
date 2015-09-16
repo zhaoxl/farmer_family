@@ -244,6 +244,35 @@ LOCK TABLES `box_office` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `companies`
+--
+
+DROP TABLE IF EXISTS `companies`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `companies` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `company_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `license_img` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `industry_id` int(11) NOT NULL,
+  `industry_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `companies`
+--
+
+LOCK TABLES `companies` WRITE;
+/*!40000 ALTER TABLE `companies` DISABLE KEYS */;
+/*!40000 ALTER TABLE `companies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `directors`
 --
 
@@ -324,6 +353,30 @@ LOCK TABLES `films_theaters` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `industries`
+--
+
+DROP TABLE IF EXISTS `industries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `industries` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `industry_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `sort` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `industries`
+--
+
+LOCK TABLES `industries` WRITE;
+/*!40000 ALTER TABLE `industries` DISABLE KEYS */;
+/*!40000 ALTER TABLE `industries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `messages`
 --
 
@@ -373,7 +426,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES ('2012_11_20_222938_create_box_office',2),('2012_11_20_222942_create_actors',2),('2012_11_20_232343_create_actors_films',2),('2012_11_21_000438_create_theaters',2),('2012_11_21_000526_create_films_theaters',2),('2015_08_02_033232_create_admins_table',2),('2015_08_04_070354_create_password_resets_table',3),('2015_08_05_115315_create_admin_operation_logs_table',3),('2012_11_13_023700_create_directors_table',4),('2012_11_13_023705_create_films_table',5),('2014_10_12_100000_create_password_resets_table',6),('2015_08_06_101709_create_area_provinces_table',7),('2015_08_06_121815_create_area_cities_table',8),('2015_08_06_122321_create_area_streets_table',9),('2015_08_13_112943_create_messages_table',10),('2014_10_12_000000_create_users_table',11),('2015_09_13_033329_create_work_categories_table',12),('2015_09_13_050205_create_works_table',12),('2015_09_13_053531_create_staff_table',12);
+INSERT INTO `migrations` VALUES ('2012_11_20_222938_create_box_office',2),('2012_11_20_222942_create_actors',2),('2012_11_20_232343_create_actors_films',2),('2012_11_21_000438_create_theaters',2),('2012_11_21_000526_create_films_theaters',2),('2015_08_02_033232_create_admins_table',2),('2015_08_04_070354_create_password_resets_table',3),('2015_08_05_115315_create_admin_operation_logs_table',3),('2012_11_13_023700_create_directors_table',4),('2012_11_13_023705_create_films_table',5),('2014_10_12_100000_create_password_resets_table',6),('2015_08_06_101709_create_area_provinces_table',7),('2015_08_06_121815_create_area_cities_table',8),('2015_08_06_122321_create_area_streets_table',9),('2015_08_13_112943_create_messages_table',10),('2014_10_12_000000_create_users_table',11),('2015_09_13_033329_create_work_categories_table',12),('2015_09_13_053531_create_staff_table',12),('2015_09_13_050205_create_works_table',13),('2015_09_14_142805_create_companies_table',14),('2015_09_14_144216_create_industries_table',14),('2015_09_16_135852_create_user_suicides_table',15),('2015_09_16_140754_add_state_to_users',15);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -464,6 +517,34 @@ LOCK TABLES `theaters` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user_suicides`
+--
+
+DROP TABLE IF EXISTS `user_suicides`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_suicides` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `reason` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_suicides`
+--
+
+LOCK TABLES `user_suicides` WRITE;
+/*!40000 ALTER TABLE `user_suicides` DISABLE KEYS */;
+INSERT INTO `user_suicides` VALUES (1,1,'111','222','0000-00-00 00:00:00','0000-00-00 00:00:00'),(2,1,'其他同类网站更好, 我没有找活/招工的需求了','123123qweeqw','2015-09-16 08:22:10','2015-09-16 08:22:10'),(3,1,'其他同类网站更好','3213123123','2015-09-16 08:23:18','2015-09-16 08:23:18'),(4,1,'其他同类网站更好','3213123123','2015-09-16 08:23:54','2015-09-16 08:23:54'),(5,1,'不能帮助我找到干活的人, 网站操作不便/难','1233213123','2015-09-16 08:25:27','2015-09-16 08:25:27'),(6,1,'不能帮助我找到干活的人, 网站操作不便/难','1233213123','2015-09-16 08:25:57','2015-09-16 08:25:57'),(7,1,'','3213213131','2015-09-16 08:34:46','2015-09-16 08:34:46'),(8,1,'','请输入注销账户的原因!\r\n					','2015-09-16 08:36:57','2015-09-16 08:36:57'),(9,1,'','请输入注销账户的原因!\r\n					','2015-09-16 08:39:31','2015-09-16 08:39:31'),(10,1,'','请输入注销账户的原因!\r\n					','2015-09-16 08:40:15','2015-09-16 08:40:15'),(11,1,'网站操作不便/难, 其他同类网站更好','不玩了睡觉！','2015-09-16 08:42:37','2015-09-16 08:42:37');
+/*!40000 ALTER TABLE `user_suicides` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -495,9 +576,10 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `state` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'normal',
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -506,7 +588,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,0,'赵晓龙','18158414543','99866770','1815841',0,0,0,0,NULL,NULL,NULL,'22072119880724061X',NULL,'99866770@qq.com','$2y$10$6OSrl.Ik4rI5SmDwTcgK1eivpCJAJrnshcLGQJZ1EL2YmyXZqh2vi',NULL,NULL,NULL,'河北省-石家庄市-市辖区',NULL,'2015-09-05 07:32:19','2015-09-05 07:32:19');
+INSERT INTO `users` VALUES (1,0,'赵晓龙','18158414543','99866770','1815841',0,0,0,0,NULL,NULL,NULL,'22072119880724061X',NULL,'99866770@qq.com','$2y$10$6OSrl.Ik4rI5SmDwTcgK1eivpCJAJrnshcLGQJZ1EL2YmyXZqh2vi',NULL,NULL,NULL,'河北省-石家庄市-市辖区','kAvF2T55CItvJtZw1RXITd0oZKGDldnNFmGXHbiSuMJpYJaULJH1OMU6PoVQ','2015-09-05 07:32:19','2015-09-16 08:42:37','suicide'),(2,0,'','',NULL,NULL,0,0,0,0,NULL,NULL,NULL,'',NULL,'','',NULL,NULL,NULL,NULL,NULL,'0000-00-00 00:00:00','0000-00-00 00:00:00','normal');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -547,10 +629,23 @@ DROP TABLE IF EXISTS `works`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `works` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `work_category_id` int(11) NOT NULL,
+  `work_sub_category_id` int(11) NOT NULL,
+  `work_category_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` double(8,2) NOT NULL,
+  `people_number` int(11) NOT NULL,
+  `start_at` datetime NOT NULL,
+  `end_at` datetime DEFAULT NULL,
+  `province` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `street` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `area_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `flag` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -559,6 +654,7 @@ CREATE TABLE `works` (
 
 LOCK TABLES `works` WRITE;
 /*!40000 ALTER TABLE `works` DISABLE KEYS */;
+INSERT INTO `works` VALUES (1,1,1,2,'服务行业/擦地',200.00,20,'2015-09-20 00:00:00',NULL,NULL,NULL,NULL,'黑龙江-天津市',0,'0000-00-00 00:00:00','0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `works` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -571,4 +667,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-13 18:23:57
+-- Dump completed on 2015-09-17  0:43:46

@@ -5,7 +5,7 @@
   	<table width="100%"  class="register_mes_table">
   		<tr>
            <td width="15%" align="right">姓名:</td>  	
-           <td width="85%" >王操蛋</td>  			
+           <td width="85%" >{{$user->name}}</td>  			
   		</tr>
   		<tr>
            <td align="right">手机号:</td>  	

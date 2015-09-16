@@ -12,11 +12,13 @@ class AuthController extends Controller {
 		return view('auth.login');
 	}
 	
+	#登陆
 	public function postLogin(Request $request)
 	{		
     if(Auth::user()->attempt(array(
-        'mobile'     => $request['mobile'],
+        'mobile'    => $request['mobile'],
         'password'  => $request['password'],
+				'state'			=> 'normal'
     ), $request['remember'] == 'on')){
 			return redirect()->intended('/my');
 		}

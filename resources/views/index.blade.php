@@ -18,7 +18,11 @@
 				<a href="/"><img src="/images/logo.jpg"></a>
 			</div>
 			<div class="area_links">
-				<span class="color_green">{{ $city_name }}</span> [ <a href="/area/changecity" class="color_green">切换城市</a>  <a href="#">廊坊</a> <a href="#">天津</a> <a href="#">保定</a> ]
+				<span class="color_green">{{ $city_name }}</span> [ 
+					<a href="/area/changecity" class="color_green">切换城市</a>  
+					<a href="/area/set?name=上海&code=310000">上海</a>
+					<a href='/area/set?name=广州&code=440100'>广州</a>
+					<a href='/area/set?name=深圳&code=440300'>深圳</a> ]
 			</div>
 			<div class="qq_links">
 				联系QQ：<span class="color_green">458048940</span>
@@ -57,7 +61,7 @@
 		<div class="base_list">
 			<div class="find_list">
 				<div class="title">
-					<a href="/staffs">更多></a>
+					<a href="/staffs">更多>></a>
 				</div>
 				<div class="list">
 					<ul>
@@ -69,7 +73,7 @@
 			</div>
 			<div class="pub_list">
 				<div class="title">
-					<a href="/works">更多></a>
+					<a href="/works">更多>></a>
 				</div>
 				<div class="list">
 					<ul>
