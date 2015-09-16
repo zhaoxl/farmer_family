@@ -9,7 +9,7 @@
 
 			},
 		}, {
-			v_element: '#v_name',
+			v_ele如软饭4vr4f5ment: '#v_name',
 			rule: ['notnull'],
 			mes: {
 				notnull: '姓名不能为空'
@@ -41,13 +41,13 @@
 						var _this = $(this);
 						var _val = _this.val();
 						item.rule.forEach(function(rule_item, index) {
-							var _rulefn= 'ruleValidate.' + rule_item;
+							var _rulefn = 'ruleValidate.' + rule_item;
 							_bool = transformValidateFn(_rulefn, _val) //转换执行每一次需求规则验证
 							var _errorfn = 'errorValidate.' + rule_item
 							transformErrorFn(_errorfn, _this, _bool, item.mes)
 							G_bool = _bool
 							if (_bool == false) {
-								return 
+								return
 							}
 						})
 					},
