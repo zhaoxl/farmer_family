@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 class WorksController extends Controller {
 
-	public function getIndex()
+	public function index()
 	{
 		$works = \App\Work::select('users.*', 'works.*')->join('users', 'users.id', '=', 'works.user_id')->paginate(4);
 		return view('works.index')->with('works', $works);
