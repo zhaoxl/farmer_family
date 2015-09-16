@@ -123,32 +123,31 @@
 				公开联系方式:
 			</td>
 			<td colspan="2"  class="gklxfs">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">
-							手机
-						</label>
-					</div>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">
-							QQ号
-						</label>
-					</div>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">
-							微信
-						</label>
-					</div>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox">
-							邮箱
-						</label>
-					</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox">
+						手机
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox">
+						QQ号
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox">
+						微信
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox">
+						邮箱
+					</label>
+				</div>
 			</td>
-			
 		</tr>
 		<tr>
 			<td width="15%" align="right">
@@ -156,41 +155,81 @@
 			</td>
 			<td colspan="2" class="select_area">
 				<div class="form_select_box">
-				<select class="form-control">
-                    <option>选择省份</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                 </select>
-                 </div>
-                 <div class="form_select_box">
-				<select class="form-control">
-                    <option>选择省份</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                 </select>
-                 </div>
-                 <div class="form_select_box">
-				<select class="form-control">
-                    <option>选择省份</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                 </select>
-                 </div>
-                 <div class="form_select_box">
-				<select class="form-control">
-                    <option>选择省份</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                 </select>
-                 </div>
+					<select class="form-control">
+						<option>
+							选择省份
+						</option>
+						<option>
+							2
+						</option>
+						<option>
+							3
+						</option>
+						<option>
+							4
+						</option>
+						<option>
+							5
+						</option>
+					</select>
+				</div>
+				<div class="form_select_box">
+					<select class="form-control">
+						<option>
+							选择省份
+						</option>
+						<option>
+							2
+						</option>
+						<option>
+							3
+						</option>
+						<option>
+							4
+						</option>
+						<option>
+							5
+						</option>
+					</select>
+				</div>
+				<div class="form_select_box">
+					<select class="form-control">
+						<option>
+							选择省份
+						</option>
+						<option>
+							2
+						</option>
+						<option>
+							3
+						</option>
+						<option>
+							4
+						</option>
+						<option>
+							5
+						</option>
+					</select>
+				</div>
+				<div class="form_select_box">
+					<select class="form-control">
+						<option>
+							选择省份
+						</option>
+						<option>
+							2
+						</option>
+						<option>
+							3
+						</option>
+						<option>
+							4
+						</option>
+						<option>
+							5
+						</option>
+					</select>
+				</div>
 			</td>
 		</tr>
 		<tr>
@@ -209,11 +248,106 @@
 			<td width="15%" align="right">
 				性别:
 			</td>
-			<td width="40%">
-				
+			<td width="40%" class="select_sex">
+				<div class="radio">
+					<label>
+						<input type="radio" name="sex" id="blankRadio1"  checked="checked" value="男" aria-label="男">
+						男
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input type="radio" name="sex" id="blankRadio1" value="女" aria-label="男">
+						女
+					</label>
+				</div>
 			</td>
 			<td width="45%">
 			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right">
+				籍贯:
+			</td>
+			<td width="40%">
+				<div class="form-group">
+					<input type="text" class="form-control" name="name" id="" placeholder="请输入您的籍贯省市">
+				</div>
+			</td>
+			<td width="45%">
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right">
+				工种:
+			</td>
+			<td width="100%" colspan="2" class="select_job">
+			  <div class="form_select_box">
+			   <select class="form-control">
+			   	<option>选择工种</option>
+			   </select>
+			  </div>
+			   <div class="form_select_box">
+			   <select class="form-control">
+			   	<option>选择工种</option>
+			   </select>
+			  </div>
+			  <a href="javascript:void(0)" class="add_job_btn btnstyle_1">添加</a>
+			  <div class="red_tx">*您能够干哪些类型的活，例如：厨师，耕种，有几种填几种</div>
+			  
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right">
+				个人照片:
+			</td>
+			<td width="40%">
+				<div class="form-group">
+					<input type="text" class="form-control" name="name" id="" placeholder="个人照片">
+				</div>
+			</td>
+			<td width="45%">
+				<a  href="#"  class="btnstyle_1">添加</a>
+				<a  href="#"  class="btnstyle_1">上传</a>
+				<span class="right_tx">*照片文件不大于500KB</span>
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right">
+				学历证书:
+			</td>
+			<td width="40%">
+				<div class="form-group">
+					<input type="text" class="form-control" name="name" id="" placeholder="学历证书">
+				</div>
+			</td>
+			<td width="45%">
+				<a  href="#"  class="btnstyle_1">添加</a>
+				<a  href="#"  class="btnstyle_1">上传</a>
+				<span class="right_tx">*照片文件不大于500KB</span>
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right">
+				期望收入:
+			</td>
+			<td width="40%">
+				<div class="form-group">
+					<input type="text" class="form-control" name="name" id="" placeholder="200元/天">
+				</div>
+			</td>
+			<td width="45%">
+				<p class="red_tx red_tx_text_more">*可以是数字,也可以是一个收入范围,例如200元一天，或50-100元一小时</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="15%" align="right">
+				
+			</td>
+			<td width="40%" colspan="2">
+				<input type="submit" class="inputsub" value="保存修改" />
+				<a  href="#" class="table_qx">取消</a>
+		   </td>
 		</tr>
 	</table>
 </div>
