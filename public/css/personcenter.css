@@ -24,6 +24,7 @@ li{ list-style: none;}
 
 .message_nav_box{ width: 90%;border: #CCCCCC solid 1px; border-bottom: none;  margin:20px auto 0px;}
 .message_nav_box ul li{float: left; line-height: 30px; padding:8px 0px; text-align: center; width: 50%; cursor: pointer;}
+.message_nav_box ul li a{display: block;}
 .message_nav_box ul li.current{ background: #42d88e; color: #FFFFFF;}
 .message_table{ border: #CCCCCC solid 1px; width: 90%; margin: auto;}
 .message_table td,.message_table th{  border: #CCCCCC solid 1px; padding: 8px 10px;}

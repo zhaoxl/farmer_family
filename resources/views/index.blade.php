@@ -32,7 +32,7 @@
 					<a href="{{ url('/auth/login') }}">[登陆]</a>
 					<a href="{{ url('/auth/present-register') }}">[免费注册]</a>
 				@else
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->get()->name }} <span class="caret"></span></a>
+					<a href="/my" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->get()->name }} <span class="caret"></span></a>
 					[<a href="{{ url('/auth/logout') }}">退出</a>]
 				@endif
 			</div>

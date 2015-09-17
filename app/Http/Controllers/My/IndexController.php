@@ -28,14 +28,51 @@ class IndexController extends Controller {
 		return view('my.already_sends');
 	}
 	
-	public function getMessages()
+	public function getInbox()
 	{
-		return view('my.messages');
+		$user = \Auth::user()->get();
+		$messages = \App\Message::where("to_user_id", "=", $user->id)->join('users', 'users.id', '=', 'messages.from_user_id')->groupBy('from_user_id')->get(array('messages.*','users.name', \DB::raw('count(messages.from_user_id) as count')));
+		return view('my.inbox')->with('messages', $messages);
+	}
+	
+	public function getOutbox()
+	{
+		$user = \Auth::user()->get();
+		$messages = \App\Message::where("from_user_id", "=", $user->id)->join('users', 'users.id', '=', 'messages.to_user_id')->groupBy('to_user_id')->get(array('messages.*','users.name', \DB::raw('count(messages.to_user_id) as count')));
+		return view('my.outbox')->with('messages', $messages);
 	}
 	
 	public function getChangePwd()
 	{
 		return view('my.change_pwd');
+	}
+	
+	public function postChangePwd(Request $request)
+	{
+		$old_pwd = $request['passward'];
+		$new_pwd = $request['new_passward'];
+		$cfm_new_pwd = $request['confirm_new_password'];
+		$user = \Auth::user()->get();
+
+		if(!\Auth::user()->validate(array(
+        'mobile'    => $user->mobile,
+        'password'  => $old_pwd)
+			)
+		)
+		{
+			return view('my.change_pwd')->with('success', null)->with('error', '修改失败，原密码错误');
+		}
+
+
+		if($new_pwd != $cfm_new_pwd)
+		{
+			return view('my.change_pwd')->with('success', null)->with('error', '修改失败，两次新密码输入不一致');
+		}
+		
+		$user->password = \Hash::make($cfm_new_pwd);
+		$user->save();
+		
+		return view('my.change_pwd')->with('success', '密码修改成功')->with('error', null);
 	}
 	
 	public function getSuicide()

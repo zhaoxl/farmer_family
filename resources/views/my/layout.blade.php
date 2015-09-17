@@ -42,8 +42,8 @@
 								已发布信息
 							</a>
 						</li>
-						<li class="{{Request::path() == 'my/messages' ? 'current' : ''}}">
-							<a href="/my/messages">
+						<li class="{{(Request::path() == 'my/inbox' || Request::path() == 'my/outbox') ? 'current' : ''}}">
+							<a href="/my/inbox">
 								站内信
 							</a>
 						</li>
