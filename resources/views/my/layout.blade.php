@@ -37,11 +37,40 @@
 								注册信息管理
 							</a>
 						</li>
-						<li class="{{Request::path() == 'my/already-sends' ? 'current' : ''}}">
-							<a href="/my/already-sends">
-								已发布信息
+						@if(Auth::user()->get()->category == 0)
+						<li class="{{Request::path() == '/staffs/create' ? 'current' : ''}}">
+							<a href="/staffs/create">
+								发布找活信息
 							</a>
 						</li>
+						<li class="{{Request::path() == 'my/sent-staffs' ? 'current' : ''}}">
+							<a href="/my/sent-staffs">
+								已发布找活信息
+							</a>
+						</li>
+						@elseif(Auth::user()->get()->category == 1)
+						<li class="{{Request::path() == 'my/staffs/new' ? 'current' : ''}}">
+							<a href="/my/already-sends">
+								发布招工信息
+							</a>
+						</li>
+						<li class="{{Request::path() == 'my/staffs' ? 'current' : ''}}">
+							<a href="/my/already-sends">
+								已发布招工信息
+							</a>
+						</li>
+						@elseif(Auth::user()->get()->category == 2)
+						<li class="{{Request::path() == 'my/staffs/new' ? 'current' : ''}}">
+							<a href="/my/already-sends">
+								发布招工信息
+							</a>
+						</li>
+						<li class="{{Request::path() == 'my/staffs' ? 'current' : ''}}">
+							<a href="/my/already-sends">
+								已发布招工信息
+							</a>
+						</li>
+						@endif
 						<li class="{{(Request::path() == 'my/inbox' || Request::path() == 'my/outbox') ? 'current' : ''}}">
 							<a href="/my/inbox">
 								站内信

@@ -41,6 +41,7 @@ class AuthController extends Controller {
 	{
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$cap = \Captcha::src();
+		\Session::put('url.intended', '/works');
 		return view('auth.present_register')->with('area_provinces', $area_provinces)->with('cap', $cap);
 	}
 	#企业注册
@@ -49,6 +50,7 @@ class AuthController extends Controller {
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$industries = \App\Industry::orderBy('sort', 'asc')->get();
 		$cap = \Captcha::src();
+		\Session::put('url.intended', '/staffs');
 		return view('auth.company_register')->with('area_provinces', $area_provinces)->with('cap', $cap)->with('industries', $industries);
 	}
 	#个人招工注册
@@ -70,10 +72,11 @@ class AuthController extends Controller {
 				$request, $validator
 			);
 		}
-
+		//设置工种
+		//TODO
 		Auth::user()->login($registrar->create($request->all()));
-
-		return redirect('/');
+		
+		return redirect()->intended('/my');
 	}
 	
 	#忘记密码

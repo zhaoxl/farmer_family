@@ -31,3 +31,7 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 .body_context .right .list .item .descs span{margin-right: 20px;}
 .body_context .right .list .item .more{margin: 20px auto 20px auto;}
 .body_context .right .list .item .more a{color: #2FC479;}
+
+.new_staff{width: 100%; margin-top: 38px;}
+.new_staff .row{width: 100%; height: 84px;}
+.new_staff .row .title{margin-left: 34px; width: 120px; height: 83px; line-height: 83px; text-align: right; color: #666666;}

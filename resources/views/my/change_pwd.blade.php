@@ -28,7 +28,7 @@
 				</td>
 				<td width="25%"></td>
 			
-			</tr>
+			</tr><!--
 			<tr>
 				<td width="25%" align="right">手机号：</td>
 				<td width="50%">
@@ -47,7 +47,7 @@
 				</td>
 				<td width="25%"></td>
 			
-			</tr>
+			</tr>-->
 			<tr>
 				<td width="25%" align="right"></td>
 				<td width="50%">
@@ -89,12 +89,12 @@
 	                    confirm_new_password:{
 	                        required:true,
 	                        equalTo:"#new_passward"
-	                    },
+	                    }/*,
 	                    mobile:{
 	                    	    required:true,
 	                    	     phone:true
 	                    	    
-	                    }
+	                    }*/
 	  
 	                },
 	                messages:{

@@ -11,7 +11,7 @@
 		<div class="clearfix"></div>
 	</ul>
 	<form class="form-horizontal" id="register_form" role="form" method="POST" action="{{ url('/auth/register') }}">
-		<input type="hidden" name="category" value="0" />
+		<input type="hidden" name="category" value="2" />
 		<input type="hidden" name="area_name" id="area_name" />
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="form">
@@ -32,9 +32,9 @@
 			<div class="input">
 				<input type="text" name="mobile" id='v_mobile' value="{{ old('mobile') }}" />
 			</div>
-			<div class="send_sms">
+			<!-- <div class="send_sms">
 				<input type="button" class="send_sms_btn" value="发送验证码到手机" />
-			</div>
+			</div> -->
 			<div class="valid_notice">
 				
 			</div>
@@ -44,9 +44,9 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="field second_field" style="display: none">
-			<div class="title">
+			<!-- <div class="title">
 				<span><p class="require">*</p>验证码：</span>
-			</div>
+			</div> -->
 			<div class="input">
 				<input type="text" />
 			</div>
@@ -277,7 +277,7 @@
 	            });    
 	    jQuery.validator.addMethod("phone", function(value, element) {
 	    var length = value.length;
-	    var mobile =  /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/
+	    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
 	    return this.optional(element) || (length == 11 && mobile.test(value));
 	}, "手机号码格式错误");  
 	

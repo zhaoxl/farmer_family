@@ -16,6 +16,7 @@ class CreateCompaniesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id');
+			$table->string('tel');
 			$table->string('company_name');
 			$table->string('address');
 			$table->string('license_img');

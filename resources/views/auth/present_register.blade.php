@@ -31,10 +31,11 @@
 			</div>
 			<div class="input">
 				<input type="text" name="mobile" id='v_mobile' value="{{ old('mobile') }}" />
-			</div>
+			</div><!--
 			<div class="send_sms">
 				<input type="button" class="send_sms_btn" value="发送验证码到手机" />
 			</div>
+				-->
 			<div class="valid_notice">
 				
 			</div>
@@ -126,7 +127,7 @@
 				<span><p class="require">*</p>生日：</span>
 			</div>
 			<div class="input">
-				<input type="text" name="idcard" value="{{ old('idcard') }}" />
+				<input type="text" name="birthday" value="{{ old('birthday') }}" />
 			</div>
 			<div class="valid_notice">
 				
@@ -140,8 +141,8 @@
 				<span><p class="require">*</p>性别：</span>
 			</div>
 			<div class="input radios">
-				<label><input type="radio" name="gender" value="male">&nbsp;&nbsp;男</label>
-				<label><input type="radio" name="gender" value="fmale">&nbsp;&nbsp;女</label>
+				<label><input type="radio" name="gender" value="male" checked>&nbsp;&nbsp;男</label>
+				<label><input type="radio" name="gender" value="female">&nbsp;&nbsp;女</label>
 			</div>
 			<div class="valid_notice">
 				
@@ -155,7 +156,7 @@
 				<span><p class="require">*</p>籍贯：</span>
 			</div>
 			<div class="input">
-				<input type="text" name="idcard" value="{{ old('idcard') }}" />
+				<input type="text" name="hometown" value="{{ old('hometown') }}" />
 			</div>
 			<div class="valid_notice">
 				
@@ -169,7 +170,7 @@
 				<span><p class="require">*</p>所属工种：</span>
 			</div>
 			<div class="input">
-				<input type="text" name="idcard" value="{{ old('idcard') }}" />
+				<input type="text" name="work_categories" value="{{ old('work_categories') }}" />
 			</div>
 			<div class="valid_notice">
 				
@@ -250,7 +251,7 @@
 				<span>期望收入：</span>
 			</div>
 			<div class="input">
-				<input type="text" />
+				<input type="text" name="expect_salary" />
 			</div>
 			<div class="valid_notice">
 				
@@ -301,7 +302,7 @@
 		<div class="service_agree">
 			<label><input type="checkbox" />我已阅读并同意</label><a href="#">《农民之家服务协议》</a>
 		</div>
-		<!--<div class="post_result">
+		<div class="post_result">
 			
 			@if (count($errors) > 0)
 			-------------------------------------------------
@@ -314,7 +315,7 @@
 					</ul>
 				</div>
 			@endif
-		</div>-->
+		</div>
 		<div class="submit">
 			<input type="submit" value="下一步" id="submitBtn" />
 		</div>
@@ -368,7 +369,7 @@
 	            });    
 	    jQuery.validator.addMethod("phone", function(value, element) {
 	    var length = value.length;
-	    var mobile =  /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/
+	    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
 	    return this.optional(element) || (length == 11 && mobile.test(value));
 	}, "手机号码格式错误");  
 	

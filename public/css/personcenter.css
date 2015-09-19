@@ -1,5 +1,9 @@
 li{ list-style: none;}
 .error{ color: #FF0000;}
+.next_btn{color: white; width: 70%; height: 36px; background: #2dc379; border: #2dc379 solid 1px; border-radius: 4px;transition: 0.5s linear;}
+.next_btn:hover{background: #25a566;}
+.add_btn{width: 74px; height: 33px; background: #2cc378; line-height: 33px; border-left: solid 1px #4fcd8e; border-right: solid 1px #4fcd8e; color: white; text-align: center;}
+
 .person_center_wrap{ width: 1000px;min-height: 1114px;_height:1114px; border: #dddddd solid 1px;border-radius: 2px; margin: 15px auto; overflow: hidden; height: auto;   box-sizing:content-box; }
 .person_nav_left{width: 230px;min-height: 1114px; height: auto; overflow: hidden; background: #fafafa; float: left; }
 .person_nav_left ul li{ height: 58px;  width: 229px; line-height: 58px;border-right: #DDDDDD solid 1px; box-sizing:content-box;}
@@ -40,8 +44,6 @@ border-radius:4px ; border: #CCCCCC solid 1px; padding-left: 10px;
 }
 .change_table td input.yzm{ width: 60%; float: left; }
 .change_table td .lab_yzm{ display: block; width: 40%; float: left; line-height: 36px;}
-.change_table .next_btn{ width: 70%; height: 36px; background: #2dc379; border: #2dc379 solid 1px; border-radius: 4px;transition: 0.5s linear;}
-.change_table .next_btn:hover{background: #25a566;}
 
 .suicide_box{ width: 90%;  margin:20px auto; }
 .suicide_box h2{ color: #2ebf7a; font-size: 18px; margin-left: 7%;}

@@ -7,25 +7,15 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller {
 
-	public function __construct()
-  {
-		$this->beforeFilter(function()
-    {
-			if(\Auth::user()->guest()){
-				return redirect("/");
-			}
-    });
-  }
-
 	public function getIndex()
 	{
 		$user = \Auth::user()->get();
 		return view('my.index')->with('user', $user);
 	}
 	
-	public function getAlreadySends()
+	public function getSentStaffs()
 	{
-		return view('my.already_sends');
+		return view('my.send_staffs');
 	}
 	
 	public function getInbox()

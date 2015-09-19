@@ -16,9 +16,8 @@ class CreateWorkCategoriesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('up_id');
-			$table->string('name');
+			$table->string('category_name');
 			$table->string('full_name');
-			$table->timestamps();
 		});
 	}
 

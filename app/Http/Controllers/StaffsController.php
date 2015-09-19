@@ -18,4 +18,10 @@ class StaffsController extends Controller {
 		$staff = \App\Staff::find($id);
 		return view('staffs.show')->with('staff', $staff);
 	}
+	
+	public function create()
+	{
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		return view('staffs.create')->with('area_provinces', $area_provinces);
+	}
 }

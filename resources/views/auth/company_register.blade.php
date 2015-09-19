@@ -11,13 +11,13 @@
 		<div class="clearfix"></div>
 	</ul>
 	<form class="form-horizontal" id="register_form" role="form" method="POST" action="{{ url('/auth/register') }}">
-		<input type="hidden" name="category" value="0" />
+		<input type="hidden" name="category" value="1" />
 		<input type="hidden" name="area_name" id="area_name" />
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="form">
 		<div class="field">
 			<div class="title">
-				<span><p class="require">*</p>姓名：</span>
+				<span><p class="require">*</p>联系人：</span>
 			</div>
 			<div class="input">
 				<input type="text" name="name" value="{{ old('name') }}" id="v_name" />
@@ -32,9 +32,9 @@
 			<div class="input">
 				<input type="text" name="mobile" id='v_mobile' value="{{ old('mobile') }}" />
 			</div>
-			<div class="send_sms">
+<!--			<div class="send_sms">
 				<input type="button" class="send_sms_btn" value="发送验证码到手机" />
-			</div>
+			</div> -->
 			<div class="valid_notice">
 				
 			</div>
@@ -118,10 +118,16 @@
 				<select name="area_province" id="area_province" class="form-control">
 					<option value="">请选择地区</option>
 				@foreach ($area_provinces as $province)
-					<option value="{{ $province->code }}">{{ $province->name }}</option>
+					<option value="{{ $province->code }}" {{old('area_province') == $province->code ? 'selected="selected"' : ''}}>{{$province->name}}</option>
 				@endforeach
 				</select>
-				<select name="area_city" id="area_city" class="form-control"></select>
+				<select name="area_city" id="area_city" class="form-control">
+					@if(isset($area_cities))
+					@foreach ($area_cities as $city)
+					<option value="{{ $city->code }}" {{old('area_city') == $city->code ? 'selected="selected"' : ''}}>{{$city->name}}</option>
+					@endforeach
+					@endif
+				</select>
 				<select name="area_street" id="area_street" class="form-control"></select>
 			</div>
 			<div class="valid_notice">
@@ -179,8 +185,8 @@
 				<span><p class="require">*</p>所属行业：</span>
 			</div>
 			<div class="input tb_input">
-				<select name="area_province" id="area_province" class="form-control">
-					<option value="">请选择地区</option>
+				<select name="industry_id" id="industry_id" class="form-control">
+					<option value="">请选择行业</option>
 				@foreach ($industries as $industry)
 					<option value="{{ $industry->industry_name }}">{{ $industry->industry_name }}</option>
 				@endforeach
@@ -249,7 +255,7 @@
 		<div class="service_agree">
 			<label><input type="checkbox" />我已阅读并同意</label><a href="#">《农民之家服务协议》</a>
 		</div>
-		<!--<div class="post_result">
+		<div class="post_result">
 			
 			@if (count($errors) > 0)
 			-------------------------------------------------
@@ -262,7 +268,7 @@
 					</ul>
 				</div>
 			@endif
-		</div>-->
+		</div>
 		<div class="submit">
 			<input type="submit" value="下一步" id="submitBtn" />
 		</div>
@@ -316,7 +322,7 @@
 	            });    
 	    jQuery.validator.addMethod("phone", function(value, element) {
 	    var length = value.length;
-	    var mobile =  /^(((13[0-9]{1})|(15[0-9]{1}))+\d{8})$/
+	    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
 	    return this.optional(element) || (length == 11 && mobile.test(value));
 	}, "手机号码格式错误");  
 	

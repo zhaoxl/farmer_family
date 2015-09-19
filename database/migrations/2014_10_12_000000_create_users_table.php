@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->integer('category');
 			$table->string('name');
-			$table->string('mobile');
+			$table->string('mobile')->unique();
 			$table->string('qq')->nullable();
 			$table->string('weixin')->nullable();
 			$table->boolean('public_mobile')->default(false);
@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration {
 			$table->string('gender')->nullable();
 			$table->string('age')->nullable();
 			$table->string('hometown')->nullable();
-			$table->string('idcard');
+			$table->string('idcard')->nullable();
 			$table->string('expect_salary')->nullable();
 			$table->string('email')->unique();
 			$table->string('password', 60);

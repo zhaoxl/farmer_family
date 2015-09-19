@@ -15,6 +15,7 @@ class CreateIndustriesTable extends Migration {
 		Schema::create('industries', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('up_id')->default(0);
 			$table->string('industry_name');
 			$table->integer('sort')->default(0);
 		});
