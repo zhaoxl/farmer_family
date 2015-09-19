@@ -18,14 +18,19 @@ class IndexController extends Controller {
 
 		if(is_null($current_city))
 		{
-			
-			$get_current_url = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$_SERVER['REMOTE_ADDR'];;
-			$result = file_get_contents($get_current_url);
-			$country = json_decode($result, true)['data']['country'];
-			$current_city = json_decode($result, true)['data']['city'];
-			$current_city_code = json_decode($result, true)['data']['city_code'];
-			if($country == '未分配或者内网IP')
-			{
+			try{
+				$get_current_url = 'http://ip.taobao.com/service/getIpInfo.php?ip='.$_SERVER['REMOTE_ADDR'];;
+				$result = file_get_contents($get_current_url);
+				$country = json_decode($result, true)['data']['country'];
+				$current_city = json_decode($result, true)['data']['city'];
+				$current_city_code = json_decode($result, true)['data']['city_code'];
+				if($country == '未分配或者内网IP')
+				{
+					$current_city = "北京市";
+					$current_city_code = "110000";
+				}
+			}
+			catch(Exception $ex){
 				$current_city = "北京市";
 				$current_city_code = "110000";
 			}
