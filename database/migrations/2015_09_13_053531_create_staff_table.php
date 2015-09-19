@@ -16,8 +16,11 @@ class CreateStaffTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id');
+			$table->integer('industry_id');
+			$table->integer('sub_industry_id');
+			$table->string('industry_name');
 			$table->integer('work_category_id');
-			$table->integer('work_sub_category_id');
+			$table->integer('sub_work_category_id');
 			$table->string('work_category_name');
 			$table->datetime('start_at');
 			$table->datetime('end_at');

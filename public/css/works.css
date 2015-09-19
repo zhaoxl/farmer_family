@@ -34,4 +34,5 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 
 .new_staff{width: 100%; margin-top: 38px;}
 .new_staff .row{width: 100%; height: 84px;}
-.new_staff .row .title{margin-left: 34px; width: 120px; height: 83px; line-height: 83px; text-align: right; color: #666666;}
+.new_staff .row .title{margin-left: 34px; width: 120px; height: 83px; line-height: 83px; text-align: right; color: #666666; float: left;}
+.new_staff .row .input{width: 600px; height: 83px; line-height: 83px; float: left;}

@@ -15,12 +15,25 @@
 					<div class="input">
 						<select name="area_province" id="area_province" class="form-control">
 							<option value="">请选择地区</option>
-						@foreach ($area_provinces as $province)
-							<option value="{{ $province->code }}">{{ $province->name }}</option>
-						@endforeach
+							@foreach ($area_provinces as $province)
+								<option value="{{ $province->code }}">{{ $province->name }}</option>
+							@endforeach
 						</select>
 						<select name="area_city" id="area_city" class="form-control"></select>
 						<select name="area_street" id="area_street" class="form-control"></select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						期望工作工种：
+					</div>
+					<div class="input">
+						<select name="work_category" id="work_category" class="form-control">
+							<option value="">请选择工种</option>
+							@foreach ($work_categories as $work_category)
+								<option value="{{ $province->code }}">{{ $province->name }}</option>
+							@endforeach
+						</select>
 					</div>
 				</div>
 			</div>
