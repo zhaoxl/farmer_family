@@ -31,7 +31,7 @@
 						<select name="work_category" id="work_category" class="form-control">
 							<option value="">请选择工种</option>
 							@foreach ($work_categories as $work_category)
-								<option value="{{ $province->code }}">{{ $province->name }}</option>
+								<option value="{{ $work_category->id }}">{{ $work_category->industry_name }}</option>
 							@endforeach
 						</select>
 					</div>
