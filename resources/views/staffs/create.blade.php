@@ -4,7 +4,7 @@
 
 	<link href="{{ asset('/css/works.css') }}" rel="stylesheet">
 	<div class="body_content">
-		<form class="form-horizontal" id="register_form" role="form" method="POST" action="{{ url('/auth/register') }}">
+		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/staffs/store') }}">
 			<input type="hidden" name="area_name" id="area_name" />
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<div class="new_staff">
@@ -35,6 +35,23 @@
 							@endforeach
 						</select>
 					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						可工作时间：
+					</div>
+					<div class="input">
+						<label>从</label>
+						<input type="text" name="start_at" class="text" />
+						<label>到</label>
+						<input type="text" name="end_at" class="text" />
+					</div>
+					<div class="notice">
+						* 请在日历表上点击选择所有您空闲可以接活的日期，选择完后必须点”保存“才可以保存您的空闲日期记录
+					</div>
+				</div>
+				<div class="next">
+					<input type="submit" class="next_btn" value="下一步" />
 				</div>
 			</div>
 		</form>

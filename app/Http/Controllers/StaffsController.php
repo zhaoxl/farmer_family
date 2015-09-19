@@ -22,6 +22,7 @@ class StaffsController extends Controller {
 	public function create()
 	{
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
-		return view('staffs.create')->with('area_provinces', $area_provinces);
+		$work_categories = \App\Industry::orderBy("sort")->get();
+		return view('staffs.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories);
 	}
 }
