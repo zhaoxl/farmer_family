@@ -4,21 +4,30 @@
 	<link href="{{ asset('/css/works.css') }}" rel="stylesheet">
 	<div class="left_nav">
 		<ul>
-			<li>招工信息</li>
-			<li>找活信息</li>
+			<li style="border-top: none;" class="">
+				<a href="/works">
+					招工信息
+				</a>
+			</li>
+			<li class="current">
+				<a href="/staffs">
+					找活信息
+				</a>
+			</li>
 		</ul>
+		<div class="left_nav_bc"></div>
 	</div>
 	<div class="right">
 		<div class="search">
 			<form action="find-list" method="get" accept-charset="utf-8">
 				<div class="row date_filter">
 					<span class="title">信息发布日期：</span>
-					<span>全部</span>
-					<span><a href="#">今天</a></span>
-					<span><a href="#">一周内</a></span>
-					<span><a href="#">2周内</a></span>
-					<span><a href="#">1个月内</a></span>
-					<span><a href="#">2个月内</a></span>
+					<span><a href="/staffs" class="{{empty(Request::get('day')) ? 'current' : ''}}">全部</a></span>
+					<span><a href="?day=1" class="{{Request::get('day') == 1 ? 'current' : ''}}">今天</a></span>
+					<span><a href="?day=7" class="{{Request::get('day') == 7 ? 'current' : ''}}">一周内</a></span>
+					<span><a href="?day=14" class="{{Request::get('day') == 14 ? 'current' : ''}}">2周内</a></span>
+					<span><a href="?day=30" class="{{Request::get('day') == 30 ? 'current' : ''}}">1个月内</a></span>
+					<span><a href="?day=60" class="{{Request::get('day') == 60 ? 'current' : ''}}">2个月内</a></span>
 				</div>
 				<div class="row">
 					<div class="input">
@@ -39,8 +48,8 @@
 						<div class="title">
 							工人性别
 						</div>
-						<label><input type="radio" name="gender" value="male">&nbsp;&nbsp;男</label>
-						<label><input type="radio" name="gender" value="fmale">&nbsp;&nbsp;女</label>
+						<label class="gender"><input type="radio" name="gender" value="male">&nbsp;&nbsp;男</label>
+						<label class="gender"><input type="radio" name="gender" value="fmale">&nbsp;&nbsp;女</label>
 					</div>
 					<div class="input">
 						<div class="title">

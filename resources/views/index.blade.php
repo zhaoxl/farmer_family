@@ -66,7 +66,7 @@
 				<div class="list">
 					<ul>
 						@foreach ($staffs as $staff)
-						<li><a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">服务类型：{{$staff->work_category_name}}</a><span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span></li>
+						<li><a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">工作类型：{{$staff->work_category_name}}</a><span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span></li>
 						@endforeach
 					</ul>
 				</div>
@@ -78,7 +78,7 @@
 				<div class="list">
 					<ul>
 						@foreach ($works as $work)
-						<li><a href="/works/{{$work->id}}" class="{{$work->flag ? 'hot':''}}">服务类型：{{$work->work_category_name}}</a><span class="date">[{{date('Y-m-d', strtotime($work->created_at))}}]</span></li>
+						<li><a href="/works/{{$work->id}}" class="{{$work->flag ? 'hot':''}}">工作类型：{{$work->work_category_name}}</a><span class="date">[{{date('Y-m-d', strtotime($work->created_at))}}]</span></li>
 						@endforeach
 					</ul>
 				</div>

@@ -379,3 +379,17 @@ ul{padding: 0px; margin: 0px;}
 .pagination li{min-width: 26px; height: 26px; border: solid 1px #DDDDDD; float: left; text-align: center; line-height: 26px; margin-right: 5px; color: 666666;}
 .pagination li a{color: #666666;}
 .pagination .active{border-color: #29C376; background: #42D88D; color: white;}
+
+.header .header_nav{width: 400px; height: 50px; float: left; margin-left: 10px; color: white;}
+.header .header_nav ul{width: 100%; list-style: none;}
+.header .header_nav ul li{width: 85px; line-height: 50px; float: left;}
+.header .header_nav ul a{width: 85px; line-height: 50px; display: block; color: white; text-align: center;}
+.header .header_nav ul .current{border-bottom: solid 5px #60fdaf; line-height: 40px; color: #60fdaf; padding-top: 5px;}
+
+.header .header_rig_nav{width: 410px; height: 50px; float: right;}
+.header .header_rig_nav ul{width: 100%; list-style: none;}
+.header .header_rig_nav ul li{line-height: 50px; float: left;}
+.header .header_rig_nav ul li.qq{margin-left: 10px;}
+.header .header_rig_nav ul a{line-height: 50px; display: block; color: white; text-align: center; padding-left: 10px; }
+.header .header_rig_nav ul .current{border-bottom: solid 5px white; line-height: 45px;}
+.header .header_rig_nav .msg_count{display: inline-block; width: 15px; line-height: 13px; background: #5cc7fc; vertical-align: middle; text-align: center; padding-top: 3px; color: white;}

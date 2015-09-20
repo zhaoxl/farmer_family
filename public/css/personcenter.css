@@ -10,7 +10,7 @@ li{ list-style: none;}
 .person_nav_left ul li a{ color:#666666 ; font-size: 14px; padding-left: 20px; font-weight: bold;}
 .person_nav_left ul li.current{ width:227px ; background: #FFFFFF; border-left: #42d88d solid 2px;border-bottom: #DDDDDD solid 1px;border-top: #DDDDDD solid 1px; border-right: #FFFFFF solid 1px;box-sizing:content-box;}
 .person_nav_left ul li.current a{ color: #42d88d;}
-.person_nav_left_bc{ width: 229px; height: 830px;border-right: #DDDDDD solid 1px;}
+.person_nav_left_bc{ width: 230px; height: 830px;border-right: #DDDDDD solid 1px;}
 .person_center_right{ width:760px ; float: left;min-height: 1114px; height: auto;}
 
 .register_mes_box{ width: 100%; padding-top: 40px;}

@@ -12,27 +12,14 @@
 		<script src="/js/jquery.min.js"></script>
 		<script src="/js/custom-form-elements.js"></script>
 		<script src="/js/jquery.validate.min.js"></script>
-		<div class="header">
-			<div class="context">
-				<div class="logo">
-					<a href="/"><img src="/images/logo.jpg"></a>
-				</div>
-				<div class="space"></div>
-				<div class="page_title">
-					注册
-				</div>
-				<div class="qq_links">
-					联系QQ：<span class="color_green">458048940</span>
-				</div>
-			</div>
-		</div>
+		<?php echo View::make('partials.header') ?>
 		<div class="body_context">
 		<link href="{{ asset('/css/personcenter.css') }}" rel="stylesheet">
 		<div class="container-fluid">
 			<div class="row person_center_wrap">
 				<div class="person_nav_left">
 					<ul>
-						<li class="{{Request::path() == 'my' ? 'current' : ''}}" style="border-top: none;">
+						<li class="{{preg_match('/my/', Request::path()) ? 'current' : ''}}" style="border-top: none;">
 							<a href="/my">
 								注册信息管理
 							</a>

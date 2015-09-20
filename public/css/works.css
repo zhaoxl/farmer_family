@@ -3,14 +3,22 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 
 .body_context{width: 1000px; border: solid 1px #DDDDDD; margin: 30px auto auto auto; background-color: #F4FBFF;}
 
-.body_context .left_nav{width: 230px; float: left;}
+.body_context .left_nav{width: 230px;min-height: 900px; height: auto; overflow: hidden; background: #fafafa; float: left; }
 .body_context .left_nav ul{list-style: none;}
-.body_context .right{width: 768px; float: right;}
+.body_context .left_nav ul li{ height: 58px;  width: 229px; line-height: 58px;border-right: #DDDDDD solid 1px; box-sizing:content-box;}
+.body_context .left_nav ul li a{ color:#666666 ; font-size: 14px; padding-left: 20px; font-weight: bold;}
+.body_context .left_nav ul li.current{ width:227px ; background: #FFFFFF; border-left: #42d88d solid 2px;border-bottom: #DDDDDD solid 1px;border-top: #DDDDDD solid 1px; border-right: #FFFFFF solid 1px;box-sizing:content-box;}
+.body_context .left_nav ul li.current a{ color: #42d88d;}
+.body_context .left_nav_bc{ width: 230px; height: 961px; border-right: #DDDDDD solid 1px;}
+
+.body_context .right{width: 738px; float: right; margin-left: 30px;}
 .body_context .right .search{width: 100%;}
 .body_context .right .search a{color: #2FC479;}
+.body_context .right .search a.current{color: black;}
 .body_context .right .search .date_filter span{margin-right: 10px;}
 .body_context .right .search .row{width: 100%; height: 65px; line-height: 65px;}
-.body_context .right .search .row .input{width: 312px; height: 41px; float: left;}
+.body_context .right .search .row .input{width: 312px; height: 51px; float: left;}
+.body_context .right .search .row .input .gender{margin-left: 10px;}
 .body_context .right .search .row .input .title{width: 88px; height: 51px; line-height: 51px; text-align: center; font-size: 16px; color: #666666; float: left; background: #EEEEEE;}
 .body_context .right .search .row .input .field{width: 222px; height: 49px; border: solid 1px #EEEEEE; float: left;}
 .body_context .right .search .row .input label{display: block; float: left; width: 46px;}
@@ -51,6 +59,7 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
   border:#42D88D 1px solid;
   box-shadow: 0 0 8px rgba(103, 166, 217, 1);
 }
+.new_staff .row .input .address_text{width: 400px;}
 .new_staff .row .notice{clear: both; color: red; margin: 16px auto auto 167px;}
 .new_staff .next_btn{ width: 30%; margin: 78px auto 300px 167px; height: 36px; background: #2dc379; border: #2dc379 solid 1px; border-radius: 4px; color: #FFFFFF;transition: 0.5s linear; }
 .new_staff .next_btn:hover{ background: #25a566;}

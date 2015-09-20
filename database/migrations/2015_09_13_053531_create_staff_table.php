@@ -12,7 +12,7 @@ class CreateStaffTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('staff', function(Blueprint $table)
+		Schema::create('staffs', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('user_id');
@@ -40,7 +40,7 @@ class CreateStaffTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('staff');
+		Schema::drop('staffs');
 	}
 
 }

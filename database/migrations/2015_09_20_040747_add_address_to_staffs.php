@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddStateToUsers extends Migration {
+class AddAddressToStaffs extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class AddStateToUsers extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function(Blueprint $table)
+		Schema::table('staffs', function(Blueprint $table)
 		{
-			$table->string("state")->default('normal');
+			$table->string("address")->nullable();
 		});
 	}
 
@@ -25,9 +25,9 @@ class AddStateToUsers extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('users', function(Blueprint $table)
+		Schema::table('staffs', function(Blueprint $table)
 		{
-			$table->dropColumn("state");
+			$table->dropColumn("address");
 		});
 	}
 

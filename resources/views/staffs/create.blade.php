@@ -4,7 +4,7 @@
 
 	<link href="{{ asset('/css/works.css') }}" rel="stylesheet">
 	<div class="body_content">
-		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/staffs/store') }}">
+		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/staffs') }}">
 			<input type="hidden" name="area_name" id="area_name" />
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<div class="new_staff">
@@ -25,13 +25,21 @@
 				</div>
 				<div class="row">
 					<div class="title">
+						详细地址：
+					</div>
+					<div class="input">
+						<input type="text" name="address" class="text address_text" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
 						期望工作工种：
 					</div>
 					<div class="input">
 						<select name="work_category" id="work_category" class="form-control">
 							<option value="">请选择工种</option>
 							@foreach ($work_categories as $work_category)
-								<option value="{{ $work_category->id }}">{{ $work_category->industry_name }}</option>
+								<option value="{{ $work_category->id }},{{$work_category->industry_name}}">{{ $work_category->industry_name }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -51,11 +59,28 @@
 					</div>
 				</div>
 				<div class="next">
+			
+					@if (count($errors) > 0)
+					-------------------------------------------------
+						<div class="alert alert-danger">
+							<strong>Whoops!</strong> There were some problems with your input.<br><br>
+							<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
 					<input type="submit" class="next_btn" value="下一步" />
 				</div>
 			</div>
 		</form>
 	</div>
+	@if(isset($success))
+	<script type="text/javascript">
+	alert('信息发布成功！');
+	</script>
+	@endif
 
 	<script type="text/javascript">
 	$(function(){

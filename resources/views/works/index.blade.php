@@ -4,9 +4,18 @@
 	<link href="{{ asset('/css/works.css') }}" rel="stylesheet">
 	<div class="left_nav">
 		<ul>
-			<li>招工信息</li>
-			<li>找活信息</li>
+			<li style="border-top: none;" class="current">
+				<a href="/works">
+					招工信息
+				</a>
+			</li>
+			<li class="">
+				<a href="/staffs">
+					找活信息
+				</a>
+			</li>
 		</ul>
+		<div class="left_nav_bc"></div>
 	</div>
 	<div class="right">
 		<div class="search">

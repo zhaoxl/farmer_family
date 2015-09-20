@@ -11,20 +11,7 @@
 <body>
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/custom-form-elements.js"></script>
-	<div class="header">
-		<div class="context">
-			<div class="logo">
-				<a href="/"><img src="/images/logo.jpg"></a>
-			</div>
-			<div class="space"></div>
-			<div class="page_title">
-				注册
-			</div>
-			<div class="qq_links">
-				联系QQ：<span class="color_green">458048940</span>
-			</div>
-		</div>
-	</div>
+	<?php echo View::make('partials.header') ?>
 	<div class="body_context">
 		@yield('content')
 	</div>
