@@ -23,7 +23,7 @@ li{ list-style: none;}
 .aleady_send_box table th{ background:#42d88e; color: #FFFFFF;}
 .aleady_send_box table tr{ border-bottom: #CCCCCC solid 1px;}
 .aleady_send_box table .time{border-right: #CCCCCC solid 1px;}
-.aleady_send_box table td a.more{  color: #42d88e; transition: 0.5s linear;   position: absolute; }
+.aleady_send_box table td a.more{  color: #42d88e; transition: 0.5s linear;   }
 .aleady_send_box table td a.more:hover{ color: #37b275;}
 
 .message_nav_box{ width: 90%;border: #CCCCCC solid 1px; border-bottom: none;  margin:20px auto 0px;}
@@ -61,15 +61,15 @@ padding: 10px; text-align: left; line-height: 28px; color: #e7e7e7;
 .register_mes_Modify{ width: 100%; padding: 20px 0px;  }
 .register_mes_table input[type='text']{ width: 100%; height: 36px; line-height: 36px; border-radius: 2px; border:#CCCCCC solid 1px; padding-left: 10px;}
 .register_mes_table td{ padding:8px 10px; height: 60px; vertical-align: top; line-height: 36px; }
-.register_mes_table td .error{ display: block; line-height: 20px;}
+.register_mes_table td label.error{ display: block; line-height: 20px;}
 .register_mes_table .form_select_box select{ padding: 5px;}
 .register_mes_table .send_mes{ width: 170px; display: block; height: 36px; border:#CCCCCC solid 1px; color: #33c280; text-align: center; line-height: 36px;}
 .register_mes_table input.mboile_verification{ width: 220px;  float: right; }
-.text_input_box span.error{  margin-left: 70px; clear: both;}
-.text_input_box span.error{ }
+.text_input_box  label.error{  margin-left: 70px; clear: both;}
+.text_input_box label.error{ }
 .qq_wx_email .form-group { width: 200px; float: left;}
 .qq_wx_email .form-group input{ width: 130px;}
-.qq_wx_email .form-group .error{ margin-left: 50px;}
+.qq_wx_email .form-group label.error{ margin-left: 50px;}
 
 .register_mes_table td.gklxfs div.checkbox{ float: left;margin-right: 20px; display: inline;}
 
@@ -77,7 +77,7 @@ padding: 10px; text-align: left; line-height: 28px; color: #e7e7e7;
 .form_select_box select{ width: 80%; text-align: center;}
 
 .select_sex .radio{ float: left; margin-right: 20px;}
-.select_job .form_select_box{ width: 100px; float: left; margin-right: 10px; display: inline;}
+.select_job .form_select_box{ width: 100px; float: left; margin-right: 10px; display: inline; f}
 .register_mes_table  .btnstyle_1{display: block;  float: left; height: 36px; line-height: 36px; width: 60px; background: #009900; color: #FFFFFF;text-align: center;
  margin-right: 5px; display: inline;
 }
