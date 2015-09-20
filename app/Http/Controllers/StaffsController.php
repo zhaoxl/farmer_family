@@ -9,17 +9,28 @@ class StaffsController extends Controller {
 	
 	public function index(Request $request)
 	{
-		
 		$day = $request['day'];
+		$area_province = $request['area_province'];
+		$area_city = $request['area_city'];
 		$staffs = \App\Staff::select('users.*', 'staffs.*')->join('users', 'users.id', '=', 'staffs.user_id');
 		if(isset($day))
 		{
 			$date = date('Y-m-d');
 			$date = date('Y-m-d',(strtotime ( '-'.$day.' day' , strtotime ( $date) ) ));
-			$staffs = $staffs->where('TO_DAYS(created_at)', '>=', "TO_DAYS('".$date."')");
+			$staffs = $staffs->where(\DB::raw('TO_DAYS(staffs.created_at)'), '>=', \DB::raw("TO_DAYS('".$date."')"));
+		}
+		if(isset($area_city))
+		{
+			$staffs = $staffs->where('staffs.city', $area_city);
+		}
+		elseif(isset($area_province))
+		{
+			$staffs = $staffs->where('staffs.province', $area_province);
 		}
 		$staffs = $staffs->paginate(4);
-		return view('staffs.index')->with('staffs', $staffs);
+		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		return view('staffs.index')->with('staffs', $staffs)->with('work_categories', $work_categories)->with('area_provinces', $area_provinces);
 	}
 	
 	public function show($id)

@@ -18,6 +18,7 @@ class CreateWorkCategoriesTable extends Migration {
 			$table->integer('up_id');
 			$table->string('category_name');
 			$table->string('full_name');
+			$table->integer('sort')->default(0);
 		});
 	}
 
