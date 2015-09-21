@@ -18,10 +18,11 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 .body_context .right .search .date_filter span{margin-right: 10px;}
 .body_context .right .search .row{width: 100%; height: 65px; line-height: 65px;}
 .body_context .right .search .row .input{width: 312px; height: 51px; float: left;}
+.body_context .right .search .row .form-control{vertical-align: super;}
 .body_context .right .search .row .input .gender{margin-left: 10px;}
 .body_context .right .search .row .input .title{width: 88px; height: 51px; line-height: 51px; text-align: center; font-size: 16px; color: #666666; float: left; background: #EEEEEE;}
 .body_context .right .search .row .input .field{width: 222px; height: 49px; border: solid 1px #EEEEEE; float: left;}
-.body_context .right .search .row .input label{display: block; float: left; width: 46px;}
+.body_context .right .search .row .input label{display: block; float: left; width: 50px;}
 .body_context .right .search .row .submit{margin-left: 7px; width: 59px; height: 52px; background: url(/images/works_search_search_btn.jpg); border: none;}
 
 .body_context .right .list{width: 100%;}

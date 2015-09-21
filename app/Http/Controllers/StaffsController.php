@@ -12,25 +12,50 @@ class StaffsController extends Controller {
 		$day = $request['day'];
 		$area_province = $request['area_province'];
 		$area_city = $request['area_city'];
+		$area_cities = null;
 		$staffs = \App\Staff::select('users.*', 'staffs.*')->join('users', 'users.id', '=', 'staffs.user_id');
-		if(isset($day))
+		$category_id = $request['category_id'];
+		$gender = $request['gender'];
+		$age = $request['age'];
+		
+		if(!empty($day))
 		{
 			$date = date('Y-m-d');
 			$date = date('Y-m-d',(strtotime ( '-'.$day.' day' , strtotime ( $date) ) ));
 			$staffs = $staffs->where(\DB::raw('TO_DAYS(staffs.created_at)'), '>=', \DB::raw("TO_DAYS('".$date."')"));
 		}
-		if(isset($area_city))
+		if(!empty($area_city))
 		{
 			$staffs = $staffs->where('staffs.city', $area_city);
 		}
-		elseif(isset($area_province))
+		elseif(!empty($area_province))
 		{
 			$staffs = $staffs->where('staffs.province', $area_province);
 		}
+		if(!empty($area_province))
+		{
+			$area_cities = \App\AreaCity::where('provincecode', '=', $area_province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
+		if(!empty($category_id))
+		{
+			$staffs = $staffs->where('staffs.sub_work_category_id', '=', $category_id);
+		}
+		if(!empty($gender))
+		{
+			$staffs = $staffs->where('users.gender', '=', $gender);
+		}
+		if(!empty($age))
+		{
+			$date = date('Y');
+			$date = date('Y',(strtotime ( '-'.$age.' year' , strtotime ( $date) ) ));
+			$staffs = $staffs->where(\DB::raw('YEAR(users.birthday)'), '=', $date);
+		}
+		
 		$staffs = $staffs->paginate(4);
 		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
-		return view('staffs.index')->with('staffs', $staffs)->with('work_categories', $work_categories)->with('area_provinces', $area_provinces);
+		
+		return view('staffs.index')->with('staffs', $staffs)->with('work_categories', $work_categories)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities);
 	}
 	
 	public function show($id)

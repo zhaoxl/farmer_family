@@ -64,7 +64,7 @@
 				</td>
 				<td width="40%">
 					<div class="form-group">
-						<input type="text" class="form-control" name="name" id="" placeholder="请输入您的年龄">
+						<input type="text" class="form-control" name="name" id="" placeholder="请输入您的姓名" value="{{$user->name}}" />
 					</div>
 				</td>
 				<td width="45%">
@@ -76,16 +76,16 @@
 				</td>
 				<td width="40%">
 					<div class="form-group">
-						<input type="text" class="form-control" name="mobile" id="" placeholder="请输入您的手机号">
+						<input type="text" class="form-control" name="mobile" id="" placeholder="请输入您的手机号" value="{{$user->mobile}}" />
 					</div>
 				</td>
 				<td width="45%">
-					<a href="javascript" id='send_mes'  class="send_mes" >
+					<!-- <a href="javascript" id='send_mes'  class="send_mes" >
 						发送验证码到手机
-					</a>
+					</a> -->
 				</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td width="15%" align="right">
 				</td>
 				<td width="40%">
@@ -96,22 +96,22 @@
 				</td>
 				<td width="45%">
 				</td>
-			</tr>
+			</tr> -->
 			<tr>
 				<td width="15%" align="right">
 				</td>
 				<td  colspan="2"  class="qq_wx_email">
 					<div class="form-group text_input_box">
 						<label for="mboile_verification">QQ:</label>
-						<input type="text" class="form-control" name="qq" id=""  placeholder="QQ">
+						<input type="text" class="form-control" name="qq" id=""  placeholder="QQ" value="{{$user->qq}}" />
 					</div>
 					<div class="form-group text_input_box">
 						<label for="mboile_verification">微信:</label>
-						<input type="text" class="form-control " name="weixin" id=""  placeholder="微信">
+						<input type="text" class="form-control " name="weixin" id=""  placeholder="微信" value="{{$user->weixin}}" />
 					</div>
 					<div class="form-group text_input_box">
 						<label for="mboile_verification">emial:</label>
-						<input type="text" class="form-control "  name="email" id=""  placeholder="emial">
+						<input type="text" class="form-control "  name="email" id=""  placeholder="emial" value="{{$user->email}}" />
 					</div>
 				</td>
 			</tr>
@@ -122,25 +122,25 @@
 				<td colspan="2"  class="gklxfs" id="check_public">
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" name="public_mobile">
+							<input type="checkbox" name="public_mobile" {{$user->public_mobile ? 'checked' : ''}} />
 							手机
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" name="public_qq">
+							<input type="checkbox" name="public_qq" {{$user->public_qq ? 'checked' : ''}} />
 							QQ号
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" name="public_weixin">
+							<input type="checkbox" name="public_weixin" {{$user->public_weixin ? 'checked' : ''}} />
 							微信
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" name="public_email">
+							<input type="checkbox" name="public_email" {{$user->public_email ? 'checked' : ''}} />
 							邮箱
 						</label>
 					</div>
@@ -152,79 +152,20 @@
 				</td>
 				<td colspan="2" class="select_area">
 					<div class="form_select_box">
-						<select class="form-control">
-							<option>
-								选择省份
-							</option>
-							<option>
-								2
-							</option>
-							<option>
-								3
-							</option>
-							<option>
-								4
-							</option>
-							<option>
-								5
-							</option>
+						<select name="area_province" id="area_province" class="form-control">
+							<option value="">请选择地区</option>
+						@foreach ($area_provinces as $province)
+							<option value="{{ $province->code }}" {{$user->province == $province->code ? 'selected' : ''}}>{{ $province->name }}</option>
+						@endforeach
 						</select>
 					</div>
 					<div class="form_select_box">
-						<select class="form-control">
-							<option>
-								选择省份
-							</option>
-							<option>
-								2
-							</option>
-							<option>
-								3
-							</option>
-							<option>
-								4
-							</option>
-							<option>
-								5
-							</option>
-						</select>
-					</div>
-					<div class="form_select_box">
-						<select class="form-control">
-							<option>
-								选择省份
-							</option>
-							<option>
-								2
-							</option>
-							<option>
-								3
-							</option>
-							<option>
-								4
-							</option>
-							<option>
-								5
-							</option>
-						</select>
-					</div>
-					<div class="form_select_box">
-						<select class="form-control">
-							<option>
-								选择省份
-							</option>
-							<option>
-								2
-							</option>
-							<option>
-								3
-							</option>
-							<option>
-								4
-							</option>
-							<option>
-								5
-							</option>
+						<select name="area_city" id="area_city" class="form-control" style="{{isset($area_cities) ? '' : 'display: none'}}">
+							@if(isset($area_cities))
+								@foreach ($area_cities as $city)
+									<option value="{{ $city->code }}" {{$user->city == $city->code ? 'selected' : ''}}>{{ $city->name }}</option>
+								@endforeach
+							@endif
 						</select>
 					</div>
 				</td>
@@ -235,7 +176,7 @@
 				</td>
 				<td width="40%">
 					<div class="form-group">
-						<input type="text" class="form-control" name="birthday" id="" placeholder="请输入您的生日例“1990-10-01”">
+						<input type="text" class="form-control" name="birthday" id="" placeholder="请输入您的生日例“1990-10-01”" value="{{$user->birthday}}">
 					</div>
 				</td>
 				<td width="45%">
@@ -248,13 +189,13 @@
 				<td width="40%" class="select_sex">
 					<div class="radio">
 						<label>
-							<input type="radio" name="sex" id="blankRadio1"  checked="checked" value="男" aria-label="男">
+							<input type="radio" name="sex" id="blankRadio1"  checked="checked" value="男" aria-label="男" {{$user->gender == 'male' ? 'checked' : ''}} />
 							男
 						</label>
 					</div>
 					<div class="radio">
 						<label>
-							<input type="radio" name="sex" id="blankRadio1" value="女" aria-label="男">
+							<input type="radio" name="sex" id="blankRadio1" value="女" aria-label="女" {{$user->gender == 'female' ? 'checked' : ''}} />
 							女
 						</label>
 					</div>
@@ -268,7 +209,7 @@
 				</td>
 				<td width="40%">
 					<div class="form-group">
-						<input type="text" class="form-control" name="address" id="" placeholder="请输入您的籍贯省市">
+						<input type="text" class="form-control" name="address" id="" placeholder="请输入您的籍贯省市" value="{{$user->hometown}}" />
 					</div>
 				</td>
 				<td width="45%">
