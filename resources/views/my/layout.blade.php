@@ -41,8 +41,8 @@
 								发布招工信息
 							</a>
 						</li>
-						<li class="{{Request::path() == 'my/staffs' ? 'current' : ''}}">
-							<a href="/my/already-sends">
+						<li class="{{Request::path() == 'my/sent-works' ? 'current' : ''}}">
+							<a href="/my/sent-works">
 								已发布招工信息
 							</a>
 						</li>
@@ -52,8 +52,8 @@
 								发布招工信息
 							</a>
 						</li>
-						<li class="{{Request::path() == 'my/staffs' ? 'current' : ''}}">
-							<a href="/my/already-sends">
+						<li class="{{Request::path() == 'my/sent-works' ? 'current' : ''}}">
+							<a href="/my/sent-works">
 								已发布招工信息
 							</a>
 						</li>

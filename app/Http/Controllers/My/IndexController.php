@@ -20,7 +20,16 @@ class IndexController extends BaseController {
 	
 	public function getSentStaffs()
 	{
-		return view('my.send_staffs');
+		$user = \Auth::user()->get();
+		$staffs = \App\Staff::where('user_id', '=', $user->id)->paginate(20);
+		return view('my.sent_staffs')->with('staffs', $staffs);
+	}
+	
+	public function postDeleteStaff(Request $request)
+	{
+		$id = $request['delete_staff_id'];
+		\App\Staff::destroy($id);
+		return redirect()->back();
 	}
 	
 	public function getInbox()

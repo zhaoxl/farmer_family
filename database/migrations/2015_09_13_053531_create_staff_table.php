@@ -22,6 +22,7 @@ class CreateStaffTable extends Migration {
 			$table->integer('work_category_id');
 			$table->integer('sub_work_category_id');
 			$table->string('work_category_name');
+			$table->string('title');
 			$table->datetime('start_at');
 			$table->datetime('end_at');
 			$table->string('province')->nullable();
