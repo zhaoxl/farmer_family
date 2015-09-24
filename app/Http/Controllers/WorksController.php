@@ -52,4 +52,16 @@ class WorksController extends Controller {
 		return view('works.show')->with('work', $work);
 	}
 
+	public function create()
+	{
+		if(\Auth::user()->guest()){
+			return redirect("/");
+		}
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$work_categories = \App\Industry::orderBy("sort")->get();
+		return view('works.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories);
+	}
+	
+	
+	
 }

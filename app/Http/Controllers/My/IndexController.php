@@ -11,6 +11,7 @@ class IndexController extends BaseController {
 	{
 		$user = \Auth::user()->get();
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$area_cities = null;
 		if(!empty($user->province))
 		{
 			$area_cities = \App\AreaCity::where('provincecode', '=', $user->province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));

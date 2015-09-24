@@ -25,7 +25,7 @@
 							</a>
 						</li>
 						@if(Auth::user()->get()->category == 0)
-						<li class="{{Request::path() == '/staffs/create' ? 'current' : ''}}">
+						<li>
 							<a href="/staffs/create">
 								发布找活信息
 							</a>
@@ -36,8 +36,8 @@
 							</a>
 						</li>
 						@elseif(Auth::user()->get()->category == 1)
-						<li class="{{Request::path() == 'my/staffs/new' ? 'current' : ''}}">
-							<a href="/my/already-sends">
+						<li>
+							<a href="/works/create">
 								发布招工信息
 							</a>
 						</li>
@@ -47,7 +47,7 @@
 							</a>
 						</li>
 						@elseif(Auth::user()->get()->category == 2)
-						<li class="{{Request::path() == 'my/staffs/new' ? 'current' : ''}}">
+						<li>
 							<a href="/my/already-sends">
 								发布招工信息
 							</a>

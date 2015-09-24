@@ -18,7 +18,20 @@
 				</div>
 				<div class="row">
 					<div class="title">
-						期望工作区域：
+						服务类型：
+					</div>
+					<div class="input">
+						<select name="work_category" id="work_category" class="form-control">
+							<option value="">请选择工种</option>
+							@foreach ($work_categories as $work_category)
+								<option value="{{ $work_category->id }},{{$work_category->industry_name}}">{{ $work_category->industry_name }}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						工作区域：
 					</div>
 					<div class="input">
 						<select name="area_province" id="area_province" class="form-control">
@@ -39,22 +52,10 @@
 						<input type="text" name="address" class="text address_text" />
 					</div>
 				</div>
+				
 				<div class="row">
 					<div class="title">
-						期望工作工种：
-					</div>
-					<div class="input">
-						<select name="work_category" id="work_category" class="form-control">
-							<option value="">请选择工种</option>
-							@foreach ($work_categories as $work_category)
-								<option value="{{ $work_category->id }},{{$work_category->industry_name}}">{{ $work_category->industry_name }}</option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-				<div class="row">
-					<div class="title">
-						可工作时间：
+						服务时间：
 					</div>
 					<div class="input">
 						<label>从</label>
@@ -63,7 +64,6 @@
 						<input type="text" name="end_at" class="text" />
 					</div>
 					<div class="notice">
-						* 请在日历表上点击选择所有您空闲可以接活的日期，选择完后必须点”保存“才可以保存您的空闲日期记录
 					</div>
 				</div>
 				<div class="next">

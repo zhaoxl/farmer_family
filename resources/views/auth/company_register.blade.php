@@ -21,8 +21,11 @@
 			</div>
 			<div class="input">
 				<input type="text" name="name" value="{{ old('name') }}" id="v_name" />
+				@if(count($errors) > 0 && $errors->default->has('name'))
+				<label id="v_name-error" class="error" for="v_name">必填项</label>
+				@endif
 			</div>
-			<div class="valid_notice {{count($errors) > 0 && $errors->default->has('name') ? 'wrong' : ''}}"></div>
+			<div class="valid_notice"></div>
 		</div>
 		<div class="clearfix"></div>
 		<div class="field">
@@ -31,6 +34,9 @@
 			</div>
 			<div class="input">
 				<input type="text" name="mobile" id='v_mobile' value="{{ old('mobile') }}" />
+				@if(count($errors) > 0 && $errors->default->has('mobile'))
+				<label id="v_mobile-error" class="error" for="v_mobile">手机号已经被注册</label>
+				@endif
 			</div>
 <!--			<div class="send_sms">
 				<input type="button" class="send_sms_btn" value="发送验证码到手机" />
@@ -86,6 +92,9 @@
 			</div>
 			<div class="input">
 				<input type="text" name="email" value="{{ old('email') }}" />
+				@if(count($errors) > 0 && $errors->default->has('email'))
+				<label id="v_email-error" class="error" for="v_name">您注册的邮箱已经存在</label>
+				@endif
 			</div>
 			<div class="valid_notice">
 				
@@ -114,21 +123,21 @@
 			<div class="title">
 				<span><p class="require">*</p>所在区域：</span>
 			</div>
-			<div class="input tb_input">
+			<div class="input tb_input area">
 				<select name="area_province" id="area_province" class="form-control">
 					<option value="">请选择地区</option>
 				@foreach ($area_provinces as $province)
 					<option value="{{ $province->code }}" {{old('area_province') == $province->code ? 'selected="selected"' : ''}}>{{$province->name}}</option>
 				@endforeach
 				</select>
-				<select name="area_city" id="area_city" class="form-control">
+				<select name="area_city" id="area_city" class="form-control" style="display: none">
 					@if(isset($area_cities))
 					@foreach ($area_cities as $city)
 					<option value="{{ $city->code }}" {{old('area_city') == $city->code ? 'selected="selected"' : ''}}>{{$city->name}}</option>
 					@endforeach
 					@endif
 				</select>
-				<select name="area_street" id="area_street" class="form-control"></select>
+				<select name="area_street" id="area_street" class="form-control" style="display: none"></select>
 			</div>
 			<div class="valid_notice">
 				
@@ -219,7 +228,7 @@
 				<span><p class="require">*</p>设置登陆密码：</span>
 			</div>
 			<div class="input">
-				<input type="password" name="password" />
+				<input type="password" name="password" id="password" />
 			</div>
 			<div class="valid_notice">
 				
@@ -244,6 +253,9 @@
 			</div>
 			<div class="input">
 				<input type="text" name="captcha" value="" />
+				@if(count($errors) > 0 && $errors->default->has('captcha'))
+				<label id="v_captcha-error" class="error" for="v_captcha">验证码不正确</label>
+				@endif
 			</div>
 			<img id="cap_img" src="{{$cap}}" class="img" />
 			<div class="valid_notice">
@@ -257,7 +269,7 @@
 		</div>
 		<div class="post_result">
 			
-			@if (count($errors) > 0)
+			<!-- @if (count($errors) > 0)
 			-------------------------------------------------
 				<div class="alert alert-danger">
 					<strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -267,7 +279,7 @@
 						@endforeach
 					</ul>
 				</div>
-			@endif
+			@endif -->
 		</div>
 		<div class="submit">
 			<input type="submit" value="下一步" id="submitBtn" />
@@ -277,53 +289,70 @@
 	
 	<script type="text/javascript" src="{{ asset('/js/jquery.validate.min.js') }}" ></script>
 	<script>
-		  var validate = $("#register_form").validate({
-	                debug: true, //调试模式取消submit的默认提交功能   
-	                //errorClass: "label.error", //默认为错误的样式类为：error   
-	                focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
-	                onkeyup: false,   
-	                submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
-	                    alert("提交表单");   
-	                    form.submit();   //提交表单   
-	                },   
-                
-	                rules:{
-	                    name:{
-	                        required:true
-	                    },
-	                    mobile:{
-	                    	    required:true,
-	                    	    phone:true
-	                    }
-	//                  ,
-	//                  email:{
-	//                      required:true,
-	//                      email:true
-	//                  },
-	//                  password:{
-	//                      required:true,
-	//                      rangelength:[3,10]
-	//                  },
-	//                  confirm_password:{
-	//                      equalTo:"#password"
-	//                  }                    
-	                },
-	                messages:{
-	                    name:{
-	                        required:"必填"
-	                    },
-	                    mobile:{
-	                    	   required:"必填",
-	                    	   phone:'请输入正确的电话号码'
-	                    }
-                                     
-	                }
-                          
-	            });    
-	    jQuery.validator.addMethod("phone", function(value, element) {
-	    var length = value.length;
-	    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
-	    return this.optional(element) || (length == 11 && mobile.test(value));
+	  var validate = $("#register_form").validate({
+    //debug: true, //调试模式取消submit的默认提交功能   
+    //errorClass: "label.error", //默认为错误的样式类为：error   
+    focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+    onkeyup: false,   
+    submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+        form.submit();   //提交表单   
+    },   
+  
+    rules:{
+	    name:{
+	    	required:true
+	    },
+	    mobile:{
+	    	required:true,
+	    	phone:true
+	    },
+     email:{
+     	required:true,
+     	email:true
+     },
+		 company_name:{
+		   required: true
+		 },
+		 address:{
+		   required: true
+		 },
+     password:{
+			 required:true,
+     	 rangelength:[3,10]
+     },
+     password_confirmation:{
+			 equalTo:"#password"
+     }                   
+    },
+    messages:{
+      name:{
+          required:"必填项"
+      },
+      mobile:{
+      	   required:"必填项",
+      	   phone:'请输入正确的电话号码'
+      },
+      email:{
+      	   required:"必填项",
+      },
+		 company_name:{
+		   required: "必填项"
+		 },
+		 address:{
+		   required: "必填项"
+		 },
+		 password:{
+		   required: "必填项"
+		 },
+		 password_confirmation:{
+		   equalTo: "两次密码输入不一致"
+		 }
+   }
+  });    
+  jQuery.validator.addMethod("phone", function(value, element) {
+    var length = value.length;
+    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
+    return this.optional(element) || (length == 11 && mobile.test(value));
 	}, "手机号码格式错误");  
 	
 	
@@ -339,12 +368,18 @@
 				data: {provincecode: $(this).val()},
 				success: function(response)
 				{
+					if(response.length == 0)
+					{
+						$("#area_city").hide();
+						$("#area_street").hide();
+						return true;
+					}
 					var options = '<option value="">请选择市</option>';
 					$.each(response, function(index, city){
 						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
 					});
-					$("#area_city").html(options);
-					$("#area_street").html('');
+					$("#area_city").html(options).show();
+					$("#area_street").html('').hide();
 				}
 			});
 		});
@@ -358,11 +393,16 @@
 				data: {citycode: $(this).val()},
 				success: function(response)
 				{
+					if(response.length == 0)
+					{
+						$("#area_street").hide();
+						return true;
+					}
 					var options = '<option value="">请选择区县</option>';
 					$.each(response, function(index, city){
 						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
 					});
-					$("#area_street").html(options);
+					$("#area_street").html(options).show();
 				}
 			});
 			$("#area_street").change(function(){
