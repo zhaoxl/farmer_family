@@ -4,10 +4,10 @@
 
 	<link href="{{ asset('/css/works.css') }}" rel="stylesheet">
 	<div class="body_content">
-		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/staffs') }}">
+		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/works') }}">
 			<input type="hidden" name="area_name" id="area_name" />
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<div class="new_staff">
+			<div class="new_work">
 				<div class="row">
 					<div class="title">
 						标题：
@@ -18,7 +18,7 @@
 				</div>
 				<div class="row">
 					<div class="title">
-						服务类型：
+						工作工种：
 					</div>
 					<div class="input">
 						<select name="work_category" id="work_category" class="form-control">
@@ -40,8 +40,8 @@
 								<option value="{{ $province->code }}">{{ $province->name }}</option>
 							@endforeach
 						</select>
-						<select name="area_city" id="area_city" class="form-control"></select>
-						<select name="area_street" id="area_street" class="form-control"></select>
+						<select name="area_city" id="area_city" class="form-control" style="display: none"></select>
+						<select name="area_street" id="area_street" class="form-control" style="display: none"></select>
 					</div>
 				</div>
 				<div class="row">
@@ -52,6 +52,15 @@
 						<input type="text" name="address" class="text address_text" />
 					</div>
 				</div>
+				<div class="row">
+					<div class="title">
+						服务报酬：
+					</div>
+					<div class="input">
+						<input type="text" name="price" class="text" id="price_txt" />/天
+						<label><input type="checkbox" name="price_negotiable" value="1" id="price_negotiable"/>面议</label>
+					</div>
+				</div>
 				
 				<div class="row">
 					<div class="title">
@@ -59,11 +68,28 @@
 					</div>
 					<div class="input">
 						<label>从</label>
-						<input type="text" name="start_at" class="text" />
+						<input type="text" name="start_at" class="text date" id="start_at" />
 						<label>到</label>
-						<input type="text" name="end_at" class="text" />
+						<input type="text" name="end_at" class="text date" id="end_at" />
+						<label><input type="checkbox" name="date_long" value="1" id="date_long"/>长期</label>
 					</div>
 					<div class="notice">
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						服务人数：
+					</div>
+					<div class="input">
+						<input type="text" name="people_number" class="text" id="people_number" />人
+					</div>
+				</div>
+				<div class="row content_row">
+					<div class="title">
+						服务内容：
+					</div>
+					<div class="input">
+						<textarea name="content" class="content"></textarea>
 					</div>
 				</div>
 				<div class="next">
@@ -101,12 +127,18 @@
 				data: {provincecode: $(this).val()},
 				success: function(response)
 				{
+					if(response.length == 0)
+					{
+						$("#area_city").hide();
+						$("#area_street").hide();
+						return true;
+					}
 					var options = '<option value="">请选择市</option>';
 					$.each(response, function(index, city){
 						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
 					});
-					$("#area_city").html(options);
-					$("#area_street").html('');
+					$("#area_city").html(options).show();
+					$("#area_street").html('').hide();
 				}
 			});
 		});
@@ -120,11 +152,16 @@
 				data: {citycode: $(this).val()},
 				success: function(response)
 				{
+					if(response.length == 0)
+					{
+						$("#area_street").hide();
+						return true;
+					}
 					var options = '<option value="">请选择区县</option>';
 					$.each(response, function(index, city){
 						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
 					});
-					$("#area_street").html(options);
+					$("#area_street").html(options).show();
 				}
 			});
 			$("#area_street").change(function(){
@@ -133,6 +170,32 @@
 				var street = $("#area_street").find("option:selected").text();
 				$("#area_name").val(province+'-'+city+'-'+street);
 			});
+		});
+		
+		//price
+		$("#price_negotiable").change(function(){
+			if($(this).prop("checked"))
+			{
+				$("#price_txt").attr("readonly", true).css("color", "#EEEEEE");
+			}
+			else
+			{
+				$("#price_txt").attr("readonly", false).css("color", "inherit");
+			}
+		});
+		
+		//date
+		$("#date_long").change(function(){
+			if($(this).prop("checked"))
+			{
+				$("#start_at").attr("readonly", true).css("color", "#EEEEEE");
+				$("#end_at").attr("readonly", true).css("color", "#EEEEEE");
+			}
+			else
+			{
+				$("#start_at").attr("readonly", false).css("color", "inherit");
+				$("#end_at").attr("readonly", false).css("color", "inherit");
+			}
 		});
 	});
 	</script>

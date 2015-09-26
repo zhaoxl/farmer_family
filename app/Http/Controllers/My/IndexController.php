@@ -26,6 +26,13 @@ class IndexController extends BaseController {
 		return view('my.sent_staffs')->with('staffs', $staffs);
 	}
 	
+	public function getSentWorks()
+	{
+		$user = \Auth::user()->get();
+		$staffs = \App\Work::where('user_id', '=', $user->id)->paginate(20);
+		return view('my.sent_works')->with('works', $staffs);
+	}
+	
 	public function postDeleteStaff(Request $request)
 	{
 		$id = $request['delete_staff_id'];

@@ -35,20 +35,9 @@
 								已发布找活信息
 							</a>
 						</li>
-						@elseif(Auth::user()->get()->category == 1)
+						@else
 						<li>
 							<a href="/works/create">
-								发布招工信息
-							</a>
-						</li>
-						<li class="{{Request::path() == 'my/sent-works' ? 'current' : ''}}">
-							<a href="/my/sent-works">
-								已发布招工信息
-							</a>
-						</li>
-						@elseif(Auth::user()->get()->category == 2)
-						<li>
-							<a href="/my/already-sends">
 								发布招工信息
 							</a>
 						</li>
