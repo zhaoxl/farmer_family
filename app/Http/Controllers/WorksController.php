@@ -58,8 +58,9 @@ class WorksController extends Controller {
 			return redirect("/");
 		}
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
-		$work_categories = \App\Industry::orderBy("sort")->get();
-		return view('works.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories);
+		$industries = \App\Industry::orderBy("sort")->get();
+		$work_categories = \App\WorkCategory::orderBy("sort")->get();
+		return view('works.create')->with('area_provinces', $area_provinces)->with('industries', $industries)->with('work_categories', $work_categories);
 	}
 	
 	public function store(Request $request)
@@ -76,11 +77,16 @@ class WorksController extends Controller {
 		$price = $request['price'];
 		$content = $request['content'];
 		$people_number = isset($request['people_number']) ? $request['people_number'] : '';
+		$industry = isset($request['industry']) ? $request['industry'] : '';
 		$work_category = isset($request['work_category']) ? $request['work_category'] : '';
 		$start_at = isset($request['start_at']) ? $request['start_at'] : '';
 		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
 		$user = \Auth::user()->get();
 				
+		if(empty($title))
+		{
+			return redirect()->back()->withErrors(['title' => '请输入标题']);
+		}
 		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
 		{
 			return redirect()->back()->withErrors(['area' => '请选择工作区域']);
@@ -89,6 +95,12 @@ class WorksController extends Controller {
 		{
 			return redirect()->back()->withErrors(['address' => '请输入详细地址']);
 		}
+		if(empty($industry))
+		{
+			return redirect()->back()->withErrors(['industry' => '请选择行业']);
+		}
+		$industry_id = explode(',', $industry)[0];
+		$industry_name = explode(',', $industry)[1];
 		if(empty($work_category))
 		{
 			return redirect()->back()->withErrors(['work_category' => '请选择工作工种']);
@@ -97,13 +109,41 @@ class WorksController extends Controller {
 		$work_category_name = explode(',', $work_category)[1];
 		if(empty($start_at) || empty($end_at))
 		{
-			return redirect()->back()->withErrors(['start_at' => '请选择服务时间']);
+			if(empty($request['date_long']))
+			{
+				return redirect()->back()->withErrors(['start_at' => '请选择服务时间']);
+			}
 		}
-		$staff = \App\Work::create(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at, 'title' => $title, 'price' => $price, 'people_number' => $people_number, 'content' => $content));
+		if(empty($price))
+		{
+			if(empty($request['price_negotiable']))
+			{
+				return redirect()->back()->withErrors(['start_at' => '请输入服务报酬']);
+			}
+		}
+		if(empty($people_number))
+		{
+			return redirect()->back()->withErrors(['people_number' => '请输入服务人数']);
+		}
+		$work = new \App\Work(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'industry_id' => $industry_id, 'industry_name' => $industry_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content));
+		if(!empty($start_at))
+		{
+			$work->start_at = $start_at;
+		}
+		if(!empty($end_at))
+		{
+			$work->end_at = $end_at;
+		}
+		if(!empty($people_number))
+		{
+			$work->people_number = $people_number;
+		}
+		$work->save();
 		
+		$industries = \App\Industry::orderBy("sort")->get();
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$work_categories = \App\Industry::orderBy("sort")->get();
-		return view('works.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories)->with('success', 'true');
+		return view('works.create')->with('area_provinces', $area_provinces)->with('industries', $industries)->with('work_categories', $work_categories)->with('success', 'true');
 	}
 	
 }

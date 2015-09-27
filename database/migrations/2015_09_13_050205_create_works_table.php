@@ -24,7 +24,7 @@ class CreateWorksTable extends Migration {
 			$table->string('work_category_name');
 			$table->float('price');
 			$table->integer('people_number');
-			$table->datetime('start_at');
+			$table->datetime('start_at')->nullable();
 			$table->datetime('end_at')->nullable();
 			$table->string('province')->nullable();
 			$table->string('city')->nullable();

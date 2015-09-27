@@ -1,0 +1,5 @@
+body{background: url("/images/login_bg.jpg") no-repeat scroll center top;}
+#index .content {height: 490px;}
+#index .content .login_box {float: none; margin: auto auto;}
+#index .content .login_box .error{color: red; width: 100%; line-height: 20px; margin-left: 36px; padding-top: 73px;}
+#index .content .login_box .uname {margin-top: 1px;}

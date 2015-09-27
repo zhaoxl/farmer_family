@@ -3,6 +3,9 @@
 @section('content')
 
 	<link href="{{ asset('/css/works.css') }}" rel="stylesheet">
+	<link href="{{ asset('/js/jquery-ui/jquery-ui.css') }}" rel="stylesheet">
+	<link href="{{ asset('/js/jquery-ui/jquery-ui.theme.css') }}" rel="stylesheet">
+	<script type="text/javascript" src="{{ asset('/js/jquery-ui/jquery-ui.js') }}"></script>
 	<div class="body_content">
 		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/works') }}">
 			<input type="hidden" name="area_name" id="area_name" />
@@ -14,6 +17,25 @@
 					</div>
 					<div class="input">
 						<input type="text" name="title" class="text address_text" />
+						<span class="error">
+							{{(count($errors) > 0 && $errors->default->has('title')) ? $errors->default->get('title')[0] : ''}}
+						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						行业：
+					</div>
+					<div class="input">
+						<select name="industry" id="industry" class="form-control">
+							<option value="">请选择行业</option>
+							@foreach ($industries as $industry)
+								<option value="{{ $industry->id }},{{$industry->full_name}}">{{ $industry->full_name }}</option>
+							@endforeach
+						</select>
+						<span class="error">
+							{{(count($errors) > 0 && $errors->default->has('industry')) ? $errors->default->get('industry')[0] : ''}}
+						</span>
 					</div>
 				</div>
 				<div class="row">
@@ -24,7 +46,7 @@
 						<select name="work_category" id="work_category" class="form-control">
 							<option value="">请选择工种</option>
 							@foreach ($work_categories as $work_category)
-								<option value="{{ $work_category->id }},{{$work_category->industry_name}}">{{ $work_category->industry_name }}</option>
+								<option value="{{ $work_category->id }},{{$work_category->full_name}}">{{ $work_category->full_name }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -42,6 +64,9 @@
 						</select>
 						<select name="area_city" id="area_city" class="form-control" style="display: none"></select>
 						<select name="area_street" id="area_street" class="form-control" style="display: none"></select>
+						<span class="error">
+							{{(count($errors) > 0 && $errors->default->has('area')) ? $errors->default->get('area')[0] : ''}}
+						</span>
 					</div>
 				</div>
 				<div class="row">
@@ -50,6 +75,9 @@
 					</div>
 					<div class="input">
 						<input type="text" name="address" class="text address_text" />
+						<span class="error">
+							{{(count($errors) > 0 && $errors->default->has('address')) ? $errors->default->get('address')[0] : ''}}
+						</span>
 					</div>
 				</div>
 				<div class="row">
@@ -82,6 +110,9 @@
 					</div>
 					<div class="input">
 						<input type="text" name="people_number" class="text" id="people_number" />人
+						<span class="error">
+							{{(count($errors) > 0 && $errors->default->has('people_number')) ? $errors->default->get('people_number')[0] : ''}}
+						</span>
 					</div>
 				</div>
 				<div class="row content_row">
@@ -185,6 +216,23 @@
 		});
 		
 		//date
+    $( "#start_at" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#end_at" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#end_at" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#start_at" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+		
 		$("#date_long").change(function(){
 			if($(this).prop("checked"))
 			{
