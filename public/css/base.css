@@ -393,3 +393,26 @@ ul{padding: 0px; margin: 0px;}
 .header .header_rig_nav ul a{line-height: 50px; display: block; color: white; text-align: center; padding-left: 10px; }
 .header .header_rig_nav ul .current{border-bottom: solid 5px white; line-height: 45px;}
 .header .header_rig_nav .msg_count{display: inline-block; width: 15px; line-height: 13px; background: #5cc7fc; vertical-align: middle; text-align: center; padding-top: 3px; color: white;}
+
+.body_context .defaultTheme-button{
+	display: block;
+	background: #2cc378 none repeat scroll 0 0;
+	border-color: -moz-use-text-color #4dcc8e;
+	border-style: none solid;
+	border-width: medium 1px;
+	color: white;
+	float: left;
+	height: 33px;
+	line-height: 33px;
+	margin-right: 5px;
+	margin-top: 18px;
+	width: 74px;
+}
+.body_context .defaultTheme-button .btn-text{
+	color: white;
+	font-size: 14px;
+}
+.body_context .defaultTheme-queue{
+	float: left;
+	margin-top: 21px;
+}
