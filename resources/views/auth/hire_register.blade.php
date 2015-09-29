@@ -1,6 +1,7 @@
 @extends('base')
 @section('content')
 	<link href="{{ asset('/css/register.css') }}" rel="stylesheet">
+   <script src="//g.alicdn.com/kissy/k/1.4.8/seed-min.js" charset="utf-8"></script>
 	
 	<ul class="page_tabs">
 		<li><a href="/auth/present-register">个人找活</a></li>
@@ -142,13 +143,10 @@
 			<div class="input">
 				<input type="text" />
 			</div>
-			<input type="button" value="添加" class="btn" />
-			<input type="button" value="上传" class="btn" />
+			<input type="file" class="g-u" id="J_UploaderBtn1" value="添加" name="Filedata" >
+			<ul id="J_UploaderQueue1"></ul>
 			<div class="valid_notice">
 				
-			</div>
-			<div class="desc">
-				*照片文件不大于500K
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -159,13 +157,10 @@
 			<div class="input">
 				<input type="text" />
 			</div>
-			<input type="button" value="添加" class="btn" />
-			<input type="button" value="上传" class="btn" />
+			<input type="file" class="g-u" id="J_UploaderBtn2" value="添加" name="Filedata" >
+			<ul id="J_UploaderQueue2"></ul>
 			<div class="valid_notice">
 				
-			</div>
-			<div class="desc">
-				*照片文件不大于500K
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -238,8 +233,7 @@
 	                focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
 	                onkeyup: false,   
 	                submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
-	                    alert("提交表单");   
-	                    form.submit();   //提交表单   
+	                	form.submit();   //提交表单   
 	                },   
                 
 	                rules:{
@@ -334,5 +328,70 @@
 			$("#cap_img").attr("src", $("#cap_img").attr("src")+"?");
 		});
 	});
+	</script>
+	
+	<script>
+		var S = KISSY;
+		S.use('kg/uploader/3.0.3/index,kg/uploader/3.0.3/themes/default/index,kg/uploader/3.0.3/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+		  //上传组件插件
+		  var plugins = 'kg/uploader/3.0.3/plugins/auth/auth,' +
+		          'kg/uploader/3.0.3/plugins/urlsInput/urlsInput,' +
+		          'kg/uploader/3.0.3/plugins/proBars/proBars';
+
+	    S.use(plugins,function(S,Auth,UrlsInput,ProBars){
+	    	//身份证
+	    	var uploader = new Uploader('#J_UploaderBtn1',{
+	      	//处理上传的服务器端脚本路径
+	        action: "/upload",
+          //禁用多选
+          multiple : false
+	      });
+	      //使用主题
+	      uploader.theme(new DefaultTheme({
+	        queueTarget:'#J_UploaderQueue1'
+	      }));
+	      //验证插件
+	      uploader.plug(new Auth({
+	      	//最多上传个数
+	        max:1
+	      }))
+	      //url保存插件
+	      .plug(new UrlsInput({target:'#J_Urls'}))
+	      //进度条集合
+	      .plug(new ProBars());
+				uploader.on('add', function (ev) {
+					$("#J_UploaderBtn1").parent().parent().hide();
+        });
+				uploader.on('remove',function(ev){
+					$("#J_UploaderBtn1").parent().parent().show();
+        });
+				//照片
+	    	var uploader2 = new Uploader('#J_UploaderBtn2',{
+	      	//处理上传的服务器端脚本路径
+	        action: "/upload",
+          //禁用多选
+          multiple : false
+	      });
+	      //使用主题
+	      uploader2.theme(new DefaultTheme({
+	        queueTarget:'#J_UploaderQueue2'
+	      }));
+	      //验证插件
+	      uploader2.plug(new Auth({
+	      	//最多上传个数
+	        max:1
+	      }))
+	      //url保存插件
+	      .plug(new UrlsInput({target:'#J_Urls2'}))
+	      //进度条集合
+	      .plug(new ProBars());
+				uploader2.on('add', function (ev) {
+					$("#J_UploaderBtn2").parent().parent().hide();
+        });
+				uploader2.on('remove',function(ev){
+					$("#J_UploaderBtn2").parent().parent().show();
+        });
+	    });
+	  });
 	</script>
 @endsection

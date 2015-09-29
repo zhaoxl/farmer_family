@@ -9,7 +9,8 @@ class AuthController extends Controller {
 
 	public function getLogin()
 	{
-		return view('auth.login');
+		$current_city = \Cookie::get('current_city');
+		return view('auth.login')->with('city_name', $current_city);
 	}
 	
 	#登陆
@@ -26,7 +27,7 @@ class AuthController extends Controller {
 		return redirect()->back()
 					->withInput($request->only('mobile', 'remember'))
 					->withErrors([
-						'email' => '账号或密码错误',
+						'mobile' => '账号或密码错误',
 					]);
 	}
 

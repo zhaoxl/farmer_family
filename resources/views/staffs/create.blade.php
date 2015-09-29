@@ -10,6 +10,14 @@
 			<div class="new_staff">
 				<div class="row">
 					<div class="title">
+						标题：
+					</div>
+					<div class="input">
+						<input type="text" name="title" class="text address_text" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
 						期望工作区域：
 					</div>
 					<div class="input">

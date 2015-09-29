@@ -80,6 +80,7 @@ class StaffsController extends Controller {
 		if(\Auth::user()->guest()){
 			return redirect("/");
 		}
+		$title = $request['title'];
 		$area_province = $request['area_province'];
 		$area_city = $request['area_city'];
 		$area_street = $request['area_street'];
@@ -106,9 +107,9 @@ class StaffsController extends Controller {
 		$work_category_name = explode(',', $work_category)[1];
 		if(empty($start_at) || empty($end_at))
 		{
-			return redirect()->back()->withErrors(['work_category' => '请选择可工作时间']);
+			return redirect()->back()->withErrors(['start_at' => '请选择可工作时间']);
 		}
-		$staff = \App\Staff::create(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at));
+		$staff = \App\Staff::create(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at, 'title' => $title));
 		
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$work_categories = \App\Industry::orderBy("sort")->get();

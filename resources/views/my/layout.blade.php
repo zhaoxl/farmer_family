@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Laravel</title>
+		<title>农民之家</title>
 
 		<link href="{{ asset('/css/base.css') }}" rel="stylesheet">
 	</head>
@@ -25,7 +25,7 @@
 							</a>
 						</li>
 						@if(Auth::user()->get()->category == 0)
-						<li class="{{Request::path() == '/staffs/create' ? 'current' : ''}}">
+						<li>
 							<a href="/staffs/create">
 								发布找活信息
 							</a>
@@ -35,25 +35,14 @@
 								已发布找活信息
 							</a>
 						</li>
-						@elseif(Auth::user()->get()->category == 1)
-						<li class="{{Request::path() == 'my/staffs/new' ? 'current' : ''}}">
-							<a href="/my/already-sends">
+						@else
+						<li>
+							<a href="/works/create">
 								发布招工信息
 							</a>
 						</li>
-						<li class="{{Request::path() == 'my/staffs' ? 'current' : ''}}">
-							<a href="/my/already-sends">
-								已发布招工信息
-							</a>
-						</li>
-						@elseif(Auth::user()->get()->category == 2)
-						<li class="{{Request::path() == 'my/staffs/new' ? 'current' : ''}}">
-							<a href="/my/already-sends">
-								发布招工信息
-							</a>
-						</li>
-						<li class="{{Request::path() == 'my/staffs' ? 'current' : ''}}">
-							<a href="/my/already-sends">
+						<li class="{{Request::path() == 'my/sent-works' ? 'current' : ''}}">
+							<a href="/my/sent-works">
 								已发布招工信息
 							</a>
 						</li>

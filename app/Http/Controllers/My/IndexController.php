@@ -13,6 +13,7 @@ class IndexController extends BaseController {
 		return $user->work_categories()->get();
 		$area_cities = null;
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$area_cities = null;
 		if(!empty($user->province))
 		{
 			$area_cities = \App\AreaCity::where('provincecode', '=', $user->province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
@@ -23,7 +24,23 @@ class IndexController extends BaseController {
 	
 	public function getSentStaffs()
 	{
-		return view('my.send_staffs');
+		$user = \Auth::user()->get();
+		$staffs = \App\Staff::where('user_id', '=', $user->id)->paginate(20);
+		return view('my.sent_staffs')->with('staffs', $staffs);
+	}
+	
+	public function getSentWorks()
+	{
+		$user = \Auth::user()->get();
+		$staffs = \App\Work::where('user_id', '=', $user->id)->paginate(20);
+		return view('my.sent_works')->with('works', $staffs);
+	}
+	
+	public function postDeleteStaff(Request $request)
+	{
+		$id = $request['delete_staff_id'];
+		\App\Staff::destroy($id);
+		return redirect()->back();
 	}
 	
 	public function getInbox()

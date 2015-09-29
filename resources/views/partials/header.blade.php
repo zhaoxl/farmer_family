@@ -23,7 +23,11 @@
 		<div class="header_nav">
 			<ul>
 				<li><a href="/my" class="{{preg_match('/my/', Request::path()) ? 'current' : ''}}">个人中心</a></li>
+				@if(Auth::user()->get()->category == 0)
 				<li><a href="/staffs/create" class="{{preg_match('/staffs\/create/', Request::path()) ? 'current' : ''}}">发布信息</a></li>
+				@else
+				<li><a href="/works/create" class="{{preg_match('/works\/create/', Request::path()) ? 'current' : ''}}">发布信息</a></li>
+				@endif
 				<li><a href="/staffs" class="{{preg_match('/staffs$/', Request::path()) ? 'current' : ''}}">查询信息</a></li>
 			</ul>
 		</div>
