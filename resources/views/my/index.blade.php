@@ -221,10 +221,13 @@
 				</td>
 				<td width="100%" colspan="2" class="select_job" id="select_job_td">
 					<div class="form_select_box">
-						<select class="form-control" name="job_0"
-							<option>
-								选择工种
-							</option>
+						<select class="form-control" name="work_category_id[]">
+							<option value="">请选工种</option>
+							@foreach ($user_work_categories as $work_category)
+								@foreach ($work_categories as $work_category)
+									<option value="{{ $work_category->id }}" {{$category_id == $work_category->id ? 'selected' : ''}}>{{ $work_category->name }}</option>
+								@endforeach
+							@endforeach
 						</select>
 					</div>
 					
@@ -428,7 +431,30 @@ $('#qualifications_btn').bind('click',function(){
 })
 
 
-
+$(function(){
+	//get cities
+	$("#area_province").change(function(){
+		if($(this).val() == "")
+		{
+			$("#area_city").hide();
+			return true;
+		}
+		$.ajax({
+			url: '/ajax/area/cities',
+			type: 'GET',
+			dataType: 'json',
+			data: {provincecode: $(this).val()},
+			success: function(response)
+			{
+				var options = '<option value="">请选择市</option>';
+				$.each(response, function(index, city){
+					options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
+				});
+				$("#area_city").html(options).show();
+			}
+		});
+	});
+});
 
 </script>
 </div>

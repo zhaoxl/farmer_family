@@ -10,12 +10,15 @@ class IndexController extends BaseController {
 	public function getIndex()
 	{
 		$user = \Auth::user()->get();
+		return $user->work_categories()->get();
+		$area_cities = null;
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		if(!empty($user->province))
 		{
 			$area_cities = \App\AreaCity::where('provincecode', '=', $user->province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		}
-		return view('my.index')->with('user', $user)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities);
+		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
+		return view('my.index')->with('user', $user)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities)->with('work_categories', $work_categories);
 	}
 	
 	public function getSentStaffs()

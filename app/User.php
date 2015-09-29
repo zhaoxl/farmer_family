@@ -30,5 +30,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+	
+	public function work_categories()
+  {
+      return $this->belongsToMany('App\WorkCategory');
+  }
 
 }
