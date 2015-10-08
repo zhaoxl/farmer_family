@@ -31,6 +31,7 @@ class AuthController extends Controller {
 					]);
 	}
 
+	#退出
 	public function getLogout()
 	{
 		Auth::user()->logout();
@@ -63,6 +64,7 @@ class AuthController extends Controller {
 		return view('auth.hire_register')->with('area_provinces', $area_provinces)->with('cap', $cap)->with('industries', $industries);
 	}
 	
+	#注册
 	public function postRegister(Request $request)
 	{			
 		$registrar = new \App\Services\Registrar;
@@ -84,5 +86,11 @@ class AuthController extends Controller {
 	public function getForget()
 	{
 		return view('auth.forget');
+	}
+	
+	#服务条款
+	public function getServicesAgreement()
+	{
+		return view('auth.services-agreement');
 	}
 }
