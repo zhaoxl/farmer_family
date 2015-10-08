@@ -78,8 +78,19 @@ class AuthController extends Controller {
 		//设置工种
 		//TODO
 		Auth::user()->login($registrar->create($request->all()));
+		//上传图片
+		//身份证
+		if ($request->hasFile('idcard_file')) {
+		    //
+		}
 		
+		//头像
 		return redirect()->intended('/my');
+	}
+	
+	public function postTest(Request $request)
+	{
+		return $request->hasFile('idcard_file') ? "1" : "0";
 	}
 	
 	#忘记密码

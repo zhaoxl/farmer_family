@@ -300,7 +300,7 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="service_agree">
-			<label><input type="checkbox" />我已阅读并同意</label><a href="#">《农民之家服务协议》</a>
+			<label><input type="checkbox" />我已阅读并同意</label><a href="/auth/services-agreement" target="_blank">《农民之家服务协议》</a>
 		</div>
 		<div class="post_result">
 			

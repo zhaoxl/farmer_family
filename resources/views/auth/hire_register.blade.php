@@ -11,7 +11,7 @@
 		<li><a href="#" class="current">个人招工</a></li>
 		<div class="clearfix"></div>
 	</ul>
-	<form class="form-horizontal" id="register_form" role="form" method="POST" action="{{ url('/auth/register') }}">
+	<form class="form-horizontal" id="register_form" role="form" method="POST" action="{{ url('/auth/register') }}" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="2" />
 		<input type="hidden" name="area_name" id="area_name" />
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -139,11 +139,9 @@
 		<div class="clearfix"></div>
 		<div class="field">
 			<div class="title">
+				身份证照片
 			</div>
-			<div class="input">
-				<input type="text" />
-			</div>
-			<input type="file" class="g-u" id="J_UploaderBtn1" value="添加" name="Filedata" >
+			<input type="file" class="g-u" id="J_UploaderBtn1" value="添加" name="idcard_file" >
 			<ul id="J_UploaderQueue1"></ul>
 			<div class="valid_notice">
 				
@@ -154,10 +152,7 @@
 			<div class="title">
 				个人照片
 			</div>
-			<div class="input">
-				<input type="text" />
-			</div>
-			<input type="file" class="g-u" id="J_UploaderBtn2" value="添加" name="Filedata" >
+			<input type="file" class="g-u" id="J_UploaderBtn2" value="添加" name="photo_file" >
 			<ul id="J_UploaderQueue2"></ul>
 			<div class="valid_notice">
 				
@@ -203,7 +198,7 @@
 		</div>
 		<div class="clearfix"></div>
 		<div class="service_agree">
-			<label><input type="checkbox" />我已阅读并同意</label><a href="#">《农民之家服务协议》</a>
+			<label><input type="checkbox" />我已阅读并同意</label><a href="/auth/services-agreement" target="_blank">《农民之家服务协议》</a>
 		</div>
 		<!--<div class="post_result">
 			

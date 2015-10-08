@@ -65,4 +65,6 @@ body{background-color: #F5F5F5;}
 
 .body_context .form .field .radios{padding-top: 26px}
 .body_context .form .field .radios input{width: 40px; height: auto;}
+.body_context .form .ks-uploader-button{margin-left: 20px;}
+.body_context .form .ks-uploader-queue{margin-left: 20px;}
 
