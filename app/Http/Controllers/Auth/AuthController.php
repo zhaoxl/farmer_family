@@ -88,9 +88,15 @@ class AuthController extends Controller {
 		return redirect()->intended('/my');
 	}
 	
-	public function postTest(Request $request)
+	public function postUploadImg(Request $request)
 	{
-		return $request->hasFile('idcard_file') ? "1" : "0";
+		$category = $request['category'];
+		
+		
+		
+		
+		return \Input::file('filefield');
+		return $request->hasFile('filefield') ? "1" : "0";
 	}
 	
 	#忘记密码

@@ -337,7 +337,7 @@
 	    	//身份证
 	    	var uploader = new Uploader('#J_UploaderBtn1',{
 	      	//处理上传的服务器端脚本路径
-	        action: "/upload",
+	        action: "/auth/upload-img?category=idcard",
           //禁用多选
           multiple : false
 	      });
