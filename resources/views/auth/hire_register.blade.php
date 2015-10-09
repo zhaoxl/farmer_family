@@ -141,7 +141,7 @@
 			<div class="title">
 				身份证照片
 			</div>
-			<input type="file" class="g-u" id="J_UploaderBtn1" value="添加" name="idcard_file" >
+			<input type="file" class="g-u" id="J_UploaderBtn1" value="添加" name="image" >
 			<ul id="J_UploaderQueue1"></ul>
 			<div class="valid_notice">
 				
@@ -152,7 +152,7 @@
 			<div class="title">
 				个人照片
 			</div>
-			<input type="file" class="g-u" id="J_UploaderBtn2" value="添加" name="photo_file" >
+			<input type="file" class="g-u" id="J_UploaderBtn2" value="添加" name="image" >
 			<ul id="J_UploaderQueue2"></ul>
 			<div class="valid_notice">
 				

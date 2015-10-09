@@ -90,12 +90,46 @@ class AuthController extends Controller {
 	
 	public function postUploadImg(Request $request)
 	{
+		#http://laravel.com/docs/5.0/requests#files
+		return \Session::getId();
+		
+		$accept_array = array('idcard');
 		$category = $request['category'];
+		if(in_array('a',$array))
+		{
+		  $file = Input::file('image');
+		  $input = array('image' => $file);
+		  $rules = array(
+		  	'image' => 'image'
+		  );
+		  $validator = Validator::make($input, $rules);
+		  if ( $validator->fails() ) {
+		  	return Response::json([
+			  	'status' => false,
+			  	'message' => $validator->getMessageBag()->toArray()
+			  ]);
+			}
+
+		  $destinationPath = 'public/upload/user/'.$category;
+		  $filename = $file->getClientOriginalExtension();
+			$file->move($destinationPath, $filename);
+			return Response::json(
+			   [
+			       'success' => true,
+			       'avatar' => asset($destinationPath.$filename),
+			   ]
+			 );
+		}
+		else
+		{
+	  	return Response::json([
+		  	'status' => false,
+		  	'message' => '图片类型错误！'
+		  ]);
+		}
 		
 		
-		
-		
-		return \Input::file('filefield');
+		return \Input::file('image');
 		return $request->hasFile('filefield') ? "1" : "0";
 	}
 	
