@@ -78,31 +78,84 @@ class AuthController extends Controller {
 		//设置工种
 		//TODO
 		Auth::user()->login($registrar->create($request->all()));
+		
 		//上传图片
 		//身份证
-		if ($request->hasFile('idcard_file')) {
-		    //
+		if (isset($request['idcard_image'])) {
+			$idcard_image = $request['idcard_image'];
+			$extension_name = \File::extension($idcard_image);
+			$user_id = \Auth::user()->id();
+			$file_type = \File::mimeType($idcard_image);
+			$file_size = \File::size($idcard_image);	
+				
+			\App\UserUpload::create(array('category' => 'idcard', 'user_id' => $user_id, 'item_type' => 'User', 'item_id' => $user_id, 'url' => asset('upload/idcard/'.$user_id.'.'.$extension_name), 'path' => 'upload/idcard/'.$user_id.'.'.$extension_name, 'file_type' => $file_type, 'file_size' => $file_size));
+			\File::move(public_path().'/'.$idcard_image, public_path().'/'.'upload/idcard/'.$user_id.'.'.$extension_name);
 		}
 		
 		//头像
+		if (isset($request['photo_image'])) {
+			$photo_image = $request['photo_image'];
+			$extension_name = \File::extension($photo_image);
+			$user_id = \Auth::user()->id();
+			$file_type = \File::mimeType($photo_image);
+			$file_size = \File::size($photo_image);	
+				
+			\App\UserUpload::create(array('category' => 'photo', 'user_id' => $user_id, 'item_type' => 'User', 'item_id' => $user_id, 'url' => asset('upload/photo/'.$user_id.'.'.$extension_name), 'path' => 'upload/photo/'.$user_id.'.'.$extension_name, 'file_type' => $file_type, 'file_size' => $file_size));
+			\File::move(public_path().'/'.$photo_image, public_path().'/'.'upload/photo/'.$user_id.'.'.$extension_name);
+		}
+		
+		//返回来自页
 		return redirect()->intended('/my');
 	}
 	
 	public function postUploadImg(Request $request)
 	{
-		$category = $request['category'];
-		$session_id = \Session::getId();
-    $destinationPath = 'upload/temp/idcard/';
-		$file = \Input::file('image');
-		$new_file_name = $session_id.'.'.$file->getClientOriginalExtension();
+		#http://kissygalleryteam.github.io/uploader/doc/guide/index.html
+		#http://laravel.com/api/5.0/Illuminate/Filesystem/Filesystem.html
 		
-		$file->move($destinationPath, $new_file_name);
-		return \Response::json(
-	    [
-	      'status' => 1,
-        'url' => asset($destinationPath.$new_file_name),
-	    ]
-	  );
+		$accept_array = array('idcard', 'photo');
+		$category = $request['category'];
+		if(in_array($category, $accept_array))
+		{
+		  $file = \Input::file('image');
+		  $input = array('image' => $file);
+		  $rules = array(
+		  	'image' => 'image'
+		  );
+		  $validator = \Validator::make($input, $rules);
+		  if ( $validator->fails() ) {
+		  	return \Response::json([
+			  	'status' => 0,
+			  	'message' => $validator->getMessageBag()->toArray()
+			  ]);
+			}
+
+		  $destinationPath = 'upload/temp/'.$category;
+			#删除以前上传文件
+			\File::delete(public_path().'/'.$destinationPath.'/'.\Session::getId().'.png');
+			\File::delete(public_path().'/'.$destinationPath.'/'.\Session::getId().'.jpg');
+			\File::delete(public_path().'/'.$destinationPath.'/'.\Session::getId().'.gif');
+		  $filename = \Session::getId().'.'.$file->getClientOriginalExtension();
+			$file->move($destinationPath, $filename);
+			return \Response::json(
+				[
+					'status' => 1,
+				 	'url' => asset($destinationPath.'/'.$filename),
+					'path' => $destinationPath.'/'.$filename
+				]
+			);
+		}
+		else
+		{
+	  	return \Response::json([
+		  	'status' => 0,
+		  	'message' => '图片类型错误！'
+		  ]);
+		}
+		return \Response::json([
+	  	'status' => 0,
+	  	'message' => '未知错误！'
+	  ]);
 	}
 	
 	#忘记密码

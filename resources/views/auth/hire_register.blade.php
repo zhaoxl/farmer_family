@@ -14,7 +14,9 @@
 	<form class="form-horizontal" id="register_form" role="form" method="POST" action="{{ url('/auth/register') }}" enctype="multipart/form-data">
 		<input type="hidden" name="category" value="2" />
 		<input type="hidden" name="area_name" id="area_name" />
-		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+		<input type="hidden" name="idcard_image" id="idcard_image" />
+		<input type="hidden" name="photo_image" id="photo_image" />
 		<div class="form">
 		<div class="field">
 			<div class="title">
@@ -32,6 +34,9 @@
 			</div>
 			<div class="input">
 				<input type="text" name="mobile" id='v_mobile' value="{{ old('mobile') }}" />
+				@if(count($errors) > 0 && $errors->default->has('mobile'))
+				<label id="v_mobile-error" class="error" for="v_mobile">手机号已经被注册</label>
+				@endif
 			</div>
 			<!-- <div class="send_sms">
 				<input type="button" class="send_sms_btn" value="发送验证码到手机" />
@@ -128,6 +133,9 @@
 			</div>
 			<div class="input">
 				<input type="text" name="idcard" value="{{ old('idcard') }}" />
+				@if(count($errors) > 0 && $errors->default->has('idcard'))
+				<label id="v_mobile-error" class="error" for="v_mobile">身份证号码格式不正确</label>
+				@endif
 			</div>
 			<div class="valid_notice">
 				
@@ -164,7 +172,7 @@
 				<span><p class="require">*</p>设置登陆密码：</span>
 			</div>
 			<div class="input">
-				<input type="password" name="password" />
+				<input type="password" name="password" id="password" />
 			</div>
 			<div class="valid_notice">
 				
@@ -189,6 +197,9 @@
 			</div>
 			<div class="input">
 				<input type="text" name="captcha" value="" />
+				@if(count($errors) > 0 && $errors->default->has('captcha'))
+				<label id="v_captcha-error" class="error" for="v_captcha">验证码不正确</label>
+				@endif
 			</div>
 			<img id="cap_img" src="{{$cap}}" class="img" />
 			<div class="valid_notice">
@@ -200,7 +211,7 @@
 		<div class="service_agree">
 			<label><input type="checkbox" />我已阅读并同意</label><a href="/auth/services-agreement" target="_blank">《农民之家服务协议》</a>
 		</div>
-		<!--<div class="post_result">
+		<div class="post_result">
 			
 			@if (count($errors) > 0)
 			-------------------------------------------------
@@ -213,7 +224,7 @@
 					</ul>
 				</div>
 			@endif
-		</div>-->
+		</div>
 		<div class="submit">
 			<input type="submit" value="下一步" id="submitBtn" />
 		</div>
@@ -230,39 +241,56 @@
 	                submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
 	                	form.submit();   //提交表单   
 	                },   
-                
 	                rules:{
-	                    name:{
-	                        required:true
-	                    },
-	                    mobile:{
-	                    	    required:true,
-	                    	    phone:true
-	                    }
-	//                  ,
-	//                  email:{
-	//                      required:true,
-	//                      email:true
-	//                  },
-	//                  password:{
-	//                      required:true,
-	//                      rangelength:[3,10]
-	//                  },
-	//                  confirm_password:{
-	//                      equalTo:"#password"
-	//                  }                    
+										name:{
+											required:true
+										},
+										mobile:{
+										  required:true,
+										  phone:true
+										},
+										email:{
+											required:true,
+											email:true
+										},
+										password:{
+											required:true,
+											rangelength:[3,10]
+										},
+										password_confirmation:{
+											equalTo:"#password"
+										},
+										captcha:{
+											required: true
+										}
 	                },
 	                messages:{
-	                    name:{
-	                        required:"必填"
-	                    },
-	                    mobile:{
-	                    	   required:"必填",
-	                    	   phone:'请输入正确的电话号码'
-	                    }
-                                     
-	                }
-                          
+							      name:{
+							      	required:"必填项"
+							      },
+							      mobile:{
+							      	required:"必填项",
+							      	phone:'请输入正确的电话号码'
+							      },
+							      email:{
+							      	   required:"必填项",
+							      },
+									 company_name:{
+									   required: "必填项"
+									 },
+									 address:{
+									   required: "必填项"
+									 },
+									 password:{
+									   required: "必填项"
+									 },
+									 password_confirmation:{
+									   equalTo: "两次密码输入不一致"
+									 },
+									 captcha:{
+									   required: "必填项"
+									 }
+	               }
 	            });    
 	    jQuery.validator.addMethod("phone", function(value, element) {
 	    var length = value.length;
@@ -360,10 +388,17 @@
 				uploader.on('remove',function(ev){
 					$("#J_UploaderBtn1").parent().parent().show();
         });
+				uploader.on('success',function(ev){
+					var url = ev['result']['path'];
+					$("#idcard_image").val(url);
+        });
+				uploader.on('remove',function(ev){
+					$("#idcard_image").val('');
+        });
 				//照片
 	    	var uploader2 = new Uploader('#J_UploaderBtn2',{
 	      	//处理上传的服务器端脚本路径
-	        action: "/upload",
+	        action: "/auth/upload-img?category=photo",
           //禁用多选
           multiple : false
 	      });
@@ -385,6 +420,13 @@
         });
 				uploader2.on('remove',function(ev){
 					$("#J_UploaderBtn2").parent().parent().show();
+        });
+				uploader2.on('success',function(ev){
+					var url = ev['result']['path'];
+					$("#photo_image").val(url);
+        });
+				uploader2.on('remove',function(ev){
+					$("#photo_image").val('');
         });
 	    });
 	  });

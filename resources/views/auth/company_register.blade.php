@@ -322,7 +322,10 @@
      },
      password_confirmation:{
 			 equalTo:"#password"
-     }                   
+     },
+		 captcha:{
+		   required: true
+		 }
     },
     messages:{
       name:{
@@ -346,6 +349,9 @@
 		 },
 		 password_confirmation:{
 		   equalTo: "两次密码输入不一致"
+		 },
+		 captcha:{
+		   required: "必填项"
 		 }
    }
   });    
