@@ -14,6 +14,8 @@
 		<input type="hidden" name="category" value="1" />
 		<input type="hidden" name="area_name" id="area_name" />
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="hidden" name="license_image" id="license_image" />
+		<input type="hidden" name="company_photo_image" id="company_photo_image" />
 		<div class="form">
 		<div class="field">
 			<div class="title">
@@ -176,16 +178,12 @@
 			<div class="title">
 				<span>营业执照：</span>
 			</div>
-			<div class="input">
-				<input type="text" />
-			</div>
-			<input type="button" value="添加" class="btn" />
-			<input type="button" value="上传" class="btn" />
+			<input type="file" class="g-u" id="J_UploaderBtn1" value="添加" name="image" >
+			<ul id="J_UploaderQueue1"></ul>
 			<div class="valid_notice">
 				
 			</div>
 			<div class="desc">
-				*照片文件不大于500K
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -210,16 +208,12 @@
 			<div class="title">
 				<span>企业照片：</span>
 			</div>
-			<div class="input">
-				<input type="text" />
-			</div>
-			<input type="button" value="添加" class="btn" />
-			<input type="button" value="上传" class="btn" />
+			<input type="file" class="g-u" id="J_UploaderBtn2" value="添加" name="image" >
+			<ul id="J_UploaderQueue2"></ul>
 			<div class="valid_notice">
 				
 			</div>
 			<div class="desc">
-				*照片文件不大于500K
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -425,5 +419,86 @@
 			$("#cap_img").attr("src", $("#cap_img").attr("src")+"?");
 		});
 	});
+	</script>
+	
+  <script src="//g.alicdn.com/kissy/k/1.4.8/seed-min.js" charset="utf-8"></script>
+	<script>
+		var S = KISSY;
+		S.use('kg/uploader/3.0.3/index,kg/uploader/3.0.3/themes/default/index,kg/uploader/3.0.3/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+		  //上传组件插件
+		  var plugins = 'kg/uploader/3.0.3/plugins/auth/auth,' +
+		          'kg/uploader/3.0.3/plugins/urlsInput/urlsInput,' +
+		          'kg/uploader/3.0.3/plugins/proBars/proBars';
+
+	    S.use(plugins,function(S,Auth,UrlsInput,ProBars){
+	    	//营业执照
+	    	var uploader = new Uploader('#J_UploaderBtn1',{
+	      	//处理上传的服务器端脚本路径
+	        action: "/auth/upload-img?category=license",
+          //禁用多选
+          multiple : false
+	      });
+	      //使用主题
+	      uploader.theme(new DefaultTheme({
+	        queueTarget:'#J_UploaderQueue1'
+	      }));
+	      //验证插件
+	      uploader.plug(new Auth({
+	      	//最多上传个数
+	        max:1
+	      }))
+	      //url保存插件
+	      .plug(new UrlsInput({target:'#J_Urls'}))
+	      //进度条集合
+	      .plug(new ProBars());
+				uploader.on('add', function (ev) {
+					$("#J_UploaderBtn1").parent().parent().hide();
+        });
+				uploader.on('remove',function(ev){
+					$("#J_UploaderBtn1").parent().parent().show();
+        });
+				uploader.on('success',function(ev){
+					var url = ev['result']['path'];
+					$("#license_image").val(url);
+        });
+				uploader.on('remove',function(ev){
+					$("#license_image").val('');
+        });
+				//照片
+	    	var uploader2 = new Uploader('#J_UploaderBtn2',{
+	      	//处理上传的服务器端脚本路径
+	        action: "/auth/upload-img?category=company_photo",
+          //禁用多选
+          multiple : false
+	      });
+	      //使用主题
+	      uploader2.theme(new DefaultTheme({
+	        queueTarget:'#J_UploaderQueue2'
+	      }));
+	      //验证插件
+	      uploader2.plug(new Auth({
+	      	//最多上传个数
+	        max:1
+	      }))
+	      //url保存插件
+	      .plug(new UrlsInput({target:'#J_Urls2'}))
+	      //进度条集合
+	      .plug(new ProBars());
+				uploader2.on('add', function (ev) {
+					$("#J_UploaderBtn2").parent().parent().hide();
+        });
+				uploader2.on('remove',function(ev){
+					$("#J_UploaderBtn2").parent().parent().show();
+        });
+				uploader2.on('success',function(ev){
+					var url = ev['result']['path'];
+					$("#company_photo_image").val(url);
+        });
+				uploader2.on('remove',function(ev){
+					$("#company_photo_image").val('');
+        });
+				
+	    });
+	  });
 	</script>
 @endsection

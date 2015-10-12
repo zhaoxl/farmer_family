@@ -104,6 +104,42 @@ class AuthController extends Controller {
 			\File::move(public_path().'/'.$photo_image, public_path().'/'.'upload/photo/'.$user_id.'.'.$extension_name);
 		}
 		
+		//学历证书
+		if (isset($request['diploma_image'])) {
+			$diploma_image = $request['diploma_image'];
+			$extension_name = \File::extension($diploma_image);
+			$user_id = \Auth::user()->id();
+			$file_type = \File::mimeType($diploma_image);
+			$file_size = \File::size($diploma_image);	
+				
+			\App\UserUpload::create(array('category' => 'diploma', 'user_id' => $user_id, 'item_type' => 'User', 'item_id' => $user_id, 'url' => asset('upload/diploma/'.$user_id.'.'.$extension_name), 'path' => 'upload/diploma/'.$user_id.'.'.$extension_name, 'file_type' => $file_type, 'file_size' => $file_size));
+			\File::move(public_path().'/'.$diploma_image, public_path().'/'.'upload/diploma/'.$user_id.'.'.$extension_name);
+		}
+		
+		//营业执照
+		if (isset($request['license_image'])) {
+			$license_image = $request['license_image'];
+			$extension_name = \File::extension($license_image);
+			$user_id = \Auth::user()->id();
+			$file_type = \File::mimeType($license_image);
+			$file_size = \File::size($license_image);	
+				
+			\App\UserUpload::create(array('category' => 'license', 'user_id' => $user_id, 'item_type' => 'User', 'item_id' => $user_id, 'url' => asset('upload/license/'.$user_id.'.'.$extension_name), 'path' => 'upload/license/'.$user_id.'.'.$extension_name, 'file_type' => $file_type, 'file_size' => $file_size));
+			\File::move(public_path().'/'.$license_image, public_path().'/'.'upload/license/'.$user_id.'.'.$extension_name);
+		}
+		
+		//学历证书
+		if (isset($request['company_photo_image'])) {
+			$company_photo_image = $request['company_photo_image'];
+			$extension_name = \File::extension($company_photo_image);
+			$user_id = \Auth::user()->id();
+			$file_type = \File::mimeType($company_photo_image);
+			$file_size = \File::size($company_photo_image);	
+				
+			\App\UserUpload::create(array('category' => 'company_photo', 'user_id' => $user_id, 'item_type' => 'User', 'item_id' => $user_id, 'url' => asset('upload/company_photo/'.$user_id.'.'.$extension_name), 'path' => 'upload/company_photo/'.$user_id.'.'.$extension_name, 'file_type' => $file_type, 'file_size' => $file_size));
+			\File::move(public_path().'/'.$company_photo_image, public_path().'/'.'upload/company_photo/'.$user_id.'.'.$extension_name);
+		}
+		
 		//返回来自页
 		return redirect()->intended('/my');
 	}
@@ -113,7 +149,7 @@ class AuthController extends Controller {
 		#http://kissygalleryteam.github.io/uploader/doc/guide/index.html
 		#http://laravel.com/api/5.0/Illuminate/Filesystem/Filesystem.html
 		
-		$accept_array = array('idcard', 'photo');
+		$accept_array = array('idcard', 'photo', 'diploma', 'license', 'company_photo');
 		$category = $request['category'];
 		if(in_array($category, $accept_array))
 		{

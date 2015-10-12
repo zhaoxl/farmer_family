@@ -1,7 +1,6 @@
 @extends('base')
 @section('content')
 	<link href="{{ asset('/css/register.css') }}" rel="stylesheet">
-   <script src="//g.alicdn.com/kissy/k/1.4.8/seed-min.js" charset="utf-8"></script>
 	
 	<ul class="page_tabs">
 		<li><a href="/auth/present-register">个人找活</a></li>
@@ -147,7 +146,7 @@
 		<div class="clearfix"></div>
 		<div class="field">
 			<div class="title">
-				身份证照片
+				身份证照片：
 			</div>
 			<input type="file" class="g-u" id="J_UploaderBtn1" value="添加" name="image" >
 			<ul id="J_UploaderQueue1"></ul>
@@ -158,7 +157,7 @@
 		<div class="clearfix"></div>
 		<div class="field">
 			<div class="title">
-				个人照片
+				个人照片：
 			</div>
 			<input type="file" class="g-u" id="J_UploaderBtn2" value="添加" name="image" >
 			<ul id="J_UploaderQueue2"></ul>
@@ -253,6 +252,9 @@
 											required:true,
 											email:true
 										},
+										idcard:{
+											required:true,
+										},
 										password:{
 											required:true,
 											rangelength:[3,10]
@@ -275,6 +277,9 @@
 							      email:{
 							      	   required:"必填项",
 							      },
+										idcard:{
+											required:"必填项",
+										},
 									 company_name:{
 									   required: "必填项"
 									 },
@@ -352,7 +357,8 @@
 		});
 	});
 	</script>
-	
+
+  <script src="//g.alicdn.com/kissy/k/1.4.8/seed-min.js" charset="utf-8"></script>
 	<script>
 		var S = KISSY;
 		S.use('kg/uploader/3.0.3/index,kg/uploader/3.0.3/themes/default/index,kg/uploader/3.0.3/themes/default/style.css', function (S, Uploader,DefaultTheme) {
