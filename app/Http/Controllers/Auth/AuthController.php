@@ -91,12 +91,18 @@ class AuthController extends Controller {
 	public function postUploadImg(Request $request)
 	{
 		$category = $request['category'];
+		$session_id = \Session::getId();
+    $destinationPath = 'upload/temp/idcard/';
+		$file = \Input::file('image');
+		$new_file_name = $session_id.'.'.$file->getClientOriginalExtension();
 		
-		
-		
-		
-		return \Input::file('filefield');
-		return $request->hasFile('filefield') ? "1" : "0";
+		$file->move($destinationPath, $new_file_name);
+		return \Response::json(
+	    [
+	      'status' => 1,
+        'url' => asset($destinationPath.$new_file_name),
+	    ]
+	  );
 	}
 	
 	#忘记密码

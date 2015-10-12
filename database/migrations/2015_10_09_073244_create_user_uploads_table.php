@@ -15,10 +15,11 @@ class CreateUserUploadsTable extends Migration {
 		Schema::create('user_uploads', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
+			$table->string('session_id');
+			$table->integer('user_id')->nullable();
 			$table->string('category');
-			$table->string('item_type');
-			$table->integer('item_id');
+			$table->string('item_type')->nullable();
+			$table->integer('item_id')->nullable();
 			$table->string('url');
 			$table->string('file_type');
 			$table->string('file_size');
