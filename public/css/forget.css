@@ -7,10 +7,9 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 .body_context .form .row{width: 100%;}
 .body_context .form .row .btn{width: 74px; height: 33px; line-height: 33px; background: #2CC378; border-left: solid 1px #4DCC8E; border-right: solid 1px #4DCC8E; color: white; border-top: none; border-bottom: none; float: left; margin-top: 18px; margin-right: 5px;}
 .body_context .form .row .desc{color: #C00000; float: left; margin-top: 26px;}
-.body_context .form .row .title{width: 124px; height: 70px; margin-left: 54px; line-height: 70px; text-align: right; float: left;}
+.body_context .form .row .title{width: 124px; height: 70px; margin-left: 54px; line-height: 50px; text-align: right; float: left;}
 .body_context .form .row .require{color: red; display: inline-table; height: 16px; line-height: 16px; text-align: center; width: 15px;}
-.body_context .form .row .text_field{width: 134px; height: 70px; float: left; line-height: 70px;  padding-left: 17px;}
-.body_context .form .row .field{width: 330px; height: 70px; float: left; line-height: 70px;  padding-left: 17px;}
+.body_context .form .row .field{width: 330px; height: 70px; float: left;  padding-left: 17px;}
 .body_context .form .row .field input{
 	width: 306px;
 	height: 45px;
@@ -24,7 +23,10 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
   border:#42D88D 1px solid;
   box-shadow: 0 0 8px rgba(103, 166, 217, 1);
 }
-.body_context .form .send_sms{width: 200px; height: 70px; line-height: 70px; margin-left: 8px; float: left;}
-.body_context .form .send_sms .send_sms_btn{width: 182px; height: 43px; border: solid 1px #DFDFE0; background: white; color: #2CC378; line-height: 43px; text-align: center; font-size: 16px; padding: 0; margin-top: 14px;}
+.body_context .form .row .mobile{width: 134px;}
+.body_context .form .row .mobile input{width: 124px;}
+.body_context .form .send_sms{width: 200px; line-height: 48px; margin-left: 8px; float: left;}
+.body_context .form .send_sms .send_sms_btn{width: 182px; height: 43px; border: solid 1px #DFDFE0; background: white; color: #2CC378; line-height: 43px; text-align: center; font-size: 16px; padding: 0; }
 .body_context .submit{width: 100%; margin: auto auto auto 196px; width: 384px;}
 .body_context .submit input{width: 384px; height: 66px; line-height: 66px; color: white; margin: 10px auto 100px auto; text-align: center; background: #42D88D; border: none;}
+.error{color: red;}

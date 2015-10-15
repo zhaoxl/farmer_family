@@ -3,6 +3,8 @@
 @section('content')
 
 	<link href="{{ asset('/css/works.css') }}" rel="stylesheet">
+	<link href="{{ asset('/js/jquery-ui/jquery-ui.css') }}" rel="stylesheet">
+	<script type="text/javascript" src="{{ asset('/js/jquery-ui/jquery-ui.js') }}"></script>
 	<div class="body_content">
 		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/staffs') }}">
 			<input type="hidden" name="area_name" id="area_name" />
@@ -58,9 +60,9 @@
 					</div>
 					<div class="input">
 						<label>从</label>
-						<input type="text" name="start_at" class="text" />
+						<input type="text" name="start_at" id="start_at" class="text" />
 						<label>到</label>
-						<input type="text" name="end_at" class="text" />
+						<input type="text" name="end_at" id="end_at" class="text" />
 					</div>
 					<div class="notice">
 						* 请在日历表上点击选择所有您空闲可以接活的日期，选择完后必须点”保存“才可以保存您的空闲日期记录
@@ -134,6 +136,24 @@
 				$("#area_name").val(province+'-'+city+'-'+street);
 			});
 		});
+		
+		//date
+    $( "#start_at" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#end_at" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+    $( "#end_at" ).datepicker({
+      defaultDate: "+1w",
+      changeMonth: true,
+      numberOfMonths: 3,
+      onClose: function( selectedDate ) {
+        $( "#start_at" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
 	});
 	</script>
 @endsection

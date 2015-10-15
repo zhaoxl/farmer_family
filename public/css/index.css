@@ -14,10 +14,12 @@ body{background: url("/images/index_bg.jpg") no-repeat scroll center top;}
 #index .content .find_box .reg_button{width: 250px; height: 52px; margin: 245px auto auto 47px; background: none; display: block;}
 #index .content .pub_box{width: 323px; height: 372px; background: url(/images/index_pub_bg.jpg); float: left; margin-left: 14px;}
 #index .content .pub_box .reg_button{width: 250px; height: 52px; margin: 245px auto auto 31px; background: none; display: block;}
-#index .content .login_box{width: 323px; height: 372px; background: url(/images/index_login_bg.jpg); float: left; margin-left: 14px;}
-#index .content .login_box .uname{width: 250px; height: 41px; margin: 94px auto auto 37px; border: none; line-height: 41px; padding-left: 10px; color: #dddddd;}
-#index .content .login_box .pwd{width: 250px; height: 41px; margin: 34px auto auto 37px; border: none; line-height: 41px; padding-left: 10px; color: #dddddd;}
-#index .content .login_box .submit{width: 250px; height: 53; margin: 35px auto auto 37px; border: none; line-height: 53px; background: none;}
+#index .content .login_box{width: 323px; height: 372px; background: url(/images/index_login_bg.jpg); float: left; margin-left: 14px; padding-top: 94px;}
+#index .content .login_box .row{margin: auto auto auto 37px; height: 75px;}
+#index .content .login_box .uname{width: 250px; height: 41px; border: none; line-height: 41px; padding-left: 10px; color: #dddddd;}
+#index .content .login_box .error{color: red; float: left;}
+#index .content .login_box .pwd{width: 250px; height: 41px; border: none; line-height: 41px; padding-left: 10px; color: #dddddd;}
+#index .content .login_box .submit{width: 250px; height: 53; margin: auto auto auto 37px; border: none; line-height: 53px; background: none;}
 #index .content .login_box .links{width: 247px; height: 40px; margin: 16px auto auto 37px;}
 #index .content .login_box .links .checkbox{width: 19px; height: 17px; padding: 0 5px 0 0; background: url(/images/index_login_checkbox.jpg) no-repeat; display: block; clear: left; float: left; margin-top: 1px;}
 #index .content .login_box .links .autologin_title{line-height: 20px; color: white;}

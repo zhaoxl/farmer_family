@@ -200,6 +200,12 @@ class AuthController extends Controller {
 		return view('auth.forget');
 	}
 	
+	#忘记密码
+	public function postForget()
+	{
+		return view('auth.forget');
+	}
+	
 	#服务条款
 	public function getServicesAgreement()
 	{

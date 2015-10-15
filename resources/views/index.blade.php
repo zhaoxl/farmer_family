@@ -45,10 +45,14 @@
 				<a href="/auth/company-register" class="reg_button"></a>
 			</div>
 			<div class="login_box">
-				<form class="form-horizontal" method="POST" action="{{ url('/auth/login') }}">
+				<form id="login_form" class="form-horizontal" method="POST" action="{{ url('/auth/login') }}">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<input type="text" class="uname" name="mobile" value="请输入手机号" />
-					<input type="password" class="pwd" name="password" />
+					<div class="row">
+						<input type="text" class="uname" name="mobile" value="请输入手机号" />
+					</div>
+					<div class="row">
+						<input type="password" class="pwd" name="password" />
+					</div>
 					<input type="submit" class="submit" value="" />
 					<div class="links">
 				    <label><input type="checkbox" class="styled" name="remember" /><span class="autologin_title">自动登录</span></label>
@@ -91,5 +95,41 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="{{ asset('/js/jquery.validate.min.js') }}" ></script>
+	<script>
+	  var validate = $("#login_form").validate({
+	    //errorClass: "label.error", //默认为错误的样式类为：error   
+	    focusInvalid: true, //当为false时，验证无效时，没有焦点响应  
+	    onkeyup: false,   
+	    submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+	    	form.submit();   //提交表单   
+	    },   
+	    rules:{
+				mobile:{
+				  required:true,
+				  phone:true
+				},
+				password:{
+					required:true,
+					rangelength:[3,10]
+				}
+	    },
+	    messages:{
+	      mobile:{
+	      	required:"请输入手机号",
+	      	phone:'请输入正确的电话号码'
+	      },
+			 password:{
+			   required: "请输入密码"
+			 }
+	   }
+	});    
+  jQuery.validator.addMethod("phone", function(value, element) {
+    var length = value.length;
+    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
+    return this.optional(element) || (length == 11 && mobile.test(value));
+	}, "手机号码格式错误");  
+	
+	</script>
 </body>
 </html>
