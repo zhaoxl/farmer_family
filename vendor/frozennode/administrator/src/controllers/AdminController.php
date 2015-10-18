@@ -235,9 +235,8 @@ class AdminController extends Controller {
 			{
 				$file = $result->getFile()->getRealPath();
 				$headers = $result->headers->all();
-//				echo empty(Session);
-				$this->session->put('administrator_download_response', array('file' => $file, 'headers' => $headers));//这里报错session是空的
-				//$_SESSION['administrator_download_response'] = array('file' => $file, 'headers' => $headers);
+				$this->session->put('administrator_download_response', array('file' => $file, 'headers' => $headers));
+
 				$response['download'] = route('admin_file_download');
 			}
 			//if it's a redirect, put the url into the redirect key so that javascript can transfer the user

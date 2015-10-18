@@ -30,8 +30,7 @@ class Enum extends Field {
 		foreach ($dataOptions as $val => $text)
 		{
 			$options['options'][] = array(
-				//'id' => is_numeric($val) ? $text : $val,
-				'id' => $val,
+				'id' => is_numeric($val) ? $text : $val,
 				'text' => $text,
 			);
 		}
@@ -78,7 +77,7 @@ class Enum extends Field {
 		parent::filterQuery($query, $selects);
 
 		//if there is no value, return
-		if (!$this->getOption('value'))
+		if ($this->getFilterValue($this->getOption('value'))===false)
 		{
 			return;
 		}
