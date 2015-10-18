@@ -10,7 +10,7 @@ class IndexController extends BaseController {
 	public function getIndex()
 	{
 		$user = \Auth::user()->get();
-		return $user->work_categories()->get();
+		$user_work_categories = $user->work_categories()->get();
 		$area_cities = null;
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$area_cities = null;
@@ -19,7 +19,7 @@ class IndexController extends BaseController {
 			$area_cities = \App\AreaCity::where('provincecode', '=', $user->province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		}
 		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
-		return view('my.index')->with('user', $user)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities)->with('work_categories', $work_categories);
+		return view('my.index')->with('user', $user)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities)->with('work_categories', $work_categories)->with('user_work_categories', $user_work_categories);
 	}
 	
 	public function getSentStaffs()
@@ -110,5 +110,113 @@ class IndexController extends BaseController {
 		\Auth::user()->logout();
 
 		return view('my.suicide')->with('success', true);
+	}
+	
+	public function postSaveProfile(Request $request)
+	{
+		// $user = \Auth::user()->get();
+// 		//上传照片
+// 		//头像
+// 		if (isset($request['photo_image'])) {
+// 			$photo_image = $request['photo_image'];
+// 			$extension_name = \File::extension($photo_image);
+// 			$user_id = $user->id();
+// 			$file_type = \File::mimeType($photo_image);
+// 			$file_size = \File::size($photo_image);
+// 			$user_upload = \App\UserUpload::firstOrNew(['category' => 'photo', 'user_id' => $user_id]);
+// 			$user_id->item_type = 'User';
+// 			$user_id->item_id = $user_id;
+// 			$user_id->url = asset('upload/photo/'.$user_id.'.'.$extension_name);
+// 			$user_id->file_type = $file_type;
+// 			$user_id->path = 'upload/photo/'.$user_id.'.'.$extension_name;
+// 			$user_id->file_size = $file_size;
+// 			$user_upload->save();
+// 			\File::move(public_path().'/'.$photo_image, public_path().'/'.'upload/photo/'.$user_id.'.'.$extension_name);
+// 		}
+//
+// 		//学历证书
+// 		if (isset($request['diploma_image'])) {
+// 			$photo_image = $request['diploma_image'];
+// 			$extension_name = \File::extension($photo_image);
+// 			$user_id = $user->id();
+// 			$file_type = \File::mimeType($photo_image);
+// 			$file_size = \File::size($photo_image);
+// 			$user_upload = \App\UserUpload::firstOrNew(['category' => 'diploma', 'user_id' => $user_id]);
+// 			$user_id->item_type = 'User';
+// 			$user_id->item_id = $user_id;
+// 			$user_id->url = asset('upload/diploma/'.$user_id.'.'.$extension_name);
+// 			$user_id->file_type = $file_type;
+// 			$user_id->path = 'upload/diploma/'.$user_id.'.'.$extension_name;
+// 			$user_id->file_size = $file_size;
+// 			$user_upload->save();
+// 			\File::move(public_path().'/'.$photo_image, public_path().'/'.'upload/diploma/'.$user_id.'.'.$extension_name);
+// 		}
+//
+// 		$user->hometown = $request['hometown'];
+// 		$user->area_city = $request['area_city'];
+// 		$user->area_province = $request['area_province'];
+// 		$user->birthday = $request['birthday'];
+// 		$user->email = $request['email'];
+// 		$user->mobile = $request['mobile'];
+// 		$user->name = $request['name'];
+// 		$user->public_mobile = isset($request['public_mobile']);
+// 		$user->public_qq = isset($request['public_qq']);
+// 		$user->public_weixin = isset($request['public_weixin']);
+// 		$user->public_email = isset($request['public_email']);
+// 		$user->qq = $request['qq'];
+// 		$user->weixin = $request['weixin'];
+// 		$user->expect_salary = $request['expect_salary'];
+// 		$user->gender = $request['gender'];
+			
+		$new_category_ids = $request['work_category_id[]'];
+		//echo($new_category_ids);
+		\Debugbar::error('$new_category_ids');
+	}
+	
+	public function postUploadImg(Request $request)
+	{
+		$accept_array = array('photo', 'diploma');
+		$category = $request['category'];
+		if(in_array($category, $accept_array))
+		{
+		  $file = \Input::file('image');
+		  $input = array('image' => $file);
+		  $rules = array(
+		  	'image' => 'image'
+		  );
+		  $validator = \Validator::make($input, $rules);
+		  if ( $validator->fails() ) {
+		  	return \Response::json([
+			  	'status' => 0,
+			  	'message' => $validator->getMessageBag()->toArray()
+			  ]);
+			}
+
+		  $destinationPath = 'upload/temp/'.$category;
+			#删除以前上传文件
+			\File::delete(public_path().'/'.$destinationPath.'/'.\Session::getId().'.png');
+			\File::delete(public_path().'/'.$destinationPath.'/'.\Session::getId().'.jpg');
+			\File::delete(public_path().'/'.$destinationPath.'/'.\Session::getId().'.gif');
+		  $filename = \Session::getId().'.'.$file->getClientOriginalExtension();
+			$file->move($destinationPath, $filename);
+			return \Response::json(
+				[
+					'status' => 1,
+				 	'url' => asset($destinationPath.'/'.$filename),
+					'path' => $destinationPath.'/'.$filename
+				]
+			);
+		}
+		else
+		{
+	  	return \Response::json([
+		  	'status' => 0,
+		  	'message' => '图片类型错误！'
+		  ]);
+		}
+		return \Response::json([
+	  	'status' => 0,
+	  	'message' => '未知错误！'
+	  ]);
 	}
 }

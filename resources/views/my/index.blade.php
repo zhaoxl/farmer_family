@@ -1,66 +1,14 @@
 @extends('my.layout')
 @section('content')
-<!--<div class="register_mes_box">
-<table width="100%"  class="register_mes_table">
-<tr>
-<td width="15%" align="right">姓名:</td>
-<td width="85%" >{{$user->name}}</td>
-</tr>
-<tr>
-<td align="right">手机号:</td>
-<td>13122342322 &nbsp; &nbsp; &nbsp; &nbsp;QQ:122312434234  &nbsp; &nbsp; &nbsp; &nbsp;微信:23234234sw &nbsp; &nbsp; &nbsp; &nbsp; 邮箱：323423@2sdf.com </td>
-</tr>
-<tr>
-<td align="right">所在区域:</td>
-<td>北京市西城区体坛日报</td>
-</tr>
-<tr>
-<td align="right">年龄:</td>
-<td>28</td>
-</tr>
-<tr>
-<td align="right">性别:</td>
-<td>女</td>
-</tr>
-<tr>
-<td align="right">籍贯:</td>
-<td>山东省浪逼市荡妇县</td>
-</tr>
-<tr>
-<td align="right">工作:</td>
-<td>卖淫，卖肉</td>
-</tr>
-<tr>
-<td align="right">身份证:</td>
-<td><img src="" width="80"  alt=""></td>
-</tr>
-<tr>
-<td align="right">个人照片:</td>
-<td><img src="" width="80"  alt=""></td>
-</tr>
-<tr>
-<td align="right">学历证书:</td>
-<td><img src="" width="80"  alt=""></td>
-</tr>
-<tr>
-<td align="right">期望收入:</td>
-<td>一炮八百</td>
-</tr>
-<tr>
-<td  colspan="2" >
-<a href="" class="btn_a_style1">
-修改
-</a>
-</td>
-</tr>
-</table>
-</div>-->
 <div class="register_mes_Modify">
-	<form id="register_mes_Modify">
+	<form id="register_mes_Modify" action="/my/save-profile" method="post">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="hidden" name="photo_image" id="photo_image" />
+		<input type="hidden" name="diploma_image" id="diploma_image" />
 		<table width="100%" class="register_mes_table"  >
 			<tr>
-				<td width="15%" align="right">
-					姓名：
+				<td width="20%" align="right">
+					姓名:
 				</td>
 				<td width="40%">
 					<div class="form-group">
@@ -71,8 +19,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
-					联系方式：
+				<td width="20%" align="right">
+					联系方式:
 				</td>
 				<td width="40%">
 					<div class="form-group">
@@ -86,7 +34,7 @@
 				</td>
 			</tr>
 			<!-- <tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 				</td>
 				<td width="40%">
 					<div class="form-group text_input_box">
@@ -98,7 +46,7 @@
 				</td>
 			</tr> -->
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 				</td>
 				<td  colspan="2"  class="qq_wx_email">
 					<div class="form-group text_input_box">
@@ -116,7 +64,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 					公开联系方式:
 				</td>
 				<td colspan="2"  class="gklxfs" id="check_public">
@@ -147,8 +95,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
-					所在区域：
+				<td width="20%" align="right">
+					所在区域:
 				</td>
 				<td colspan="2" class="select_area">
 					<div class="form_select_box">
@@ -171,7 +119,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 					生日:
 				</td>
 				<td width="40%">
@@ -183,19 +131,19 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 					性别:
 				</td>
 				<td width="40%" class="select_sex">
 					<div class="radio">
 						<label>
-							<input type="radio" name="sex" id="blankRadio1"  checked="checked" value="男" aria-label="男" {{$user->gender == 'male' ? 'checked' : ''}} />
+							<input type="radio" name="gender" id="blankRadio1"  checked="checked" value="男" aria-label="男" {{$user->gender == 'male' ? 'checked' : ''}} />
 							男
 						</label>
 					</div>
 					<div class="radio">
 						<label>
-							<input type="radio" name="sex" id="blankRadio1" value="女" aria-label="女" {{$user->gender == 'female' ? 'checked' : ''}} />
+							<input type="radio" name="gender" id="blankRadio1" value="女" aria-label="女" {{$user->gender == 'female' ? 'checked' : ''}} />
 							女
 						</label>
 					</div>
@@ -204,31 +152,35 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 					籍贯:
 				</td>
 				<td width="40%">
 					<div class="form-group">
-						<input type="text" class="form-control" name="address" id="" placeholder="请输入您的籍贯省市" value="{{$user->hometown}}" />
+						<input type="text" class="form-control" name="hometown" id="" placeholder="请输入您的籍贯省市" value="{{$user->hometown}}" />
 					</div>
 				</td>
 				<td width="45%">
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 					工种:
 				</td>
 				<td width="100%" colspan="2" class="select_job" id="select_job_td">
+					<div class="form_select_box"></div>
 					<div class="form_select_box">
+						@foreach ($user_work_categories as $user_work_category)
 						<select class="form-control" name="work_category_id[]">
 							<option value="">请选工种</option>
-							@foreach ($user_work_categories as $work_category)
-								@foreach ($work_categories as $work_category)
-									<option value="{{ $work_category->id }}" {{$category_id == $work_category->id ? 'selected' : ''}}>{{ $work_category->name }}</option>
-								@endforeach
+							@foreach ($work_categories as $work_category)
+								<option value="{{ $work_category->id }}" {{$user_work_category->id == $work_category->id ? 'selected' : ''}}>
+									{{ $work_category->name }}
+								</option>
 							@endforeach
 						</select>
+						@endforeach
+						<a href="javascript:void(0)" class="delete_work_cateogry">X</a>
 					</div>
 					
 					<a href="javascript:void(0)" class="add_job_btn btnstyle_1" id="add_job_btn">
@@ -240,52 +192,38 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 					个人照片:
 				</td>
 				<td width="40%">
 					<div class="form-group">
-						<input type="text" class="form-control" disabled="disabled"  id="personphoto_text" placeholder="个人照片">
-							<input type="file" name="personphoto" hidden="hidden" id="personphoto_hide" />
+						<input type="file" class="g-u" id="J_UploaderBtn1" value="添加" name="image" >
+						<ul id="J_UploaderQueue1"></ul>
 					</div>
 				</td>
 				<td width="45%">
-					<a  href="javascript:void(0)"  class="btnstyle_1" id="personphoto">
-						添加
-					</a>
-					<a  href="#"  class="btnstyle_1" id="personphoto_upload">
-						上传
-					</a>
-					<span class="right_tx">*照片文件不大于500KB</span>
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 					学历证书:
 				</td>
 				<td width="40%">
 					<div class="form-group">
-						<input type="text" class="form-control" disabled="disabled" id="qualifications_text"  placeholder="学历证书">
-							<input type="file" name="qualifications" hidden="hidden" id="qualifications_hide" />
+						<input type="file" class="g-u" id="J_UploaderBtn2" value="添加" name="image" >
+						<ul id="J_UploaderQueue2"></ul>
 					</div>
 				</td>
 				<td width="45%">
-					<a  href="javascript:void(0)"  class="btnstyle_1" id="qualifications_btn">
-						添加
-					</a>
-					<a  href="#"  class="btnstyle_1">
-						上传
-					</a>
-					<span class="right_tx">*照片文件不大于500KB</span>
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 					期望收入:
 				</td>
 				<td width="40%">
 					<div class="form-group">
-						<input type="text" class="form-control" name="qwsr" id="" placeholder="200元/天">
+						<input type="text" class="form-control" name="expect_salary" value="{{$user->expect_salary}}" />
 					</div>
 				</td>
 				<td width="45%">
@@ -295,14 +233,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td width="15%" align="right">
+				<td width="20%" align="right">
 				</td>
 				<td width="40%" colspan="2">
 					<input type="submit" class="inputsub" value="保存修改" />
-					<a  href="#" class="table_qx">
-						取消
-					</a>
-				</td>
 			</tr>
 		</table>
 		</from>
@@ -313,7 +247,6 @@ var validate = $("#register_mes_Modify").validate({
 	focusInvalid: false, //当为false时，验证无效时，没有焦点响应
 	onkeyup: false,
 	submitHandler: function(form) { //表单提交句柄,为一回调函数，带一个参数：form
-		alert("提交表单");
 		form.submit(); //提交表单
 	},
 	rules: {
@@ -382,24 +315,42 @@ jQuery.validator.addMethod('selectNone',
             
 }, "请选择至少一项！"); 
 
-
+//添加工种
 function  addnewGz(i){
 	var _html='';
 	     _html+='<div class="form_select_box">';
-	     _html+='<select class="form-control" name="job_'+i+'" >';
+	     _html+='<select class="form-control" name="work_category_id[]" >';
 	     //循环此部分添加数据
 	    _html+='<option value="1">';
 	    _html+='选择工种';
 	    _html+='</option>';
+			@foreach ($work_categories as $work_category)
+				_html+='<option value="{{ $work_category->id }}">';
+				_html+='{{ $work_category->name }}';
+				_html+='</option>';
+			@endforeach
 	    //循环此部分添加数据  --end
-	    _html+='</select></div>'
-	    $('#select_job_td').find('.form_select_box').last().after(_html)    				
+			_html+='</select>';
+			_html+='<a href="javascript:void(0)" class="delete_work_cateogry">X</a>';
+			_html+='</div>';
+	    $('#select_job_td').find('.form_select_box').last().after(_html);
+			$('.delete_work_cateogry').bind('click',function(){
+				delGz(this);
+			})
 }
 var job_i=1
 $('#add_job_btn').bind('click',function(){
 	addnewGz(job_i)
 	job_i++
 })
+
+//删除工种
+function delGz(a){
+	$(a).parent().remove();
+}
+$('.delete_work_cateogry').bind('click',function(){
+	delGz(this);
+});
 
 //添加证书
 $('#personphoto').bind('click',function(){
@@ -456,6 +407,85 @@ $(function(){
 	});
 });
 
+</script>
+<script src="//g.alicdn.com/kissy/k/1.4.8/seed-min.js" charset="utf-8"></script>
+<script>
+	var S = KISSY;
+	S.use('kg/uploader/3.0.3/index,kg/uploader/3.0.3/themes/default/index,kg/uploader/3.0.3/themes/default/style.css', function (S, Uploader,DefaultTheme) {
+	  //照片
+	  var plugins = 'kg/uploader/3.0.3/plugins/auth/auth,' +
+	          'kg/uploader/3.0.3/plugins/urlsInput/urlsInput,' +
+	          'kg/uploader/3.0.3/plugins/proBars/proBars';
+
+    S.use(plugins,function(S,Auth,UrlsInput,ProBars){
+    	//身份证
+    	var uploader = new Uploader('#J_UploaderBtn1',{
+      	//处理上传的服务器端脚本路径
+        action: "/my/upload-img?category=photo",
+        //禁用多选
+        multiple : false
+      });
+      //使用主题
+      uploader.theme(new DefaultTheme({
+        queueTarget:'#J_UploaderQueue1'
+      }));
+      //验证插件
+      uploader.plug(new Auth({
+      	//最多上传个数
+        max:1
+      }))
+      //url保存插件
+      .plug(new UrlsInput({target:'#J_Urls'}))
+      //进度条集合
+      .plug(new ProBars());
+			uploader.on('add', function (ev) {
+				$("#J_UploaderBtn1").parent().parent().hide();
+      });
+			uploader.on('remove',function(ev){
+				$("#J_UploaderBtn1").parent().parent().show();
+      });
+			uploader.on('success',function(ev){
+				var url = ev['result']['path'];
+				$("#photo_image").val(url);
+      });
+			uploader.on('remove',function(ev){
+				$("#photo_image").val('');
+      });
+			//学历证书
+    	var uploader2 = new Uploader('#J_UploaderBtn2',{
+      	//处理上传的服务器端脚本路径
+        action: "/my/upload-img?category=diploma",
+        //禁用多选
+        multiple : false
+      });
+      //使用主题
+      uploader2.theme(new DefaultTheme({
+        queueTarget:'#J_UploaderQueue2'
+      }));
+      //验证插件
+      uploader2.plug(new Auth({
+      	//最多上传个数
+        max:1
+      }))
+      //url保存插件
+      .plug(new UrlsInput({target:'#J_Urls2'}))
+      //进度条集合
+      .plug(new ProBars());
+			uploader2.on('add', function (ev) {
+				$("#J_UploaderBtn2").parent().parent().hide();
+      });
+			uploader2.on('remove',function(ev){
+				$("#J_UploaderBtn2").parent().parent().show();
+      });
+			uploader2.on('success',function(ev){
+				var url = ev['result']['path'];
+				$("#diploma_image").val(url);
+      });
+			uploader2.on('remove',function(ev){
+				$("#diploma_image").val('');
+      });
+    });
+  });
 </script>
 </div>
 @endsection

@@ -85,5 +85,6 @@ padding: 10px; text-align: left; line-height: 28px; color: #e7e7e7;
 
 .red_tx{ color: #FF2222; clear: both; }
 .red_tx_text_more{ line-height: 16px!important;}
-.register_mes_table .inputsub{ border: none; float: left; width: 180px; height: 42px; line-height: 42px; text-align: center; background: #2dc379; color: #FFFFFF; float: left;border-radius: 4px;}
+.register_mes_table .inputsub{ border: none; float: left; width: 180px; height: 40px; line-height: 40px; text-align: center; background: #2dc379; color: #FFFFFF; float: left;border-radius: 4px;}
 .register_mes_table .table_qx{ display: block; float: left; width:180px ; height: 40px; border:#2dc379 solid 1px; margin-left: 20px; text-align: center; color: #2dc379;border-radius: 4px;} 
+.body_context .defaultTheme-button{margin-top: 0px;}

@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier {
    */
   protected $except = [
       'auth/upload-img',
+			'my/upload-img'
   ];
 	/**
 	 * Handle an incoming request.

@@ -111,7 +111,8 @@
 				},
 				password:{
 					required:true,
-					rangelength:[3,10]
+					rangelength:[3,10],
+					pwd: true
 				}
 	    },
 	    messages:{
@@ -120,7 +121,8 @@
 	      	phone:'请输入正确的电话号码'
 	      },
 			 password:{
-			   required: "请输入密码"
+			   required: "请输入密码",
+				 pwd: "请输入密码"
 			 }
 	   }
 	});    
@@ -129,6 +131,11 @@
     var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
     return this.optional(element) || (length == 11 && mobile.test(value));
 	}, "手机号码格式错误");  
+	
+  jQuery.validator.addMethod("pwd", function(value, element) {
+    var length = value.length;
+    return this.optional(element) || (value != "请输入密码");
+	}, "请输入密码");  
 	
 	</script>
 </body>

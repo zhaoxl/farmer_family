@@ -33,7 +33,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	
 	public function work_categories()
   {
-      return $this->belongsToMany('App\WorkCategory');
+      return $this->belongsToMany('App\WorkCategory', 'user_work_categories', 'user_id', 'work_category_id');
   }
 
 }
