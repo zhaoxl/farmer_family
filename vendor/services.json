@@ -31,8 +31,7 @@
         "Frozennode\\Administrator\\AdministratorServiceProvider",
         "Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewerServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
-        "Prettus\\RequestLogger\\Providers\\LoggerServiceProvider",
-        "Mews\\Captcha\\CaptchaServiceProvider"
+        "Prettus\\RequestLogger\\Providers\\LoggerServiceProvider"
     ],
     "eager": [
         "Ollieread\\Multiauth\\MultiauthServiceProvider",
@@ -55,8 +54,7 @@
         "Frozennode\\Administrator\\AdministratorServiceProvider",
         "Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewerServiceProvider",
         "Maatwebsite\\Excel\\ExcelServiceProvider",
-        "Prettus\\RequestLogger\\Providers\\LoggerServiceProvider",
-        "Mews\\Captcha\\CaptchaServiceProvider"
+        "Prettus\\RequestLogger\\Providers\\LoggerServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

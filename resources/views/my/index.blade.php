@@ -100,7 +100,7 @@
 				</td>
 				<td colspan="2" class="select_area">
 					<div class="form_select_box">
-						<select name="area_province" id="area_province" class="form-control">
+						<select name="province" id="area_province" class="form-control">
 							<option value="">请选择地区</option>
 						@foreach ($area_provinces as $province)
 							<option value="{{ $province->code }}" {{$user->province == $province->code ? 'selected' : ''}}>{{ $province->name }}</option>
@@ -108,7 +108,7 @@
 						</select>
 					</div>
 					<div class="form_select_box">
-						<select name="area_city" id="area_city" class="form-control" style="{{isset($area_cities) ? '' : 'display: none'}}">
+						<select name="city" id="area_city" class="form-control" style="{{isset($area_cities) ? '' : 'display: none'}}">
 							@if(isset($area_cities))
 								@foreach ($area_cities as $city)
 									<option value="{{ $city->code }}" {{$user->city == $city->code ? 'selected' : ''}}>{{ $city->name }}</option>
@@ -169,19 +169,19 @@
 				</td>
 				<td width="100%" colspan="2" class="select_job" id="select_job_td">
 					<div class="form_select_box"></div>
-					<div class="form_select_box">
 						@foreach ($user_work_categories as $user_work_category)
-						<select class="form-control" name="work_category_id[]">
-							<option value="">请选工种</option>
-							@foreach ($work_categories as $work_category)
-								<option value="{{ $work_category->id }}" {{$user_work_category->id == $work_category->id ? 'selected' : ''}}>
-									{{ $work_category->name }}
-								</option>
-							@endforeach
-						</select>
+						<div class="form_select_box">
+							<select class="form-control" name="work_category_id[]">
+								<option value="">请选工种</option>
+								@foreach ($work_categories as $work_category)
+									<option value="{{ $work_category->id }}" {{$user_work_category->id == $work_category->id ? 'selected' : ''}}>
+										{{ $work_category->name }}
+									</option>
+								@endforeach
+							</select>
+							<a href="javascript:void(0)" class="delete_work_cateogry">X</a>
+						</div>
 						@endforeach
-						<a href="javascript:void(0)" class="delete_work_cateogry">X</a>
-					</div>
 					
 					<a href="javascript:void(0)" class="add_job_btn btnstyle_1" id="add_job_btn">
 						添加

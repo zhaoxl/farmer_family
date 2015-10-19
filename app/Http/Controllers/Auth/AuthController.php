@@ -81,7 +81,7 @@ class AuthController extends Controller {
 		
 		//上传图片
 		//身份证
-		if (isset($request['idcard_image'])) {
+		if (isset($request['idcard_image']) && !empty($request['idcard_image'])) {
 			$idcard_image = $request['idcard_image'];
 			$extension_name = \File::extension($idcard_image);
 			$user_id = \Auth::user()->id();
@@ -93,7 +93,7 @@ class AuthController extends Controller {
 		}
 		
 		//头像
-		if (isset($request['photo_image'])) {
+		if (isset($request['photo_image']) && !empty($request['photo_image'])) {
 			$photo_image = $request['photo_image'];
 			$extension_name = \File::extension($photo_image);
 			$user_id = \Auth::user()->id();
@@ -105,7 +105,7 @@ class AuthController extends Controller {
 		}
 		
 		//学历证书
-		if (isset($request['diploma_image'])) {
+		if (isset($request['diploma_image']) && !empty($request['diploma_image'])) {
 			$diploma_image = $request['diploma_image'];
 			$extension_name = \File::extension($diploma_image);
 			$user_id = \Auth::user()->id();
@@ -117,7 +117,7 @@ class AuthController extends Controller {
 		}
 		
 		//营业执照
-		if (isset($request['license_image'])) {
+		if (isset($request['license_image']) && !empty($request['license_image'])) {
 			$license_image = $request['license_image'];
 			$extension_name = \File::extension($license_image);
 			$user_id = \Auth::user()->id();
@@ -129,7 +129,7 @@ class AuthController extends Controller {
 		}
 		
 		//学历证书
-		if (isset($request['company_photo_image'])) {
+		if (isset($request['company_photo_image']) && !empty($request['company_photo_image'])) {
 			$company_photo_image = $request['company_photo_image'];
 			$extension_name = \File::extension($company_photo_image);
 			$user_id = \Auth::user()->id();

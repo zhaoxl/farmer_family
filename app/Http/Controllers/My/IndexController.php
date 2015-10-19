@@ -114,63 +114,73 @@ class IndexController extends BaseController {
 	
 	public function postSaveProfile(Request $request)
 	{
-		// $user = \Auth::user()->get();
-// 		//上传照片
-// 		//头像
-// 		if (isset($request['photo_image'])) {
-// 			$photo_image = $request['photo_image'];
-// 			$extension_name = \File::extension($photo_image);
-// 			$user_id = $user->id();
-// 			$file_type = \File::mimeType($photo_image);
-// 			$file_size = \File::size($photo_image);
-// 			$user_upload = \App\UserUpload::firstOrNew(['category' => 'photo', 'user_id' => $user_id]);
-// 			$user_id->item_type = 'User';
-// 			$user_id->item_id = $user_id;
-// 			$user_id->url = asset('upload/photo/'.$user_id.'.'.$extension_name);
-// 			$user_id->file_type = $file_type;
-// 			$user_id->path = 'upload/photo/'.$user_id.'.'.$extension_name;
-// 			$user_id->file_size = $file_size;
-// 			$user_upload->save();
-// 			\File::move(public_path().'/'.$photo_image, public_path().'/'.'upload/photo/'.$user_id.'.'.$extension_name);
-// 		}
-//
-// 		//学历证书
-// 		if (isset($request['diploma_image'])) {
-// 			$photo_image = $request['diploma_image'];
-// 			$extension_name = \File::extension($photo_image);
-// 			$user_id = $user->id();
-// 			$file_type = \File::mimeType($photo_image);
-// 			$file_size = \File::size($photo_image);
-// 			$user_upload = \App\UserUpload::firstOrNew(['category' => 'diploma', 'user_id' => $user_id]);
-// 			$user_id->item_type = 'User';
-// 			$user_id->item_id = $user_id;
-// 			$user_id->url = asset('upload/diploma/'.$user_id.'.'.$extension_name);
-// 			$user_id->file_type = $file_type;
-// 			$user_id->path = 'upload/diploma/'.$user_id.'.'.$extension_name;
-// 			$user_id->file_size = $file_size;
-// 			$user_upload->save();
-// 			\File::move(public_path().'/'.$photo_image, public_path().'/'.'upload/diploma/'.$user_id.'.'.$extension_name);
-// 		}
-//
-// 		$user->hometown = $request['hometown'];
-// 		$user->area_city = $request['area_city'];
-// 		$user->area_province = $request['area_province'];
-// 		$user->birthday = $request['birthday'];
-// 		$user->email = $request['email'];
-// 		$user->mobile = $request['mobile'];
-// 		$user->name = $request['name'];
-// 		$user->public_mobile = isset($request['public_mobile']);
-// 		$user->public_qq = isset($request['public_qq']);
-// 		$user->public_weixin = isset($request['public_weixin']);
-// 		$user->public_email = isset($request['public_email']);
-// 		$user->qq = $request['qq'];
-// 		$user->weixin = $request['weixin'];
-// 		$user->expect_salary = $request['expect_salary'];
-// 		$user->gender = $request['gender'];
+		$user = \Auth::user()->get();
+		//上传照片
+		//头像
+		if (isset($request['photo_image']) && !empty($request['photo_image'])) {
+			$photo_image = $request['photo_image'];
+			$extension_name = \File::extension($photo_image);
+			$user_id = $user->id;
+			$file_type = \File::mimeType($photo_image);
+			$file_size = \File::size($photo_image);
+			$user_upload = \App\UserUpload::firstOrNew(['category' => 'photo', 'user_id' => $user_id]);
+			$user_id->item_type = 'User';
+			$user_id->item_id = $user_id;
+			$user_id->url = asset('upload/photo/'.$user_id.'.'.$extension_name);
+			$user_id->file_type = $file_type;
+			$user_id->path = 'upload/photo/'.$user_id.'.'.$extension_name;
+			$user_id->file_size = $file_size;
+			$user_upload->save();
+			\File::move(public_path().'/'.$photo_image, public_path().'/'.'upload/photo/'.$user_id.'.'.$extension_name);
+		}
+
+		//学历证书
+		if (isset($request['diploma_image']) && !empty($request['diploma_image'])) {
+			$photo_image = $request['diploma_image'];
+			$extension_name = \File::extension($photo_image);
+			$user_id = $user->id();
+			$file_type = \File::mimeType($photo_image);
+			$file_size = \File::size($photo_image);
+			$user_upload = \App\UserUpload::firstOrNew(['category' => 'diploma', 'user_id' => $user_id]);
+			$user_id->item_type = 'User';
+			$user_id->item_id = $user_id;
+			$user_id->url = asset('upload/diploma/'.$user_id.'.'.$extension_name);
+			$user_id->file_type = $file_type;
+			$user_id->path = 'upload/diploma/'.$user_id.'.'.$extension_name;
+			$user_id->file_size = $file_size;
+			$user_upload->save();
+			\File::move(public_path().'/'.$photo_image, public_path().'/'.'upload/diploma/'.$user_id.'.'.$extension_name);
+		}
+
+		$user->hometown = $request['hometown'];
+		$user->city = $request['city'];
+		$user->province = $request['province'];
+		$user->birthday = $request['birthday'];
+		$user->email = $request['email'];
+		$user->mobile = $request['mobile'];
+		$user->name = $request['name'];
+		$user->public_mobile = isset($request['public_mobile']);
+		$user->public_qq = isset($request['public_qq']);
+		$user->public_weixin = isset($request['public_weixin']);
+		$user->public_email = isset($request['public_email']);
+		$user->qq = $request['qq'];
+		$user->weixin = $request['weixin'];
+		$user->expect_salary = $request['expect_salary'];
+		$user->gender = $request['gender'];
+		$user->save();
 			
-		$new_category_ids = $request['work_category_id[]'];
-		//echo($new_category_ids);
-		\Debugbar::error('$new_category_ids');
+		#$user->work_categories->delete();
+		\App\UserWorkCategory::where('user_id', '=', $user->id)->delete();
+		$new_category_ids = $request['work_category_id'];
+		foreach($new_category_ids as $id)
+		{
+			if(!\App\UserWorkCategory::where('user_id', '=', $user->id)->where('work_category_id', '=', $id)->first())
+			{
+				\App\UserWorkCategory::create(['user_id' => $user->id, 'work_category_id' => $id]);	
+			}
+		}
+
+		return redirect()->back();
 	}
 	
 	public function postUploadImg(Request $request)

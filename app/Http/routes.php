@@ -37,6 +37,12 @@ Route::controllers([
 
 
 //Admin
+Route::group(['namespace' => 'admin'], function()
+{
+	Route::controller('/admin', 'IndexController');
+	Route::controller('/admin/session', 'SessionController');
+});
+
 Route::controller('auth_admin', 'Auth\AuthAdminController');
 Route::controller('admin_process', 'AdminProcess\AdminUserController');
 Route::resource('admin_process_message', 'AdminProcess\AdminMessageController');

@@ -135,7 +135,7 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
-		Barryvdh\Debugbar\ServiceProvider::class,
+		'Barryvdh\Debugbar\ServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -149,7 +149,6 @@ return [
 		'Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
 		'Prettus\RequestLogger\Providers\LoggerServiceProvider',
-		'Mews\Captcha\CaptchaServiceProvider',
 		
 	],
 
@@ -200,7 +199,6 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 		'Excel' 		=> 'Maatwebsite\Excel\Facades\Excel',
 		'Captcha'   => 'Mews\Captcha\Facades\Captcha',
-		'Debugbar' 	=> Barryvdh\Debugbar\Facade::class,
 	],
 
 ];

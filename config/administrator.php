@@ -7,7 +7,7 @@ return array(
 	 *
 	 * @type string
 	 */
-	'uri' => 'admin',
+	'uri' => 'admin2',
 
 	/**
 	 * Page title
@@ -54,7 +54,7 @@ return array(
 	'menu' => array(
 		'操作记录' => array('operation_logs'),
 		'users',
-		'发布信息管理' => array('films'),
+		'发布信息管理' => array('staffs', 'works'),
 		'用户评价管理' => array('films'),
 		'后台用户管理' => array('films'),
 		'注销用户管理' => array('films'),
