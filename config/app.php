@@ -136,6 +136,8 @@ return [
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+		'Mews\Captcha\CaptchaServiceProvider',
+		
 
 		/*
 		 * Application Service Providers...

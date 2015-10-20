@@ -5,12 +5,11 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class SessionController extends Controller {
-
-
+class SessionsController extends Controller {
+	
 	public function getCreate()
 	{
-		
+		return '123';
 	}
 
 	/**
@@ -18,7 +17,7 @@ class SessionController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function getStore()
 	{
 		//
 	}
@@ -29,7 +28,7 @@ class SessionController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function getDestroy($id)
 	{
 		//
 	}
