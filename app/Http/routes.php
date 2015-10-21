@@ -40,6 +40,8 @@ Route::controllers([
 Route::group(['namespace' => 'Admin'], function()
 {
 	Route::controller('/admin/sessions', 'SessionsController');
+	Route::resource('/admin/operation_logs', 'OperationLogsController');
+	Route::resource('/admin/users', 'UsersController');
 	Route::controller('/admin', 'IndexController');
 });
 Route::get('/admin', 'Admin\IndexController@index');

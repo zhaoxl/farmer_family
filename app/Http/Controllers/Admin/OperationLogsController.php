@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class IndexController extends BaseController {
+class OperationLogsController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +14,8 @@ class IndexController extends BaseController {
 	 */
 	public function index()
 	{
-		return view('admin.index');
+		$datas = \App\AdminOperationLog::orderBy('created_at', 'desc')->take(5)->get();
+		return view('admin.operation_logs.index')->with('datas', $datas);
 	}
 
 	/**

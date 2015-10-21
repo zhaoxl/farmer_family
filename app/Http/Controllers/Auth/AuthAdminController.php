@@ -23,7 +23,7 @@ class AuthAdminController extends Controller {
 			return redirect()->intended('/admin');
 		}
 
-		return redirect('auth_admin/login')
+		return redirect()->back()
 					->withInput($request->only('email', 'remember'))
 					->withErrors([
 						'email' => '账号或密码错误',

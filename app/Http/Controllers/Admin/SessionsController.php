@@ -9,7 +9,7 @@ class SessionsController extends Controller {
 	
 	public function getCreate()
 	{
-		return '123';
+		return view('admin.sessions.create');
 	}
 
 	/**
