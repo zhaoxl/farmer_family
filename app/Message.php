@@ -28,7 +28,4 @@ class Message extends Model {
 		return $this->getAttribute('readed') ? '<span style="color: green">已读</span>' : '<span style="color: red">未读</span>';
 	}
 	
-	public function category123(){
-		return array('站内消息' => 1, '系统消息' => 2);
-	}
 }

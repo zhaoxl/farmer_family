@@ -2,7 +2,7 @@
 <div class="header">
 	<div class="context">
 		<div class="logo">
-			<a href="/"><img src="/images/logo.jpg"></a>
+			<a href="/">首页</a>
 		</div>
 		<div class="space"></div>
 		<div class="page_title">
@@ -17,7 +17,7 @@
 <div class="header">
 	<div class="context">
 		<div class="logo">
-			<a href="/"><img src="/images/logo.jpg"></a>
+			<a href="/">首页</a>
 		</div>
 		<div class="space"></div>
 		<div class="header_nav">

@@ -43,19 +43,6 @@
 				</div>
 				<div class="row">
 					<div class="title">
-						期望工作工种：
-					</div>
-					<div class="input">
-						<select name="work_category" id="work_category" class="form-control">
-							<option value="">请选择工种</option>
-							@foreach ($work_categories as $work_category)
-								<option value="{{ $work_category->id }},{{$work_category->industry_name}}">{{ $work_category->industry_name }}</option>
-							@endforeach
-						</select>
-					</div>
-				</div>
-				<div class="row">
-					<div class="title">
 						可工作时间：
 					</div>
 					<div class="input">

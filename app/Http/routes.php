@@ -42,6 +42,13 @@ Route::group(['namespace' => 'Admin'], function()
 	Route::controller('/admin/sessions', 'SessionsController');
 	Route::resource('/admin/operation_logs', 'OperationLogsController');
 	Route::resource('/admin/users', 'UsersController');
+	Route::resource('/admin/staffs', 'StaffsController');
+	Route::resource('/admin/works', 'WorksController');
+	Route::resource('/admin/messages', 'MessagesController');
+	Route::resource('/admin/settings', 'SettingsController');
+	Route::get('/admin/profile/change_pwd', 'ProfileController@change_pwd');
+	Route::post('/admin/profile/change_pwd', 'ProfileController@change_pwd_save');
+	Route::resource('/admin/profile', 'ProfileController');
 	Route::controller('/admin', 'IndexController');
 });
 Route::get('/admin', 'Admin\IndexController@index');

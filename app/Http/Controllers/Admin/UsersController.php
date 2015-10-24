@@ -14,7 +14,7 @@ class UsersController extends BaseController {
 	 */
 	public function index()
 	{
-		$datas = \App\User::orderBy('created_at', 'desc')->take(5)->get();
+		$datas = \App\User::orderBy('created_at', 'desc')->paginate(11);
 		return view('admin.users.index')->with('datas', $datas);
 	}
 

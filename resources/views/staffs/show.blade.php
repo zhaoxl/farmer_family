@@ -42,7 +42,7 @@
 						姓名：{{$staff->name}}
 					</li>
 					<li>
-						所在区域：{{$staff->area_name}}
+						期望工作区域：{{$staff->area_name}}
 					</li>
 					<li>
 						服务类型：{{$staff->work_category_name}}

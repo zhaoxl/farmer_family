@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class OperationLogsController extends BaseController {
+class SettingsController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,8 +14,8 @@ class OperationLogsController extends BaseController {
 	 */
 	public function index()
 	{
-		$datas = \App\AdminOperationLog::orderBy('created_at', 'desc')->paginate(11);
-		return view('admin.operation_logs.index')->with('datas', $datas);
+		$datas = \App\SystemSetting::orderBy('name', 'asc')->get();
+		return view('admin.settings.index')->with('datas', $datas);
 	}
 
 	/**
@@ -33,9 +33,18 @@ class OperationLogsController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$settings = $request['setting'];
+		foreach(array_keys($settings) as $key)
+		{
+			$setting = \App\SystemSetting::where('key', '=', $key)->first();
+			if(is_null($setting)) continue;
+			$setting->val = $settings[$key];
+			$setting->save();
+		}
+		$request->session()->flash('success', '保存成功');
+		return redirect("/admin/settings");
 	}
 
 	/**

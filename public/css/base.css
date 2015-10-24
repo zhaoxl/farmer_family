@@ -369,7 +369,8 @@ ul{padding: 0px; margin: 0px;}
 .header .context .page_title{margin: 15px auto auto 11px; color: #61FEAF; float: left; width: 200px;}
 .header, #index .header a{color: white;}
 .header .context .color_green{color: #61FEAF; font-size: 16px;}
-.header .context .logo{margin-top: 15px; float: left;}
+.header .context .logo{margin-top: 15px; float: left; color: white;}
+.header .context .logo a{color: white;}
 .header .context .area_links{margin:15px auto auto 30px; display: inline-block;}
 .header .context .login_links{float: right; margin-top: 15px; margin-right: 18px;}
 .header .context .qq_links{float: right; margin-top: 15px;}
