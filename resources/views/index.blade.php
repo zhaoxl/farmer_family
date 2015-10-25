@@ -51,8 +51,9 @@
 					</div>
 					<input type="submit" class="submit" value="" />
 					<div class="links">
-				    <label><input type="checkbox" class="styled" name="remember" /><span class="autologin_title">自动登录</span></label>
+				    <label><input type="checkbox" class="styled" name="remember" /><span class="autologin_title">自动登录</span></label>  
 						<a href="/auth/forget" class="forget">忘记密码</a>
+						<a href="{{ url('/auth/present-register') }}" class="forget">免费注册&nbsp;&nbsp;</a>
 					</div>
 				</form>
 			</div>
@@ -61,24 +62,32 @@
 		<div class="base_list">
 			<div class="find_list">
 				<div class="title">
-					<a href="/staffs">更多>></a>
+					<a href="/staffs">搜索更多>></a>
 				</div>
 				<div class="list">
 					<ul>
 						@foreach ($staffs as $staff)
-						<li><a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">工作类型：{{$staff->work_category_name}}</a><span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span></li>
+						<li>
+							<a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">
+								{{$staff->user->workCategoryNames()}}&nbsp;&nbsp;[{{$staff->title}}]
+							</a>
+							<span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span></li>
 						@endforeach
 					</ul>
 				</div>
 			</div>
 			<div class="pub_list">
 				<div class="title">
-					<a href="/works">更多>></a>
+					<a href="/works">搜索更多>></a>
 				</div>
 				<div class="list">
 					<ul>
 						@foreach ($works as $work)
-						<li><a href="/works/{{$work->id}}" class="{{$work->flag ? 'hot':''}}">工作类型：{{$work->work_category_name}}</a><span class="date">[{{date('Y-m-d', strtotime($work->created_at))}}]</span></li>
+						<li>
+							<a href="/works/{{$work->id}}" class="{{$work->flag ? 'hot':''}}">
+								{{$work->companyName()}}&nbsp;&nbsp;[{{$work->title}}]
+							</a>
+							<span class="date">[{{date('Y-m-d', strtotime($work->created_at))}}]</span></li>
 						@endforeach
 					</ul>
 				</div>
@@ -86,8 +95,11 @@
 			<div class="clearfix"></div>
 		</div>
 		<div class="footer">
+			<div class="desc">
+				找活雇人网络服务平台
+			</div>
 			<div class="context">
-				版权所有 农民之家&nbsp;&nbsp;&nbsp;&nbsp;邮箱：99866770@qq.com&nbsp;&nbsp;&nbsp;&nbsp;地址：北京市海淀区知春路9999号
+				版权所有 {{$settings['site_name']}}&nbsp;&nbsp;&nbsp;&nbsp;地址：{{$settings['address']}}&nbsp;&nbsp;&nbsp;&nbsp;服务热线：{{$settings['telphone']}}&nbsp;&nbsp;&nbsp;&nbsp;邮箱：{{$settings['email']}}
 			</div>
 		</div>
 	</div>

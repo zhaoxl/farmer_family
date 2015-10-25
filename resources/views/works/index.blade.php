@@ -6,7 +6,7 @@
 		<ul>
 			<li style="border-top: none;" class="current">
 				<a href="/works">
-					招工信息
+					雇人信息
 				</a>
 			</li>
 			<li class="">
@@ -89,7 +89,7 @@
 					<span>微信：{{$work->weixin}}</span>
 				</div>
 				<div class="more">
-					<a href="/works/{{$work->id}}">查看详情>></a>
+					<a href="/works/{{$work->id}}" target="_blank">查看详情>></a>
 				</div>
 			</div>
 			@endforeach

@@ -20,6 +20,8 @@
 		              <th>工种</th>
 		              <th>可工作时间</th>
 		              <th>发布时间</th>
+		              <th>修改时间</th>
+		              <th>置顶</th>
 		              <th>操作</th>
 		            </tr>
 		          </thead>
@@ -41,7 +43,11 @@
 										@endif
 									</td>
 									<td>{{$data->created_at}}</td>
+									<td>{{$data->updated_at}}</td>
+									<td>{!!$data->isTop()!!}</td>
 									<td>
+										<a href="/admin/staffs/refresh?id={{$data->id}}">刷新</a>&nbsp;
+										<a href="/admin/staffs/top?id={{$data->id}}">置顶</a>&nbsp;
 										<a href="#">查看</a>&nbsp;
 										<a href="#">删除</a>
 									</td>

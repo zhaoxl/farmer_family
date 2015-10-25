@@ -5,9 +5,9 @@
 	<ul class="page_tabs">
 		<li><a href="/auth/present-register" >个人找活</a></li>
 		<li class="space"></li>
-		<li><a href="#" class="current">企业招工</a></li>
+		<li><a href="#" class="current">企业雇人</a></li>
 		<li class="space"></li>
-		<li><a href="/auth/hire-register">个人招工</a></li>
+		<li><a href="/auth/hire-register">个人雇人</a></li>
 		<div class="clearfix"></div>
 	</ul>
 	<form class="form-horizontal" id="register_form" role="form" method="POST" action="{{ url('/auth/register') }}">
@@ -195,7 +195,7 @@
 				<select name="industry_id" id="industry_id" class="form-control">
 					<option value="">请选择行业</option>
 				@foreach ($industries as $industry)
-					<option value="{{ $industry->industry_name }}">{{ $industry->industry_name }}</option>
+					<option value="{{$industry->id}}|{{ $industry->industry_name }}">{{ $industry->industry_name }}</option>
 				@endforeach
 				</select>
 			</div>
@@ -219,7 +219,7 @@
 		<div class="clearfix"></div>
 		<div class="field">
 			<div class="title">
-				<span><p class="require">*</p>设置登陆密码：</span>
+				<span><p class="require">*</p>设置登录密码：</span>
 			</div>
 			<div class="input">
 				<input type="password" name="password" id="password" />

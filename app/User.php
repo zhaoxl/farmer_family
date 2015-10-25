@@ -37,6 +37,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->belongsToMany('App\WorkCategory', 'user_work_categories', 'user_id', 'work_category_id');
   }
 	
+	public function company()
+  {
+		return $this->hasOne('\App\Company');
+  }
+	
 	public function workCategoryNames()
 	{
 		$categories = $this->work_categories()->get(['name'])->all();
@@ -55,9 +60,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 				return '企业';
 			break;
 			case 2:
-				return '个人招工';
+				return '个人雇人';
 			break;
 		}
 	}
-
+	
+	public function getImg($category)
+	{
+		$user_upload = \App\UserUpload::where('item_type', '=', 'User')->where('item_id', '=', $this->id)->where('category', '=', $category)->first();
+		if(is_null($user_upload))
+		{
+			return '';
+		}
+		return $user_upload->path;
+	}
 }

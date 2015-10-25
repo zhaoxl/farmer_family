@@ -25,7 +25,7 @@
 <script type="text/javascript">
 function delete_work(id)
 {
-	if(confirm("确认要删除这条招工信息？"))
+	if(confirm("确认要删除这条雇人信息？"))
 	{
 		$("#delete_work_id").val(id);
 		$("#delete_work_from").submit();

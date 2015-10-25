@@ -317,12 +317,14 @@ jQuery.validator.addMethod('selectNone',
 
 //添加工种
 function  addnewGz(i){
+	if($("[name='work_category_id[]']").length>4)
+		return false;
 	var _html='';
 	     _html+='<div class="form_select_box">';
 	     _html+='<select class="form-control" name="work_category_id[]" >';
 	     //循环此部分添加数据
-	    _html+='<option value="1">';
-	    _html+='选择工种';
+	    _html+='<option value="">';
+	    _html+='请选工种';
 	    _html+='</option>';
 			@foreach ($work_categories as $work_category)
 				_html+='<option value="{{ $work_category->id }}">';
@@ -342,7 +344,7 @@ var job_i=1
 $('#add_job_btn').bind('click',function(){
 	addnewGz(job_i)
 	job_i++
-})
+});
 
 //删除工种
 function delGz(a){

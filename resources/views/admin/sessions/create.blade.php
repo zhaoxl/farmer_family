@@ -16,7 +16,7 @@
 		<table class="table table-bordered">
 			<tr>
 				<td>
-					<div class="panel-heading">登陆</div>
+					<div class="panel-heading">登录</div>
 				</td>
 			</tr>
 			<tr>
@@ -48,7 +48,7 @@
 					      <input type="checkbox" name="remember">记住我
 					    </label>
 					  </div>
-					  <button type="submit" class="btn btn-primary">登陆</button>
+					  <button type="submit" class="btn btn-primary">登录</button>
 					</form>
 				</td>
 			</tr>

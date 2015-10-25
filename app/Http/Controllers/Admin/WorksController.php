@@ -14,8 +14,25 @@ class WorksController extends Controller {
 	 */
 	public function index()
 	{
-		$datas = \App\Work::orderBy('created_at', 'desc')->paginate(11);
+		$datas = \App\Work::orderBy(\DB::raw('updated_at, is_top'), 'desc')->paginate(11);
 		return view('admin.works.index')->with('datas', $datas);
+	}
+	
+	public function refresh(Request $request)
+	{
+		$id = $request['id'];
+		$work = \App\Work::find($id);
+		$work->touch();
+		return redirect()->back();
+	}
+	
+	public function top(Request $request)
+	{
+		$id = $request['id'];
+		$work = \App\Work::find($id);
+		$work->is_top =! $work->is_top;
+		$work->save();
+		return redirect()->back();
 	}
 
 	/**

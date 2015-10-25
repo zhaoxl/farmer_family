@@ -20,7 +20,7 @@ class AuthAdminController extends Controller {
 	        'password'  => $request['password'],
 	    )))
 		{
-			return redirect()->intended('/admin');
+			return redirect()->intended('/admin/users');
 		}
 
 		return redirect()->back()

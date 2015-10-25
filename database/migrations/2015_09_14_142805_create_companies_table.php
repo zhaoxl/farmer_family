@@ -16,13 +16,11 @@ class CreateCompaniesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id');
-			$table->string('tel');
 			$table->string('company_name');
-			$table->string('address');
-			$table->string('license_img');
-			$table->integer('industry_id');
-			$table->string('industry_name');
-			$table->string('logo');
+			$table->string('tel')->nullable();
+			$table->string('address')->nullable();
+			$table->integer('industry_id')->nullable();
+			$table->integer('industry_name')->nullable();
 		});
 	}
 

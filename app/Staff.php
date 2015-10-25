@@ -11,5 +11,9 @@ class Staff extends Model {
 	{
 		return $this->belongsTo('\App\User');
 	}
+	
+	public function isTop(){
+		return $this->getAttribute('is_top') ? '<span style="color: red">是</span>' : '否';
+	}
 
 }

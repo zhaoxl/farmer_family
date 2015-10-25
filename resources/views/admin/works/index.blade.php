@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="pageheader">
-    <h2><i class="fa fa-envelope"></i> 发布信息管理 <span>招工信息</span></h2>
+    <h2><i class="fa fa-envelope"></i> 发布信息管理 <span>雇人信息</span></h2>
   </div>
   
   <div class="contentpanel">
@@ -23,6 +23,8 @@
 		              <th>服务时间</th>
 		              <th>所需人数</th>
 		              <th>发布时间</th>
+		              <th>修改时间</th>
+		              <th>置顶</th>
 		              <th>操作</th>
 		            </tr>
 		          </thead>
@@ -47,7 +49,11 @@
 									</td>
 									<td>{{$data->people_number}}</td>
 									<td>{{$data->created_at}}</td>
+									<td>{{$data->updated_at}}</td>
+									<td>{!!$data->isTop()!!}</td>
 									<td>
+										<a href="/admin/works/refresh?id={{$data->id}}">刷新</a>&nbsp;
+										<a href="/admin/works/top?id={{$data->id}}">置顶</a>&nbsp;
 										<a href="#">查看</a>&nbsp;
 										<a href="#">删除</a>
 									</td>

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>登陆</title>
+	<title>登录</title>
 
 	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
@@ -38,7 +38,7 @@
 
 				<ul class="nav navbar-nav navbar-right">
 					@if (Auth::admin()->guest())
-						<li><a href="{{ url('/auth/login') }}">登陆</a></li>
+						<li><a href="{{ url('/auth/login') }}">登录</a></li>
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::admin()->name }} <span class="caret"></span></a>
@@ -56,7 +56,7 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<div class="panel panel-default">
-					<div class="panel-heading">登陆</div>
+					<div class="panel-heading">登录</div>
 					<div class="panel-body">
 						@if (count($errors) > 0)
 							<div class="alert alert-danger">
@@ -98,7 +98,7 @@
 
 							<div class="form-group">
 								<div class="col-md-6 col-md-offset-4">
-									<button type="submit" class="btn btn-primary">登陆</button>
+									<button type="submit" class="btn btn-primary">登录</button>
 								</div>
 							</div>
 						</form>

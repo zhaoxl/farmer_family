@@ -10,8 +10,13 @@ class IndexController extends Controller {
 
 	public function index()
 	{
-		$staffs = \App\Staff::orderBy('created_at', 'desc')->take(5)->get();
-		$works = \App\Work::orderBy('created_at', 'desc')->take(5)->get();
+		$staffs = \App\Staff::orderBy(\DB::raw('updated_at, is_top'), 'desc')->take(5)->get();
+		$works = \App\Work::orderBy(\DB::raw('updated_at, is_top'), 'desc')->take(5)->get();
+		$settings = array();
+		$system_settings = \App\SystemSetting::get();
+		$system_settings->each(function($setting) use (&$settings){
+			$settings[$setting->key] = $setting->val;
+		});
 		
 		$current_city = \Cookie::get('current_city');
 		$current_city_code = \Cookie::get('current_city_code');
@@ -37,7 +42,7 @@ class IndexController extends Controller {
 		}
 		$cookie1 = \Cookie::forever('current_city', $current_city);
 		$cookie2 = \Cookie::forever('current_city_code', $current_city_code);
-		$view = view('index')->with('staffs', $staffs)->with('works', $works)->with('city_name', $current_city);
+		$view = view('index')->with('staffs', $staffs)->with('works', $works)->with('city_name', $current_city)->with('settings', $settings);
 		
 		$response = new \Illuminate\Http\Response($view);
 		$response->withCookie($cookie1)->withCookie($cookie2);

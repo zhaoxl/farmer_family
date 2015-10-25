@@ -29,7 +29,7 @@
 			</div>
 			<div class="login_links">
 				@if (Auth::user()->guest())
-					<a href="{{ url('/auth/login') }}">[登陆]</a>
+					<a href="{{ url('/auth/login') }}">[登录]</a>
 					<a href="{{ url('/auth/present-register') }}">[免费注册]</a>
 				@else
 					<a href="/my" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->get()->name }} <span class="caret"></span></a>

@@ -4,8 +4,8 @@ body{background-color: #F5F5F5;}
 .body_context{width: 1000px; border: solid 1px #DDDDDD; margin: 30px auto auto auto; background-color: #F4FBFF;}
 .body_context .page_tabs{list-style: none;}
 .body_context .page_tabs .space{width: 1px; height: 23px; margin-top: 24px; border-left: dashed 1px #DDDDDD; float: left; background: url(/images/register_page_tab_space.jpg) repeat-x;}
-.body_context .page_tabs li{width: 332px; height: 69px; float: left; text-align: center;}
-.body_context .page_tabs li a{width: 332px; height: 69px; line-height: 69px; display: block; font-size: 20px; color: #999999; background: url(/images/register_page_tab_bg.jpg) repeat-x;}
+.body_context .page_tabs li{width: 331px; height: 69px; float: left; text-align: center;}
+.body_context .page_tabs li a{width: 331px; height: 69px; line-height: 69px; display: block; font-size: 20px; color: #999999; background: url(/images/register_page_tab_bg.jpg) repeat-x;}
 .body_context .page_tabs li .current{background: url(/images/register_page_tab_bg_current.jpg) repeat-x;}
 
 .body_context .form{width: 100%; padding-top: 30px; background-color: #F4FBFF;}
@@ -35,6 +35,9 @@ body{background-color: #F5F5F5;}
 }
 .body_context .form .field .input label{margin-right: 20px;}
 .body_context .form .field .input .ck{width: 20px; height: 20px; border: solid 1px #DFE0E0; vertical-align: middle; margin-right: 5px;}
+.body_context .form .field .work_category_box{width: 110px; float: left;}
+.body_context .form .field .add_job_btn{width: 74px; height: 33px; line-height: 33px; background: #2CC378; float: left; text-align: center; display: block; color: white;}
+.body_context .form .field .input.work_category{width: 800px;}
 
 .body_context .form .field .valid_notice{width: 0px; height: 16px; float: left; margin-top: 24px; color: red;}
 .body_context .form .field .corrent{width: 16px; background: url(/images/register_icon_corrent.png);}

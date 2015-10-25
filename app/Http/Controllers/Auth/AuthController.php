@@ -13,7 +13,7 @@ class AuthController extends Controller {
 		return view('auth.login')->with('city_name', $current_city);
 	}
 	
-	#登陆
+	#登录
 	public function postLogin(Request $request)
 	{		
     if(Auth::user()->attempt(array(
@@ -42,9 +42,10 @@ class AuthController extends Controller {
 	public function getPresentRegister()
 	{
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
 		$cap = \Captcha::src();
 		\Session::put('url.intended', '/works');
-		return view('auth.present_register')->with('area_provinces', $area_provinces)->with('cap', $cap);
+		return view('auth.present_register')->with('area_provinces', $area_provinces)->with('cap', $cap)->with('work_categories', $work_categories);
 	}
 	#企业注册
 	public function getCompanyRegister()
@@ -55,7 +56,7 @@ class AuthController extends Controller {
 		\Session::put('url.intended', '/staffs');
 		return view('auth.company_register')->with('area_provinces', $area_provinces)->with('cap', $cap)->with('industries', $industries);
 	}
-	#个人招工注册
+	#个人雇人注册
 	public function getHireRegister()
 	{
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
@@ -75,16 +76,16 @@ class AuthController extends Controller {
 				$request, $validator
 			);
 		}
-		//设置工种
-		//TODO
+		
 		Auth::user()->login($registrar->create($request->all()));
+
+		$user_id = \Auth::user()->id();
 		
 		//上传图片
 		//身份证
 		if (isset($request['idcard_image']) && !empty($request['idcard_image'])) {
 			$idcard_image = $request['idcard_image'];
 			$extension_name = \File::extension($idcard_image);
-			$user_id = \Auth::user()->id();
 			$file_type = \File::mimeType($idcard_image);
 			$file_size = \File::size($idcard_image);	
 				
@@ -128,7 +129,7 @@ class AuthController extends Controller {
 			\File::move(public_path().'/'.$license_image, public_path().'/'.'upload/license/'.$user_id.'.'.$extension_name);
 		}
 		
-		//学历证书
+		//公司照片
 		if (isset($request['company_photo_image']) && !empty($request['company_photo_image'])) {
 			$company_photo_image = $request['company_photo_image'];
 			$extension_name = \File::extension($company_photo_image);
@@ -140,6 +141,23 @@ class AuthController extends Controller {
 			\File::move(public_path().'/'.$company_photo_image, public_path().'/'.'upload/company_photo/'.$user_id.'.'.$extension_name);
 		}
 		
+		//保存工种
+		$new_category_ids = $request['work_category_id'];
+		if(isset($request['work_category_id']))
+		{
+			foreach($new_category_ids as $id)
+			{
+				\App\UserWorkCategory::create(['user_id' => $user_id, 'work_category_id' => $id]);	
+			}
+		}
+		
+		//保存公司信息
+		if($request['category'] == '1')
+		{
+			$industry_id = explode('|', $request['industry_id'])[0];
+			$industry_name = explode('|', $request['industry_id'])[1];
+			\App\Company::create(array('user_id' => $user_id, 'industry_id' => $industry_id, 'industry_name' => $industry_name, 'company_name' => $request['company_name'], 'address' => $request['address']));
+		}
 		//返回来自页
 		return redirect()->intended('/my');
 	}

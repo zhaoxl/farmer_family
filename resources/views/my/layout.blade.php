@@ -38,12 +38,12 @@
 						@else
 						<li>
 							<a href="/works/create">
-								发布招工信息
+								发布雇人信息
 							</a>
 						</li>
 						<li class="{{Request::path() == 'my/sent-works' ? 'current' : ''}}">
 							<a href="/my/sent-works">
-								已发布招工信息
+								已发布雇人信息
 							</a>
 						</li>
 						@endif

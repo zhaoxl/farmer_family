@@ -50,10 +50,10 @@
 			</tr>
 			<tr>
 				<td width="10%" align="right">
-					<input type="checkbox" name="reason[]" value="我没有找活/招工的需求了" />
+					<input type="checkbox" name="reason[]" value="我没有找活/雇人的需求了" />
 				</td>
 				<td width="90%">
-					我没有找活/招工的需求了
+					我没有找活/雇人的需求了
 				</td>
 			</tr>
 			<tr>

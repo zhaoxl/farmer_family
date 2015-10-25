@@ -42,7 +42,11 @@ Route::group(['namespace' => 'Admin'], function()
 	Route::controller('/admin/sessions', 'SessionsController');
 	Route::resource('/admin/operation_logs', 'OperationLogsController');
 	Route::resource('/admin/users', 'UsersController');
+	Route::get('/admin/staffs/refresh', 'StaffsController@refresh');
+	Route::get('/admin/staffs/top', 'StaffsController@top');
 	Route::resource('/admin/staffs', 'StaffsController');
+	Route::get('/admin/works/refresh', 'WorksController@refresh');
+	Route::get('/admin/works/top', 'WorksController@top');
 	Route::resource('/admin/works', 'WorksController');
 	Route::resource('/admin/messages', 'MessagesController');
 	Route::resource('/admin/settings', 'SettingsController');

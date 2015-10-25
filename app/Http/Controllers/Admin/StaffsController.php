@@ -17,6 +17,23 @@ class StaffsController extends Controller {
 		$datas = \App\Staff::orderBy('created_at', 'desc')->paginate(11);
 		return view('admin.staffs.index')->with('datas', $datas);
 	}
+	
+	public function refresh(Request $request)
+	{
+		$id = $request['id'];
+		$staff = \App\Staff::find($id);
+		$staff->touch();
+		return redirect()->back();
+	}
+	
+	public function top(Request $request)
+	{
+		$id = $request['id'];
+		$staff = \App\Staff::find($id);
+		$staff->is_top =! $staff->is_top;
+		$staff->save();
+		return redirect()->back();
+	}
 
 	/**
 	 * Show the form for creating a new resource.

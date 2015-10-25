@@ -6,7 +6,7 @@
 		<ul>
 			<li style="border-top: none;" class="">
 				<a href="/works">
-					招工信息
+					雇人信息
 				</a>
 			</li>
 			<li class="current">
@@ -74,7 +74,9 @@
 						<div class="title">
 							工人年龄
 						</div>
-						<input type="text" class="field" name="age" value="{{Request::get('age')}}"/>
+						<input type="text" class="field age" name="age_start" value="{{Request::get('age_start')}}"/>
+						<div class="age_label">岁到</div>
+						<input type="text" class="field age" name="age_end" value="{{Request::get('age_end')}}"/>
 					</div>
 					<input type="submit" class="submit" value="" />
 				</div>
@@ -111,7 +113,7 @@
 					<span>微信：{{$staff->weixin}}</span>
 				</div>
 				<div class="more">
-					<a href="/staffs/{{$staff->id}}">查看详情>></a>
+					<a href="/staffs/{{$staff->id}}" target="_blank">查看详情>></a>
 				</div>
 			</div>
 			@endforeach

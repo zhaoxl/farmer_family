@@ -11,4 +11,35 @@ class Work extends Model {
 	{
 		return $this->belongsTo('\App\User');
 	}
+	
+	public function company()
+	{
+		return $this->hasOne('\App\Company', 'user_id', 'user_id');
+	}
+	
+	public function companyName()
+	{
+		$user = $this->user;
+		if(is_null($user))
+		{
+			return '用户不存在';
+		}
+		if($user->category == 1)
+		{
+			$company = $this->company;
+			if(is_null($company))
+			{
+				return '公司不存在';
+			}
+			return $company->company_name;
+		}
+		else
+		{
+			return $user->name;
+		}
+	}
+	
+	public function isTop(){
+		return $this->getAttribute('is_top') ? '<span style="color: red">是</span>' : '否';
+	}
 }

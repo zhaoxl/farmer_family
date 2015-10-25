@@ -6,7 +6,7 @@
 		<ul>
 			<li style="border-top: none;" class="current">
 				<a href="/works">
-					招工信息
+					雇人信息
 				</a>
 			</li>
 			<li class="">
@@ -76,6 +76,9 @@
 						服务人数：{{$work->people_number}}人
 					</li>
 				</ul>
+				<div class="photo">
+					<img src="/{{$work->user->getImg('photo')}}" />
+				</div>
 			</div>
 			<div class="clearfix"></div>
 			<div class="descs">

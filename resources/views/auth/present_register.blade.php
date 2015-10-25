@@ -5,9 +5,9 @@
 	<ul class="page_tabs">
 		<li><a href="#" class="current">个人找活</a></li>
 		<li class="space"></li>
-		<li><a href="/auth/company-register">企业招工</a></li>
+		<li><a href="/auth/company-register">企业雇人</a></li>
 		<li class="space"></li>
-		<li><a href="/auth/hire-register">个人招工</a></li>
+		<li><a href="/auth/hire-register">个人雇人</a></li>
 		<div class="clearfix"></div>
 	</ul>
 	<form class="form-horizontal" id="register_form" role="form" method="POST" action="{{ url('/auth/register') }}">
@@ -172,14 +172,18 @@
 			<div class="title">
 				<span><p class="require">*</p>所属工种：</span>
 			</div>
-			<div class="input">
-				<input type="text" name="work_categories" value="{{ old('work_categories') }}" />
-			</div>
-			<div class="valid_notice">
-				
-			</div>
-			<div class="desc">
-				*您能够干哪些类型的活，例如耕种、厨师等,有几种就填几种
+			<div class="input work_category">
+		     <div class="work_category_box">
+			     <select class="form-control" name="work_category_id[]" >
+			    	 <option value="">请选工种</option>'
+						 @foreach ($work_categories as $work_category)
+						 	 <option value="{{ $work_category->id }}">{{ $work_category->name }}</option>
+						 @endforeach
+					</select>
+		     </div>
+				<a href="javascript:void(0)" class="add_job_btn" id="add_job_btn">
+					添加
+				</a>
 			</div>
 		</div>
 		<div class="clearfix"></div>
@@ -254,7 +258,7 @@
 		<div class="clearfix"></div>
 		<div class="field">
 			<div class="title">
-				<span><p class="require">*</p>设置登陆密码：</span>
+				<span><p class="require">*</p>设置登录密码：</span>
 			</div>
 			<div class="input">
 				<input type="password" name="password" />
@@ -566,5 +570,32 @@
         });
 	    });
 	  });
+	</script>
+		
+	<script>
+	
+		$(function(){
+			//添加工种
+			function  addnewGz(_this){
+				if($("[name='work_category_id[]']").length>4)
+					return false;
+				var _html='';
+				_html+= '<div class="work_category_box">';
+				_html+= $(".work_category_box:first").html();
+				_html+='<a href="javascript:void(0)" class="delete_work_cateogry">X</a>';
+				_html+= '</div>';
+				$(_this).before(_html);
+				$('.delete_work_cateogry').bind('click',function(){
+					delGz(this);
+				})
+			}
+			//删除工种
+			function delGz(a){
+				$(a).parent().remove();
+			}
+			$('#add_job_btn').bind('click',function(){
+				addnewGz(this);
+			});
+		});
 	</script>
 @endsection

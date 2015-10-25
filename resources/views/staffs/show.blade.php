@@ -6,7 +6,7 @@
 		<ul>
 			<li style="border-top: none;" class="">
 				<a href="/works">
-					招工信息
+					雇人信息
 				</a>
 			</li>
 			<li class="current">
@@ -69,6 +69,9 @@
 						微信：{{$staff->weixin}}
 					</li>
 				</ul>
+				<div class="photo">
+					<img src="/{{$staff->user->getImg('photo')}}" />
+				</div>
 			</div>
 			<div class="clearfix"></div>
 			<div class="descs">

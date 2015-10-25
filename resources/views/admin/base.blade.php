@@ -47,18 +47,10 @@
                 </div>
             </div>
           
-            <h5 class="sidebartitle actitle">Account</h5>
-            <ul class="nav nav-pills nav-stacked nav-bracket mb30">
-              <li><a href="profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-              <li><a href=""><i class="fa fa-cog"></i> <span>Account Settings</span></a></li>
-              <li><a href=""><i class="fa fa-question-circle"></i> <span>Help</span></a></li>
-              <li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
-            </ul>
         </div>
       
       <h5 class="sidebartitle">Navigation</h5>
       <ul class="nav nav-pills nav-stacked nav-bracket">
-        <li><a href="/admin"><i class="fa fa-home"></i> <span>首页</span></a></li>
         <li class="nav-parent"><a href=""><i class="fa fa-edit"></i> <span>用户</span></a>
           <ul class="children">
 						<li><a href="/admin/users"><i class="fa fa-caret-right"></i> 所有用户</a></li>
@@ -71,7 +63,7 @@
         <li><a href="/admin/operation_logs"><i class="fa fa-suitcase"></i> <span>后台操作记录</span></a></li>
         <li class="nav-parent"><a href=""><i class="fa fa-bug"></i> <span>发布信息管理</span></a>
           <ul class="children">
-            <li><a href="/admin/works"><i class="fa fa-caret-right"></i> 招工信息</a></li>
+            <li><a href="/admin/works"><i class="fa fa-caret-right"></i> 雇人信息</a></li>
             <li><a href="/admin/staffs"><i class="fa fa-caret-right"></i> 找活信息</a></li>
           </ul>
         </li>

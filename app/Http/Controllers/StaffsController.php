@@ -13,10 +13,12 @@ class StaffsController extends Controller {
 		$area_province = $request['area_province'];
 		$area_city = $request['area_city'];
 		$area_cities = null;
-		$staffs = \App\Staff::select('users.*', 'staffs.*')->join('users', 'users.id', '=', 'staffs.user_id');
 		$category_id = $request['category_id'];
 		$gender = $request['gender'];
-		$age = $request['age'];
+		$age_start = $request['age_start'];
+		$age_end = $request['age_end'];
+
+		$staffs = \App\Staff::select('users.*', 'staffs.*')->join('users', 'users.id', '=', 'staffs.user_id');
 		
 		if(!empty($day))
 		{
@@ -44,11 +46,17 @@ class StaffsController extends Controller {
 		{
 			$staffs = $staffs->where('users.gender', '=', $gender);
 		}
-		if(!empty($age))
+		if(!empty($age_start))
 		{
 			$date = date('Y');
-			$date = date('Y',(strtotime ( '-'.$age.' year' , strtotime ( $date) ) ));
-			$staffs = $staffs->where(\DB::raw('YEAR(users.birthday)'), '=', $date);
+			$date = date('Y',(strtotime ( '-'.$age_start.' year' , strtotime ( $date) ) ));
+			$staffs = $staffs->where(\DB::raw('YEAR(users.birthday)'), '<=', $date);
+		}
+		if(!empty($age_end))
+		{
+			$date = date('Y');
+			$date = date('Y',(strtotime ( '-'.$age_end.' year' , strtotime ( $date) ) ));
+			$staffs = $staffs->where(\DB::raw('YEAR(users.birthday)'), '>=', $date);
 		}
 		
 		$staffs = $staffs->paginate(4);
