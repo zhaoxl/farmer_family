@@ -54,7 +54,7 @@
         <li class="nav-parent"><a href=""><i class="fa fa-edit"></i> <span>用户</span></a>
           <ul class="children">
 						<li><a href="/admin/users"><i class="fa fa-caret-right"></i> 所有用户</a></li>
-						<li><a href="/admin/users"><i class="fa fa-caret-right"></i> 企业用户</a></li>
+						<li><a href="/admin/users/company_users"><i class="fa fa-caret-right"></i> 企业用户</a></li>
 						<li><a href="/admin/users"><i class="fa fa-caret-right"></i> 发活方用户</a></li>
 						<li><a href="/admin/users"><i class="fa fa-caret-right"></i> 找活方用户</a></li>
 						<li><a href="/admin/users"><i class="fa fa-caret-right"></i> 已注销用户</a></li>
@@ -77,36 +77,36 @@
         <ul>
             <li>
                 <div class="datainfo">
-                    <span class="text-muted">Daily Traffic</span>
-                    <h4>630, 201</h4>
+                    <span class="text-muted">个人用户数</span>
+                    <h4>{{\App\User::where('category', '=', 0)->count()}}</h4>
                 </div>
                 <div id="sidebar-chart" class="chart"></div>   
             </li>
             <li>
                 <div class="datainfo">
-                    <span class="text-muted">Average Users</span>
-                    <h4>1, 332, 801</h4>
+                    <span class="text-muted">企业用户数</span>
+                    <h4>{{\App\User::where('category', '=', 1)->count()}}</h4>
                 </div>
                 <div id="sidebar-chart2" class="chart"></div>   
             </li>
             <li>
                 <div class="datainfo">
-                    <span class="text-muted">Disk Usage</span>
-                    <h4>82.2%</h4>
+                    <span class="text-muted">雇人用户数</span>
+                    <h4>{{\App\User::where('category', '=', 2)->count()}}</h4>
                 </div>
                 <div id="sidebar-chart3" class="chart"></div>   
             </li>
             <li>
                 <div class="datainfo">
-                    <span class="text-muted">CPU Usage</span>
-                    <h4>140.05 - 32</h4>
+                    <span class="text-muted">雇人信息</span>
+                    <h4>{{\App\Work::count()}}</h4>
                 </div>
                 <div id="sidebar-chart4" class="chart"></div>   
             </li>
             <li>
                 <div class="datainfo">
-                    <span class="text-muted">Memory Usage</span>
-                    <h4>32.2%</h4>
+                    <span class="text-muted">找活信息</span>
+                    <h4>{{\App\Staff::count()}}</h4>
                 </div>
                 <div id="sidebar-chart5" class="chart"></div>   
             </li>

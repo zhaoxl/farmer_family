@@ -17,6 +17,12 @@ class UsersController extends BaseController {
 		$datas = \App\User::orderBy('created_at', 'desc')->paginate(11);
 		return view('admin.users.index')->with('datas', $datas);
 	}
+	
+	public function company_users()
+	{
+		$datas = \App\User::where('category', '=', 1)->leftJoin('companies', 'users.id', '=', 'companies.user_id')->orderBy('created_at', 'desc')->select(\DB::raw('users.*, company_name, tel, industry_name, address'))->paginate(11);
+		return view('admin.users.company_users')->with('datas', $datas);
+	}
 
 	/**
 	 * Show the form for creating a new resource.
