@@ -31,6 +31,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 	
+	//default scope
+	public function newQuery($excludeDeleted = true) 
+	{ 
+		$query = parent::newQuery();
+		if(!$this->dirty) 
+		{ 
+			$query->where('state', '!=', 'suicide'); 
+		} 
+		return $query; 
+	}
 	
 	public function work_categories()
   {
@@ -57,7 +67,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 				return '找活方';
 			break;
 			case 1:
-				return '企业';
+				return '企业用户';
 			break;
 			case 2:
 				return '个人雇人';

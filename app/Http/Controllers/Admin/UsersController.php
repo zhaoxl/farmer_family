@@ -23,6 +23,24 @@ class UsersController extends BaseController {
 		$datas = \App\User::where('category', '=', 1)->leftJoin('companies', 'users.id', '=', 'companies.user_id')->orderBy('created_at', 'desc')->select(\DB::raw('users.*, company_name, tel, industry_name, address'))->paginate(11);
 		return view('admin.users.company_users')->with('datas', $datas);
 	}
+	
+	public function hire_users()
+	{
+		$datas = \App\User::where('category', '=', 2)->orderBy('created_at', 'desc')->paginate(11);
+		return view('admin.users.hire_users')->with('datas', $datas);
+	}
+	
+	public function present_users()
+	{
+		$datas = \App\User::where('category', '=', 0)->orderBy('created_at', 'desc')->paginate(11);
+		return view('admin.users.present_users')->with('datas', $datas);
+	}
+	
+	public function suicide_users()
+	{
+		$datas = \DB::table('users')->where('state', '=', 'suicide')->orderBy('created_at', 'desc')->paginate(11);
+		return view('admin.users.suicide_users')->with('datas', $datas);
+	}
 
 	/**
 	 * Show the form for creating a new resource.
