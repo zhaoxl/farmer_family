@@ -109,7 +109,7 @@ class IndexController extends BaseController {
 		$user->save();
 		\Auth::user()->logout();
 
-		return view('my.suicide')->with('success', true);
+		return redirect('/');
 	}
 	
 	public function postSaveProfile(Request $request)

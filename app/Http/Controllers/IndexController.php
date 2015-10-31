@@ -42,7 +42,7 @@ class IndexController extends Controller {
 		}
 		$cookie1 = \Cookie::forever('current_city', $current_city);
 		$cookie2 = \Cookie::forever('current_city_code', $current_city_code);
-		$view = view('index')->with('staffs', $staffs)->with('works', $works)->with('city_name', $current_city)->with('settings', $settings);
+		$view = view('index')->with('staffs', $staffs)->with('works', $works)->with('city_name', $current_city)->with('current_city_code', $current_city_code)->with('settings', $settings);
 		
 		$response = new \Illuminate\Http\Response($view);
 		$response->withCookie($cookie1)->withCookie($cookie2);

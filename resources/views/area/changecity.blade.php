@@ -12,8 +12,9 @@
 					<div class="hot">
 						<span class="title">热门</span>
 							<span class="links">
-							<a href='/area/set?name=北京&code=110100'>北京</a>
-							<a href='/area/set?name=山东&code=110100'>山东</a>
+							@foreach ($hot_cities as $hot_city)
+							<a href='/area/set?name={{$hot_city->name}}&code={{$hot_city->code}}'>{{$hot_city->name}}</a>
+							@endforeach
 						</span>
 					</div>
 				</form>
@@ -31,25 +32,9 @@
 						山东
 					</div>
 					<div class="city">
-						<a href='/area/set?name=青岛&code=370200'>青岛</a>
-						<a href='/area/set?name=济南&code=370100'>济南</a>
-						<a href='/area/set?name=烟台&code=370600'>烟台</a>
-						<a href='/area/set?name=潍坊&code=370700'>潍坊</a>
-						<a href='/area/set?name=临沂&code=371300'>临沂</a>
-						<a href='/area/set?name=淄博&code=370300'>淄博</a>
-						<a href='/area/set?name=济宁&code=370800'>济宁</a>
-						<a href='/area/set?name=泰安&code=370900'>泰安</a>
-						<a href='/area/set?name=聊城&code=371500'>聊城</a>
-						<a href='/area/set?name=威海&code=371000'>威海</a>
-						<a href='/area/set?name=枣庄&code=370400'>枣庄</a>
-						<a href='/area/set?name=德州&code=371400'>德州</a>
-						<a href='/area/set?name=日照&code=371100'>日照</a>
-						<a href='/area/set?name=东营&code=370500'>东营</a>
-						<a href='/area/set?name=滨州&code=371600'>滨州</a>
-						<a href='/area/set?name=莱芜&code=371200'>莱芜</a>
-						<a href="/area/set?name=章丘&code=370181">章丘</a>
-						<a href="/area/set?name=垦利&code=370521">垦利</a>
-						<a href="/area/set?name=诸城&code=370782">诸城</a>
+						@foreach (\App\AreaCity::byAreaProvinceCode(370000) as $city)
+						<a href='/area/set?name={{$city->name}}&code={{$city->code}}'>{{$city->name}}</a>
+						@endforeach
 					</div>
 					<div class="more">
 						<a href="#">更多>></a>

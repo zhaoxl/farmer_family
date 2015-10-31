@@ -19,8 +19,11 @@
 			</div>
 			<div class="area_links">
 				<span class="color_green">{{ $city_name }}</span> [ 
-					<a href="/area/changecity" class="color_green">切换城市</a>  
-					<a href="/area/set?name=山东&code=310000">山东</a> ]
+					<a href="/area/changecity" class="color_green">切换城市</a>
+					@foreach (\App\AreaCity::hotCities(3, $current_city_code) as $city)
+					<a href="/area/set?name={{$city->name}}&code={{$city->code}}">{{$city->name}}</a>
+					@endforeach
+					]
 			</div>
 			<div class="qq_links">
 				联系QQ：<span class="color_green">458048940</span>
@@ -69,7 +72,7 @@
 						@foreach ($staffs as $staff)
 						<li>
 							<a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">
-								{{$staff->user->workCategoryNames()}}&nbsp;&nbsp;[{{$staff->title}}]
+								{{is_null($staff->user) ? '' : $staff->user->workCategoryNames()}}&nbsp;&nbsp;[{{$staff->title}}]
 							</a>
 							<span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span></li>
 						@endforeach

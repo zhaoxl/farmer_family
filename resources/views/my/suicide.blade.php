@@ -13,7 +13,7 @@
 	<h2>
 		请告诉我们您想要注销的原因
 	</h2>
-	<form action="/my/suicide" method="post" accept-charset="utf-8">
+	<form action="/my/suicide" id="form" method="post" accept-charset="utf-8">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<table  width="100%" class="suicide_table">
 			<tr>
@@ -58,8 +58,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<textarea class="text_area" id="text_area" name="content">请输入注销账户的原因!
-					</textarea>				
+					<textarea class="text_area" id="text_area" name="content" placeholder="请输入注销账户的原因!">请输入注销账户的原因!</textarea>				
 				</td>
 			</tr>
 			<tr>
@@ -72,15 +71,23 @@
 	@endif
 </div>
 <script>
+	$("#form").submit(function(){
+		if($('#text_area').val() == '' || $('#text_area').val() == '请输入注销账户的原因!')
+		{
+			$('#text_area').after('<span style="color: red; display: block; margin-left: 39px">请输入注销账户的原因!</span>');
+			return false;
+		}
+	});
 	$('#text_area').bind({
 	'focus': function() {
-		if ($.trim($(this).text()) == '请输入注销账户的原因!') {
-			$(this).html('')
-			$(this).css('color','#565656')
+		if ($.trim($(this).val()) == '请输入注销账户的原因!') {
+			$(this).html('');
+			$(this).css('color','#565656');
+			$(this).parent().find("span").remove();
 		}
 	},
 	'blur':function(){
-		if ($.trim($(this).text()) == '') {
+		if ($.trim($(this).val()) == '') {
 			$(this).text('请输入注销账户的原因!')
 		}
 	}
