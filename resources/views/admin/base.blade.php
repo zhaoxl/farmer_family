@@ -69,6 +69,12 @@
         </li>
         <li><a href="#"><i class="fa fa-suitcase"></i> <span>用户评价管理</span></a></li>
         <li><a href="/admin/messages"><i class="fa fa-suitcase"></i> <span>站内信息</span></a></li>
+        <li class="nav-parent"><a href=""><i class="fa fa-edit"></i> <span>地区管理</span></a>
+          <ul class="children">
+						<li><a href="/admin/areas"><i class="fa fa-caret-right"></i> 省市管理</a></li>
+						<li><a href="/admin/areas/create"><i class="fa fa-caret-right"></i> 添加城市</a></li>
+          </ul>
+        </li>
         <li><a href="/admin/settings"><i class="fa fa-suitcase"></i> <span>系统设置</span></a></li>
       </ul>
       
@@ -179,7 +185,7 @@ window.setTimeout(function() {
     $(".alert").fadeTo(1500, 0).slideUp(500, function(){
         $(this).remove(); 
     });
-}, 5000);
+}, 3000);
  
 });
 //-->

@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller {
+class ProfileController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.

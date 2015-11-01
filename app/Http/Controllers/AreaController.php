@@ -9,7 +9,7 @@ class AreaController extends Controller {
 
 	public function getChangecity()
 	{
-		$hot_cities = \App\AreaCity::orderBy('hot', 'DESC')->orderBy('sort', 'ASC')->take(5)->get();
+		$hot_cities = \App\AreaCity::orderBy('is_hot', 'DESC')->orderBy('sort', 'ASC')->take(5)->get();
 		return view('area.changecity')->with('hot_cities', $hot_cities);
 	}
 	

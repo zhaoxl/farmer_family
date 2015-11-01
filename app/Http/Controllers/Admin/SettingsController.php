@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class SettingsController extends Controller {
+class SettingsController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
