@@ -54,8 +54,11 @@ Route::group(['namespace' => 'Admin'], function()
 	Route::resource('/admin/works', 'WorksController');
 	Route::resource('/admin/messages', 'MessagesController');
 	Route::get('/admin/areas/{city_id}/streets', 'AreasController@streets');
+	Route::get('/admin/areas/{city_id}/streets/create', 'AreasController@street_create');
+	Route::post('/admin/areas/{city_id}/streets', 'AreasController@street_store');
 	Route::get('/admin/areas/{city_id}/street/{id}/edit', 'AreasController@street_edit');
 	Route::put('/admin/areas/street/{id}', 'AreasController@street_update');
+	Route::delete('/admin/areas/street/{id}', 'AreasController@street_destroy');
 	Route::delete('/admin/areas/street/{id}', 'AreasController@street_destroy');
 	Route::resource('/admin/areas', 'AreasController');
 	Route::resource('/admin/settings', 'SettingsController');

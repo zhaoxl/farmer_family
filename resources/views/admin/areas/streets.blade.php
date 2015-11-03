@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="pageheader">
-    <h2><i class="fa fa-envelope"></i> {{$city->name}}——区县管理 </h2>
+    <h2><i class="fa fa-envelope"></i> {{$city->name}}——区县管理 <a class="btn btn-default" href="/admin/areas/{{$city->id}}/streets/create">添加区县</a></h2></h2>
   </div>
   
   <div class="contentpanel">

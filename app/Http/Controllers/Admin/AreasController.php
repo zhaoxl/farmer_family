@@ -98,7 +98,12 @@ class AreasController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		\App\AreaCity::destroy($id);
+		$city = \App\AreaCity::find($id);
+		if(!is_null($city))
+		{
+			\App\AreaStreet::where('citycode', '=', $city->code)->delete();
+			$city->delete();
+		}
 	}
 	
 	public function streets($city_id)
@@ -106,6 +111,24 @@ class AreasController extends BaseController {
 		$city = \App\AreaCity::find($city_id);
 		$streets = $city->streets;
 		return view('admin.areas.streets')->with('datas', $streets)->with('city', $city);
+	}
+	
+	public function street_create($city_id)
+	{
+		$city = \App\AreaCity::find($city_id);
+		return view('admin.areas.street_create')->with('city', $city);
+	}
+	
+	public function street_store(Request $request)
+	{
+		$data = new \App\AreaStreet();
+		$data->citycode = $request['citycode'];
+		$data->name = $request['name'];
+		$data->code = $request['code'];
+		$data->save();
+		
+		$request->session()->flash('success', '保存成功');
+		return redirect()->back();
 	}
 	
 	public function street_edit($city_id, $id)
@@ -118,6 +141,7 @@ class AreasController extends BaseController {
 	{
 		$data = \App\AreaStreet::find($id);
 		$data->name = $request['name'];
+		$data->code = $request['code'];
 		$data->save();
 		
 		$request->session()->flash('success', '保存成功');
