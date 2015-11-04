@@ -70,7 +70,6 @@ class UsersController extends BaseController {
 	 */
 	public function show($id)
 	{
-		//
 	}
 
 	/**
@@ -81,7 +80,8 @@ class UsersController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$data = \DB::table('users')->find($id);
+		return view('admin.users.edit')->with('data', $data);
 	}
 
 	/**

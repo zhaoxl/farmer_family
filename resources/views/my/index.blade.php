@@ -5,6 +5,7 @@
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="hidden" name="photo_image" id="photo_image" />
 		<input type="hidden" name="diploma_image" id="diploma_image" />
+		<input type="hidden" name="area_name" id="area_name" />
 		<table width="100%" class="register_mes_table"  >
 			<tr>
 				<td width="20%" align="right">
@@ -112,6 +113,15 @@
 							@if(isset($area_cities))
 								@foreach ($area_cities as $city)
 									<option value="{{ $city->code }}" {{$user->city == $city->code ? 'selected' : ''}}>{{ $city->name }}</option>
+								@endforeach
+							@endif
+						</select>
+					</div>
+					<div class="form_select_box">
+						<select name="city" id="area_street" class="form-control" style="{{isset($area_streets) ? '' : 'display: none'}}">
+							@if(isset($area_streets))
+								@foreach ($area_streets as $street)
+									<option value="{{ $street->code }}" {{$user->street == $street->code ? 'selected' : ''}}>{{ $street->name }}</option>
 								@endforeach
 							@endif
 						</select>
@@ -320,30 +330,30 @@ function  addnewGz(i){
 	if($("[name='work_category_id[]']").length>4)
 		return false;
 	var _html='';
-	     _html+='<div class="form_select_box">';
-	     _html+='<select class="form-control" name="work_category_id[]" >';
-	     //循环此部分添加数据
-	    _html+='<option value="">';
-	    _html+='请选工种';
-	    _html+='</option>';
-			@foreach ($work_categories as $work_category)
-				_html+='<option value="{{ $work_category->id }}">';
-				_html+='{{ $work_category->name }}';
-				_html+='</option>';
-			@endforeach
-	    //循环此部分添加数据  --end
-			_html+='</select>';
-			_html+='<a href="javascript:void(0)" class="delete_work_cateogry">X</a>';
-			_html+='</div>';
-	    $('#select_job_td').find('.form_select_box').last().after(_html);
-			$('.delete_work_cateogry').bind('click',function(){
-				delGz(this);
-			})
+   _html+='<div class="form_select_box">';
+   _html+='<select class="form-control" name="work_category_id[]" >';
+   //循环此部分添加数据
+  _html+='<option value="">';
+  _html+='请选工种';
+  _html+='</option>';
+	@foreach ($work_categories as $work_category)
+		_html+='<option value="{{ $work_category->id }}">';
+		_html+='{{ $work_category->name }}';
+		_html+='</option>';
+	@endforeach
+  //循环此部分添加数据  --end
+	_html+='</select>';
+	_html+='<a href="javascript:void(0)" class="delete_work_cateogry">X</a>';
+	_html+='</div>';
+  $('#select_job_td').find('.form_select_box').last().after(_html);
+	$('.delete_work_cateogry').bind('click',function(){
+		delGz(this);
+	});
 }
-var job_i=1
+var job_i = 1;
 $('#add_job_btn').bind('click',function(){
-	addnewGz(job_i)
-	job_i++
+	addnewGz(job_i);
+	job_i++;
 });
 
 //删除工种
@@ -405,6 +415,29 @@ $(function(){
 				});
 				$("#area_city").html(options).show();
 			}
+		});
+	});
+	//get streets
+	$("#area_city").change(function(){
+		$.ajax({
+			url: '/ajax/area/streets',
+			type: 'GET',
+			dataType: 'json',
+			data: {citycode: $(this).val()},
+			success: function(response)
+			{
+				var options = '<option value="">请选择区县</option>';
+				$.each(response, function(index, city){
+					options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
+				});
+				$("#area_street").html(options).show();
+			}
+		});
+		$("#area_street").change(function(){
+			var province = $("#area_province").find("option:selected").text();
+			var city = $("#area_city").find("option:selected").text();
+			var street = $("#area_street").find("option:selected").text();
+			$("#area_name").val(province+'-'+city+'-'+street);
 		});
 	});
 });

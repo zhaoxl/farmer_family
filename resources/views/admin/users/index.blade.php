@@ -44,7 +44,8 @@
 									<td>{{$data->hometown}}</td>
 									<td>{{$data->created_at}}</td>
 									<td>
-										<a href="#">查看</a>&nbsp;
+										<a href="/admin/users/{{$data->id}}/edit">编辑</a>&nbsp;
+										<a href="#">注销</a>&nbsp;
 										<a href="#">删除</a>
 									</td>
 		            </tr>

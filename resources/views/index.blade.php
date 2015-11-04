@@ -48,6 +48,7 @@
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
 					<div class="row">
 						<input type="text" class="uname" name="mobile" value="请输入手机号" />
+						<label id="mobile-error" class="error" for="mobile">{{$errors->first('mobile')}}</label>
 					</div>
 					<div class="row">
 						<input type="password" class="pwd" name="password" />

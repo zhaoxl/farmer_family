@@ -14,12 +14,17 @@ class IndexController extends BaseController {
 		$area_cities = null;
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$area_cities = null;
+		$area_streets = null;
 		if(!empty($user->province))
 		{
 			$area_cities = \App\AreaCity::where('provincecode', '=', $user->province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		}
+		if(!empty($user->city))
+		{
+			$area_streets = \App\AreaStreet::where('citycode', '=', $user->city)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
 		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
-		return view('my.index')->with('user', $user)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities)->with('work_categories', $work_categories)->with('user_work_categories', $user_work_categories);
+		return view('my.index')->with('user', $user)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities)->with('area_streets', $area_streets)->with('work_categories', $work_categories)->with('user_work_categories', $user_work_categories);
 	}
 	
 	public function getSentStaffs()

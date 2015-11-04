@@ -18,8 +18,7 @@ class AuthController extends Controller {
 	{		
     if(Auth::user()->attempt(array(
         'mobile'    => $request['mobile'],
-        'password'  => $request['password'],
-				'state'			=> 'normal'
+        'password'  => $request['password']
     ), $request['remember'] == 'on')){
 			return redirect()->intended('/my');
 		}
