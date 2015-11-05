@@ -81,7 +81,23 @@ class UsersController extends BaseController {
 	public function edit($id)
 	{
 		$data = \DB::table('users')->find($id);
-		return view('admin.users.edit')->with('data', $data);
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$area_cities = null;
+		$area_streets = null;
+		if(!empty($data->province))
+		{
+			$area_cities = \App\AreaCity::where('provincecode', '=', $data->province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
+		if(!empty($data->city))
+		{
+			$area_streets = \App\AreaStreet::where('citycode', '=', $data->city)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
+		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
+
+		$user_work_categories = \App\User::find($id)->work_categories()->get();
+		
+		
+		return view('admin.users.edit')->with('data', $data)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities)->with('area_streets', $area_streets)->with('work_categories', $work_categories)->with('user_work_categories', $user_work_categories);
 	}
 
 	/**

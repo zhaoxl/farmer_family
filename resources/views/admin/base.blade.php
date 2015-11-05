@@ -169,6 +169,7 @@
 
 <script src="/js/admin/jquery-1.11.1.min.js"></script>
 <script src="/js/admin/jquery-migrate-1.2.1.min.js"></script>
+<script src="/js/admin/jquery-ui-1.10.3.min.js"></script>
 <script src="/js/admin/bootstrap.min.js"></script>
 <script src="/js/admin/modernizr.min.js"></script>
 <script src="/js/admin/jquery.sparkline.min.js"></script>
@@ -190,5 +191,6 @@ window.setTimeout(function() {
 });
 //-->
 </script>
+@yield('js')
 </body>
 </html>

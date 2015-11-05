@@ -59,6 +59,81 @@
 											</div>
             
 					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">所在区域</label>
+											  <div class="col-sm-6">
+							 						<select name="province" id="area_province" class="form-control">
+							 							<option value="">请选择地区</option>
+							 							@foreach ($area_provinces as $province)
+							 							<option value="{{ $province->code }}" {{$data->province == $province->code ? 'selected' : ''}}>{{ $province->name }}</option>
+							 							@endforeach
+							 						</select>
+													<select name="city" id="area_city" class="form-control" style="{{isset($area_cities) ? '' : 'display: none'}}">
+														@if(isset($area_cities))
+															@foreach ($area_cities as $city)
+																<option value="{{ $city->code }}" {{$data->city == $city->code ? 'selected' : ''}}>{{ $city->name }}</option>
+															@endforeach
+														@endif
+													</select>
+													<select name="city" id="area_street" class="form-control" style="{{isset($area_streets) ? '' : 'display: none'}}">
+														@if(isset($area_streets))
+															@foreach ($area_streets as $street)
+																<option value="{{ $street->code }}" {{$data->street == $street->code ? 'selected' : ''}}>{{ $street->name }}</option>
+															@endforeach
+														@endif
+													</select>
+											  </div>
+											</div>
+            
+					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">生日</label>
+											  <div class="col-sm-6">
+												 <div class="input-group">
+					                 <input type="text" id="datepicker" placeholder="mm/dd/yyyy" class="form-control hasDatepicker">
+					                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+					               </div>
+											  </div>
+											</div>
+            
+					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">性别</label>
+											  <div class="col-sm-6">
+												 <input type="text" class="form-control" placeholder="性别" value="{{$data->gender}}">
+											  </div>
+											</div>
+            
+					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">籍贯</label>
+											  <div class="col-sm-6">
+												 <input type="text" class="form-control" placeholder="籍贯" value="{{$data->hometown}}">
+											  </div>
+											</div>
+            
+					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">期望收入</label>
+											  <div class="col-sm-6">
+												 <input type="text" class="form-control" placeholder="期望收入" value="{{$data->expect_salary}}">
+											  </div>
+											</div>
+            
+					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">工种</label>
+											  <div class="col-sm-6">
+											  </div>
+											</div>
+            
+					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">个人照片</label>
+											  <div class="col-sm-6">
+											  </div>
+											</div>
+            
+					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">学历证书</label>
+											  <div class="col-sm-6">
+											  </div>
+											</div>
+            
+					            <div class="form-group">
 									  <label for="readonlyinput" class="col-sm-3 control-label">Read-Only Input</label>
 									  <div class="col-sm-6">
 										 <input type="text" readonly="readonly" class="form-control" id="readonlyinput" value="Read Only Input">
@@ -193,6 +268,62 @@
 		    </div>
 			</div>
 		</row>
-  </div>		
-					
+  </div>
+@endsection
+
+
+@section('js')
+<script type="text/javascript">
+	$(function(){
+		//get cities
+		$("#area_province").change(function(){
+			if($(this).val() == "")
+			{
+				$("#area_city").hide();
+				return true;
+			}
+			$.ajax({
+				url: '/ajax/area/cities',
+				type: 'GET',
+				dataType: 'json',
+				data: {provincecode: $(this).val()},
+				success: function(response)
+				{
+					var options = '<option value="">请选择市</option>';
+					$.each(response, function(index, city){
+						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
+					});
+					$("#area_city").html(options).show();
+				}
+			});
+		});
+		//get streets
+		$("#area_city").change(function(){
+			$.ajax({
+				url: '/ajax/area/streets',
+				type: 'GET',
+				dataType: 'json',
+				data: {citycode: $(this).val()},
+				success: function(response)
+				{
+					var options = '<option value="">请选择区县</option>';
+					$.each(response, function(index, city){
+						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
+					});
+					$("#area_street").html(options).show();
+				}
+			});
+			$("#area_street").change(function(){
+				var province = $("#area_province").find("option:selected").text();
+				var city = $("#area_city").find("option:selected").text();
+				var street = $("#area_street").find("option:selected").text();
+				$("#area_name").val(province+'-'+city+'-'+street);
+			});
+		});
+		
+
+		//生日
+		jQuery('#datepicker').datepicker();
+	});
+</script>
 @endsection

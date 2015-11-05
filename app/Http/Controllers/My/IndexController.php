@@ -11,7 +11,6 @@ class IndexController extends BaseController {
 	{
 		$user = \Auth::user()->get();
 		$user_work_categories = $user->work_categories()->get();
-		$area_cities = null;
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$area_cities = null;
 		$area_streets = null;
@@ -158,8 +157,10 @@ class IndexController extends BaseController {
 		}
 
 		$user->hometown = $request['hometown'];
-		$user->city = $request['city'];
 		$user->province = $request['province'];
+		$user->city = $request['city'];
+		$user->street = $request['street'];
+		$user->area_name = $request['area_name'];
 		$user->birthday = $request['birthday'];
 		$user->email = $request['email'];
 		$user->mobile = $request['mobile'];
