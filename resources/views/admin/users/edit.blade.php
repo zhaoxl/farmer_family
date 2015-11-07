@@ -10,9 +10,11 @@
 			<div class="col-md-13">
 				<div class="panel panel-primary">
 					<div class="panel-body panel-body-nopadding">
-          
-					          <form class="form-horizontal form-bordered">
-            
+						
+						<form class="form-horizontal" id="register_form" role="form" method="POST" action="/admin/users/{{$data->id}}">
+							<input type="hidden" name="_method" value="PUT" />
+							<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+							<input type="hidden" id="area_name" name="area_name" value="{{$data->area_name}}"/>
 					            <div class="form-group">
 					              <label class="col-sm-3 control-label">ID</label>
 					              <div class="col-sm-6">
@@ -23,28 +25,35 @@
 					            <div class="form-group">
 											  <label for="disabledinput" class="col-sm-3 control-label">手机号</label>
 											  <div class="col-sm-6">
-												 <input type="text" class="form-control" placeholder="手机号" value="{{$data->mobile}}">
+					              	<label class="control-label">{{$data->mobile}}</label>
+											  </div>
+											</div>
+            
+					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">姓名</label>
+											  <div class="col-sm-6">
+												 <input type="text" class="form-control" placeholder="姓名" name="name" value="{{$data->name}}">
 											  </div>
 											</div>
             
 					            <div class="form-group">
 											  <label for="disabledinput" class="col-sm-3 control-label">Email</label>
 											  <div class="col-sm-6">
-												 <input type="text" class="form-control" placeholder="Email" value="{{$data->email}}">
+												 <input type="text" class="form-control" placeholder="Email" name="email" value="{{$data->email}}">
 											  </div>
 											</div>
             
 					            <div class="form-group">
 											  <label for="disabledinput" class="col-sm-3 control-label">QQ</label>
 											  <div class="col-sm-6">
-												 <input type="text" class="form-control" placeholder="QQ" value="{{$data->qq}}">
+												 <input type="text" class="form-control" placeholder="QQ" name="qq" value="{{$data->qq}}">
 											  </div>
 											</div>
             
 					            <div class="form-group">
 											  <label for="disabledinput" class="col-sm-3 control-label">微信</label>
 											  <div class="col-sm-6">
-												 <input type="text" class="form-control" placeholder="微信" value="{{$data->weixin}}">
+												 <input type="text" class="form-control" placeholder="微信" name="weixin" value="{{$data->weixin}}">
 											  </div>
 											</div>
             
@@ -74,7 +83,7 @@
 															@endforeach
 														@endif
 													</select>
-													<select name="city" id="area_street" class="form-control" style="{{isset($area_streets) ? '' : 'display: none'}}">
+													<select name="street" id="area_street" class="form-control" style="{{isset($area_streets) ? '' : 'display: none'}}">
 														@if(isset($area_streets))
 															@foreach ($area_streets as $street)
 																<option value="{{ $street->code }}" {{$data->street == $street->code ? 'selected' : ''}}>{{ $street->name }}</option>
@@ -88,7 +97,7 @@
 											  <label for="disabledinput" class="col-sm-3 control-label">生日</label>
 											  <div class="col-sm-6">
 												 <div class="input-group">
-					                 <input type="text" id="datepicker" placeholder="mm/dd/yyyy" class="form-control hasDatepicker">
+					                 <input type="text" id="datepicker" placeholder="yyyy-mm-dd" class="form-control hasDatepicker" name="birthday" value="{{$data->birthday}}">
 					                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 					               </div>
 											  </div>
@@ -97,171 +106,53 @@
 					            <div class="form-group">
 											  <label for="disabledinput" class="col-sm-3 control-label">性别</label>
 											  <div class="col-sm-6">
-												 <input type="text" class="form-control" placeholder="性别" value="{{$data->gender}}">
+												 <input type="text" class="form-control" placeholder="性别" name="gender" value="{{$data->gender}}">
 											  </div>
 											</div>
             
 					            <div class="form-group">
 											  <label for="disabledinput" class="col-sm-3 control-label">籍贯</label>
 											  <div class="col-sm-6">
-												 <input type="text" class="form-control" placeholder="籍贯" value="{{$data->hometown}}">
+												 <input type="text" class="form-control" placeholder="籍贯" name="hometown" value="{{$data->hometown}}">
 											  </div>
 											</div>
             
 					            <div class="form-group">
 											  <label for="disabledinput" class="col-sm-3 control-label">期望收入</label>
 											  <div class="col-sm-6">
-												 <input type="text" class="form-control" placeholder="期望收入" value="{{$data->expect_salary}}">
+												 <input type="text" class="form-control" placeholder="期望收入" name="expect_salary" value="{{$data->expect_salary}}">
 											  </div>
 											</div>
             
 					            <div class="form-group">
 											  <label for="disabledinput" class="col-sm-3 control-label">工种</label>
-											  <div class="col-sm-6">
+											  <div class="col-sm-6" id="select_job_td">
+													<div class="form_select_box">
+													</div>
+													@foreach ($user_work_categories as $user_work_category)
+													<div class="form_select_box">
+														<select class="form-control" name="work_category_id[]">
+															<option value="">请选工种</option>
+															@foreach ($work_categories as $work_category)
+																<option value="{{ $work_category->id }}" {{$user_work_category->id == $work_category->id ? 'selected' : ''}}>
+																	{{ $work_category->name }}
+																</option>
+															@endforeach
+														</select>
+														<a href="javascript:void(0)" class="delete_work_cateogry">X</a>
+													</div>
+													@endforeach
+													<a href="javascript:void(0)" class="btn btn-default" id="add_job_btn">
+														添加
+													</a>
 											  </div>
 											</div>
-            
 					            <div class="form-group">
-											  <label for="disabledinput" class="col-sm-3 control-label">个人照片</label>
+											  <label for="disabledinput" class="col-sm-3 control-label"></label>
 											  <div class="col-sm-6">
+													<input type="submit" class="btn btn-primary" value="保存" />
 											  </div>
 											</div>
-            
-					            <div class="form-group">
-											  <label for="disabledinput" class="col-sm-3 control-label">学历证书</label>
-											  <div class="col-sm-6">
-											  </div>
-											</div>
-            
-					            <div class="form-group">
-									  <label for="readonlyinput" class="col-sm-3 control-label">Read-Only Input</label>
-									  <div class="col-sm-6">
-										 <input type="text" readonly="readonly" class="form-control" id="readonlyinput" value="Read Only Input">
-									  </div>
-									</div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Help Text</label>
-					              <div class="col-sm-6">
-					                <input type="text" class="form-control" placeholder="Help Text">
-					                <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
-					              </div>
-					            </div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Input w/ Tooltip</label>
-					              <div class="col-sm-6">
-					                <input type="text" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" title="" placeholder="Hover me" data-original-title="Tooltip goes here">
-					              </div>
-					            </div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Input w/ Popover</label>
-					              <div class="col-sm-6">
-					                <input type="text" data-trigger="click" data-content="Content goes here..." data-original-title="The Title" data-placement="top" data-toggle="popover" class="form-control popovers" placeholder="Click Me">
-					              </div>
-					            </div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Placeholder</label>
-					              <div class="col-sm-6">
-					                <input type="text" class="form-control" placeholder="This is a placeholder">
-					              </div>
-					            </div>
-            
-					            <div class="form-group has-success">
-					              <label class="col-sm-3 control-label">Input with success</label>
-					              <div class="col-sm-6">
-					                <input type="text" class="form-control">
-					              </div>
-					            </div>
-            
-					            <div class="form-group has-warning">
-					              <label class="col-sm-3 control-label">Input with warning</label>
-					              <div class="col-sm-6">
-					                <input type="text" class="form-control">
-					              </div>
-					            </div>
-            
-					            <div class="form-group has-error">
-					              <label class="col-sm-3 control-label">Input with error</label>
-					              <div class="col-sm-6">
-					                <input type="text" class="form-control">
-					              </div>
-					            </div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Column sizing</label>
-					              <div class="col-sm-4">
-					                <input type="text" class="form-control" placeholder=".col-sm-4">
-					              </div>
-					              <div class="col-sm-3">
-					                <input type="text" class="form-control" placeholder=".col-sm-3">
-					              </div>
-					              <div class="col-sm-2">
-					                <input type="text" class="form-control" placeholder=".col-sm-2">
-					              </div>
-					            </div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Input Sizing</label>
-					              <div class="col-sm-5">
-					                <input type="text" class="form-control input-sm mb15" placeholder=".input-sm">
-					                <input type="text" class="form-control mb15" placeholder="default">
-					                <input type="text" class="form-control input-lg" placeholder=".input-lg">
-					              </div>
-					            </div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Input Tags</label>
-					              <div class="col-sm-7">
-					                <input value="foo,bar,baz" class="form-control" id="tags" name="tags" style="display: none;"><div class="tagsinput" id="tags_tagsinput" style="width: auto; height: 100px;"><span class="tag"><span>foo&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>bar&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><span class="tag"><span>baz&nbsp;&nbsp;</span><a href="#" title="Removing tag">x</a></span><div id="tags_addTag"><input data-default="add a tag" value="" id="tags_tag" style="color: rgb(102, 102, 102); width: 68px;"></div><div class="tags_clear"></div></div>
-					              </div>
-					            </div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Textarea</label>
-					              <div class="col-sm-7">
-					                <textarea rows="5" class="form-control"></textarea>
-					              </div>
-					            </div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Autogrow Textarea</label>
-					              <div class="col-sm-7">
-					                <textarea rows="5" class="form-control" id="autoResizeTA" style="height: 108px;"></textarea>
-					              </div>
-					            </div>
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Radio</label>
-					              <div class="col-sm-6">
-										 <div class="radio"><label><input type="radio"> Unchecked</label></div>
-										 <div class="radio"><label><input type="radio" checked=""> Checked</label></div>
-										 <div class="radio"><label><input type="radio" disabled=""> Disabled Unchecked</label></div>
-										 <div class="radio"><label><input type="radio" disabled="" checked=""> Disabled Checked</label></div>
-									  </div>
-					            </div>
-            
-					            <div class="form-group">
-									  <label for="checkbox" class="col-sm-3 control-label">Checkbox</label>
-									  <div class="col-sm-6">
-										 <div class="checkbox block"><label><input type="checkbox"> Unchecked</label></div>
-										 <div class="checkbox block"><label><input type="checkbox" checked=""> Checked</label></div>
-										 <div class="checkbox block"><label><input type="checkbox" disabled=""> Disabled Unchecked</label></div>
-										 <div class="checkbox block"><label><input type="checkbox" disabled="" checked=""> Disabled Checked</label></div>
-									  </div>
-									</div>
-            
-            
-					            <div class="form-group">
-					              <label class="col-sm-3 control-label">Spinner</label>
-					              <div class="col-sm-9">
-					                <span class="ui-spinner ui-widget ui-widget-content ui-corner-all"><input type="text" id="spinner" class="ui-spinner-input" autocomplete="off" role="spinbutton" aria-valuenow="0"><a class="ui-spinner-button ui-spinner-up ui-corner-tr" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-n">▲</span></a><a class="ui-spinner-button ui-spinner-down ui-corner-br" tabindex="-1"><span class="ui-icon ui-icon-triangle-1-s">▼</span></a></span>
-					                <span class="help-block">Enhance a text input for entering numeric values, with up/down buttons and arrow key handling.</span>
-					              </div>
-					            </div>
-            
 					          </form>
           
 					        </div>
@@ -269,6 +160,12 @@
 			</div>
 		</row>
   </div>
+	<style type="text/css" media="screen">
+		.form_select_box{width: 117px; float: left;}
+		.form_select_box .form-control{width: 80%; float: left; }
+		.form_select_box .delete_work_cateogry{float: left; margin: 10px auto auto 5px;}
+		.photo{max-width: 400px; max-height: 400px;}
+	</style>
 @endsection
 
 
@@ -313,17 +210,57 @@
 					$("#area_street").html(options).show();
 				}
 			});
-			$("#area_street").change(function(){
-				var province = $("#area_province").find("option:selected").text();
-				var city = $("#area_city").find("option:selected").text();
-				var street = $("#area_street").find("option:selected").text();
-				$("#area_name").val(province+'-'+city+'-'+street);
-			});
 		});
-		
+
+		$("#area_street").change(function(){
+			var province = $("#area_province").find("option:selected").text();
+			var city = $("#area_city").find("option:selected").text();
+			var street = $("#area_street").find("option:selected").text();
+			$("#area_name").val(province+'-'+city+'-'+street);
+		});
 
 		//生日
 		jQuery('#datepicker').datepicker();
+		
+	});
+	
+	//添加工种
+	function  addnewGz(i){
+		if($("[name='work_category_id[]']").length>4)
+			return false;
+		var _html='';
+	   _html+='<div class="form_select_box">';
+	   _html+='<select class="form-control" name="work_category_id[]" >';
+	   //循环此部分添加数据
+	  _html+='<option value="">';
+	  _html+='请选工种';
+	  _html+='</option>';
+		@foreach ($work_categories as $work_category)
+			_html+='<option value="{{ $work_category->id }}">';
+			_html+='{{ $work_category->name }}';
+			_html+='</option>';
+		@endforeach
+	  //循环此部分添加数据  --end
+		_html+='</select>';
+		_html+='<a href="javascript:void(0)" class="delete_work_cateogry">X</a>';
+		_html+='</div>';
+	  $('#select_job_td').find('.form_select_box').last().after(_html);
+		$('.delete_work_cateogry').bind('click',function(){
+			delGz(this);
+		});
+	}
+	var job_i = 1;
+	$('#add_job_btn').bind('click',function(){
+		addnewGz(job_i);
+		job_i++;
+	});
+
+	//删除工种
+	function delGz(a){
+		$(a).parent().remove();
+	}
+	$('.delete_work_cateogry').bind('click',function(){
+		delGz(this);
 	});
 </script>
 @endsection

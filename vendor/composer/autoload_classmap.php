@@ -10,6 +10,7 @@ return array(
     'AddAddressToWorks' => $baseDir . '/database/migrations/2015_09_26_125122_add_address_to_works.php',
     'AddContentToStaffs' => $baseDir . '/database/migrations/2015_09_27_105641_add_content_to_staffs.php',
     'AddContentToWorks' => $baseDir . '/database/migrations/2015_09_26_130458_add_content_to_works.php',
+    'AddDeletedAtToUsers' => $baseDir . '/database/migrations/2015_11_07_132051_add_deleted_at_to_users.php',
     'AddFullNameToIndustries' => $baseDir . '/database/migrations/2015_09_27_115403_add_full_name_to_industries.php',
     'AddIsTopToStaffs' => $baseDir . '/database/migrations/2015_10_25_122820_add_is_top_to_staffs.php',
     'AddIsTopToWorks' => $baseDir . '/database/migrations/2015_10_25_122245_add_is_top_to_works.php',

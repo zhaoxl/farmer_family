@@ -45,8 +45,8 @@
 									<td>{{$data->created_at}}</td>
 									<td>
 										<a href="/admin/users/{{$data->id}}/edit">编辑</a>&nbsp;
-										<a href="#">注销</a>&nbsp;
-										<a href="#">删除</a>
+										<a href="javascript:unSuicideItem({{$data->id}});">恢复</a>&nbsp;
+										<a href="javascript:deleteItem({{$data->id}});">删除</a>
 									</td>
 		            </tr>
 								@endforeach
@@ -58,5 +58,30 @@
 			</div>
 		</row>
   </div>		
-					
+	<script type="text/javascript">
+	function deleteItem(id) {
+		if (confirm('确定删除?')) {
+	    $.ajax({
+	      type: "DELETE",
+	      url: '/admin/users/' + id,
+				data: {'_token': '{{ csrf_token() }}'},
+	      success: function(result) {
+	        location.reload();
+	      }
+	    });
+	  }
+	}
+	function suicideItem(id) {
+		if (confirm('确定注销?')) {
+	    $.ajax({
+	      type: "POST",
+	      url: '/admin/users/' + id + '/suicide',
+				data: {'_token': '{{ csrf_token() }}'},
+	      success: function(result) {
+	        location.reload();
+	      }
+	    });
+	  }
+	}
+	</script>
 @endsection

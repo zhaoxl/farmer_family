@@ -15,13 +15,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var string
 	 */
+	use \Illuminate\Database\Eloquent\SoftDeletes;
+	protected $dates = ['deleted_at'];
 	protected $table = 'users';
-
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
 	protected $fillable = ['name', 'email', 'password', 'category', 'mobile', 'qq', 'weixin', 'gender', 'age', 'hometown', 'idcard', 'expect_salary', 'area_code', 'area_name', 'public_mobile', 'public_qq', 'public_weixin', 'public_email', 'area_province'];
 
 	/**
@@ -78,6 +74,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function getImg($category)
 	{
 		$user_upload = \App\UserUpload::where('item_type', '=', 'User')->where('item_id', '=', $this->id)->where('category', '=', $category)->first();
+		if(is_null($user_upload))
+		{
+			return '';
+		}
+		return $user_upload->path;
+	}
+	
+	public static function staticGetImg($id, $category)
+	{
+		$user_upload = \App\UserUpload::where('item_type', '=', 'User')->where('item_id', '=', $id)->where('category', '=', $category)->first();
 		if(is_null($user_upload))
 		{
 			return '';

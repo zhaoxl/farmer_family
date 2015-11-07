@@ -195,12 +195,13 @@
 					$("#area_street").html(options).show();
 				}
 			});
-			$("#area_street").change(function(){
-				var province = $("#area_province").find("option:selected").text();
-				var city = $("#area_city").find("option:selected").text();
-				var street = $("#area_street").find("option:selected").text();
-				$("#area_name").val(province+'-'+city+'-'+street);
-			});
+		});
+
+		$("#area_street").change(function(){
+			var province = $("#area_province").find("option:selected").text();
+			var city = $("#area_city").find("option:selected").text();
+			var street = $("#area_street").find("option:selected").text();
+			$("#area_name").val(province+'-'+city+'-'+street);
 		});
 		
 		//price

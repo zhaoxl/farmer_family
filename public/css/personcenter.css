@@ -88,3 +88,20 @@ padding: 10px; text-align: left; line-height: 28px; color: #e7e7e7;
 .register_mes_table .inputsub{ border: none; float: left; width: 180px; height: 40px; line-height: 40px; text-align: center; background: #2dc379; color: #FFFFFF; float: left;border-radius: 4px;}
 .register_mes_table .table_qx{ display: block; float: left; width:180px ; height: 40px; border:#2dc379 solid 1px; margin-left: 20px; text-align: center; color: #2dc379;border-radius: 4px;} 
 .body_context .defaultTheme-button{margin-top: 0px;}
+
+.messages .btn{
+	border-radius: 3px;
+  line-height: 21px;
+  padding: 9px 15px;
+  transition: all 0.2s ease-out 0s;
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+.messages .btn-success-alt {
+    border: 2px solid #1caf9a;
+    color: #1caf9a;
+    font-family: "LatoBold";
+    font-size: 12px;
+    text-transform: uppercase;
+}

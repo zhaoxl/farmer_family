@@ -118,7 +118,7 @@
 						</select>
 					</div>
 					<div class="form_select_box">
-						<select name="city" id="area_street" class="form-control" style="{{isset($area_streets) ? '' : 'display: none'}}">
+						<select name="street" id="area_street" class="form-control" style="{{isset($area_streets) ? '' : 'display: none'}}">
 							@if(isset($area_streets))
 								@foreach ($area_streets as $street)
 									<option value="{{ $street->code }}" {{$user->street == $street->code ? 'selected' : ''}}>{{ $street->name }}</option>
@@ -433,12 +433,13 @@ $(function(){
 				$("#area_street").html(options).show();
 			}
 		});
-		$("#area_street").change(function(){
-			var province = $("#area_province").find("option:selected").text();
-			var city = $("#area_city").find("option:selected").text();
-			var street = $("#area_street").find("option:selected").text();
-			$("#area_name").val(province+'-'+city+'-'+street);
-		});
+	});
+
+	$("#area_street").change(function(){
+		var province = $("#area_province").find("option:selected").text();
+		var city = $("#area_city").find("option:selected").text();
+		var street = $("#area_street").find("option:selected").text();
+		$("#area_name").val(province+'-'+city+'-'+street);
 	});
 });
 

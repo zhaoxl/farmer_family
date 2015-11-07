@@ -13,6 +13,8 @@
 //My
 Route::group(['namespace' => 'My'], function()
 {
+	Route::get('/my/messages/outbox', 'MessagesController@outbox');
+	Route::resource('/my/messages', 'MessagesController');
 	Route::controller('/my','IndexController');
 });
 
@@ -45,6 +47,8 @@ Route::group(['namespace' => 'Admin'], function()
 	Route::get('/admin/users/hire_users', 'UsersController@hire_users');
 	Route::get('/admin/users/present_users', 'UsersController@present_users');
 	Route::get('/admin/users/suicide_users', 'UsersController@suicide_users');
+	Route::post('/admin/users/{user_id}/suicide', 'UsersController@suicide');
+	Route::post('/admin/users/{user_id}/un_suicide', 'UsersController@un_suicide');
 	Route::resource('/admin/users', 'UsersController');
 	Route::get('/admin/staffs/refresh', 'StaffsController@refresh');
 	Route::get('/admin/staffs/top', 'StaffsController@top');

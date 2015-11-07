@@ -44,8 +44,8 @@
 									<td>{{$data->hometown}}</td>
 									<td>{{$data->created_at}}</td>
 									<td>
-										<a href="#">查看</a>&nbsp;
-										<a href="#">删除</a>
+										<a href="javascript:unSuicideItem({{$data->id}});">恢复</a>&nbsp;
+										<a href="javascript:deleteItem({{$data->id}});">删除</a>
 									</td>
 		            </tr>
 								@endforeach
@@ -57,5 +57,16 @@
 			</div>
 		</row>
   </div>		
-					
+	<script type="text/javascript">
+		function unSuicideItem(id) {
+	    $.ajax({
+	      type: "POST",
+	      url: '/admin/users/' + id + '/un_suicide',
+				data: {'_token': '{{ csrf_token() }}'},
+	      success: function(result) {
+	        location.reload();
+	      }
+	    });
+		}
+	</script>
 @endsection

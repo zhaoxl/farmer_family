@@ -4,8 +4,8 @@
 <div class="message_sf_box">
 	<div class="message_nav_box clearfix">
 		<ul id="tab_ul">
-			<li><a href="/my/inbox">收到的站内信</a></li>
-			<li class="current">发送的站内信</li>
+			<li class="current">收到的站内信</li>
+			<li><a href="/my/messages/outbox">发送的站内信</a></li>
 		</ul>
 	</div>
 	<table class="message_table ">

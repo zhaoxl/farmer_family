@@ -47,20 +47,6 @@ class IndexController extends BaseController {
 		return redirect()->back();
 	}
 	
-	public function getInbox()
-	{
-		$user = \Auth::user()->get();
-		$messages = \App\Message::where("to_user_id", "=", $user->id)->join('users', 'users.id', '=', 'messages.from_user_id')->groupBy('from_user_id')->get(array('messages.*','users.name', \DB::raw('count(messages.from_user_id) as count')));
-		return view('my.inbox')->with('messages', $messages);
-	}
-	
-	public function getOutbox()
-	{
-		$user = \Auth::user()->get();
-		$messages = \App\Message::where("from_user_id", "=", $user->id)->join('users', 'users.id', '=', 'messages.to_user_id')->groupBy('to_user_id')->get(array('messages.*','users.name', \DB::raw('count(messages.to_user_id) as count')));
-		return view('my.outbox')->with('messages', $messages);
-	}
-	
 	public function getChangePwd()
 	{
 		return view('my.change_pwd');

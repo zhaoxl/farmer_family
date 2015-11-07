@@ -106,20 +106,55 @@ class UsersController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$user = \App\User::find($id);
+
+		$user->hometown = $request['hometown'];
+		$user->province = $request['province'];
+		$user->city = $request['city'];
+		$user->street = $request['street'];
+		$user->area_name = $request['area_name'];
+		$user->birthday = $request['birthday'];
+		$user->email = $request['email'];
+		$user->name = $request['name'];
+		$user->public_mobile = isset($request['public_mobile']);
+		$user->public_qq = isset($request['public_qq']);
+		$user->public_weixin = isset($request['public_weixin']);
+		$user->public_email = isset($request['public_email']);
+		$user->qq = $request['qq'];
+		$user->weixin = $request['weixin'];
+		$user->expect_salary = $request['expect_salary'];
+		$user->gender = $request['gender'];
+		$user->save();
+			
+		#$user->work_categories->delete();
+		\App\UserWorkCategory::where('user_id', '=', $user->id)->delete();
+		$new_category_ids = $request['work_category_id'];
+		foreach($new_category_ids as $id)
+		{
+			if(!\App\UserWorkCategory::where('user_id', '=', $user->id)->where('work_category_id', '=', $id)->first())
+			{
+				\App\UserWorkCategory::create(['user_id' => $user->id, 'work_category_id' => $id]);	
+			}
+		}
+		
+		$request->session()->flash('success', '保存成功');
+		return redirect()->back();
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
-		//
+		\App\User::destroy($id);
 	}
-
+	
+	public function suicide($id)
+	{
+		\App\User::where('id', '=', $id)->update(['state' => 'suicide']);
+	}
+	
+	public function un_suicide($id)
+	{
+		\DB::table('users')->where('id', '=', $id)->update(['state' => 'normal']);
+	}
 }
