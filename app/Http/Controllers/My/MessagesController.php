@@ -5,19 +5,19 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class MessagesController extends Controller {
+class MessagesController extends BaseController {
 
 	public function index()
 	{
 		$user = \Auth::user()->get();
-		$messages = \App\Message::where("to_user_id", "=", $user->id)->join('users', 'users.id', '=', 'messages.from_user_id')->groupBy('from_user_id')->get(array('messages.*','users.name', \DB::raw('count(messages.from_user_id) as count')));
+		$messages = \App\Message::where("to_user_id", "=", $user->id)->leftJoin('users', 'users.id', '=', 'messages.from_user_id')->orderBy('created_at', 'DESC')->orderBy('readed', 'ASC')->get(array('messages.*','users.name'));
 		return view('my.messages.index')->with('messages', $messages);
 	}
 	
 	public function outbox()
 	{
 		$user = \Auth::user()->get();
-		$messages = \App\Message::where("from_user_id", "=", $user->id)->join('users', 'users.id', '=', 'messages.to_user_id')->groupBy('to_user_id')->get(array('messages.*','users.name', \DB::raw('count(messages.to_user_id) as count')));
+		$messages = \App\Message::where("from_user_id", "=", $user->id)->leftJoin('users', 'users.id', '=', 'messages.to_user_id')->orderBy('created_at', 'DESC')->orderBy('readed', 'ASC')->get(array('messages.*','users.name'));
 		return view('my.messages.outbox')->with('messages', $messages);
 	}
 
@@ -49,8 +49,18 @@ class MessagesController extends Controller {
 	 */
 	public function show($id)
 	{
+		$user = \Auth::user()->get();
 		$message = \App\Message::find($id);
-		return view('my.messages.show')->with('message', $message);
+		if($message->to_user_id == $user->id)
+		{
+			$message->readed = true;
+			$message->save();
+			return view('my.messages.show')->with('message', $message);
+		}
+		else
+		{
+			return view('my.messages.outbox_show')->with('message', $message);
+		}
 	}
 
 	/**
@@ -83,7 +93,9 @@ class MessagesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		$user = \Auth::user()->get();
+		\App\Message::where('id', '=', $id)->where('to_user_id', '=', $user->id)->delete();
+		return redirect()->back();
 	}
 
 }

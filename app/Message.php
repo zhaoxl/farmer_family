@@ -13,15 +13,29 @@ class Message extends Model {
 	}
 	
 	public function getCategoryNameAttribute(){
-		return $this->getAttribute('category') == 1 ? '站内消息' : '系统消息';
+		return $this->getAttribute('category') == 0 ? '站内消息' : '系统消息';
 	}
 
 	public function getFromUserNameAttribute(){
-		return $this->from_user->name;
+		try
+		{
+			if($this->category == 0)
+				return $this->from_user ? $this->from_user->name : '用户不存在';
+			else
+				return '系统管理员';
+		}
+		catch(ErrorException $e){return '用户不存在';}
 	}
 
 	public function getToUserNameAttribute(){
-		return $this->to_user->name;
+		try
+		{
+			if($this->category == 0)
+				return $this->to_user ? $this->to_user->name : '用户不存在';
+			else
+				return '系统管理员';
+		}
+		catch(ErrorException $e){return '用户不存在';}
 	}
 	
 	public function getIsReadAttribute(){

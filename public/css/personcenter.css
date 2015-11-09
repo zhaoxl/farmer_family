@@ -32,9 +32,14 @@ li{ list-style: none;}
 .message_nav_box ul li.current{ background: #42d88e; color: #FFFFFF;}
 .message_table{ border: #CCCCCC solid 1px; width: 90%; margin: auto;}
 .message_table td,.message_table th{  border: #CCCCCC solid 1px; padding: 8px 10px;}
-.message_table tr td.more{ border-right: none;}
+.message_table tr td.more{ border-right: none; position: ;}
 .message_table tr td.delete{border-left: none;}
-.message_table span.num{ background: #42d88e; padding:1px 5px; margin-left: 5px;}
+.message_table span.unread{ 
+	color: green;
+  font-size: 21px;
+  width: 10px;
+	display: inline-block;
+}
 
 
 .change_pwd{width: 90%;  margin:20px auto;}

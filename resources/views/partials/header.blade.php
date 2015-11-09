@@ -35,7 +35,7 @@
 			<ul>
 				<li><a href="/my">{{Auth::user()->get()->mobile}}</a></li>
 				<li><div class="space"></div></li>
-				<li><a href="/my/inbox"><span>站内信</span><span class="msg_count">{{\App\Message::where('to_user_id', '=', Auth::user()->get()->id)->count()}}</span></a></li>
+				<li><a href="/my/messages"><span>站内信</span><span class="msg_count">{{\App\Message::where('readed', '=', 0)->where('to_user_id', '=', Auth::user()->get()->id)->count()}}</span></a></li>
 				<li><div class="space"></div></li>
 				<li><a href="/auth/logout">退出</a></li>
 				<li><div class="space"></div></li>

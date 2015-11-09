@@ -14,6 +14,7 @@
 Route::group(['namespace' => 'My'], function()
 {
 	Route::get('/my/messages/outbox', 'MessagesController@outbox');
+	Route::get('/my/messages/{id}/destroy', 'MessagesController@destroy');
 	Route::resource('/my/messages', 'MessagesController');
 	Route::controller('/my','IndexController');
 });
