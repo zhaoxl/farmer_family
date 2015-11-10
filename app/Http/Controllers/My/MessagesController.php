@@ -26,9 +26,10 @@ class MessagesController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request)
 	{
-		//
+		$mobile = $request['mobile'];
+		return view('my.messages.create')->with('mobile', $mobile);
 	}
 
 	/**
@@ -36,10 +37,20 @@ class MessagesController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		$mobile = $request['mobile'];
+		$back_url = $request['back_url'];
+		$to_user = \App\User::where('mobile', '=', $mobile)->first();
+		$from_user = \Auth::user()->get();
+		$title = $request['title'];
+		$content = $request['content'];
+		\App\Message::create(['category' => 0, 'from_user_id' => $from_user->id, 'to_user_id' => $to_user->id, 'title' => $title, 'content' => $content, 'readed' => false]);
+		
+		$request->session()->flash('success', '发送成功');
+		return view('my.messages.create')->with('mobile', $mobile)->with('back_url', $back_url);
 	}
+	
 
 	/**
 	 * Display the specified resource.

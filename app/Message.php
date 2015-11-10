@@ -3,7 +3,9 @@
 use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model {
-
+	
+	protected $fillable = ['category', 'from_user_id', 'to_user_id', 'title', 'content', 'readed'];
+	
 	public function to_user(){
 		return $this->belongsTo('\App\User');
 	}
@@ -40,6 +42,11 @@ class Message extends Model {
 	
 	public function getIsReadAttribute(){
 		return $this->getAttribute('readed') ? '<span style="color: green">已读</span>' : '<span style="color: red">未读</span>';
+	}
+	
+	public function getFromUserMobile()
+	{
+		return $this->to_user ? $this->to_user->mobile : '';
 	}
 	
 }

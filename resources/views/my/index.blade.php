@@ -2,11 +2,11 @@
 @section('content')
 <div class="register_mes_Modify">
 	<form id="register_mes_Modify" action="/my/save-profile" method="post">
-		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 		<input type="hidden" name="photo_image" id="photo_image" />
 		<input type="hidden" name="diploma_image" id="diploma_image" />
 		<input type="hidden" name="area_name" id="area_name" />
-		<table width="100%" class="register_mes_table"  >
+		<table width="100%" class="register_mes_table" />
 			<tr>
 				<td width="20%" align="right">
 					姓名:
