@@ -99,6 +99,13 @@
 	</div>
 	<div class="clearfix"></div>
 	
+	<div class="evaluate_box">
+		<label class="star_title">请您评分：</label><div id="star" class="star_raty"></div>
+		<textarea class="star_content">请写下对这条信息的感受吧。</textarea>
+		<input type="button" value="提交点评" class="submit" />
+		<input type="button" value="取消点评" class="cancel" />
+	</div>
+	<script src="/js/jquery.raty.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 	$(function(){
 		//get cities
@@ -123,6 +130,9 @@
 				}
 			});
 		});
+		
+		//star
+		$('#star').raty({ score: 3 });
 	});
 	</script>
 @endsection

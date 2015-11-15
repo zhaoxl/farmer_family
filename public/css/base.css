@@ -417,3 +417,10 @@ ul{padding: 0px; margin: 0px;}
 	float: left;
 	margin-top: 21px;
 }
+
+.evaluate_box{width: 400px; height: 300px; position: absolute; background: red; left: 50%; top: 50%;  margin: -150px 0 0 -150px; padding: 20px;}
+.evaluate_box .star_title{display: inline-block;}
+.evaluate_box .star_raty{display: inline-block; margin-bottom: 10px;}
+.evaluate_box .star_content{display: inherit; height: 200px; width: 360px;}
+.evaluate_box .submit{margin: 10px auto auto 30px; width: 80px;}
+.evaluate_box .cancel{margin: 10px auto auto 130px; width: 80px;}

@@ -20,8 +20,7 @@
 			<td width="27%" align="center">{{date('Y-m-d', strtotime($message->created_at))}}</td>
 			<td width="27%" align="center">{{$message->getCategoryNameAttribute()}}</td>
 			<td width="27%" align="center">{{$message->getFromUserNameAttribute()}}</td>
-			<td width="30%" align="center" class="more"><a href="/my/messages/{{$message->id}}">点击查看</a><span class="unread">{{$message->readed ? '' : '*'}}</span></td>
-			<td width="5%" align="center" class="delete">
+			<td width="30%" align="center" class="more"><a href="/my/messages/{{$message->id}}">点击查看</a><span class="unread">{{$message->readed ? '' : '*'}}</span>
 				@if($message->category == 0)
 				<a href="/my/messages/{{$message->id}}/destroy"><img src="/images/delete_icon.jpg"></a>
 				@endif
