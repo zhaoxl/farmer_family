@@ -123,4 +123,15 @@ class StaffsController extends Controller {
 		$work_categories = \App\Industry::orderBy("sort")->get();
 		return view('staffs.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories)->with('success', 'true');
 	}
+	
+	public function evaluate(Request $request)
+	{
+		$user = \Auth::user()->get();
+		$ip = $request->ip();
+		$user_id = is_null($user) ? null : $user->id;
+		$star = intval($request['star']);
+			
+		\App\StaffEvaluate::create(['user_id' => $user_id, 'staff_id' => $request['id'], 'star' => $star, 'content' => $request['content'], 'ip' => $ip]);
+		return "1";
+	}
 }

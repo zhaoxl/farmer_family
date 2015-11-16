@@ -146,4 +146,15 @@ class WorksController extends Controller {
 		return view('works.create')->with('area_provinces', $area_provinces)->with('industries', $industries)->with('work_categories', $work_categories)->with('success', 'true');
 	}
 	
+	public function evaluate(Request $request)
+	{
+		$user = \Auth::user()->get();
+		$ip = $request->ip();
+		$user_id = is_null($user) ? null : $user->id;
+		$star = intval($request['star']);
+			
+		\App\WorkEvaluate::create(['user_id' => $user_id, 'work_id' => $request['id'], 'star' => $star, 'content' => $request['content'], 'ip' => $ip]);
+		return "1";
+	}
+	
 }

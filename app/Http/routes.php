@@ -25,10 +25,12 @@ Route::get('home', 'HomeController@index');
 
 //Works
 //Route::controller('works', 'WorksController');
+Route::post('/works/evaluate', 'WorksController@evaluate');
 Route::resource('works', 'WorksController');
 
 //Staffs
 //Route::controller('staffs', 'StaffsController');
+Route::post('/staffs/evaluate', 'StaffsController@evaluate');
 Route::resource('staffs', 'StaffsController');
 
 Route::controller('area', 'AreaController');
