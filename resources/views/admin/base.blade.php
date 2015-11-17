@@ -67,7 +67,12 @@
             <li><a href="/admin/staffs"><i class="fa fa-caret-right"></i> 找活信息</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-suitcase"></i> <span>用户评价管理</span></a></li>
+        <li class="nav-parent"><a href=""><i class="fa fa-bug"></i> <span>用户评价管理</span></a>
+          <ul class="children">
+            <li><a href="/admin/staff_evaluates"><i class="fa fa-caret-right"></i> 找活信息评价</a></li>
+            <li><a href="/admin/work_evaluates"><i class="fa fa-caret-right"></i> 招工信息评价</a></li>
+          </ul>
+        </li>
         <li><a href="/admin/messages"><i class="fa fa-suitcase"></i> <span>站内信息</span></a></li>
         <li class="nav-parent"><a href=""><i class="fa fa-edit"></i> <span>地区管理</span></a>
           <ul class="children">

@@ -15,5 +15,10 @@ class Staff extends Model {
 	public function isTop(){
 		return $this->getAttribute('is_top') ? '<span style="color: red">是</span>' : '否';
 	}
+	
+	public function starCount()
+	{
+		return \App\StaffEvaluate::where('staff_id', '=', $this->id)->avg('star');
+	}
 
 }

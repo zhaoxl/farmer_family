@@ -90,7 +90,7 @@
 						发布日期：{{date('Y-m-d', strtotime($staff->created_at))}}
 					</span>
 					<span class="stars">
-						好评度：<span class="star star1"></span>
+						好评度：<span class="star star{{ceil($staff->starCount())}}"></span>
 					</span>
 					<span class="evaluate">
 						<a class="evaluate_open" data-id="{{$staff->id}}" href="#evaluate">我要点评</a>

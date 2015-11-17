@@ -115,8 +115,9 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 .body_context .right .show .attrs .stars .star{background: url(/images/works_icon_star.png); display: inline-block; height: 13px; vertical-align: middle;}
 .body_context .right .show .attrs .stars .star1{width: 17px;}
 .body_context .right .show .attrs .stars .star2{width: 33px;}
-.body_context .right .show .attrs .stars .star2{width: 49px;}
-.body_context .right .show .attrs .stars .star2{width: 81px;}
+.body_context .right .show .attrs .stars .star3{width: 49px;}
+.body_context .right .show .attrs .stars .star4{width: 65px;}
+.body_context .right .show .attrs .stars .star5{width: 81px;}
 .body_context .right .show .attrs .evaluate a{color: #42D88D; }
 .body_context .right .show .descs{margin-top: 40px;}
 .body_context .right .show .descs .title{color: #0acf6c; font-size: 18px; margin: 10px auto 10px auto; line-height: 42px; width: 100%; border-bottom: solid 1px #dddddd;}

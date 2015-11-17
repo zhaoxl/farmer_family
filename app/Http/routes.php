@@ -72,6 +72,8 @@ Route::group(['namespace' => 'Admin'], function()
 	Route::get('/admin/profile/change_pwd', 'ProfileController@change_pwd');
 	Route::post('/admin/profile/change_pwd', 'ProfileController@change_pwd_save');
 	Route::resource('/admin/profile', 'ProfileController');
+	Route::resource('/admin/staff_evaluates', 'StaffEvaluatesController');
+	Route::resource('/admin/work_evaluates', 'WorkEvaluatesController');
 	Route::controller('/admin', 'IndexController');
 });
 Route::get('/admin', 'Admin\IndexController@index');

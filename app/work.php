@@ -42,4 +42,9 @@ class Work extends Model {
 	public function isTop(){
 		return $this->getAttribute('is_top') ? '<span style="color: red">是</span>' : '否';
 	}
+	
+	public function starCount()
+	{
+		return \App\WorkEvaluate::where('work_id', '=', $this->id)->avg('star');
+	}
 }
