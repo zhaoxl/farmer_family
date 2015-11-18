@@ -14,7 +14,7 @@ class AreaProvince extends Model {
 		$query = parent::newQuery();
 		if(!$this->dirty) 
 		{ 
-			$query->whereIn('code', array(110000, 370000)); 
+			$query->whereIn('code', array(110000)); 
 		} 
 		return $query; 
 	}

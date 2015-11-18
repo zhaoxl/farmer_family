@@ -15,15 +15,16 @@
 	<div id="index">
 		<div class="header">
 			<div class="logo">
-				<a href="/">注册商标名称</a>
+				<a href="/">猫眼360</a>
 			</div>
 			<div class="area_links">
-				<span class="color_green">{{ $city_name }}</span> [ 
-					<a href="/area/changecity" class="color_green">切换城市</a>
-					@foreach (\App\AreaCity::hotCities(3, $current_city_code) as $city)
-					<a href="/area/set?name={{$city->name}}&code={{$city->code}}">{{$city->name}}</a>
-					@endforeach
-					]
+				<span class="color_green">{{ $city_name }}</span> 
+				<!-- [
+				<a href="/area/changecity" class="color_green">切换城市</a>
+				@foreach (\App\AreaCity::hotCities(3, $current_city_code) as $city)
+				<a href="/area/set?name={{$city->name}}&code={{$city->code}}">{{$city->name}}</a>
+				@endforeach
+				] -->
 			</div>
 			<div class="qq_links">
 				联系QQ：<span class="color_green">458048940</span>

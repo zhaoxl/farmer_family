@@ -261,7 +261,7 @@
 				<span><p class="require">*</p>设置登录密码：</span>
 			</div>
 			<div class="input">
-				<input type="password" name="password" />
+				<input id="password" type="password" name="password" />
 			</div>
 			<div class="valid_notice">
 				
@@ -325,7 +325,6 @@
 	                focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
 	                onkeyup: false,   
 	                submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
-	                    alert("提交表单");   
 	                    form.submit();   //提交表单   
 	                },   
                 
