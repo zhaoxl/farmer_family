@@ -9,7 +9,6 @@
 			@yield('title')
 		</div>
 		<div class="qq_links">
-			联系QQ：<span class="color_green">458048940</span>
 		</div>
 	</div>
 </div>
@@ -39,7 +38,6 @@
 				<li><div class="space"></div></li>
 				<li><a href="/auth/logout">退出</a></li>
 				<li><div class="space"></div></li>
-				<li class="qq">联系QQ：<span class="color_green">458048940</span></li>
 			</ul>
 		</div>
 	</div>

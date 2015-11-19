@@ -90,4 +90,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		}
 		return $user_upload->path;
 	}
+	
+	public function age()
+	{
+		return floor((time() - strtotime($this->birthday))/31556926);
+	}
 }

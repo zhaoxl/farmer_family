@@ -27,7 +27,6 @@
 				] -->
 			</div>
 			<div class="qq_links">
-				联系QQ：<span class="color_green">458048940</span>
 			</div>
 			<div class="login_links">
 				@if (Auth::user()->guest())
@@ -52,13 +51,12 @@
 						<label id="mobile-error" class="error" for="mobile">{{$errors->first('mobile')}}</label>
 					</div>
 					<div class="row">
-						<input type="password" class="pwd" name="password" />
+						<input type="text" class="pwd" name="password" value="请输入密码" />
 					</div>
 					<input type="submit" class="submit" value="" />
 					<div class="links">
 				    <label><input type="checkbox" class="styled" name="remember" /><span class="autologin_title">自动登录</span></label>  
-						<a href="/auth/forget" class="forget">忘记密码</a>
-						<a href="{{ url('/auth/present-register') }}" class="forget">免费注册&nbsp;&nbsp;</a>
+						<a href="/auth/forget" class="forget">找回密码</a>
 					</div>
 				</form>
 			</div>
@@ -74,9 +72,17 @@
 						@foreach ($staffs as $staff)
 						<li>
 							<a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">
-								{{is_null($staff->user) ? '' : $staff->user->workCategoryNames()}}&nbsp;&nbsp;[{{$staff->title}}]
+								<?php $user = $staff->user?>
+								@if(!is_null($user))
+									<span class="attr">{{$staff->user->name}}</span>
+									<span class="attr">{{$staff->user->gender}}</span>
+									<span class="attr">{{$staff->user->age()}}岁</span>
+									<span class="attr work_category">{{$user->workCategoryNames()}}</span>
+									<span class="attr address">{{$staff->user->address}}&nbsp;</span>
+									<span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span>
+								@endif
 							</a>
-							<span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span></li>
+						</li>
 						@endforeach
 					</ul>
 				</div>

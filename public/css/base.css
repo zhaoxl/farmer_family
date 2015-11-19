@@ -13,6 +13,7 @@ a {
 a:active,
 a:hover {
   outline: 0;
+	text-decoration: none;
 }
 b,
 strong {
@@ -126,7 +127,7 @@ a {
 a:hover,
 a:focus {
   color: #23527c;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:focus {
   outline: thin dotted;

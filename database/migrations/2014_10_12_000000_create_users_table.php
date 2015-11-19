@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration {
 			$table->boolean('public_weixin')->default(false);
 			$table->boolean('public_email')->default(false);
 			$table->string('gender')->nullable();
-			$table->string('age')->nullable();
 			$table->string('hometown')->nullable();
 			$table->string('idcard')->nullable();
 			$table->string('expect_salary')->nullable();
@@ -33,6 +32,7 @@ class CreateUsersTable extends Migration {
 			$table->string('password', 60);
 			$table->string('province')->nullable();
 			$table->string('city')->nullable();
+			$table->string('address')->nullable();
 			$table->string('street')->nullable();
 			$table->string('area_name')->nullable();
 			$table->rememberToken();

@@ -182,6 +182,14 @@
 			});
 			
 		});
+		$("#star_content").change(function(){
+			var _this = $(this);
+			_this.val(_this.val().substr(0, 200));
+		});
+		$("#star_content").keyup(function(){
+			var _this = $(this);
+			_this.val(_this.val().substr(0, 200));
+		});
 	});
 	
 	</script>
