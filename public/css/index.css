@@ -28,9 +28,11 @@ body{background: url("/images/index_bg.jpg") no-repeat scroll center top;}
 #index .base_list{width: 1000px; margin: 41px auto auto auto;}
 #index .base_list, #index .base_list a{ color: #888888;}
 #index .base_list li .attr{width: 50px; display: inline-table;}
-#index .base_list li .attr.work_category{width: 120px;}
-#index .base_list li .attr.address{width: 205px;}
-#index .base_list .find_list{width: 575px; float: left;}
+#index .base_list li .attr.work_category{width: 80px;}
+#index .base_list li .attr.work_category2{width: 70px;}
+#index .base_list li .attr.address{width: 180px;}
+#index .base_list li .attr.address2{width: 150px;}
+#index .base_list .find_list{width: 510px; float: left;}
 #index .base_list .title a{float: right;}
 #index .base_list .list{margin-top: 9px;}#index .base_list .list ul{padding: 0;}
 #index .base_list .list li{width: 100%; height: 40px; line-height: 40px; list-style: none;}
@@ -38,7 +40,7 @@ body{background: url("/images/index_bg.jpg") no-repeat scroll center top;}
 #index .base_list .list li .date{float: right; margin-right: 0px;}
 #index .base_list .list li .hot{color: #0AcF6C;}
 #index .base_list .find_list .title{width: 100%; height: 18px; background: url(/images/index_base_list_find_list_title.jpg) no-repeat;}
-#index .base_list .pub_list{width: 375px; float: left; margin-left: 48px;}
+#index .base_list .pub_list{width: 470px; float: left; margin-left: 20px;}
 #index .base_list .pub_list .title{width: 100%; height: 18px; background: url(/images/index_base_list_pub_list_title.png) no-repeat;}
 
 #index .footer{width: 100%; height: 60px; background: #666666; font-size: 16px; color: white; line-height: 30px;}

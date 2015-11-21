@@ -14,7 +14,8 @@ class WorkEvaluatesController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		$datas = \App\WorkEvaluate::orderBy('created_at', 'desc')->paginate(11);
+		return view('admin.work_evaluates.index')->with('datas', $datas);
 	}
 
 	/**
@@ -78,7 +79,7 @@ class WorkEvaluatesController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		\App\WorkEvaluate::destroy($id);
 	}
 
 }

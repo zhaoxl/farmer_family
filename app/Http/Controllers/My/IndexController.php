@@ -159,6 +159,7 @@ class IndexController extends BaseController {
 		$user->weixin = $request['weixin'];
 		$user->expect_salary = $request['expect_salary'];
 		$user->gender = $request['gender'];
+		$user->address = $request['address'];
 		$user->save();
 			
 		#$user->work_categories->delete();

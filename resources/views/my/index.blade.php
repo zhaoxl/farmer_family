@@ -130,6 +130,16 @@
 			</tr>
 			<tr>
 				<td width="20%" align="right">
+					详细地址:
+				</td>
+				<td width="40%">
+					<div class="form-group">
+						<input type="text" class="form-control" name="address" id="" placeholder="请输入您的详细地址" value="{{$user->address}}">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td width="20%" align="right">
 					生日:
 				</td>
 				<td width="40%">

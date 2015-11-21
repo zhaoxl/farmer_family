@@ -70,19 +70,19 @@
 				<div class="list">
 					<ul>
 						@foreach ($staffs as $staff)
-						<li>
-							<a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">
-								<?php $user = $staff->user?>
-								@if(!is_null($user))
+							<?php $user = $staff->user?>
+							@if(!is_null($user))
+							<li>
+								<a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">
 									<span class="attr">{{$staff->user->name}}</span>
 									<span class="attr">{{$staff->user->gender}}</span>
 									<span class="attr">{{$staff->user->age()}}岁</span>
 									<span class="attr work_category">{{$user->workCategoryNames()}}</span>
 									<span class="attr address">{{$staff->user->address}}&nbsp;</span>
 									<span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span>
-								@endif
-							</a>
-						</li>
+								</a>
+							</li>
+							@endif
 						@endforeach
 					</ul>
 				</div>
@@ -94,11 +94,25 @@
 				<div class="list">
 					<ul>
 						@foreach ($works as $work)
-						<li>
-							<a href="/works/{{$work->id}}" class="{{$work->flag ? 'hot':''}}">
-								{{$work->companyName()}}&nbsp;&nbsp;[{{$work->title}}]
-							</a>
-							<span class="date">[{{date('Y-m-d', strtotime($work->created_at))}}]</span></li>
+						<?php $user = $work->user?>
+						@if(!is_null($user))
+							<li>
+								<a href="/works/{{$work->id}}" class="{{$work->flag ? 'hot':''}}">
+									<span class="attr address2">
+									<?php #企业用户?>
+									@if($user->category == 1)
+									{{$work->companyName()}}
+									@else
+									<?php #个人用户?>
+									{{$work->name}}
+									@endif
+									</span>
+									<span class="attr work_category2">{{$work->work_category_name}}</span>
+									<span class="attr address2">{{$work->address}}&nbsp;</span>
+								</a>
+								<span class="date">[{{date('Y-m-d', strtotime($work->created_at))}}]</span>
+							</li>
+							@endif
 						@endforeach
 					</ul>
 				</div>

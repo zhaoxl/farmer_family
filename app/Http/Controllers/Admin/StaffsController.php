@@ -42,7 +42,10 @@ class StaffsController extends BaseController {
 	 */
 	public function create()
 	{
-		//
+		$present_users = \App\User::where('category', '=', 0)->orderBy('created_at', 'desc')->paginate(11);
+		$data = new \App\Staff;
+			
+		return view('admin.staffs.create')->with('data', $data)->with('present_users', $present_users);
 	}
 
 	/**

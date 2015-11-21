@@ -18,7 +18,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	use \Illuminate\Database\Eloquent\SoftDeletes;
 	protected $dates = ['deleted_at'];
 	protected $table = 'users';
-	protected $fillable = ['name', 'email', 'password', 'category', 'mobile', 'qq', 'weixin', 'gender', 'age', 'hometown', 'idcard', 'expect_salary', 'area_code', 'area_name', 'public_mobile', 'public_qq', 'public_weixin', 'public_email', 'area_province'];
+	protected $fillable = ['name', 'email', 'password', 'category', 'mobile', 'qq', 'weixin', 'gender', 'age', 'hometown', 'idcard', 'expect_salary', 'area_code', 'area_name', 'public_mobile', 'public_qq', 'public_weixin', 'public_email', 'area_province', 'address'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
