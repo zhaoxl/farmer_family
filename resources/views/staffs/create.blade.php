@@ -20,6 +20,18 @@
 				</div>
 				<div class="row">
 					<div class="title">
+						工种：
+					</div>
+					<div class="input">
+						<select name="work_category"class="form-control">
+							@foreach ($work_categories as $work_category)
+								<option value="{{ $work_category->up_id }},{{ $work_category->id }}">{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
 						期望工作区域：
 					</div>
 					<div class="input">
@@ -29,8 +41,8 @@
 								<option value="{{ $province->code }}">{{ $province->name }}</option>
 							@endforeach
 						</select>
-						<select name="area_city" id="area_city" class="form-control"></select>
-						<select name="area_street" id="area_street" class="form-control"></select>
+						<select name="area_city" id="area_city" class="form-control" style="display: none"></select>
+						<select name="area_street" id="area_street" class="form-control" style="display: none"></select>
 					</div>
 				</div>
 				<div class="row">

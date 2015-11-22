@@ -78,7 +78,7 @@ class StaffsController extends Controller {
 			return redirect("/");
 		}
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
-		$work_categories = \App\Industry::orderBy("sort")->get();
+		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
 		return view('staffs.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories);
 	}
 

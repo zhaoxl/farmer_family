@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="pageheader">
-    <h2><i class="fa fa-envelope"></i> 发布信息管理 <span>发布找活信息</span></h2>
+    <h2><i class="fa fa-envelope"></i> 发布信息管理 <span>发布雇人信息</span></h2>
   </div>
   
   <div class="contentpanel">
@@ -11,7 +11,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-body panel-body-nopadding">
 						
-						<form class="form-horizontal" id="register_form" role="form" method="POST" action="/admin/staffs">
+						<form class="form-horizontal" id="register_form" role="form" method="POST" action="/admin/works">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 							<input type="hidden" name="area_name" id="area_name" />
 		            <div class="form-group">
