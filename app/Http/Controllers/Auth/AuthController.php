@@ -231,7 +231,7 @@ class AuthController extends Controller {
 	
 	public function postSendSms(Request $request)
 	{
-		mobile = $request['mobile'];
+		$mobile = $request['mobile'];
 		
 		$arr=array();
 		while(count($arr)<4)
