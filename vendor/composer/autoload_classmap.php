@@ -31,6 +31,7 @@ return array(
     'CreateIndustriesTable' => $baseDir . '/database/migrations/2015_09_14_144216_create_industries_table.php',
     'CreateMessagesTable' => $baseDir . '/database/migrations/2015_08_13_112943_create_messages_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateSendSmsTable' => $baseDir . '/database/migrations/2015_11_24_150804_create_send_sms_table.php',
     'CreateStaffEvaluatesTable' => $baseDir . '/database/migrations/2015_11_16_134927_create_staff_evaluates_table.php',
     'CreateStaffTable' => $baseDir . '/database/migrations/2015_09_13_053531_create_staff_table.php',
     'CreateSystemSettingsTable' => $baseDir . '/database/migrations/2015_10_24_092457_create_system_settings_table.php',

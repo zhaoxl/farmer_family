@@ -228,4 +228,17 @@ class AuthController extends Controller {
 	{
 		return view('auth.services-agreement');
 	}
+	
+	public function postSendSms(Request $request)
+	{
+		mobile = $request['mobile'];
+		
+		$arr=array();
+		while(count($arr)<4)
+		{
+		  $arr[]=rand(1,10);
+		  $arr=array_unique($arr);
+		}
+		return implode("",$arr);
+	}
 }

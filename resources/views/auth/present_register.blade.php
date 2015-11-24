@@ -34,11 +34,10 @@
 			</div>
 			<div class="input">
 				<input type="text" name="mobile" id='v_mobile' value="{{ old('mobile') }}" />
-			</div><!--
+			</div>
 			<div class="send_sms">
 				<input type="button" class="send_sms_btn" value="发送验证码到手机" />
 			</div>
-				-->
 			<div class="valid_notice">
 				
 			</div>
@@ -47,7 +46,7 @@
 			</div>
 		</div>
 		<div class="clearfix"></div>
-		<div class="field second_field" style="display: none">
+		<div class="field second_field">
 			<div class="title">
 				<span><p class="require">*</p>验证码：</span>
 			</div>
@@ -317,6 +316,7 @@
 	</div>
 	</form>
 	
+	<script type="text/javascript" src="{{ asset('/js/auth.js') }}" ></script>
 	<script type="text/javascript" src="{{ asset('/js/jquery.validate.min.js') }}" ></script>
 	<script>
 		  var validate = $("#register_form").validate({

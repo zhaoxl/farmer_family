@@ -44,7 +44,19 @@
 								</div>
             
 		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">期望工作区域</label>
+								  <label for="disabledinput" class="col-sm-3 control-label">行业</label>
+								  <div class="col-sm-6">
+										<select name="industry" id="industry" class="form-control">
+											<option value="">请选择行业</option>
+											@foreach ($industries as $industry)
+												<option value="{{ $industry->id }},{{$industry->full_name}}">{{ $industry->full_name }}</option>
+											@endforeach
+										</select>
+								  </div>
+								</div>
+            
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">工作区域</label>
 								  <div class="col-sm-6">
 				 						<select name="area_province" id="area_province" class="form-control">
 				 							<option value="">请选择地区</option>
@@ -77,10 +89,34 @@
 								</div>
             
 		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">可工作时间</label>
+								  <label for="disabledinput" class="col-sm-3 control-label">服务报酬</label>
 								  <div class="col-sm-6">
-									 <input type="text" id="start_at" class="form-control" placeholder="可工作时间" name="start_at" value="{{$data->start_at}}">
-									 <input type="text" id="end_at" class="form-control" placeholder="可工作时间" name="end_at" value="{{$data->end_at}}">
+				 						<input type="text" name="price" class="text" id="price_txt" />/天
+				 						<label><input type="checkbox" name="price_negotiable" value="1" id="price_negotiable"/>面议</label>
+								  </div>
+								</div>
+            
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">服务时间</label>
+								  <div class="col-sm-6">
+										<input type="text" name="start_at" class="text date" id="start_at" />
+										<label>到</label>
+										<input type="text" name="end_at" class="text date" id="end_at" />
+										<label><input type="checkbox" name="date_long" value="1" id="date_long"/>长期</label>
+								  </div>
+								</div>
+            
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">服务人数</label>
+								  <div class="col-sm-6">
+				 						<input type="text" name="people_number" class="text" id="people_number" />人
+								  </div>
+								</div>
+            
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">服务内容</label>
+								  <div class="col-sm-6">
+										<textarea name="content" class="content" style="width: 660px; height: 100px;"></textarea>
 								  </div>
 								</div>
       
