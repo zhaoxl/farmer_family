@@ -12,7 +12,7 @@
 			<div class="new_staff">
 				<div class="row">
 					<div class="title">
-						标题：
+						<p class="require">*</p>标题：
 					</div>
 					<div class="input">
 						<input type="text" name="title" class="text address_text" />
@@ -20,7 +20,7 @@
 				</div>
 				<div class="row">
 					<div class="title">
-						工种：
+						<p class="require">*</p>工种：
 					</div>
 					<div class="input">
 						<select name="work_category"class="form-control">
@@ -32,7 +32,7 @@
 				</div>
 				<div class="row">
 					<div class="title">
-						期望工作区域：
+						<p class="require">*</p>期望工作区域：
 					</div>
 					<div class="input">
 						<select name="area_province" id="area_province" class="form-control">
@@ -47,10 +47,26 @@
 				</div>
 				<div class="row">
 					<div class="title">
-						详细地址：
+						<p class="require">*</p>详细地址：
 					</div>
 					<div class="input">
 						<input type="text" name="address" class="text address_text" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						联系人：
+					</div>
+					<div class="input">
+						<input type="text" name="contacts" class="text address_text" value="{{$contacts}}" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						联系方式：
+					</div>
+					<div class="input">
+						<input type="text" name="mobile" class="text address_text" value="{{$mobile}}" />
 					</div>
 				</div>
 				<div class="row">
@@ -91,10 +107,69 @@
 	</script>
 	@endif
 
+	<script type="text/javascript" src="{{ asset('/js/jquery.validate.min.js') }}" ></script>
+	<script>
+		var validate = $("#create_form").validate({
+	  	debug: false, //调试模式取消submit的默认提交功能   
+	    //errorClass: "label.error", //默认为错误的样式类为：error   
+	    focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+	    onkeyup: false,   
+	    submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+	    	form.submit();   //提交表单   
+	    },   
+			errorPlacement: function(error, element) {
+				if(element.is("select"))
+				{
+					element.parent().after(error);
+				}
+				else
+					element.after(error);
+			},          
+      rules:{
+				title:{
+					required: true
+				},
+				area_province:{
+					area: true
+				},
+				area_city:{
+					area: true
+				},
+				area_street:{
+					area: true
+				} ,
+				address:{
+					required: true
+				}
+      },
+      messages:{
+	      title:{
+	      	required: "必填项"
+	      },
+				address:{
+					required: "必填项"
+				}
+     	}
+  	});    
+    jQuery.validator.addMethod("area", function(value, element) {
+    	if(value == "") return false;
+			return true;
+		}, "请选择地区");  
+	
+	
+	</script>
+	
 	<script type="text/javascript">
 	$(function(){
 		//get cities
 		$("#area_province").change(function(){
+			if($(this).val() == "")
+			{
+				$("#area_city").val("").hide();
+				$("#area_street").val("").hide();
+				return false;
+			} 
+			
 			$.ajax({
 				url: '/ajax/area/cities',
 				type: 'GET',
@@ -106,14 +181,20 @@
 					$.each(response, function(index, city){
 						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
 					});
-					$("#area_city").html(options);
-					$("#area_street").html('');
+					$("#area_city").html(options).show();
+					$("#area_street").html('').hide();
 				}
 			});
 		});
 	
 		//get streets
 		$("#area_city").change(function(){
+			if($(this).val() == "")
+			{
+				$("#area_street").val("").hide();
+				return false;
+			} 
+			
 			$.ajax({
 				url: '/ajax/area/streets',
 				type: 'GET',
@@ -125,7 +206,7 @@
 					$.each(response, function(index, city){
 						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
 					});
-					$("#area_street").html(options);
+					$("#area_street").html(options).show();
 				}
 			});
 		});

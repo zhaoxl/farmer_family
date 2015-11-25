@@ -30,6 +30,8 @@ class CreateStaffTable extends Migration {
 			$table->string('street')->nullable();
 			$table->string('area_name')->nullable();
 			$table->boolean('flag')->default(false);
+			$table->string('contacts')->nullable();
+			$table->string('mobile')->nullable();
 			$table->timestamps();
 		});
 	}

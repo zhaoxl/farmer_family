@@ -41,6 +41,7 @@ $(function(){
       url: '/auth/send-sms',
 			data: {'mobile': mobile, '_token': token},
       success: function(result) {
+				$("#sms_code").val(result);
 				console.log('sms sent:' + result);
       }
     });

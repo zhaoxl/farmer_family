@@ -51,7 +51,7 @@
 				<span><p class="require">*</p>验证码：</span>
 			</div>
 			<div class="input">
-				<input type="text" />
+				<input type="text" name="sms_code" id="sms_code" />
 			</div>
 			<div class="valid_notice">
 				

@@ -74,12 +74,17 @@ class StaffsController extends Controller {
 	
 	public function create()
 	{
-		if(\Auth::user()->guest()){
+		$user = \Auth::user();
+		if($user->guest()){
 			return redirect("/");
 		}
+		$user = $user->get();
+		$mobile = $user->mobile;
+		$contacts = $user->name;
+		
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
-		return view('staffs.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories);
+		return view('staffs.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories)->with('mobile', $mobile)->with('contacts', $contacts);
 	}
 
 	
@@ -97,6 +102,8 @@ class StaffsController extends Controller {
 		$work_category = isset($request['work_category']) ? $request['work_category'] : '';
 		$start_at = $request['start_at'];
 		$end_at = $request['end_at'];
+		$contacts = $request['contacts'];
+		$mobile = $request['mobile'];
 		$user = \Auth::user()->get();
 				
 		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
@@ -117,11 +124,11 @@ class StaffsController extends Controller {
 		{
 			return redirect()->back()->withErrors(['start_at' => '请选择可工作时间']);
 		}
-		$staff = \App\Staff::create(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at, 'title' => $title));
+		$staff = \App\Staff::create(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at, 'title' => $title, 'contacts' => $contacts, 'mobile' => $mobile));
 		
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
-		$work_categories = \App\Industry::orderBy("sort")->get();
-		return view('staffs.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories)->with('success', 'true');
+		$work_categories = \App\WorkCategory::orderBy("sort")->get();
+		return view('staffs.create')->with('area_provinces', $area_provinces)->with('work_categories', $work_categories)->with('success', 'true')->with('work_categories', $work_categories)->with('mobile', $mobile)->with('contacts', $contacts);
 	}
 	
 	public function evaluate(Request $request)

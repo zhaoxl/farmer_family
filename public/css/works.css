@@ -125,3 +125,5 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 .body_context .right .show .descs .desc_ul li{width: 200px; line-height: 40px; float: left;}
 .body_context .right .show .descs .photo{width: 40%; float: right;}
 .body_context .right .show .descs .photo img{width: 100%; height: 100%;}
+.body_context #create_form .require{color: red; display: inline-table; height: 16px; line-height: 16px; text-align: center; width: 15px;}
+.body_context #create_form label.error{color: red; display: table; margin-left: 154px;}
