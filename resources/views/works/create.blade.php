@@ -4,7 +4,6 @@
 
 	<link href="{{ asset('/css/works.css') }}" rel="stylesheet">
 	<link href="{{ asset('/js/jquery-ui/jquery-ui.css') }}" rel="stylesheet">
-	<link href="{{ asset('/js/jquery-ui/jquery-ui.theme.css') }}" rel="stylesheet">
 	<script type="text/javascript" src="{{ asset('/js/jquery-ui/jquery-ui.js') }}"></script>
 	<div class="body_content">
 		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/works') }}">
@@ -13,7 +12,7 @@
 			<div class="new_work">
 				<div class="row">
 					<div class="title">
-						标题：
+						<p class="require">*</p>标题：
 					</div>
 					<div class="input">
 						<input type="text" name="title" class="text address_text" />
@@ -24,7 +23,7 @@
 				</div>
 				<div class="row">
 					<div class="title">
-						行业：
+						<p class="require">*</p>行业：
 					</div>
 					<div class="input">
 						<select name="industry" id="industry" class="form-control">
@@ -40,7 +39,7 @@
 				</div>
 				<div class="row">
 					<div class="title">
-						工作工种：
+						<p class="require">*</p>工作工种：
 					</div>
 					<div class="input">
 						<select name="work_category" id="work_category" class="form-control">
@@ -53,7 +52,7 @@
 				</div>
 				<div class="row">
 					<div class="title">
-						工作区域：
+						<p class="require">*</p>工作区域：
 					</div>
 					<div class="input">
 						<select name="area_province" id="area_province" class="form-control">
@@ -78,6 +77,22 @@
 						<span class="error">
 							{{(count($errors) > 0 && $errors->default->has('address')) ? $errors->default->get('address')[0] : ''}}
 						</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						联系人：
+					</div>
+					<div class="input">
+						<input type="text" name="contacts" class="text address_text" value="{{$contacts}}" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						联系方式：
+					</div>
+					<div class="input">
+						<input type="text" name="mobile" class="text address_text" value="{{$mobile}}" />
 					</div>
 				</div>
 				<div class="row">
@@ -122,13 +137,14 @@
 					<div class="input">
 						<textarea name="content" class="content"></textarea>
 					</div>
+					<div class="clearfix">
+						
+					</div>
 				</div>
 				<div class="next">
 			
 					@if (count($errors) > 0)
-					-------------------------------------------------
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -146,11 +162,70 @@
 	alert('信息发布成功！');
 	</script>
 	@endif
-
+	
+	<script type="text/javascript" src="{{ asset('/js/jquery.validate.min.js') }}" ></script>
+	<script>
+		var validate = $("#create_form").validate({
+	  	debug: false, //调试模式取消submit的默认提交功能   
+	    //errorClass: "label.error", //默认为错误的样式类为：error   
+	    focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+	    onkeyup: false,   
+	    submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+	    	form.submit();   //提交表单   
+	    },   
+			errorPlacement: function(error, element) {
+				if(element.is("select"))
+				{
+					element.parent().after(error);
+				}
+				else
+					element.after(error);
+			},          
+      rules:{
+				title:{
+					required: true
+				},
+				area_province:{
+					area: true
+				},
+				area_city:{
+					area: true
+				},
+				area_street:{
+					area: true
+				} ,
+				address:{
+					required: true
+				}
+      },
+      messages:{
+	      title:{
+	      	required: "必填项"
+	      },
+				address:{
+					required: "必填项"
+				}
+     	}
+  	});    
+    jQuery.validator.addMethod("area", function(value, element) {
+    	if(value == "") return false;
+			return true;
+		}, "请选择地区");  
+	
+	
+	</script>
+		
 	<script type="text/javascript">
 	$(function(){
 		//get cities
 		$("#area_province").change(function(){
+			if($(this).val() == "")
+			{
+				$("#area_city").val("").hide();
+				$("#area_street").val("").hide();
+				return false;
+			} 
+			
 			$.ajax({
 				url: '/ajax/area/cities',
 				type: 'GET',
@@ -158,12 +233,6 @@
 				data: {provincecode: $(this).val()},
 				success: function(response)
 				{
-					if(response.length == 0)
-					{
-						$("#area_city").hide();
-						$("#area_street").hide();
-						return true;
-					}
 					var options = '<option value="">请选择市</option>';
 					$.each(response, function(index, city){
 						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
@@ -176,6 +245,12 @@
 	
 		//get streets
 		$("#area_city").change(function(){
+			if($(this).val() == "")
+			{
+				$("#area_street").val("").hide();
+				return false;
+			} 
+			
 			$.ajax({
 				url: '/ajax/area/streets',
 				type: 'GET',
@@ -183,11 +258,6 @@
 				data: {citycode: $(this).val()},
 				success: function(response)
 				{
-					if(response.length == 0)
-					{
-						$("#area_street").hide();
-						return true;
-					}
 					var options = '<option value="">请选择区县</option>';
 					$.each(response, function(index, city){
 						options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';

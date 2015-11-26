@@ -29,10 +29,10 @@
 								@foreach ($datas as $data)	
 		            <tr>
 		              <td>{{$data->id}}</td>
-		              <td>{{$data->user->name}}</td>
+		              <td>{{is_null($data->user) ? '' : $data->user->name}}</td>
 		              <td>{{$data->title}}</td>
 									<td>{{$data->area_name}}</td>
-		              <td>{{$data->user->workCategoryNames()}}</td>
+		              <td>{{is_null($data->user) ? '' : $data->user->workCategoryNames()}}</td>
 									<td>
 										@if(isset($data->start_at) || isset($data->end_at))
 											{{date('Y-m-d', strtotime($data->start_at))}}

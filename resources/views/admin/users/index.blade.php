@@ -44,8 +44,13 @@
 									<td>{{$data->hometown}}</td>
 									<td>{{$data->created_at}}</td>
 									<td>
+										@if($data->category == 0)
+											<a href="/admin/staffs?user_id={{$data->id}}">已发布信息</a>&nbsp;
+										@else
+											<a href="/admin/works?user_id={{$data->id}}">已发布信息</a>&nbsp;
+										@endif
 										<a href="/admin/users/{{$data->id}}/edit">编辑</a>&nbsp;
-										<a href="javascript:unSuicideItem({{$data->id}});">恢复</a>&nbsp;
+										<a href="javascript:SuicideItem({{$data->id}});">注销</a>&nbsp;
 										<a href="javascript:deleteItem({{$data->id}});">删除</a>
 									</td>
 		            </tr>
@@ -71,7 +76,7 @@
 	    });
 	  }
 	}
-	function suicideItem(id) {
+	function SuicideItem(id) {
 		if (confirm('确定注销?')) {
 	    $.ajax({
 	      type: "POST",

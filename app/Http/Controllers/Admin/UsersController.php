@@ -20,7 +20,7 @@ class UsersController extends BaseController {
 	
 	public function company_users()
 	{
-		$datas = \App\User::where('category', '=', 1)->leftJoin('companies', 'users.id', '=', 'companies.user_id')->orderBy('created_at', 'desc')->select(\DB::raw('users.*, company_name, tel, industry_name, address'))->paginate(11);
+		$datas = \App\User::where('category', '=', 1)->leftJoin('companies', 'users.id', '=', 'companies.user_id')->orderBy('created_at', 'desc')->select(\DB::raw('users.*, company_name, tel, industry_name, companies.address'))->paginate(11);
 		return view('admin.users.company_users')->with('datas', $datas);
 	}
 	

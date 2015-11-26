@@ -21,7 +21,6 @@
 		              <th>QQ</th>
 		              <th>微信</th>
 		              <th>所在区域</th>
-		              <th>年龄</th>
 		              <th>性别</th>
 		              <th>籍贯</th>
 		              <th>注册时间</th>
@@ -39,7 +38,6 @@
 									<td>{{$data->qq}}</td>
 									<td>{{$data->weixin}}</td>
 									<td>{{$data->area_name}}</td>
-									<td>{{$data->age}}</td>
 									<td>{{$data->gender}}</td>
 									<td>{{$data->hometown}}</td>
 									<td>{{$data->created_at}}</td>

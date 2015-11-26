@@ -37,7 +37,7 @@
 									<td>{{$data->qq}}</td>
 									<td>{{$data->weixin}}</td>
 									<td>{{$data->area_name}}</td>
-									<td>{{$data->age}}</td>
+									<td>{{$data->age()}}</td>
 									<td>{{$data->gender}}</td>
 									<td>{{$data->hometown}}</td>
 									<td>{{$data->created_at}}</td>

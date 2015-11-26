@@ -32,7 +32,7 @@
 								@foreach ($datas as $data)	
 		            <tr>
 		              <td>{{$data->id}}</td>
-		              <td>{{$data->user->name}}</td>
+		              <td>{{is_null($data->user) ? '' : $data->user->name}}</td>
 		              <td>{{$data->title}}</td>
 		              <td>{{$data->industry_name}}</td>
 		              <td>{{$data->work_category_name}}</td>

@@ -54,13 +54,18 @@ class WorksController extends Controller {
 
 	public function create()
 	{
-		if(\Auth::user()->guest()){
+		$user = \Auth::user();
+		if($user->guest()){
 			return redirect("/");
 		}
+		$user = $user->get();
+		$mobile = $user->mobile;
+		$contacts = $user->name;
+		
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$industries = \App\Industry::orderBy("sort")->get();
 		$work_categories = \App\WorkCategory::orderBy("sort")->get();
-		return view('works.create')->with('area_provinces', $area_provinces)->with('industries', $industries)->with('work_categories', $work_categories);
+		return view('works.create')->with('area_provinces', $area_provinces)->with('industries', $industries)->with('work_categories', $work_categories)->with('mobile', $mobile)->with('contacts', $contacts);
 	}
 	
 	public function store(Request $request)
@@ -81,6 +86,8 @@ class WorksController extends Controller {
 		$work_category = isset($request['work_category']) ? $request['work_category'] : '';
 		$start_at = isset($request['start_at']) ? $request['start_at'] : '';
 		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
+		$contacts = $request['contacts'];
+		$mobile = $request['mobile'];
 		$user = \Auth::user()->get();
 				
 		if(empty($title))
@@ -125,7 +132,7 @@ class WorksController extends Controller {
 		{
 			return redirect()->back()->withErrors(['people_number' => '请输入服务人数']);
 		}
-		$work = new \App\Work(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'industry_id' => $industry_id, 'industry_name' => $industry_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content));
+		$work = new \App\Work(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'industry_id' => $industry_id, 'industry_name' => $industry_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content, 'contacts' => $contacts, 'mobile' => $mobile));
 		if(!empty($start_at))
 		{
 			$work->start_at = $start_at;
@@ -143,7 +150,7 @@ class WorksController extends Controller {
 		$industries = \App\Industry::orderBy("sort")->get();
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
 		$work_categories = \App\Industry::orderBy("sort")->get();
-		return view('works.create')->with('area_provinces', $area_provinces)->with('industries', $industries)->with('work_categories', $work_categories)->with('success', 'true');
+		return view('works.create')->with('area_provinces', $area_provinces)->with('industries', $industries)->with('work_categories', $work_categories)->with('success', 'true')->with('mobile', $mobile)->with('contacts', $contacts);
 	}
 	
 	public function evaluate(Request $request)
