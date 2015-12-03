@@ -4,8 +4,17 @@
   <div class="pageheader">
     <h2><i class="fa fa-envelope"></i> 发布信息管理 <span>雇人信息</span></h2>
   </div>
-  
-  <div class="contentpanel">
+	<div class="panel-body" style="padding-bottom: 0px">
+    <form id="form1" class="form-inline">
+      <div class="form-group">
+        <label for="exampleInputEmail2" class="sr-only">标题</label>
+        <input type="text" placeholder="标题" name="title" id="exampleInputEmail2" class="form-control" value="{{Request::input('title')}}" />
+      </div>
+      <button class="btn btn-primary" type="submit">搜索</button>
+      <button class="btn btn-default" type="submit" id="export_excel_btn" name="excel" value="excel">导出Excel</button>
+    </form>
+  </div>
+  <div class="contentpanel" style="padding-top: 0px">
 		<div class="row">
 			<div class="col-md-13">
 				<div class="panel panel-primary">
@@ -23,7 +32,6 @@
 		              <th>服务时间</th>
 		              <th>所需人数</th>
 		              <th>发布时间</th>
-		              <th>修改时间</th>
 		              <th>置顶</th>
 		              <th>操作</th>
 		            </tr>
@@ -49,7 +57,6 @@
 									</td>
 									<td>{{$data->people_number}}</td>
 									<td>{{$data->created_at}}</td>
-									<td>{{$data->updated_at}}</td>
 									<td>{!!$data->isTop()!!}</td>
 									<td>
 										<a href="/admin/works/refresh?id={{$data->id}}">刷新</a>&nbsp;

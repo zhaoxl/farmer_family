@@ -12,10 +12,51 @@ class WorksController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		$datas = \App\Work::orderBy(\DB::raw('updated_at, is_top'), 'desc')->paginate(11);
-		return view('admin.works.index')->with('datas', $datas);
+		$datas = \App\Work::orderBy(\DB::raw('updated_at, is_top'), 'desc');
+		if(!is_null($request['title'])){
+			$datas = $datas->where("title", 'LIKE', '%'.$request['title'].'%');
+		}
+		
+		if(!is_null($request['excel']))
+		{			
+			$index = 0;
+			\Excel::create('Excel', function($excel) use($datas, $index){
+		    $excel->sheet('sheet', function($sheet) use($datas, $index) {
+					$index += 1;
+					$sheet->row($index, array('发布人','标题','行业','工种','区域','报酬','服务时间','所需人数','发布时间','置顶'));
+					foreach($datas->get() as $data){
+						$index += 1;
+						$user_name = is_null($data->user) ? '' : $data->user->name;
+						$title = $data->title;
+						$industry_name = $data->industry_name;
+						$category_name = $data->work_category_name;
+						$area_name = $data->area_name;
+						$price = $data->price;
+						$date = null;
+						if(isset($data->start_at) || isset($data->end_at))
+						{
+							$date = date('Y-m-d', strtotime($data->end_at));
+						}
+						else
+						{
+							$date = "长期";
+						}
+						$people_number = $data->people_number;
+						$created_at = $data->created_at;
+						$is_top = $data->is_top == true ? '是' : '否';
+						
+          	$sheet->row($index, array($user_name, $title, $industry_name, $category_name, $area_name, $price, $date, $people_number, $created_at, $is_top));
+          }
+		    });
+			})->export('xls');
+		}
+		else
+		{
+			$datas = $datas->paginate(11);
+			return view('admin.works.index')->with('datas', $datas);	
+		}
 	}
 	
 	public function refresh(Request $request)

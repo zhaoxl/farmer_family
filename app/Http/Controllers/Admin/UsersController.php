@@ -49,7 +49,11 @@ class UsersController extends BaseController {
 	 */
 	public function create()
 	{
-		//
+		$data = new \App\User;
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
+		
+		return view('admin.users.create')->with('data', $data)->with('area_provinces', $area_provinces)->with('work_categories', $work_categories);
 	}
 
 	/**
@@ -57,9 +61,57 @@ class UsersController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+		
+		#判断手机号是否重复
+		if(\App\User::where('mobile', '=', $request['mobile'])->first())
+		{
+			$request->session()->flash('error', '邮箱地址不可用');
+			return redirect()->back();
+		}
+		
+		#判断邮箱是否重复
+		if(\App\User::where('email', '=', $request['email'])->first())
+		{
+			$request->session()->flash('error', '邮箱地址不可用');
+			return redirect()->back();
+		}
+		
+		$user = new \App\User;
+		$user->category = $request['category'];
+		$user->mobile = $request['mobile'];
+		$user->password = \Hash::make($request['password']);
+		$user->hometown = $request['hometown'];
+		$user->province = $request['province'];
+		$user->city = $request['city'];
+		$user->street = $request['street'];
+		$user->area_name = $request['area_name'];
+		$user->birthday = $request['birthday'];
+		$user->email = $request['email'];
+		$user->name = $request['name'];
+		$user->public_mobile = isset($request['public_mobile']);
+		$user->public_qq = isset($request['public_qq']);
+		$user->public_weixin = isset($request['public_weixin']);
+		$user->public_email = isset($request['public_email']);
+		$user->qq = $request['qq'];
+		$user->weixin = $request['weixin'];
+		$user->expect_salary = $request['expect_salary'];
+		$user->gender = $request['gender'];
+		$user->save();
+			
+		\App\UserWorkCategory::where('user_id', '=', $user->id)->delete();
+		$new_category_ids = $request['work_category_id'];
+		foreach($new_category_ids as $id)
+		{
+			if(!\App\UserWorkCategory::where('user_id', '=', $user->id)->where('work_category_id', '=', $id)->first())
+			{
+				\App\UserWorkCategory::create(['user_id' => $user->id, 'work_category_id' => $id]);	
+			}
+		}
+		
+		$request->session()->flash('success', '保存成功');
+		return redirect()->back();
 	}
 
 	/**
@@ -109,7 +161,15 @@ class UsersController extends BaseController {
 	public function update(Request $request, $id)
 	{
 		$user = \App\User::find($id);
+		
+		#判断邮箱是否重复
+		if(\App\User::where("id", "!=", $user->id)->where('email', '=', $request['email'])->first())
+		{
+			$request->session()->flash('error', '邮箱地址不可用');
+			return redirect()->back();
+		}
 
+		
 		$user->hometown = $request['hometown'];
 		$user->province = $request['province'];
 		$user->city = $request['city'];

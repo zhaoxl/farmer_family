@@ -58,6 +58,7 @@
 						<li><a href="/admin/users/hire_users"><i class="fa fa-caret-right"></i> 发活方用户</a></li>
 						<li><a href="/admin/users/present_users"><i class="fa fa-caret-right"></i> 找活方用户</a></li>
 						<li><a href="/admin/users/suicide_users"><i class="fa fa-caret-right"></i> 已注销用户</a></li>
+						<li><a href="/admin/users/create"><i class="fa fa-caret-right"></i> 添加用户</a></li>
           </ul>
         </li>
         <li><a href="/admin/operation_logs"><i class="fa fa-suitcase"></i> <span>后台操作记录</span></a></li>
