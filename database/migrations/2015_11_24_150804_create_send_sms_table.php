@@ -15,7 +15,7 @@ class CreateSendSmsTable extends Migration {
 		Schema::create('send_sms', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
+			$table->integer('user_id')->nullable();
 			$table->string('session_id');
 			$table->string('content');
 			$table->timestamps();

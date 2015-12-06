@@ -38,10 +38,10 @@
 		</div>
 		<div class="content">
 			<div class="find_box">
-				<a href="/auth/present-register" class="reg_button"></a>
+				<a href="/auth/create" class="reg_button"></a>
 			</div>
 			<div class="pub_box">
-				<a href="/auth/company-register" class="reg_button"></a>
+				<a href="/auth/create" class="reg_button"></a>
 			</div>
 			<div class="login_box">
 				<form id="login_form" class="form-horizontal" method="POST" action="{{ url('/auth/login') }}">

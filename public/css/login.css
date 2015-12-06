@@ -1,5 +1,11 @@
-body{background: url("/images/login_bg.jpg") no-repeat scroll center top;}
-#index .content {height: 490px;}
-#index .content .login_box {float: none; margin: auto auto;}
-#index .content .login_box .error{color: red; width: 100%; line-height: 20px; margin-left: 36px; padding-top: 73px;}
-#index .content .login_box .uname {margin-top: 1px;}
+body{background-color: #96d8ca;}
+.content_body{background: url("/images/login_banner_bg.jpg") no-repeat scroll left top; width: 1030px; height: 477px; margin: auto auto 180px auto;}
+.content_body .form{width: 407px; height: 413px; background-color: white; margin: 50px 0 auto auto; padding: 3px; float: right;}
+.content_body .form .form_body{width: 401px; height: 407px; border: solid 4px #dedede;}
+.content_body .form .form_body .title{font-size: 30px; display: table; margin: 13px auto 27px auto;}
+.content_body .form .form_body .inputs{width: 350px; margin-left: 53px;}
+.content_body .form .form_body .inputs .field{}
+.content_body .form .form_body .inputs .field label{color: #666666; width: 70px; display: inline-block;}
+.content_body .form .form_body .inputs .field input{width: 220px; height: 38px; border: solid 1px #dddddd; margin:  20px auto auto 9px;}
+.content_body .form .form_body .remember{margin: 30px auto auto  136px;}
+.content_body .form .form_body .login{}

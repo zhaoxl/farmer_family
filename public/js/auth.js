@@ -3,7 +3,11 @@ var send_sms_timer = null;
 var send_sms_visible = false;
 
 $(function(){
-	$(".send_sms_btn").css("color", "#AAAAAA");
+	send_sms_second = parseInt($("#send_sms_second").val());
+	//启动计时器
+	timer();
+	
+	//$(".send_sms_btn").css("color", "#AAAAAA");
 	
 	$("#v_mobile").keyup(function(){
 		var _this = $(this);
@@ -41,24 +45,36 @@ $(function(){
       url: '/auth/send-sms',
 			data: {'mobile': mobile, '_token': token},
       success: function(result) {
-				$("#sms_code").val(result);
+				if(result != "error")
+				{
+					$("#sms_code").val(result);
+				}
 				console.log('sms sent:' + result);
       }
     });
-		//计时器
-		send_sms_timer = setInterval(function(){
-			send_sms_second -= 1;
-			if(send_sms_second < 1)
-			{
-				send_sms_visible = true;
-				send_sms_second = 60;
-				$(".send_sms_btn").val("发送验证码到手机");	
-				clearInterval(send_sms_timer);
-			}
-			else
-			{
-				$(".send_sms_btn").val(send_sms_second+"秒后可重新发送");	
-			}
-		}, 1000);
+		//启动计时器
+		send_sms_second = 60;
+		timer();
 	});
 });
+
+function timer()
+{
+	if(send_sms_timer != "undefined")
+		clearInterval(send_sms_timer);
+	//计时器
+	send_sms_timer = setInterval(function(){
+		send_sms_second -= 1;
+		if(send_sms_second < 1)
+		{
+			send_sms_visible = true;
+			send_sms_second = 60;
+			$(".send_sms_btn").val("发送验证码到手机");	
+			clearInterval(send_sms_timer);
+		}
+		else
+		{
+			$(".send_sms_btn").val(send_sms_second+"秒后可重新发送");	
+		}
+	}, 1000);
+}

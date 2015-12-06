@@ -1,0 +1,19 @@
+.header{background-color: #666666;}
+body{background-color: #F5F5F5;}
+.error{color: red;}
+
+.body_context{width: 1000px; border: solid 1px #DDDDDD; margin: 30px auto auto auto; background-color: #F4FBFF;}
+.body_context .form{width: 675px; margin: 30px auto 50px auto;}
+.body_context .form .form_title{ margin: auto; margin: auto auto 30px auto; border-bottom: solid 1px #cdcfd1; padding-bottom: 5px; }
+.body_context .form .form_title p{font-size: 30px; font-weight: bold; margin-left: 150px; display: inline-block;}
+.body_context .form .form_title .login_link{margin: 35px 0px auto auto; float: right;}
+.body_context .form .form_body .field{margin: 20px auto 10px auto;}
+.body_context .form .form_body .field label{font-size: 16px; color: #666666; }
+.body_context .form .form_body .field input{border: solid 1px #c8c8c8; width: 234px; height: 33px; margin-left: 10px;}
+.body_context .form .form_body .field .send_sms_btn{width: 150px; color: #2cc378;}
+.body_context .form .form_body .btns .alert-danger{margin-left: 106px; color: red;}
+.body_context .form .form_body .btns .submit_btn{width: 111px; height: 33px; background: url(/images/register_submit_btn.png); border: none; margin:20px auto auto 92px; color: white; font-weight: bold; }
+.body_context .form .form_body .btns .login_link{vertical-align: bottom}
+.body_context .form .form_body .service{margin: 20px auto 10px 92px; color: #666666;}
+.body_context .form .form_body .service label{vertical-align: sub;}
+.body_context .form .form_body .service a{vertical-align: sub;}

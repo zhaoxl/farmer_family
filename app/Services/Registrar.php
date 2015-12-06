@@ -15,13 +15,20 @@ class Registrar implements RegistrarContract {
 	 */
 	public function validator(array $data)
 	{
+		Validator::extend('check_code', function($field,$value,$parameters){
+			return \App\SendSms::checkSmsCode($value);
+		});
+		
 		return Validator::make($data, [
-			'name' => 'required|max:255',
 			'mobile' => 'required|max:11|unique:users',
-			'email' => 'required|email|max:255|unique:users',
-			'idcard' => 'min:18|max:18',
 			'password' => 'required|confirmed|min:6',
-			'captcha' => 'required|captcha',
+			'check_code' => 'required|min:4|check_code',
+		],[
+			'required' => ':attribute不能为空',
+			'unique' => ':attribute已经存在',
+			'mobile.unique' => '手机号已经存在',
+			'confirmed' => '两次密码输入不一致',
+			'check_code' => '验证码错误',
 		]);
 	}
 
@@ -34,26 +41,8 @@ class Registrar implements RegistrarContract {
 	public function create(array $data)
 	{
 		return \App\User::create([
-			'category' => $data['category'],
-			'name' => $data['name'],
 			'mobile' => $data['mobile'],
-			'email' => $data['email'],
-			'password' => bcrypt($data['password']),
-			'hometown' => isset($data['hometown']) ? $data['hometown'] : null,
-			'expect_salary' => isset($data['expect_salary']) ? $data['expect_salary'] : null,
-			'gender' => isset($data['gender']) ? $data['gender'] : null,
-			'province' => $data['area_province'],
-			'city' => isset($data['area_city']) ? $data['area_city'] : null,
-			'street' => isset($data['area_street']) ? $data['area_street'] : null,
-			'area_name' => isset($data['area_name']) ? $data['area_name'] : null,
-			'idcard' => isset($data['idcard']) ? $data['idcard'] : null,
-			'qq' => $data['qq'],
-			'weixin' => $data['weixin'],
-			'public_mobile' => isset($data['public_mobile']),
-			'public_qq' => isset($data['public_qq']),
-			'public_weixin' => isset($data['public_weixin']),
-			'public_email' => isset($data['public_email']),
-			'birthday' => isset($data['birthday']) ? $data['birthday'] : null,
+			'password' => bcrypt($data['password'])
 		]);
 	}
 
