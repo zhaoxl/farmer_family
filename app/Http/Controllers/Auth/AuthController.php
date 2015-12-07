@@ -169,13 +169,15 @@ class AuthController extends Controller {
 		  $arr=array_unique($arr);
 		}
 		$check_code = implode("", $arr);
-		if(\App\SendSms::SendSms(\Session::getId(), $mobile, $check_code))
+		$content = "验证码：".$check_code."【猫眼360】";
+		$result = \App\SendSms::SendSms(\Session::getId(), $mobile, $content);
+		if($result == true)
 		{
-			return $check_code;
+			return "success";
 		}
 		else
 		{
-			return "error";
+			return $result;
 		}
 		
 		

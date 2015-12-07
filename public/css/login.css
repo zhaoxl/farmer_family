@@ -1,11 +1,17 @@
 body{background-color: #96d8ca;}
-.content_body{background: url("/images/login_banner_bg.jpg") no-repeat scroll left top; width: 1030px; height: 477px; margin: auto auto 180px auto;}
+.content_body{background: url("/images/login_banner_bg.jpg") no-repeat scroll left top; width: 1030px; height: 477px; margin: auto auto 180px auto; color: #5c5c5c;}
+.content_body a{color: #5c5c5c;}
 .content_body .form{width: 407px; height: 413px; background-color: white; margin: 50px 0 auto auto; padding: 3px; float: right;}
 .content_body .form .form_body{width: 401px; height: 407px; border: solid 4px #dedede;}
 .content_body .form .form_body .title{font-size: 30px; display: table; margin: 13px auto 27px auto;}
+.content_body .form .form_body .notices{margin: auto auto -10px 100px; color: red;}
 .content_body .form .form_body .inputs{width: 350px; margin-left: 53px;}
 .content_body .form .form_body .inputs .field{}
-.content_body .form .form_body .inputs .field label{color: #666666; width: 70px; display: inline-block;}
-.content_body .form .form_body .inputs .field input{width: 220px; height: 38px; border: solid 1px #dddddd; margin:  20px auto auto 9px;}
-.content_body .form .form_body .remember{margin: 30px auto auto  136px;}
-.content_body .form .form_body .login{}
+.content_body .form .form_body .inputs .field label{color: #666666; width: 45px; display: inline-block;}
+.content_body .form .form_body .inputs .field input{width: 220px; height: 38px; border: solid 1px #dddddd; margin:  20px auto auto 0px;}
+.content_body .form .form_body .remember{margin: 20px auto auto 100px; display: inline-block;}
+.content_body .form .form_body .remember input{margin-right: 2px;}
+.content_body .form .form_body .forget{display: inline-block; margin-left: 60px;}
+.content_body .form .form_body .btns{margin: 20px auto auto 100px;}
+.content_body .form .form_body .btns input{background: url('/images/login_submit.jpg'); width: 71px; height: 33px; border: none;}
+.content_body .form .form_body .reg_link{display: block; color: blue; margin: 65px auto auto 165px;}

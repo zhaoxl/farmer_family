@@ -14,11 +14,11 @@
 			<div class="form_body">
 				<div class="field">
 					<label>手　机　号</label>
-					<input type="text" id="v_mobile" name="mobile" data-rule-required="true" data-msg-required="请输入手机号" maxlength="11" /><input type="button" class="send_sms_btn" value="发送验证码到手机" />
+					<input type="text" id="v_mobile" name="mobile" data-rule-required="true" data-msg-required="请输入手机号" maxlength="11" /><input type="button" class="send_sms_btn" value="发送验证码到手机" /><label id="send_sms_result_label" style="color: red"></label>
 				</div>
 				<div class="field">
 					<label>验　证　码</label>
-					<input type="text" id="sms_code" name="check_code" data-rule-required="true" data-msg-required="请输入验证码" maxlength="4"/>
+					<input type="text" id="sms_code" name="check_code" data-rule-required="true" data-msg-required="请输入验证码" maxlength="5"/>
 				</div>
 				<div class="field">
 					<label>密　　　码</label>

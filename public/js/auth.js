@@ -45,11 +45,10 @@ $(function(){
       url: '/auth/send-sms',
 			data: {'mobile': mobile, '_token': token},
       success: function(result) {
-				if(result != "error")
+				if(result == "error")
 				{
-					$("#sms_code").val(result);
+					$("#send_sms_result_label").html("发送失败，请稍后再试");
 				}
-				console.log('sms sent:' + result);
       }
     });
 		//启动计时器
