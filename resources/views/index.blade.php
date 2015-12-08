@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>农民之家</title>
+	<title>猫眼360</title>
 	<link href="{{ asset('/css/base.css') }}" rel="stylesheet">
 	<link href="{{ asset('/css/index.css') }}" rel="stylesheet">
 </head>
@@ -121,7 +121,7 @@
 		</div>
 		<div class="footer">
 			<div class="desc">
-				找活雇人网络服务平台
+				{{$settings['footer']}}
 			</div>
 			<div class="context">
 				版权所有 {{$settings['site_name']}}&nbsp;&nbsp;&nbsp;&nbsp;地址：{{$settings['address']}}&nbsp;&nbsp;&nbsp;&nbsp;服务热线：{{$settings['telphone']}}&nbsp;&nbsp;&nbsp;&nbsp;邮箱：{{$settings['email']}}

@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>农民之家</title>
+		<title>猫眼360</title>
 
 		<link href="{{ asset('/css/base.css') }}" rel="stylesheet">
 	</head>
@@ -73,7 +73,7 @@
 
 		</div>
 		<div class="footer">
-			版权所有 农民之家 邮箱：12345@163.com  ICP备 938398501-4
+			版权所有 猫眼360 邮箱：12345@163.com  ICP备 938398501-4
 		</div>
 	</body>
 </html>

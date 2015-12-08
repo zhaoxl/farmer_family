@@ -9,7 +9,7 @@
 		<div class="form">
 			<div class="form_title">
 				<p>用户注册</p>
-				<span class="login_link">已有账号？<a href="/auth/login">去登陆</a></span>
+				<span class="login_link">已有账号？<a href="/auth/login">去登录</a></span>
 			</div>
 			<div class="form_body">
 				<div class="field">
@@ -30,7 +30,7 @@
 				</div>
 				<p class="service">
 					<label><input type="checkbox" name="allow_service"  data-rule-required="true" /> 我已阅读并同意</label>
-					<a href="#">《服务协议》</a>
+					<a href="/auth/services-agreement/" target="services">《服务协议》</a>
 				</p>
 				<div class="btns">
 					@if (count($errors) > 0)
@@ -43,7 +43,7 @@
 						</div>
 					@endif
 					<input type="submit" class="submit_btn" value="确定" />
-					<span class="login_link">已有账号？<a href="/auth/login">去登陆</a></span>
+					<span class="login_link">已有账号？<a href="/auth/login">去登录</a></span>
 				</div>
 			</div>
 		</div>
