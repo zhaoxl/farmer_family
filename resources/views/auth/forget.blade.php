@@ -5,18 +5,19 @@
   
 @section('content')
 	<link href="{{ asset('/css/forget.css') }}" rel="stylesheet">
+	<input type="hidden" id="send_sms_second" value="{{$send_sms_second}}">
 	<form id="forget_form" action="{{ url('/auth/forget') }}" method="post">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<div class="form">
 			<div class="row">
 				<div class="title">
-					已注册手机号：
+					注册手机号：
 				</div>
 				<div class="field mobile">
-					<input type="text" name="mobile" class="" />
+					<input type="text" id="v_mobile" name="mobile" class="" data-rule-required="true" data-msg-required="请输入手机号" maxlength="11" />
 				</div>
 				<div class="send_sms">
-					<input type="button" class="send_sms_btn" value="发送验证码到手机" />
+					<input type="button" class="send_sms_btn" value="发送验证码到手机" /><label id="send_sms_result_label" style="color: red"></label>
 				</div>
 			</div>
 			<div class="row">
@@ -24,7 +25,7 @@
 					验证码：
 				</div>
 				<div class="field">
-					<input type="text" name="captcha" />
+					<input type="text" id="sms_code" name="check_code" data-rule-required="true" data-msg-required="请输入验证码" maxlength="5"/>
 				</div>
 			</div>
 			<div class="row">
@@ -32,7 +33,7 @@
 					设置新密码：
 				</div>
 				<div class="field">
-					<input type="password" name="password" id="password" />
+					<input type="password" id="password" name="password" data-rule-required="true" data-msg-required="请输入密码" maxlength="20" />
 				</div>
 			</div>
 			<div class="row">
@@ -40,61 +41,52 @@
 					确认新密码：
 				</div>
 				<div class="field">
-					<input type="password" name="password_confirmation" />
+					<input type="password" name="password_confirmation" data-rule-required="true" data-msg-required="请输入确认密码" maxlength="20" data-rule-equalto="#password" data-msg-equalto="两次密码输入不一致" />
 				</div>
 			</div>
 		</div>
+		@if (count($errors) > 0)
+			<div class="alert alert-danger">
+				<ul>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
 		<div class="submit">
 			<input type="submit" value="下一步" />
 		</div>
 	</form>
 	
 	<script type="text/javascript" src="{{ asset('/js/jquery.validate.min.js') }}" ></script>
-	<script>
-		  var validate = $("#forget_form").validate({
-	                debug: true, //调试模式取消submit的默认提交功能   
-	                //errorClass: "label.error", //默认为错误的样式类为：error   
-	                focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
-	                onkeyup: false,   
-	                submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
-	                	form.submit();   //提交表单   
-	                },   
-	                rules:{
-										mobile:{
-										  required:true,
-										  phone:true
-										},
-										password:{
-											required:true,
-											rangelength:[3,10]
-										},
-										password_confirmation:{
-											equalTo:"#password"
-										},
-										captcha:{
-											required: true
-										}
-	                },
-	                messages:{
-							      mobile:{
-							      	required:"必填项",
-							      	phone:'请输入正确的电话号码'
-							      },
-									 password:{
-									   required: "必填项"
-									 },
-									 password_confirmation:{
-									   equalTo: "两次密码输入不一致"
-									 },
-									 captcha:{
-									   required: "必填项"
-									 }
-	               }
-	            });    
-	    jQuery.validator.addMethod("phone", function(value, element) {
-	    var length = value.length;
-	    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/
-	    return this.optional(element) || (length == 11 && mobile.test(value));
-	}, "手机号码格式错误");  
+	<script type="text/javascript" src="{{ asset('/js/auth.js') }}" ></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#forget_form").submit(function(){
+
+		}).validate({
+    	debug: false,
+			onsubmit: true, 
+			success:function(label, element){
+				if ($(element).is(":checkbox"))
+				{
+					$(element).parent().css("color", "black");
+				}
+			},
+			errorPlacement: function(error, element) {
+				$("#forget_form input.error").each(function() {
+					if ($(element).is(":checkbox"))
+					{
+						$(element).parent().css("color", "red");
+					}
+					else
+					{
+						$(element).attr("placeholder", $(error).html());
+					}
+				});
+			}
+    });
+	});
 	</script>
 @endsection

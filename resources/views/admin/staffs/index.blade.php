@@ -4,7 +4,16 @@
   <div class="pageheader">
     <h2><i class="fa fa-envelope"></i> 发布信息管理 <span>找活信息</span></h2>
   </div>
-  
+	<div class="panel-body" style="padding-bottom: 0px">
+    <form id="form1" class="form-inline">
+      <div class="form-group">
+        <label for="exampleInputEmail2" class="sr-only">标题</label>
+        <input type="text" placeholder="标题" name="title" id="exampleInputEmail2" class="form-control" value="{{Request::input('title')}}" />
+      </div>
+      <button class="btn btn-primary" type="submit">搜索</button>
+      <button class="btn btn-default" type="submit" id="export_excel_btn" name="excel" value="excel">导出Excel</button>
+    </form>
+  </div>
   <div class="contentpanel">
 		<div class="row">
 			<div class="col-md-13">

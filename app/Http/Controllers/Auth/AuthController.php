@@ -143,13 +143,43 @@ class AuthController extends Controller {
 	#忘记密码
 	public function getForget()
 	{
-		return view('auth.forget');
+		$send_sms_second = \App\SendSms::SmsSecond(\Session::getId());
+		return view('auth.forget')->with('send_sms_second', $send_sms_second);
 	}
 	
 	#忘记密码
-	public function postForget()
+	public function postForget(Request $request)
 	{
-		return view('auth.forget');
+		$mobile = $request['mobile'];
+		$check_code = $request['check_code'];
+		$new_pwd = $request['password'];
+		
+		if(is_null($mobile))
+		{
+			return redirect()->back()->withErrors(['mobile' => '手机号不能为空']);
+		}
+		if(is_null($check_code))
+		{
+			return redirect()->back()->withErrors(['check_code' => '验证码不能为空']);
+		}
+		if(!\App\SendSms::checkSmsCode($check_code))
+		{
+			return redirect()->back()->withErrors(['check_code' => '验证码错误']);
+		}
+		if(is_null($new_pwd))
+		{
+			return redirect()->back()->withErrors(['password' => '密码不能为空']);
+		}
+			
+		$user = \App\User::where('mobile', '=', $mobile)->first();
+		if(is_null($user))
+		{
+			return redirect()->back()->withErrors(['user' => '用户不存在']);
+		}
+		$user->password = \Hash::make($new_pwd);
+		$user->save();
+		
+		return redirect('/auth/login');
 	}
 	
 	#服务条款
@@ -169,8 +199,7 @@ class AuthController extends Controller {
 		  $arr=array_unique($arr);
 		}
 		$check_code = implode("", $arr);
-		$content = "验证码：".$check_code."【猫眼360】";
-		$result = \App\SendSms::SendSms(\Session::getId(), $mobile, $content);
+		$result = \App\SendSms::SendCheckCodeSms(\Session::getId(), $mobile, $check_code);
 		if($result == true)
 		{
 			return "success";

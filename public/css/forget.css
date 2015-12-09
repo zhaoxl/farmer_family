@@ -30,3 +30,4 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 .body_context .submit{width: 100%; margin: auto auto auto 196px; width: 384px;}
 .body_context .submit input{width: 384px; height: 66px; line-height: 66px; color: white; margin: 10px auto 100px auto; text-align: center; background: #42D88D; border: none;}
 .error{color: red;}
+.alert-danger{color: red; margin-left: 207px; }

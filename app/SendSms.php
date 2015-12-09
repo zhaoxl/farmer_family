@@ -26,7 +26,21 @@ class SendSms extends Model {
 		}
 	}
 	
-	public static function SendSms($session_id, $mobile, $content)
+	public static function SendCheckCodeSms($session_id, $mobile, $check_code)
+	{
+		$content = "验证码：".$check_code."【猫眼360】";
+		$result = SendSms::SendSms($session_id, $mobile, $content);
+		if($result == true)
+		{
+			SendSms::create(["session_id" => $session_id, 'mobile' => $mobile, "content" => $content]);
+		}
+		else
+		{
+			return $result;
+		}
+	}
+	
+	public static function SendSms($session_id, $mobile, $check_code)
 	{
 		if(SendSms::SmsSecond($session_id) > 1)
 		{
@@ -89,7 +103,6 @@ class SendSms extends Model {
 			return $line;
 		}
 		
-		SendSms::create(["session_id" => $session_id, 'mobile' => $mobile, "content" => $content]);
 		return true;
 	}
 	

@@ -37,7 +37,9 @@ class WorksController extends BaseController {
 						$date = null;
 						if(isset($data->start_at) || isset($data->end_at))
 						{
-							$date = date('Y-m-d', strtotime($data->end_at));
+							$date = date('Y-m-d', strtotime($data->start_at));
+							$date .= " - ";
+							$date .= date('Y-m-d', strtotime($data->end_at));
 						}
 						else
 						{
