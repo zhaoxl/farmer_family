@@ -4,7 +4,15 @@
   <div class="pageheader">
     <h2><i class="fa fa-envelope"></i> 用户 <span>所有用户</span></h2>
   </div>
-  
+	<div class="panel-body" style="padding-bottom: 0px">
+    <form id="form1" class="form-inline">
+      <div class="form-group">
+        <label for="exampleInputEmail2" class="sr-only">手机号</label>
+        <input type="text" placeholder="手机号" name="mobile" id="exampleInputEmail2" class="form-control" value="{{Request::input('mobile')}}" />
+      </div>
+      <button class="btn btn-primary" type="submit">搜索</button>
+    </form>
+  </div>
   <div class="contentpanel">
 		<div class="row">
 			<div class="col-md-13">
@@ -15,7 +23,6 @@
 		            <tr>
 		              <th>#</th>
 		              <th>用户类型</th>
-		              <th>邮箱</th>
 		              <th>姓名</th>
 		              <th>手机号</th>
 		              <th>QQ</th>
@@ -33,7 +40,6 @@
 		            <tr>
 		              <td>{{$data->id}}</td>
 		              <td>{{$data->categoryName()}}</td>
-		              <td>{{$data->email}}</td>
 		              <td>{{$data->name}}</td>
 		              <td>{{$data->mobile}}</td>
 									<td>{{$data->qq}}</td>

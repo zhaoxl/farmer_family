@@ -30,6 +30,13 @@
 											</div>
             
 					            <div class="form-group">
+											  <label for="disabledinput" class="col-sm-3 control-label">密码</label>
+											  <div class="col-sm-6">
+													<input type="text" class="form-control" placeholder="密码" name="password" />
+											  </div>
+											</div>
+            
+					            <div class="form-group">
 											  <label for="disabledinput" class="col-sm-3 control-label">姓名</label>
 											  <div class="col-sm-6">
 												 <input type="text" class="form-control" placeholder="姓名" name="name" value="{{$data->name}}">

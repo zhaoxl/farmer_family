@@ -12,10 +12,15 @@ class UsersController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		$datas = \App\User::orderBy('created_at', 'desc')->paginate(11);
-		return view('admin.users.index')->with('datas', $datas);
+		$datas = \App\User::orderBy('created_at', 'desc');
+		if(!is_null($request['mobile'])){
+			$datas = $datas->where("mobile", 'LIKE', '%'.$request['mobile'].'%');
+		}
+		
+		
+		return view('admin.users.index')->with('datas', $datas->paginate(11));
 	}
 	
 	public function company_users()
@@ -186,6 +191,11 @@ class UsersController extends BaseController {
 		$user->weixin = $request['weixin'];
 		$user->expect_salary = $request['expect_salary'];
 		$user->gender = $request['gender'];
+		$new_pwd = $request['password'];
+		if(!is_null($new_pwd))
+		{
+			$user->password = \Hash::make($new_pwd);
+		}
 		$user->save();
 			
 		#$user->work_categories->delete();
