@@ -111,17 +111,21 @@
 	  	debug: false, //调试模式取消submit的默认提交功能   
 	    //errorClass: "label.error", //默认为错误的样式类为：error   
 	    focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
-	    onkeyup: false,   
+	    onkeyup: false,
 	    submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
 	    	form.submit();   //提交表单   
 	    },   
 			errorPlacement: function(error, element) {
-				if(element.is("select"))
-				{
-					element.parent().after(error);
-				}
-				else
-					element.after(error);
+				$("#create_form input.error").each(function() {
+					if ($(element).is(":checkbox"))
+					{
+						$(element).parent().css("color", "red");
+					}
+					else
+					{
+						$(element).attr("placeholder", $(error).html());
+					}
+				});
 			},          
       rules:{
 				title:{
@@ -142,10 +146,10 @@
       },
       messages:{
 	      title:{
-	      	required: "必填项"
+	      	required: "请输入标题"
 	      },
 				address:{
-					required: "必填项"
+					required: "请输入详细地址"
 				}
      	}
   	});    
