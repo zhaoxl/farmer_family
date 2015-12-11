@@ -16,14 +16,14 @@
 		@yield('content')
 	</div>
 	<div class="footer">
-		版权所有
+		
 <?php 
 	$settings = array();
 	$system_settings = \App\SystemSetting::get();
 	$system_settings->each(function($setting) use (&$settings){
 		$settings[$setting->key] = $setting->val;
 	});
-?> {{$settings['site_name']}}&nbsp;&nbsp;&nbsp;&nbsp;地址：{{$settings['address']}}&nbsp;&nbsp;&nbsp;&nbsp;服务热线：{{$settings['telphone']}}&nbsp;&nbsp;&nbsp;&nbsp;邮箱：{{$settings['email']}}
+?> {{$settings['site_name']}}&nbsp;&nbsp;&nbsp;&nbsp;地址：{{$settings['address']}}&nbsp;&nbsp;&nbsp;&nbsp;联系电话：{{$settings['telphone']}}&nbsp;&nbsp;&nbsp;&nbsp;邮箱：{{$settings['email']}}
 	</div>
 </body>
 </html>

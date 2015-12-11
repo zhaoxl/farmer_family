@@ -28,7 +28,7 @@ class SendSms extends Model {
 	
 	public static function SendCheckCodeSms($session_id, $mobile, $check_code)
 	{
-		$content = "验证码：".$check_code."【猫眼360】";
+		$content = "尊敬的用户您好！您本次的验证码为：".$check_code."，1小时内有效【猫眼360】";
 		$result = SendSms::SendSms($session_id, $mobile, $content);
 		if($result == true)
 		{
@@ -108,7 +108,7 @@ class SendSms extends Model {
 	
 	public static function checkSmsCode($check_code)
 	{
-		if(!is_null(SendSms::where('content', '=', $check_code)->where(\DB::raw("TIMESTAMPDIFF(SECOND, created_at, '".date("y-m-d h:i:s")."')"), '<', '60')->first()))
+		if(!is_null(SendSms::where('content', '=', $check_code)->where(\DB::raw("TIMESTAMPDIFF(SECOND, created_at, '".date("y-m-d h:i:s")."')"), '<', '3600')->first()))
 		{
 			return true;
 		}
