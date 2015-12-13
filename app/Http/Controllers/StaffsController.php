@@ -141,4 +141,13 @@ class StaffsController extends Controller {
 		\App\StaffEvaluate::create(['user_id' => $user_id, 'staff_id' => $request['id'], 'star' => $star, 'content' => $request['content'], 'ip' => $ip]);
 		return "1";
 	}
+	
+	public function edit($id)
+	{
+		$staff = \App\Staff::find($id);
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$work_categories = \App\WorkCategory::orderBy("sort")->get();
+		
+		return view('staffs.edit')->with('staff', $staff)->with('area_provinces', $area_provinces)->with('work_categories', $work_categories);
+	}
 }

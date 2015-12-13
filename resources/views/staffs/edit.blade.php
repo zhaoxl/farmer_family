@@ -15,7 +15,7 @@
 						<p class="require">*</p>标题：
 					</div>
 					<div class="input">
-						<input type="text" name="title" class="text address_text" />
+						<input type="text" name="title" class="text address_text" value="{{$staff->title}}" />
 					</div>
 				</div>
 				<div class="row">
@@ -25,7 +25,7 @@
 					<div class="input">
 						<select name="work_category"class="form-control">
 							@foreach ($work_categories as $work_category)
-								<option value="{{ $work_category->id }}">{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
+								<option value="{{ $work_category->id }}" {{$staff->work_category_id == $work_category->id ? 'selected' : ''}}>{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -50,7 +50,7 @@
 						<p class="require">*</p>详细地址：
 					</div>
 					<div class="input">
-						<input type="text" name="address" class="text address_text" />
+						<input type="text" name="address" class="text address_text" value="{{$staff->address}}" />
 					</div>
 				</div>
 				<div class="row">
@@ -58,7 +58,7 @@
 						联系人：
 					</div>
 					<div class="input">
-						<input type="text" name="contacts" class="text address_text" value="{{$contacts}}" />
+						<input type="text" name="contacts" class="text address_text" value="{{$staff->contacts}}" />
 					</div>
 				</div>
 				<div class="row">
@@ -66,7 +66,7 @@
 						联系方式：
 					</div>
 					<div class="input">
-						<input type="text" name="mobile" class="text address_text" value="{{$mobile}}" />
+						<input type="text" name="mobile" class="text address_text" value="{{$staff->mobile}}" />
 					</div>
 				</div>
 				<div class="row">
@@ -75,9 +75,9 @@
 					</div>
 					<div class="input">
 						<label>从</label>
-						<input type="text" name="start_at" id="start_at" class="text" />
+						<input type="text" name="start_at" id="start_at" class="text" value="{{$staff->start_at}}" />
 						<label>到</label>
-						<input type="text" name="end_at" id="end_at" class="text" />
+						<input type="text" name="end_at" id="end_at" class="text" value="{{$staff->end_at}}" />
 					</div>
 					<div class="notice">
 						* 请在日历表上点击选择所有您空闲可以接活的日期，选择完后必须点”保存“才可以保存您的空闲日期记录
@@ -94,7 +94,7 @@
 							</ul>
 						</div>
 					@endif
-					<input type="submit" class="next_btn" value="下一步" />
+					<input type="submit" class="next_btn" value="保存修改" />
 				</div>
 			</div>
 		</form>

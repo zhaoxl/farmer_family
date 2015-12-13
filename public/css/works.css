@@ -122,9 +122,9 @@ body{width: 100%; margin: auto auto; background-color: #F5F5F5;}
 .body_context .right .show .attrs .evaluate a{color: #42D88D; }
 .body_context .right .show .descs{margin-top: 40px;}
 .body_context .right .show .descs .title{color: #0acf6c; font-size: 18px; margin: 10px auto 10px auto; line-height: 42px; width: 100%; border-bottom: solid 1px #dddddd;}
-.body_context .right .show .descs .desc_ul{width: 60%; list-style: none; float: left;}
-.body_context .right .show .descs .desc_ul li{width: 200px; line-height: 40px; float: left;}
-.body_context .right .show .descs .photo{width: 40%; float: right;}
+.body_context .right .show .descs .desc_ul{width: 65%; list-style: none; float: left;}
+.body_context .right .show .descs .desc_ul li{width: 230px; line-height: 40px; float: left;}
+.body_context .right .show .descs .photo{width: 35%; float: right;}
 .body_context .right .show .descs .photo img{width: 100%; height: 100%;}
 .body_context #create_form .require{color: red; display: inline-table; height: 16px; line-height: 16px; text-align: center; width: 15px;}
 .body_context #create_form label.error{color: red; display: table; margin-left: 154px;}

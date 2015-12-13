@@ -10,9 +10,12 @@
 		@foreach($staffs as $staff)
 		<tr>
 			<td width="30%" align="center"  class="time">{{date('Y-m-d', strtotime($staff->created_at))}}</td>
-			<td width="50%">{{ $staff->title }}</td>
-			<td width="15%" align="center"><a href="/staffs/{{$staff->id}}" class="more">查看详情>></a></td>
-			<td width="5%"><a href="#" onclick="delete_staff({{$staff->id}})"><img src="/images/delete_icon.jpg"></a></td>
+			<td width="45%">{{ $staff->title }}</td>
+			<td width="30%" align="right">
+				<a href="/staffs/{{$staff->id}}" class="more">查看详情</a>
+				<a href="/staffs/{{$staff->id}}/edit" class="more">修改</a>
+				<a href="#" onclick="delete_staff({{$staff->id}})"><img src="/images/delete_icon.jpg"></a>
+			</td>
 		</tr>
 		@endforeach
 	</table>

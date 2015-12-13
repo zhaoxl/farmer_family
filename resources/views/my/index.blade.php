@@ -59,8 +59,8 @@
 						<input type="text" class="form-control " name="weixin" id=""  placeholder="微信" value="{{$user->weixin}}" />
 					</div>
 					<div class="form-group text_input_box">
-						<label for="mboile_verification">emial:</label>
-						<input type="text" class="form-control "  name="email" id=""  placeholder="emial" value="{{$user->email}}" />
+						<label for="mboile_verification">email:</label>
+						<input type="text" class="form-control "  name="email" id=""  placeholder="email" value="{{$user->email}}" />
 					</div>
 				</td>
 			</tr>

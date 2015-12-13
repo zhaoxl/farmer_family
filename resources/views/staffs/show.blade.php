@@ -45,10 +45,10 @@
 						期望工作区域：{{$staff->area_name}}
 					</li>
 					<li>
-						服务类型：{{$staff->work_category_name}}
+						服务行业：
 					</li>
 					<li>
-						工种：收割、耕种、挖掘
+						工种：{{$staff->workCategoryName()}}
 					</li>
 					<li>
 						年龄：{{$staff->age}}

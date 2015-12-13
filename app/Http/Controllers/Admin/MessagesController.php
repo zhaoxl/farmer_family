@@ -57,7 +57,8 @@ class MessagesController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$data = \App\Message::find($id);
+		return view('admin.messages.edit')->with('data', $data);
 	}
 
 	/**
@@ -66,9 +67,15 @@ class MessagesController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$data = \App\Message::find($id);
+		$data->title = $request['title'];
+		$data->content = $request['content'];
+		$data->save();
+		
+		$request->session()->flash('success', '保存成功');
+		return redirect("/admin/messages");
 	}
 
 	/**
@@ -79,7 +86,7 @@ class MessagesController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		\App\Message::destroy($id);
 	}
 
 }

@@ -202,3 +202,5 @@ window.setTimeout(function() {
 @yield('js')
 </body>
 </html>
+
+<!-- http://themepixels.com/demo/webpage/bracket/buttons.html -->

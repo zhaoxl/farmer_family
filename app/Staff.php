@@ -12,6 +12,11 @@ class Staff extends Model {
 		return $this->belongsTo('\App\User');
 	}
 	
+	public function workCategory()
+	{
+		return $this->belongsTo('\App\WorkCategory');
+	}
+	
 	public function isTop(){
 		return $this->getAttribute('is_top') ? '<span style="color: red">是</span>' : '否';
 	}
@@ -19,6 +24,15 @@ class Staff extends Model {
 	public function starCount()
 	{
 		return \App\StaffEvaluate::where('staff_id', '=', $this->id)->avg('star');
+	}
+	
+	public function workCategoryName()
+	{
+		$category = $this->workCategory;
+		if(!is_null($category))
+		{
+			return $category->name;
+		}
 	}
 
 }

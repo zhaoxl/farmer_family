@@ -42,8 +42,25 @@ class IndexController extends BaseController {
 	
 	public function postDeleteStaff(Request $request)
 	{
+		$user = \Auth::user()->get();
 		$id = $request['delete_staff_id'];
-		\App\Staff::destroy($id);
+		$staff = \App\Staff::where('user_id', '=', $user->id)->where('id', '=', $id)->first();
+		if(!is_null($staff))
+		{
+			$staff->destroy($id);
+		}
+		return redirect()->back();
+	}
+	
+	public function postDeleteWork(Request $request)
+	{
+		$user = \Auth::user()->get();
+		$id = $request['delete_staff_id'];
+		$staff = \App\Work::where('user_id', '=', $user->id)->where('id', '=', $id)->first();
+		if(!is_null($staff))
+		{
+			$staff->destroy($id);
+		}
 		return redirect()->back();
 	}
 	
