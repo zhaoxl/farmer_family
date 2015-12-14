@@ -6,9 +6,10 @@
 	<link href="{{ asset('/js/jquery-ui/jquery-ui.css') }}" rel="stylesheet">
 	<script type="text/javascript" src="{{ asset('/js/jquery-ui/jquery-ui.js') }}"></script>
 	<div class="body_content">
-		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/staffs') }}">
+		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/staffs/'.$staff->id) }}">
 			<input type="hidden" name="area_name" id="area_name" />
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<input type="hidden" name="_method" value="PUT">
 			<div class="new_staff">
 				<div class="row">
 					<div class="title">
@@ -38,11 +39,23 @@
 						<select name="area_province" id="area_province" class="form-control">
 							<option value="">请选择地区</option>
 							@foreach ($area_provinces as $province)
-								<option value="{{ $province->code }}">{{ $province->name }}</option>
+								<option value="{{ $province->code }}" {{$staff->province == $province->code ? 'selected' : ''}}>{{ $province->name }}</option>
 							@endforeach
 						</select>
-						<select name="area_city" id="area_city" class="form-control" style="display: none"></select>
-						<select name="area_street" id="area_street" class="form-control" style="display: none"></select>
+						<select name="area_city" id="area_city" class="form-control" style="{{isset($area_cities) ? '' : 'display: none'}}">
+							@if(isset($area_cities))
+								@foreach ($area_cities as $city)
+									<option value="{{ $city->code }}" {{$staff->city == $city->code ? 'selected' : ''}}>{{ $city->name }}</option>
+								@endforeach
+							@endif
+						</select>
+						<select name="area_street" id="area_street" class="form-control" style="{{isset($area_streets) ? '' : 'display: none'}}">
+							@if(isset($area_streets))
+								@foreach ($area_streets as $street)
+									<option value="{{ $street->code }}" {{$staff->street == $street->code ? 'selected' : ''}}>{{ $street->name }}</option>
+								@endforeach
+							@endif
+						</select>
 					</div>
 				</div>
 				<div class="row">
