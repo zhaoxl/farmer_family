@@ -6,16 +6,17 @@
 	<link href="{{ asset('/js/jquery-ui/jquery-ui.css') }}" rel="stylesheet">
 	<script type="text/javascript" src="{{ asset('/js/jquery-ui/jquery-ui.js') }}"></script>
 	<div class="body_content">
-		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/works') }}">
+		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/works/'.$work->id) }}">
 			<input type="hidden" name="area_name" id="area_name" />
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+				<input type="hidden" name="_method" value="PUT">
 			<div class="new_work">
 				<div class="row">
 					<div class="title">
 						<p class="require">*</p>标题：
 					</div>
 					<div class="input">
-						<input type="text" name="title" class="text address_text" />
+						<input type="text" name="title" class="text address_text" value="{{$work->title}}" />
 						<span class="error">
 							{{(count($errors) > 0 && $errors->default->has('title')) ? $errors->default->get('title')[0] : ''}}
 						</span>
@@ -29,7 +30,7 @@
 						<select name="industry" id="industry" class="form-control">
 							<option value="">请选择行业</option>
 							@foreach ($industries as $industry)
-								<option value="{{ $industry->id }},{{$industry->full_name}}">{{ $industry->full_name }}</option>
+								<option value="{{$industry->id}}" {{$work->industry_id == $industry->id ? 'selected' : ''}}>{{ $industry->full_name }}</option>
 							@endforeach
 						</select>
 						<span class="error">
@@ -45,7 +46,7 @@
 						<select name="work_category" id="work_category" class="form-control">
 							<option value="">请选择工种</option>
 							@foreach ($work_categories as $work_category)
-								<option value="{{ $work_category->id }}">{{ $work_category->full_name }}</option>
+								<option value="{{ $work_category->id }}" {{$work->work_category_id == $work_category->id ? 'selected' : ''}}>{{ $work_category->full_name }}</option>
 							@endforeach
 						</select>
 					</div>
@@ -58,11 +59,23 @@
 						<select name="area_province" id="area_province" class="form-control">
 							<option value="">请选择地区</option>
 							@foreach ($area_provinces as $province)
-								<option value="{{ $province->code }}">{{ $province->name }}</option>
+								<option value="{{ $province->code }}" {{$work->province == $province->code ? 'selected' : ''}}>{{ $province->name }}</option>
 							@endforeach
 						</select>
-						<select name="area_city" id="area_city" class="form-control" style="display: none"></select>
-						<select name="area_street" id="area_street" class="form-control" style="display: none"></select>
+						<select name="area_city" id="area_city" class="form-control" style="{{isset($area_cities) ? '' : 'display: none'}}">
+							@if(isset($area_cities))
+								@foreach ($area_cities as $city)
+									<option value="{{ $city->code }}" {{$work->city == $city->code ? 'selected' : ''}}>{{ $city->name }}</option>
+								@endforeach
+							@endif
+						</select>
+						<select name="area_street" id="area_street" class="form-control" style="{{isset($area_streets) ? '' : 'display: none'}}">
+							@if(isset($area_streets))
+								@foreach ($area_streets as $street)
+									<option value="{{ $street->code }}" {{$work->street == $street->code ? 'selected' : ''}}>{{ $street->name }}</option>
+								@endforeach
+							@endif
+						</select>
 						<span class="error">
 							{{(count($errors) > 0 && $errors->default->has('area')) ? $errors->default->get('area')[0] : ''}}
 						</span>
@@ -73,7 +86,7 @@
 						详细地址：
 					</div>
 					<div class="input">
-						<input type="text" name="address" class="text address_text" />
+						<input type="text" name="address" class="text address_text" value="{{$work->address}}" />
 						<span class="error">
 							{{(count($errors) > 0 && $errors->default->has('address')) ? $errors->default->get('address')[0] : ''}}
 						</span>
@@ -84,7 +97,7 @@
 						联系人：
 					</div>
 					<div class="input">
-						<input type="text" name="contacts" class="text address_text" value="{{$contacts}}" />
+						<input type="text" name="contacts" class="text address_text" value="{{$work->contacts}}" />
 					</div>
 				</div>
 				<div class="row">
@@ -92,7 +105,7 @@
 						联系方式：
 					</div>
 					<div class="input">
-						<input type="text" name="mobile" class="text address_text" value="{{$mobile}}" />
+						<input type="text" name="mobile" class="text address_text" value="{{$work->mobile}}" />
 					</div>
 				</div>
 				<div class="row">
@@ -100,8 +113,8 @@
 						服务报酬：
 					</div>
 					<div class="input">
-						<input type="text" name="price" class="text" id="price_txt" />/天
-						<label><input type="checkbox" name="price_negotiable" value="1" id="price_negotiable"/>面议</label>
+						<input type="text" name="price" class="text" id="price_txt" value="{{$work->price}}" />/天
+						<label><input type="checkbox" name="price_negotiable" value="{{$work->price_negotiable}}" id="price_negotiable"/>面议</label>
 					</div>
 				</div>
 				
@@ -111,10 +124,10 @@
 					</div>
 					<div class="input">
 						<label>从</label>
-						<input type="text" name="start_at" class="text date" id="start_at" />
+						<input type="text" name="start_at" class="text date" id="start_at" value="{{$work->start_at}}" />
 						<label>到</label>
-						<input type="text" name="end_at" class="text date" id="end_at" />
-						<label><input type="checkbox" name="date_long" value="1" id="date_long"/>长期</label>
+						<input type="text" name="end_at" class="text date" id="end_at" value="{{$work->end_at}}" />
+						<label><input type="checkbox" name="date_long" value="1" id="date_long" {{is_null($work->start_at) && is_null($work->end_at) ? 'checked' : ''}}/>长期</label>
 					</div>
 					<div class="notice">
 					</div>
@@ -124,7 +137,7 @@
 						服务人数：
 					</div>
 					<div class="input">
-						<input type="text" name="people_number" class="text" id="people_number" />人
+						<input type="text" name="people_number" class="text" id="people_number" value="{{$work->people_number}}" />人
 						<span class="error">
 							{{(count($errors) > 0 && $errors->default->has('people_number')) ? $errors->default->get('people_number')[0] : ''}}
 						</span>
@@ -135,7 +148,7 @@
 						服务内容：
 					</div>
 					<div class="input">
-						<textarea name="content" class="content"></textarea>
+						<textarea name="content" class="content">{{$work->content}}</textarea>
 					</div>
 					<div class="clearfix">
 						
@@ -159,7 +172,7 @@
 	</div>
 	@if(isset($success))
 	<script type="text/javascript">
-	alert('信息发布成功！');
+	alert('保存成功！');
 	</script>
 	@endif
 	

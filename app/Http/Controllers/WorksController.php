@@ -82,8 +82,8 @@ class WorksController extends Controller {
 		$price = $request['price'];
 		$content = $request['content'];
 		$people_number = isset($request['people_number']) ? $request['people_number'] : '';
-		$industry = isset($request['industry']) ? $request['industry'] : '';
-		$work_category = isset($request['work_category']) ? $request['work_category'] : '';
+		$industry_id = isset($request['industry']) ? $request['industry'] : '';
+		$work_category_id = isset($request['work_category']) ? $request['work_category'] : '';
 		$start_at = isset($request['start_at']) ? $request['start_at'] : '';
 		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
 		$contacts = $request['contacts'];
@@ -102,18 +102,14 @@ class WorksController extends Controller {
 		{
 			return redirect()->back()->withErrors(['address' => '请输入详细地址']);
 		}
-		if(empty($industry))
+		if(empty($industry_id))
 		{
 			return redirect()->back()->withErrors(['industry' => '请选择行业']);
 		}
-		$industry_id = explode(',', $industry)[0];
-		$industry_name = explode(',', $industry)[1];
-		if(empty($work_category))
+		if(empty($work_category_id))
 		{
 			return redirect()->back()->withErrors(['work_category' => '请选择工作工种']);
 		}
-		$work_category_id = explode(',', $work_category)[0];
-		$work_category_name = explode(',', $work_category)[1];
 		if(empty($start_at) || empty($end_at))
 		{
 			if(empty($request['date_long']))
@@ -132,7 +128,7 @@ class WorksController extends Controller {
 		{
 			return redirect()->back()->withErrors(['people_number' => '请输入服务人数']);
 		}
-		$work = new \App\Work(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'industry_id' => $industry_id, 'industry_name' => $industry_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content, 'contacts' => $contacts, 'mobile' => $mobile));
+		$work = new \App\Work(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'industry_id' => $industry_id, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content, 'contacts' => $contacts, 'mobile' => $mobile));
 		if(!empty($start_at))
 		{
 			$work->start_at = $start_at;
@@ -164,4 +160,115 @@ class WorksController extends Controller {
 		return "1";
 	}
 	
+	public function edit($id)
+	{
+		$user = \Auth::user()->get();
+		$work = \App\Work::where('user_id', '=', $user->id)->where('id', '=', $id)->first();
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$work_categories = \App\WorkCategory::orderBy("sort")->get();
+		$industries = \App\Industry::orderBy("sort")->get();
+		$area_cities = null;
+		$area_streets = null;
+		if(!empty($work->province))
+		{
+			$area_cities = \App\AreaCity::where('provincecode', '=', $work->province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
+		if(!empty($work->city))
+		{
+			$area_streets = \App\AreaStreet::where('citycode', '=', $work->city)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
+		
+		return view('works.edit')->with('work', $work)->with('area_provinces', $area_provinces)->with('work_categories', $work_categories)->with('area_cities', $area_cities)->with('area_streets', $area_streets)->with('industries', $industries);
+	}
+	
+	public function update(Request $request, $id)
+	{
+		if(\Auth::user()->guest()){
+			return redirect("/");
+		}
+		$title = $request['title'];
+		$area_province = $request['area_province'];
+		$area_city = $request['area_city'];
+		$area_street = $request['area_street'];
+		$area_name = $request['area_name'];
+		$address = $request['address'];
+		$price = $request['price'];
+		$content = $request['content'];
+		$people_number = isset($request['people_number']) ? $request['people_number'] : '';
+		$industry_id = isset($request['industry']) ? $request['industry'] : '';
+		$work_category_id = isset($request['work_category']) ? $request['work_category'] : '';
+		$start_at = isset($request['start_at']) ? $request['start_at'] : '';
+		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
+		$contacts = $request['contacts'];
+		$mobile = $request['mobile'];
+		$user = \Auth::user()->get();
+				
+		if(empty($title))
+		{
+			return redirect()->back()->withErrors(['title' => '请输入标题']);
+		}
+		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
+		{
+			return redirect()->back()->withErrors(['area' => '请选择工作区域']);
+		}
+		if(empty($address))
+		{
+			return redirect()->back()->withErrors(['address' => '请输入详细地址']);
+		}
+		if(empty($industry_id))
+		{
+			return redirect()->back()->withErrors(['industry' => '请选择行业']);
+		}
+		if(empty($work_category_id))
+		{
+			return redirect()->back()->withErrors(['work_category' => '请选择工作工种']);
+		}
+		if(empty($start_at) || empty($end_at))
+		{
+			if(empty($request['date_long']))
+			{
+				return redirect()->back()->withErrors(['start_at' => '请选择服务时间']);
+			}
+		}
+		if(empty($price))
+		{
+			if(empty($request['price_negotiable']))
+			{
+				return redirect()->back()->withErrors(['start_at' => '请输入服务报酬']);
+			}
+		}
+		if(empty($people_number))
+		{
+			return redirect()->back()->withErrors(['people_number' => '请输入服务人数']);
+		}
+
+		$work = \App\Work::where('user_id', '=', $user->id)->where('id', '=', $id)->first();
+		$work->work_category_id = $work_category_id;
+		$work->industry_id = $industry_id;
+		$work->province = $area_province;
+		$work->city = $area_city;
+		$work->street = $area_street;
+		$work->area_name = $area_name;
+		$work->address = $address;
+		$work->title = $title;
+		$work->price = $price;
+		$work->content = $content;
+		$work->contacts = $contacts;
+		$work->mobile = $mobile;
+		if(!empty($start_at))
+		{
+			$work->start_at = $start_at;
+		}
+		if(!empty($end_at))
+		{
+			$work->end_at = $end_at;
+		}
+		if(!empty($people_number))
+		{
+			$work->people_number = $people_number;
+		}
+		$work->save();
+		
+		return redirect('/my/sent-works');
+	}
 }
