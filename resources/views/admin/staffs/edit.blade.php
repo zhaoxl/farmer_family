@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="pageheader">
-    <h2><i class="fa fa-envelope"></i> 发布信息管理 <span>发布雇人信息</span></h2>
+    <h2><i class="fa fa-envelope"></i> 发布信息管理 <span>发布找活信息</span></h2>
   </div>
   
   <div class="contentpanel">
@@ -11,9 +11,10 @@
 				<div class="panel panel-primary">
 					<div class="panel-body panel-body-nopadding">
 						
-						<form class="form-horizontal" id="register_form" role="form" method="POST" action="/admin/works">
+						<form class="form-horizontal" id="register_form" role="form" method="POST" action="/admin/staffs/{{$data->id}}">
 							<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-							<input type="hidden" name="area_name" id="area_name" />
+							<input type="hidden" name="_method" value="PUT" />
+							<input type="hidden" name="area_name" id="area_name" value="{{$data->area_name}}" />
 		            <div class="form-group">
 								  <label for="disabledinput" class="col-sm-3 control-label">用户</label>
 								  <div class="col-sm-6">
@@ -37,26 +38,14 @@
 								  <div class="col-sm-6">
 										<select name="work_category"class="form-control">
 											@foreach ($work_categories as $work_category)
-												<option value="{{ $work_category->up_id }}" {{$data->id == $data->sub_work_category_id ? 'selected' : ''}}>{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
+												<option value="{{ $work_category->id }}" {{$data->id == $data->work_category_id ? 'selected' : ''}}>{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
 											@endforeach
 										</select>
 								  </div>
 								</div>
             
 		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">行业</label>
-								  <div class="col-sm-6">
-										<select name="industry" id="industry" class="form-control">
-											<option value="">请选择行业</option>
-											@foreach ($industries as $industry)
-												<option value="{{ $industry->id }}">{{ $industry->full_name }}</option>
-											@endforeach
-										</select>
-								  </div>
-								</div>
-            
-		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">工作区域</label>
+								  <label for="disabledinput" class="col-sm-3 control-label">期望工作区域</label>
 								  <div class="col-sm-6">
 				 						<select name="area_province" id="area_province" class="form-control">
 				 							<option value="">请选择地区</option>
@@ -80,6 +69,20 @@
 										</select>
 								  </div>
 								</div>
+								
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">联系人</label>
+								  <div class="col-sm-6">
+									 <input type="text" class="form-control" placeholder="联系人" name="contacts" value="{{$data->contacts}}">
+								  </div>
+								</div>
+								
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">联系方式</label>
+								  <div class="col-sm-6">
+									 <input type="text" class="form-control" placeholder="联系方式" name="mobile" value="{{$data->mobile}}">
+								  </div>
+								</div>
             
 		            <div class="form-group">
 								  <label for="disabledinput" class="col-sm-3 control-label">详细地址</label>
@@ -89,34 +92,10 @@
 								</div>
             
 		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">服务报酬</label>
+								  <label for="disabledinput" class="col-sm-3 control-label">可工作时间</label>
 								  <div class="col-sm-6">
-				 						<input type="text" name="price" class="text" id="price_txt" />/天
-				 						<label><input type="checkbox" name="price_negotiable" value="1" id="price_negotiable"/>面议</label>
-								  </div>
-								</div>
-            
-		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">服务时间</label>
-								  <div class="col-sm-6">
-										<input type="text" name="start_at" class="text date" id="start_at" />
-										<label>到</label>
-										<input type="text" name="end_at" class="text date" id="end_at" />
-										<label><input type="checkbox" name="date_long" value="1" id="date_long"/>长期</label>
-								  </div>
-								</div>
-            
-		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">服务人数</label>
-								  <div class="col-sm-6">
-				 						<input type="text" name="people_number" class="text" id="people_number" />人
-								  </div>
-								</div>
-            
-		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">服务内容</label>
-								  <div class="col-sm-6">
-										<textarea name="content" class="content" style="width: 660px; height: 100px;"></textarea>
+									 <input type="text" id="start_at" class="form-control" placeholder="可工作时间" name="start_at" value="{{$data->start_at}}">
+									 <input type="text" id="end_at" class="form-control" placeholder="可工作时间" name="end_at" value="{{$data->end_at}}">
 								  </div>
 								</div>
       

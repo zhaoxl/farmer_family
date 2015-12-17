@@ -6,7 +6,17 @@ class Work extends Model {
 
 	protected $fillable = ['user_id','industry_id','sub_industry_id', 'industry_name', 'work_category_id', 'sub_work_category_id', 'work_category_name', 'price', 'people_number', 'start_at', 'end_at', 'province', 'city', 'street', 'area_name', 'address', 'title', 'content', 'contacts', 'mobile'];
 
-
+	
+	public function workCategory()
+	{
+		return $this->belongsTo('\App\WorkCategory');
+	}
+	
+	public function industry()
+	{
+		return $this->belongsTo('\App\Industry');
+	}
+	
 	public function user()
 	{
 		return $this->belongsTo('\App\User');
@@ -46,5 +56,23 @@ class Work extends Model {
 	public function starCount()
 	{
 		return \App\WorkEvaluate::where('work_id', '=', $this->id)->avg('star');
+	}
+	
+	public function workCategoryName()
+	{
+		$category = $this->workCategory;
+		if(!is_null($category))
+		{
+			return $category->name;
+		}
+	}
+	
+	public function industryName()
+	{
+		$industry_tmp = $this->industry;
+		if(!is_null($industry_tmp))
+		{
+			return $industry_tmp->full_name;
+		}
 	}
 }

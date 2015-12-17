@@ -42,8 +42,8 @@
 		              <td>{{$data->id}}</td>
 		              <td>{{is_null($data->user) ? '' : $data->user->name}}</td>
 		              <td>{{$data->title}}</td>
-		              <td>{{$data->industry_name}}</td>
-		              <td>{{$data->work_category_name}}</td>
+		              <td>{{$data->industryName()}}</td>
+		              <td>{{$data->workCategoryName()}}</td>
 									<td>{{$data->area_name}}</td>
 									<td>{{$data->price}}</td>
 									<td>

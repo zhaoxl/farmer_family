@@ -41,7 +41,7 @@
 		              <td>{{is_null($data->user) ? '' : $data->user->name}}</td>
 		              <td>{{$data->title}}</td>
 									<td>{{$data->area_name}}</td>
-		              <td>{{is_null($data->user) ? '' : $data->user->workCategoryNames()}}</td>
+		              <td>{{$data->workCategoryName()}}</td>
 									<td>
 										@if(isset($data->start_at) || isset($data->end_at))
 											{{date('Y-m-d', strtotime($data->start_at))}}
@@ -57,8 +57,8 @@
 									<td>
 										<a href="/admin/staffs/refresh?id={{$data->id}}">刷新</a>&nbsp;
 										<a href="/admin/staffs/top?id={{$data->id}}">置顶</a>&nbsp;
-										<a href="#">查看</a>&nbsp;
-										<a href="#">删除</a>
+										<a href="/admin/staffs/{{$data->id}}/edit">编辑</a>&nbsp;
+										<a href="javascript:deleteItem({{$data->id}});">删除</a>
 									</td>
 		            </tr>
 								@endforeach
@@ -71,4 +71,18 @@
 		</row>
   </div>		
 					
+	<script type="text/javascript">
+	function deleteItem(id) {
+		if (confirm('确定删除?')) {
+	    $.ajax({
+	      type: "DELETE",
+	      url: '/admin/staffs/' + id,
+				data: {'_token': '{{ csrf_token() }}'},
+	      success: function(result) {
+	        location.reload();
+	      }
+	    });
+	  }
+	}
+	</script>			
 @endsection

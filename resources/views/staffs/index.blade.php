@@ -99,13 +99,13 @@
 				<div class="descs">
 					<span>姓名：{{$staff->name}}</span>
 					<span>所在区域：{{$staff->area_name}}</span>
-					<span>服务类型：{{$staff->work_category_name}}</span>
-					<span>工种：收割、耕种、挖掘</span>
+					<span>服务行业：{{$staff->workCategoryName()}}</span>
+					<span>服务类型：{{$staff->industryName()}}</span>
 				</div>
 				<div class="descs">
 					<span>年龄：{{$staff->age}}</span>
 					<span>性别：{{$staff->gender == 'm' ? '男' : '女'}}</span>
-					<span>籍贯：{{$staff->home_twon}}</span>
+					<span>籍贯：{{$staff->hometown}}</span>
 				</div>
 				<div class="descs">
 					<span>手机号：{{$staff->mobile}}</span>

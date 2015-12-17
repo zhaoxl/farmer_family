@@ -33,7 +33,9 @@
 		<tr>
 			<td style="text-align: center;">
 				<a href="{{ URL::previous() }}" class="btn btn-success-alt" style="margin-left: 280px">返回</a>
+				@if(Auth::user()->get()->id != $message->from_user_id)
 				<a href="/my/messages/create?mobile={{$message->getFromUserMobile()}}" class="btn btn-success-alt">回复</a>
+				@endif
 			</td>
 		</tr>
 	</table>

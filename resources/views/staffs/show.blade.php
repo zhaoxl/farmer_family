@@ -39,34 +39,34 @@
 				</div>
 				<ul class="desc_ul">
 					<li>
-						姓名：{{$staff->name}}
+						姓名：{{$user->name}}
 					</li>
 					<li>
 						期望工作区域：{{$staff->area_name}}
 					</li>
 					<li>
-						服务行业：
+						服务行业：{{$staff->industryName()}}
 					</li>
 					<li>
 						工种：{{$staff->workCategoryName()}}
 					</li>
 					<li>
-						年龄：{{$staff->age}}
+						年龄：{{$user->age()}}
 					</li>
 					<li>
-						性别：{{$staff->gender == 'm' ? '男' : '女'}}
+						性别：{{$user->gender == 'm' ? '男' : '女'}}
 					</li>
 					<li>
-						籍贯：{{$staff->home_twon}}
+						籍贯：{{$user->hometown}}
 					</li>
 					<li>
-						手机号：{{$staff->mobile}}
+						手机号：{{$user->mobile}}
 					</li>
 					<li>
-						QQ：{{$staff->qq}}
+						QQ：{{$user->qq}}
 					</li>
 					<li>
-						微信：{{$staff->weixin}}
+						微信：{{$user->weixin}}
 					</li>
 				</ul>
 				<div class="photo">

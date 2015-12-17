@@ -37,7 +37,7 @@
 								  <div class="col-sm-6">
 										<select name="work_category"class="form-control">
 											@foreach ($work_categories as $work_category)
-												<option value="{{ $work_category->up_id }},{{ $work_category->id }}" {{$data->id == $data->sub_work_category_id ? 'selected' : ''}}>{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
+												<option value="{{ $work_category->up_id }}" {{$data->id == $data->sub_work_category_id ? 'selected' : ''}}>{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
 											@endforeach
 										</select>
 								  </div>
@@ -66,6 +66,20 @@
 												@endforeach
 											@endif
 										</select>
+								  </div>
+								</div>
+								
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">联系人</label>
+								  <div class="col-sm-6">
+									 <input type="text" class="form-control" placeholder="联系人" name="contacts" value="{{$data->contacts}}">
+								  </div>
+								</div>
+								
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">联系方式</label>
+								  <div class="col-sm-6">
+									 <input type="text" class="form-control" placeholder="联系方式" name="mobile" value="{{$data->mobile}}">
 								  </div>
 								</div>
             

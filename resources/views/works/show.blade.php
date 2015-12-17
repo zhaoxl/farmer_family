@@ -39,10 +39,10 @@
 				</div>
 				<ul class="desc_ul">
 					<li>
-						所属行业：{{$work->industry_name}}
+						所属行业：{{$work->industryName()}}
 					</li>
 					<li>
-						服务类型：{{$work->work_category_name}}
+						服务类型：{{$work->workCategoryName()}}
 					</li>
 					<li>
 						所在区域：{{$work->area_name}}
@@ -51,13 +51,13 @@
 						详细地址：{{$work->address}}
 					</li>
 					<li>
-						联系电话：{{$work->mobile}}
+						联系电话：{{$user->mobile}}
 					</li>
 					<li>
-						QQ：{{$work->qq}}
+						QQ：{{$user->qq}}
 					</li>
 					<li>
-						微信：{{$work->weixin}}
+						微信：{{$user->weixin}}
 					</li>
 					<li>
 						服务报酬：{{is_null($work->price) ? '面议' : $work->price.'/天'}}

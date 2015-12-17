@@ -81,7 +81,7 @@
 				<div class="descs">
 					<span>姓名：{{$work->name}}</span>
 					<span>所在区域：{{$work->area_name}}</span>
-					<span>服务类型：{{$work->work_category_name}}</span>
+					<span>服务类型：{{$work->workCategoryName()}}</span>
 				</div>
 				<div class="descs">
 					<span>手机号：{{$work->mobile}}</span>

@@ -29,7 +29,7 @@
 						<select name="industry" id="industry" class="form-control">
 							<option value="">请选择行业</option>
 							@foreach ($industries as $industry)
-								<option value="{{ $industry->id }},{{$industry->full_name}}">{{ $industry->full_name }}</option>
+								<option value="{{ $industry->id }}">{{ $industry->full_name }}</option>
 							@endforeach
 						</select>
 						<span class="error">

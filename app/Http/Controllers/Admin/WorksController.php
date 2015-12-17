@@ -139,15 +139,11 @@ class WorksController extends BaseController {
 			$request->session()->flash('error', '请选择行业');
 			return redirect()->back();
 		}
-		$industry_id = explode(',', $industry)[0];
-		$industry_name = explode(',', $industry)[1];
 		if(empty($work_category))
 		{
 			$request->session()->flash('error', '请选择工作工种');
 			return redirect()->back();
 		}
-		$work_category_id = explode(',', $work_category)[0];
-		$work_category_name = explode(',', $work_category)[1];
 		if(empty($start_at) || empty($end_at))
 		{
 			if(empty($request['date_long']))
@@ -169,7 +165,7 @@ class WorksController extends BaseController {
 			$request->session()->flash('error', '请输入服务人数');
 			return redirect()->back();
 		}
-		$work = new \App\Work(array('user_id' => $user_id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'industry_id' => $industry_id, 'industry_name' => $industry_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content));
+		$work = new \App\Work(array('user_id' => $user_id, 'work_category_id' => $work_category, 'industry_id' => $industry, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content));
 		if(!empty($start_at))
 		{
 			$work->start_at = $start_at;

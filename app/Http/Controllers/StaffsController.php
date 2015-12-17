@@ -69,7 +69,9 @@ class StaffsController extends Controller {
 	public function show($id)
 	{
 		$staff = \App\Staff::find($id);
-		return view('staffs.show')->with('staff', $staff);
+		$user = $staff->user;
+		
+		return view('staffs.show')->with('staff', $staff)->with('user', $user);
 	}
 	
 	public function create()

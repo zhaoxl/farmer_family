@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="{{ asset('/js/jquery-ui/jquery-ui.js') }}"></script>
 	<div class="body_content">
 		<form class="form-horizontal" id="create_form" role="form" method="POST" action="{{ url('/works/'.$work->id) }}">
-			<input type="hidden" name="area_name" id="area_name" />
+			<input type="hidden" name="area_name" id="area_name" value="{{$work->area_name}}" />
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<input type="hidden" name="_method" value="PUT">
 			<div class="new_work">

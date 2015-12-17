@@ -49,7 +49,9 @@ class WorksController extends Controller {
 	public function show($id)
 	{
 		$work = \App\Work::find($id);
-		return view('works.show')->with('work', $work);
+		$user = $work->user;
+		
+		return view('works.show')->with('work', $work)->with('user', $user);
 	}
 
 	public function create()

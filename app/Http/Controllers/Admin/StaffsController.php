@@ -108,6 +108,8 @@ class StaffsController extends BaseController {
 		$start_at = $request['start_at'];
 		$end_at = $request['end_at'];
 		$user_id = $request['user_id'];
+		$contacts = $request['contacts'];
+		$mobile = $request['mobile'];
 				
 		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
 		{
@@ -124,14 +126,12 @@ class StaffsController extends BaseController {
 			$request->session()->flash('error', '请选择期望工作工种');
 			return redirect()->back();
 		}
-		$work_category_id = explode(',', $work_category)[0];
-		$work_category_name = explode(',', $work_category)[1];
 		if(empty($start_at) || empty($end_at))
 		{
 			$request->session()->flash('error', '请选择可工作时间');
 			return redirect()->back();
 		}
-		$staff = \App\Staff::create(array('user_id' => $user_id, 'work_category_id' => $work_category_id, 'work_category_name' => $work_category_name, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at, 'title' => $title));
+		$staff = \App\Staff::create(array('user_id' => $user_id, 'work_category_id' => $work_category, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at, 'title' => $title, 'contacts' => $contacts, 'mobile' => $mobile));
 		$request->session()->flash('success', '添加成功');
 		return redirect()->back();
 	}
@@ -155,7 +155,23 @@ class StaffsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$present_users = \App\User::where('category', '!=', 0)->orderBy('created_at', 'desc')->paginate(11);
+		
+		$data = \App\Staff::find($id);
+		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$area_cities = null;
+		$area_streets = null;
+		if(!empty($data->province))
+		{
+			$area_cities = \App\AreaCity::where('provincecode', '=', $data->province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
+		if(!empty($data->city))
+		{
+			$area_streets = \App\AreaStreet::where('citycode', '=', $data->city)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
+			
+		return view('admin.staffs.edit')->with('data', $data)->with('present_users', $present_users)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities)->with('area_streets', $area_streets)->with('work_categories', $work_categories);
 	}
 
 	/**
@@ -164,9 +180,60 @@ class StaffsController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$title = $request['title'];
+		$area_province = $request['area_province'];
+		$area_city = $request['area_city'];
+		$area_street = $request['area_street'];
+		$area_name = $request['area_name'];
+		$address = $request['address'];
+		$work_category = isset($request['work_category']) ? $request['work_category'] : '';
+		$start_at = $request['start_at'];
+		$end_at = $request['end_at'];
+		$user_id = $request['user_id'];
+		$contacts = $request['contacts'];
+		$mobile = $request['mobile'];
+		$user_id = $request['user_id'];
+				
+		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
+		{
+			$request->session()->flash('error', '请选择期望工作区域');
+			return redirect()->back();
+		}
+		if(empty($address))
+		{
+			$request->session()->flash('error', '请输入详细地址');
+			return redirect()->back();
+		}
+		if(empty($work_category))
+		{
+			$request->session()->flash('error', '请选择期望工作工种');
+			return redirect()->back();
+		}
+		if(empty($start_at) || empty($end_at))
+		{
+			$request->session()->flash('error', '请选择可工作时间');
+			return redirect()->back();
+		}
+		
+		$staff = \App\Staff::find($id);
+		$staff->user_id = $user_id;
+		$staff->title = $title;
+		$staff->province = $area_province;
+		$staff->city = $area_city;
+		$staff->street = $area_street;
+		$staff->area_name = $area_name;
+		$staff->address = $address;
+		$staff->work_category_id = $work_category;
+		$staff->start_at = $start_at;
+		$staff->end_at = $end_at;
+		$staff->contacts = $contacts;
+		$staff->mobile = $mobile;
+		$staff->save();
+		
+		$request->session()->flash('success', '保存成功');
+		return redirect()->back();
 	}
 
 	/**
@@ -177,7 +244,7 @@ class StaffsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		\App\Staff::destroy($id);
 	}
 
 }

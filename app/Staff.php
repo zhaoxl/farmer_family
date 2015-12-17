@@ -17,6 +17,11 @@ class Staff extends Model {
 		return $this->belongsTo('\App\WorkCategory');
 	}
 	
+	public function industry()
+	{
+		return $this->belongsTo('\App\Industry');
+	}
+	
 	public function isTop(){
 		return $this->getAttribute('is_top') ? '<span style="color: red">是</span>' : '否';
 	}
@@ -32,6 +37,15 @@ class Staff extends Model {
 		if(!is_null($category))
 		{
 			return $category->name;
+		}
+	}
+	
+	public function industryName()
+	{
+		$industry_tmp = $this->industry;
+		if(!is_null($industry_tmp))
+		{
+			return $industry_tmp->full_name;
 		}
 	}
 
