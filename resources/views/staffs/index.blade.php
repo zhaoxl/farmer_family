@@ -23,7 +23,7 @@
 				<input type="hidden" name="day" value="{{\Request::get('day')}}" />
 				<div class="row date_filter">
 					<span class="title">信息发布日期：</span>
-					<span><a href="/staffs" class="{{empty(Request::get('day')) ? 'current' : ''}}">全部</a></span>
+					<span><a href="/staffs" class="{{is_null(Request::get('day')) ? 'current' : ''}}">全部</a></span>
 					<span><a href="?day=1" class="{{Request::get('day') == 1 ? 'current' : ''}}">今天</a></span>
 					<span><a href="?day=7" class="{{Request::get('day') == 7 ? 'current' : ''}}">一周内</a></span>
 					<span><a href="?day=14" class="{{Request::get('day') == 14 ? 'current' : ''}}">2周内</a></span>
