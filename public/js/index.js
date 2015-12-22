@@ -1,5 +1,5 @@
 $(function(){
-	$("#index .login_box .uname").focus(function(){
+	$("#index .login_box .mobile").focus(function(){
 		if($(this).val() == "请输入手机号")
 		{
 			$(this).val("");

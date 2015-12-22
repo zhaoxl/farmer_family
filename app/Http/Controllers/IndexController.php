@@ -10,8 +10,8 @@ class IndexController extends Controller {
 
 	public function index()
 	{
-		$staffs = \App\Staff::orderBy(\DB::raw('updated_at, is_top'), 'desc')->take(5)->get();
-		$works = \App\Work::orderBy(\DB::raw('updated_at, is_top'), 'desc')->take(5)->get();
+		$staffs = \App\Staff::orderBy(\DB::raw('updated_at, is_top'), 'desc')->take(10)->get();
+		$works = \App\Work::orderBy(\DB::raw('updated_at, is_top'), 'desc')->take(10)->get();
 		$settings = array();
 		$system_settings = \App\SystemSetting::get();
 		$system_settings->each(function($setting) use (&$settings){

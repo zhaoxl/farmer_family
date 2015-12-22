@@ -12,61 +12,34 @@
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/custom-form-elements.js"></script>
 	<script src="/js/index.js"></script>
+	<?php echo View::make('partials.index_header') ?>
 	<div id="index">
-		<div class="header">
-			<div class="logo">
-				<a href="/">猫眼360</a>
-			</div>
-			<div class="area_links">
-				<span class="color_green">{{ $city_name }}</span> 
-				<!-- [
-				<a href="/area/changecity" class="color_green">切换城市</a>
-				@foreach (\App\AreaCity::hotCities(3, $current_city_code) as $city)
-				<a href="/area/set?name={{$city->name}}&code={{$city->code}}">{{$city->name}}</a>
-				@endforeach
-				] -->
-			</div>
-			<div class="qq_links">
-			</div>
-			<div class="login_links">
-				@if (Auth::user()->guest())
-				@else
-					<a href="/my" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->get()->name }} <span class="caret"></span></a>
-					[<a href="{{ url('/auth/logout') }}">退出</a>]
-				@endif
-			</div>
-		</div>
-		<div class="content">
-			<div class="find_box">
-				<a href="/auth/create" class="reg_button"></a>
-			</div>
-			<div class="pub_box">
-				<a href="/auth/create" class="reg_button"></a>
-			</div>
+		<div class="context">
 			<div class="login_box">
 				<form id="login_form" class="form-horizontal" method="POST" action="{{ url('/auth/login') }}">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<div class="row">
-						<input type="text" class="uname" name="mobile" value="请输入手机号" />
-						<label id="mobile-error" class="error" for="mobile">{{$errors->first('mobile')}}</label>
-					</div>
-					<div class="row">
-						<input type="text" class="pwd" name="password" value="请输入密码" />
-					</div>
-					<input type="submit" class="submit" value="" />
+					<input type="text" class="mobile" name="mobile" value="请输入手机号" />
+					<input type="text" class="pwd" name="password" value="请输入密码" />
+					<label class="error">{{$errors->first('mobile')}}</label>
 					<div class="links">
-				    <label><input type="checkbox" class="styled" name="remember" /><span class="autologin_title">自动登录</span></label>  
+				    <label><input type="checkbox" name="remember" /><span class="autologin_title">自动登录</span></label>  
 						<a href="/auth/forget" class="forget">找回密码</a>
 					</div>
+					<input type="submit" class="login_btn" value="" />
 				</form>
 			</div>
-			<div class="clearfix"></div>
 		</div>
+		<div class="clearfix"></div>
 		<div class="base_list">
 			<div class="find_list">
-				<div class="title">
-					<a href="/staffs">搜索更多>></a>
+				<div class="head">
+					<div class="adorn"></div>
+					<div class="title">
+						<span class="txt">最新生活服务信息</span>
+						<a href="/staffs" class="more"></a>
+					</div>
 				</div>
+				<div class="clearfix"></div>
 				<div class="list">
 					<ul>
 						@foreach ($staffs as $staff)
@@ -74,12 +47,12 @@
 							@if(!is_null($user))
 							<li>
 								<a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">
-									<span class="attr">{{$staff->user->name}}</span>
-									<span class="attr">{{$staff->user->gender}}</span>
-									<span class="attr">{{$staff->user->age()}}岁</span>
-									<span class="attr work_category">{{$user->workCategoryNames()}}</span>
-									<span class="attr address">{{$staff->user->address}}&nbsp;</span>
-									<span class="date">[{{date('Y-m-d', strtotime($staff->created_at))}}]</span>
+									<span class="block1">{{$staff->user->name}}</span>
+									<span class="block1">{{$staff->user->gender}}</span>
+									<span class="block1">{{$staff->user->age()}}岁</span>
+									<span class="block1">{{$user->workCategoryNames()}}</span>
+									<span class="block2">{{$staff->user->address}}&nbsp;</span>
+									<span class="block1">【{{date('Y-m-d', strtotime($staff->created_at))}}】</span>
 								</a>
 							</li>
 							@endif
@@ -87,10 +60,16 @@
 					</ul>
 				</div>
 			</div>
+			<div class="space"></div>
 			<div class="pub_list">
-				<div class="title">
-					<a href="/works">搜索更多>></a>
+				<div class="head">
+					<div class="adorn"></div>
+					<div class="title">
+						<span class="txt">最新招工信息</span>
+						<a href="/works" class="more"></a>
+					</div>
 				</div>
+				<div class="clearfix"></div>
 				<div class="list">
 					<ul>
 						@foreach ($works as $work)
@@ -98,7 +77,7 @@
 						@if(!is_null($user))
 							<li>
 								<a href="/works/{{$work->id}}" class="{{$work->flag ? 'hot':''}}">
-									<span class="attr address2">
+									<span class="block2">
 									<?php #企业用户?>
 									@if($user->category == 1)
 									{{$work->companyName()}}
@@ -107,10 +86,10 @@
 									{{$work->name}}
 									@endif
 									</span>
-									<span class="attr work_category2">{{$work->work_category_name}}</span>
-									<span class="attr address2">{{$work->address}}&nbsp;</span>
+									<span class="block1">{{$work->work_category_name}}</span>
+									<span class="block3">{{$work->address}}&nbsp;</span>
 								</a>
-								<span class="date">[{{date('Y-m-d', strtotime($work->created_at))}}]</span>
+								<span class="block1">【{{date('Y-m-d', strtotime($work->created_at))}}】</span>
 							</li>
 							@endif
 						@endforeach
@@ -118,6 +97,13 @@
 				</div>
 			</div>
 			<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="bottom_banner">
+			<img src="/images/bottom_banner.jpg" />
+		</div>
+		<div class="bottom_ad">
+			<img src="/images/index_bottom_ad.jpg" />
 		</div>
 		<div class="footer">
 			<div class="desc">
@@ -137,6 +123,18 @@
 	    submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
 	    	form.submit();   //提交表单   
 	    },   
+			errorPlacement: function(error, element) {
+				$("#login_form input.error").each(function() {
+					if ($(element).is(":checkbox"))
+					{
+						$(element).parent().css("color", "red");
+					}
+					else
+					{
+						$(element).attr($(element).attr('html'), $(error).html());
+					}
+				});
+			},   
 	    rules:{
 				mobile:{
 				  required:true,
@@ -151,11 +149,10 @@
 	    messages:{
 	      mobile:{
 	      	required:"请输入手机号",
-	      	phone:'请输入正确的电话号码'
+	      	phone:'手机号码格式错误'
 	      },
 			 password:{
 			   required: "请输入密码",
-				 pwd: "请输入密码"
 			 }
 	   }
 	});    
@@ -165,10 +162,6 @@
     return this.optional(element) || (length == 11 && mobile.test(value));
 	}, "手机号码格式错误");  
 	
-  jQuery.validator.addMethod("pwd", function(value, element) {
-    var length = value.length;
-    return this.optional(element) || (value != "请输入密码");
-	}, "请输入密码");  
 	
 	</script>
 </body>
