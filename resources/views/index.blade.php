@@ -15,6 +15,8 @@
 	<?php echo View::make('partials.index_header') ?>
 	<div id="index">
 		<div class="context">
+			<a href="/auth/create" class="reg_btn1"></a>
+			<a href="/auth/create" class="reg_btn2"></a>
 			<div class="login_box">
 				<form id="login_form" class="form-horizontal" method="POST" action="{{ url('/auth/login') }}">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -65,7 +67,7 @@
 				<div class="head">
 					<div class="adorn"></div>
 					<div class="title">
-						<span class="txt">最新招工信息</span>
+						<span class="txt">最新招工雇人信息</span>
 						<a href="/works" class="more"></a>
 					</div>
 				</div>
