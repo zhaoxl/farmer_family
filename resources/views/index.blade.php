@@ -50,8 +50,8 @@
 									<span class="block1">{{$staff->user->name}}</span>
 									<span class="block1">{{$staff->user->gender}}</span>
 									<span class="block1">{{$staff->user->age()}}岁</span>
-									<span class="block1">{{$user->workCategoryNames()}}</span>
-									<span class="block2">{{$staff->user->address}}&nbsp;</span>
+									<span class="block1">{{substr($user->workCategoryNames(), 0, 12)}}</span>
+									<span class="block2">{{substr($staff->user->address, 0, 27)}}</span>
 									<span class="block1">【{{date('Y-m-d', strtotime($staff->created_at))}}】</span>
 								</a>
 							</li>
@@ -80,14 +80,14 @@
 									<span class="block2">
 									<?php #企业用户?>
 									@if($user->category == 1)
-									{{$work->companyName()}}
+									{{substr($work->companyName(), 0, 27)}}
 									@else
 									<?php #个人用户?>
 									{{$work->name}}
 									@endif
 									</span>
-									<span class="block1">{{$work->work_category_name}}</span>
-									<span class="block3">{{$work->address}}&nbsp;</span>
+									<span class="block2">{{substr($work->work_category_name, 0, 12)}}</span>
+									<span class="block2">{{substr($work->address, 0, 27)}}&nbsp;</span>
 								</a>
 								<span class="block1">【{{date('Y-m-d', strtotime($work->created_at))}}】</span>
 							</li>

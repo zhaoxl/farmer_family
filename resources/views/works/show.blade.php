@@ -76,8 +76,10 @@
 						服务人数：{{$work->people_number}}人
 					</li>
 				</ul>
-				<div class="photo">
-					<img src="/{{$work->user->getImg('photo')}}" />
+				<div id="address_map" class="photo">
+					<div id="allmap">
+						
+					</div>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -104,6 +106,25 @@
 	</div>
 	<script src="/js/jquery.raty.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/jquery-ui/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lXeAbeMF4NG6YczveCyamS6T"></script>
+	<style type="text/css" media="screen">
+		#allmap{width: 245px;height: 230px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript">
+// 百度地图API功能
+	var map = new BMap.Map("allmap");
+	var myGeo = new BMap.Geocoder();
+	// 将地址解析结果显示在地图上,并调整地图视野
+	myGeo.getPoint("{{$work->address}}", function(point){
+		if (point) {
+			map.centerAndZoom(point, 12);
+			map.addOverlay(new BMap.Marker(point));
+		}else{
+			alert("您选择地址没有解析到结果!");
+		}
+	}, "{{$work->cityName()}}");
+	</script>
+	
 	<script type="text/javascript">
 	$(function(){
 		//star

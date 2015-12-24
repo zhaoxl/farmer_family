@@ -75,4 +75,14 @@ class Work extends Model {
 			return $industry_tmp->full_name;
 		}
 	}
+	
+	public function cityName()
+	{
+		$city = \App\AreaCity::where('code', '=', $this->city)->first();
+		if(!is_null($city))
+		{
+			return $city->name;
+		}
+		return "北京市";
+	}
 }
