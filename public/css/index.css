@@ -24,17 +24,17 @@ body{color: #727272;}
 #index .base_list .head .adorn{width: 22px; height: 22px; border-left: solid 4px #44b790; float: left;}
 #index .base_list .head .title{width: 495px; height: 23px; background: url('/images/index_base_list_title_bg.jpg') repeat-x scroll center bottom; float: left;}
 #index .base_list .head .title .more{float: right; width: 77px; height: 16px; background: url('/images/index_base_list_more.jpg');}
-#index .base_list .list{margin-top: 20px;}
+#index .base_list .list{margin-top: 20px; font-size: 12px;}
 #index .base_list .list ul{list-style: inside none square;}
 #index .base_list .list ul li{line-height: 24px;}
 #index .base_list span{display: inline-table;}
-#index .base_list .list .block1{width: 66px ;}
-#index .base_list .list .block2{width: 132px ;}
-#index .base_list .list .block3{width: 198px ;}
-#index .base_list .list .block4{width: 264px ;}
-#index .base_list .list .block5{width: 330px ;}
-#index .base_list .list .block6{width: 396px ;}
-#index .base_list .list .block7{width: 462px ;}
+#index .base_list .list .block1{width: 68px ;}
+#index .base_list .list .block2{width: 136px ;}
+#index .base_list .list .block3{width: 204px ;}
+#index .base_list .list .block4{width: 272px ;}
+#index .base_list .list .block5{width: 340px ;}
+#index .base_list .list .block6{width: 408px ;}
+#index .base_list .list .block7{width: 476px ;}
 
 #index .bottom_banner{width: 1099; height: 260px; background-color: #3fcc9c; border-top: solid 1px #d0d0d0;; border-bottom: solid 1px #d0d0d0;}
 #index .bottom_banner img{margin: 17px auto auto 310px;}
@@ -42,3 +42,4 @@ body{color: #727272;}
 
 #index .reg_btn1{width: 206px; height: 206px; margin: 50px auto auto 170px; float: left;}
 #index .reg_btn2{width: 206px; height: 206px; margin: 50px auto auto 68px; float: left;}
+#index .reg_btn_hover{width: 206px; height: 40px; background: #1f9d72; line-height: 40px; text-align: center; color: white; margin: 166px auto auto auto; display: none;}
