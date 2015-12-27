@@ -92,7 +92,7 @@ class UsersController extends BaseController {
 		$user->city = $request['city'];
 		$user->street = $request['street'];
 		$user->area_name = $request['area_name'];
-		if(!is_null($request['birthday']))
+		if(!empty($request['birthday']))
 		{
 			$user->birthday = $request['birthday'];
 		}
@@ -108,13 +108,15 @@ class UsersController extends BaseController {
 		$user->gender = $request['gender'];
 		$user->save();
 			
-		\App\UserWorkCategory::where('user_id', '=', $user->id)->delete();
-		$new_category_ids = $request['work_category_id'];
-		foreach($new_category_ids as $id)
+		if(!empty($request['work_category_id']))
 		{
-			if(!\App\UserWorkCategory::where('user_id', '=', $user->id)->where('work_category_id', '=', $id)->first())
+			$new_category_ids = $request['work_category_id'];
+			foreach($new_category_ids as $id)
 			{
-				\App\UserWorkCategory::create(['user_id' => $user->id, 'work_category_id' => $id]);	
+				if(!\App\UserWorkCategory::where('user_id', '=', $user->id)->where('work_category_id', '=', $id)->first())
+				{
+					\App\UserWorkCategory::create(['user_id' => $user->id, 'work_category_id' => $id]);	
+				}
 			}
 		}
 		
@@ -198,20 +200,24 @@ class UsersController extends BaseController {
 		$user->expect_salary = $request['expect_salary'];
 		$user->gender = $request['gender'];
 		$new_pwd = $request['password'];
-		if(!is_null($new_pwd))
+		if(!empty($new_pwd))
 		{
 			$user->password = \Hash::make($new_pwd);
 		}
 		$user->save();
 			
 		#$user->work_categories->delete();
-		\App\UserWorkCategory::where('user_id', '=', $user->id)->delete();
-		$new_category_ids = $request['work_category_id'];
-		foreach($new_category_ids as $id)
+			
+		if(!empty($request['work_category_id']))
 		{
-			if(!\App\UserWorkCategory::where('user_id', '=', $user->id)->where('work_category_id', '=', $id)->first())
+			\App\UserWorkCategory::where('user_id', '=', $user->id)->delete();
+			$new_category_ids = $request['work_category_id'];
+			foreach($new_category_ids as $id)
 			{
-				\App\UserWorkCategory::create(['user_id' => $user->id, 'work_category_id' => $id]);	
+				if(!\App\UserWorkCategory::where('user_id', '=', $user->id)->where('work_category_id', '=', $id)->first())
+				{
+					\App\UserWorkCategory::create(['user_id' => $user->id, 'work_category_id' => $id]);	
+				}
 			}
 		}
 		
