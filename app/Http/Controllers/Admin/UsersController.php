@@ -92,7 +92,10 @@ class UsersController extends BaseController {
 		$user->city = $request['city'];
 		$user->street = $request['street'];
 		$user->area_name = $request['area_name'];
-		$user->birthday = (is_null($request['birthday']) ? null : $request['birthday']);
+		if(!is_null($request['birthday']))
+		{
+			$user->birthday = $request['birthday'];
+		}
 		$user->email = $request['email'];
 		$user->name = $request['name'];
 		$user->public_mobile = isset($request['public_mobile']);
@@ -180,7 +183,10 @@ class UsersController extends BaseController {
 		$user->city = $request['city'];
 		$user->street = $request['street'];
 		$user->area_name = $request['area_name'];
-		$user->birthday = (is_null($request['birthday']) ? null : $request['birthday']);
+		if(!is_null($request['birthday']))
+		{
+			$user->birthday = $request['birthday'];
+		}
 		$user->email = $request['email'];
 		$user->name = $request['name'];
 		$user->public_mobile = isset($request['public_mobile']);
