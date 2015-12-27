@@ -72,7 +72,7 @@ class UsersController extends BaseController {
 		#判断手机号是否重复
 		if(\App\User::where('mobile', '=', $request['mobile'])->first())
 		{
-			$request->session()->flash('error', '邮箱地址不可用');
+			$request->session()->flash('error', '手机号不可用');
 			return redirect()->back();
 		}
 		
@@ -92,7 +92,7 @@ class UsersController extends BaseController {
 		$user->city = $request['city'];
 		$user->street = $request['street'];
 		$user->area_name = $request['area_name'];
-		$user->birthday = $request['birthday'];
+		$user->birthday = (is_null($request['birthday']) ? null : $request['birthday']);
 		$user->email = $request['email'];
 		$user->name = $request['name'];
 		$user->public_mobile = isset($request['public_mobile']);
@@ -180,7 +180,7 @@ class UsersController extends BaseController {
 		$user->city = $request['city'];
 		$user->street = $request['street'];
 		$user->area_name = $request['area_name'];
-		$user->birthday = $request['birthday'];
+		$user->birthday = (is_null($request['birthday']) ? null : $request['birthday']);
 		$user->email = $request['email'];
 		$user->name = $request['name'];
 		$user->public_mobile = isset($request['public_mobile']);
