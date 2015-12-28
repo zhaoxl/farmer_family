@@ -110,6 +110,7 @@ class StaffsController extends BaseController {
 		$user_id = $request['user_id'];
 		$contacts = $request['contacts'];
 		$mobile = $request['mobile'];
+		$content = $request['content'];
 				
 		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
 		{
@@ -131,7 +132,7 @@ class StaffsController extends BaseController {
 			$request->session()->flash('error', '请选择可工作时间');
 			return redirect()->back();
 		}
-		$staff = \App\Staff::create(array('user_id' => $user_id, 'work_category_id' => $work_category, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at, 'title' => $title, 'contacts' => $contacts, 'mobile' => $mobile));
+		$staff = \App\Staff::create(array('user_id' => $user_id, 'work_category_id' => $work_category, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at, 'title' => $title, 'contacts' => $contacts, 'mobile' => $mobile, 'content' => $content));
 		$request->session()->flash('success', '添加成功');
 		return redirect()->back();
 	}
@@ -195,6 +196,7 @@ class StaffsController extends BaseController {
 		$contacts = $request['contacts'];
 		$mobile = $request['mobile'];
 		$user_id = $request['user_id'];
+		$content = $request['content'];
 				
 		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
 		{
@@ -230,6 +232,7 @@ class StaffsController extends BaseController {
 		$staff->end_at = $end_at;
 		$staff->contacts = $contacts;
 		$staff->mobile = $mobile;
+		$staff->content = $content;
 		$staff->save();
 		
 		$request->session()->flash('success', '保存成功');

@@ -77,6 +77,10 @@
           </ul>
         </li>
         <li><a href="/admin/messages"><i class="fa fa-suitcase"></i> <span>站内信息</span></a></li>
+        <li><a href="/admin/work_categories"><i class="fa fa-suitcase"></i> <span>工种管理</span></a></li>
+        <li><a href="/admin/work_categories/create"><i class="fa fa-suitcase"></i> <span>添加工种</span></a></li>
+        <li><a href="/admin/industries"><i class="fa fa-suitcase"></i> <span>行业管理</span></a></li>
+        <li><a href="/admin/industries/create"><i class="fa fa-suitcase"></i> <span>添加行业</span></a></li>
         <li class="nav-parent"><a href=""><i class="fa fa-edit"></i> <span>地区管理</span></a>
           <ul class="children">
 						<li><a href="/admin/areas"><i class="fa fa-caret-right"></i> 省市管理</a></li>

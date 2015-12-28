@@ -98,6 +98,13 @@
 									 <input type="text" id="end_at" class="form-control" placeholder="可工作时间" name="end_at" value="{{$data->end_at}}">
 								  </div>
 								</div>
+								
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">详细内容</label>
+								  <div class="col-sm-6">
+										<script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+								  </div>
+								</div>
       
 		            <div class="form-group">
 								  <label for="disabledinput" class="col-sm-3 control-label"></label>
@@ -116,8 +123,33 @@
 @endsection
 
 @section('js')
+<script type="text/javascript" charset="utf-8" src="/js/admin/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/admin/ueditor/ueditor.all.js"> </script>
+
 <script type="text/javascript">
 	$(function(){
+		//编辑器
+		
+		//实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor(
+			'editor',
+			{
+	      //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+	      toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test']],
+	      //focus时自动清空初始化时的内容
+	      autoClearinitialContent:true,
+	      //关闭字数统计
+	      wordCount:false,
+	      //关闭elementPath
+	      elementPathEnabled:false,
+				//宽度
+				initialFrameWidth:660,
+	      //默认的编辑区域高度
+	      initialFrameHeight:300,
+				textarea:'content'
+		});
+		
 		//get cities
 		$("#area_province").change(function(){
 			if($(this).val() == "")
