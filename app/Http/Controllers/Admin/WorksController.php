@@ -85,9 +85,9 @@ class WorksController extends BaseController {
 	 */
 	public function create()
 	{
-		$present_users = \App\User::where('category', '=', 0)->orderBy('created_at', 'desc')->paginate(11);
+		$present_users = \App\User::where('category', '!=', 0)->orderBy('created_at', 'desc')->get();
 		
-		$data = new \App\Staff;
+		$data = new \App\Work;
 		$industries = \App\Industry::orderBy("sort", 'asc')->get();
 		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
 		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
@@ -203,7 +203,24 @@ class WorksController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$present_users = \App\User::where('category', '!=', 0)->orderBy('created_at', 'desc')->get();
+		
+		$data = \App\Work::find($id);
+		$industries = \App\Industry::orderBy("sort", 'asc')->get();
+		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
+		$area_provinces = \App\AreaProvince::orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		$area_cities = null;
+		$area_streets = null;
+		if(!empty($data->province))
+		{
+			$area_cities = \App\AreaCity::where('provincecode', '=', $data->province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
+		if(!empty($data->city))
+		{
+			$area_streets = \App\AreaStreet::where('citycode', '=', $data->city)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));
+		}
+			
+		return view('admin.works.edit')->with('data', $data)->with('present_users', $present_users)->with('area_provinces', $area_provinces)->with('area_cities', $area_cities)->with('area_streets', $area_streets)->with('work_categories', $work_categories)->with('industries', $industries);
 	}
 
 	/**
@@ -212,9 +229,98 @@ class WorksController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		//
+		$title = $request['title'];
+		$area_province = $request['area_province'];
+		$area_city = $request['area_city'];
+		$area_street = $request['area_street'];
+		$area_name = $request['area_name'];
+		$address = $request['address'];
+		$price = $request['price'];
+		$content = $request['content'];
+		$people_number = isset($request['people_number']) ? $request['people_number'] : '';
+		$industry = isset($request['industry']) ? $request['industry'] : '';
+		$work_category = isset($request['work_category']) ? $request['work_category'] : '';
+		$start_at = isset($request['start_at']) ? $request['start_at'] : '';
+		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
+		$user_id = $request['user_id'];
+				
+		if(empty($title))
+		{
+			$request->session()->flash('error', '请输入标题');
+			return redirect()->back();
+		}
+		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
+		{
+			$request->session()->flash('error', '请选择工作区域');
+			return redirect()->back();
+		}
+		if(empty($address))
+		{
+			$request->session()->flash('error', '请输入详细地址');
+			return redirect()->back();
+		}
+		if(empty($industry))
+		{
+			$request->session()->flash('error', '请选择行业');
+			return redirect()->back();
+		}
+		if(empty($work_category))
+		{
+			$request->session()->flash('error', '请选择工作工种');
+			return redirect()->back();
+		}
+		if(empty($start_at) || empty($end_at))
+		{
+			if(empty($request['date_long']))
+			{
+				$request->session()->flash('error', '请选择服务时间');
+				return redirect()->back();
+			}
+		}
+		if(empty($price))
+		{
+			if(empty($request['price_negotiable']))
+			{
+				$request->session()->flash('error', '请输入服务报酬');
+				return redirect()->back();
+			}
+		}
+		if(empty($people_number))
+		{
+			$request->session()->flash('error', '请输入服务人数');
+			return redirect()->back();
+		}
+		$work = \App\Work::find($id);
+		$work->user_id = $user_id;
+		$work->work_category_id = $work_category;
+		$work->industry_id = $industry;
+		$work->province = $area_province;
+		$work->city = $area_city;
+		$work->street = $area_street;
+		$work->area_name = $area_name;
+		$work->address = $address;
+		$work->title = $title;
+		$work->price = $price;
+		$work->content = $content;
+				
+		if(!empty($start_at))
+		{
+			$work->start_at = $start_at;
+		}
+		if(!empty($end_at))
+		{
+			$work->end_at = $end_at;
+		}
+		if(!empty($people_number))
+		{
+			$work->people_number = $people_number;
+		}
+		$work->save();
+		
+		$request->session()->flash('success', '保存成功');
+		return redirect()->back();
 	}
 
 	/**
@@ -225,7 +331,7 @@ class WorksController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		\App\Work::destroy($id);
 	}
 
 }

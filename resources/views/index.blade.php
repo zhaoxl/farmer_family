@@ -19,7 +19,7 @@
 			</a>
 			<a href="/auth/create" class="reg_btn reg_btn2">
 				<div class="reg_btn_hover">
-					注册后可以发布生活服务信息
+					注册后可以发布招工雇人信息
 				</div>
 			</a>
 			<div class="login_box">

@@ -80,7 +80,7 @@ class StaffsController extends BaseController {
 	 */
 	public function create()
 	{
-		$present_users = \App\User::where('category', '!=', 0)->orderBy('created_at', 'desc')->paginate(11);
+		$present_users = \App\User::where('category', '=', 0)->orderBy('created_at', 'desc')->get();
 		
 		$data = new \App\Staff;
 		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
@@ -156,7 +156,7 @@ class StaffsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$present_users = \App\User::where('category', '!=', 0)->orderBy('created_at', 'desc')->paginate(11);
+		$present_users = \App\User::where('category', '=', 0)->orderBy('created_at', 'desc')->get();
 		
 		$data = \App\Staff::find($id);
 		$work_categories = \App\WorkCategory::orderBy('sort', 'asc')->get();
@@ -195,7 +195,6 @@ class StaffsController extends BaseController {
 		$user_id = $request['user_id'];
 		$contacts = $request['contacts'];
 		$mobile = $request['mobile'];
-		$user_id = $request['user_id'];
 		$content = $request['content'];
 				
 		if(is_null($area_province) || is_null($area_city) || is_null($area_street))

@@ -128,14 +128,14 @@
 <script type="text/javascript">
 	$(function(){
 		//编辑器
-		
+	
 		//实例化编辑器
-    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    var ue = UE.getEditor(
+	  //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+	  var ue = UE.getEditor(
 			'editor',
 			{
 	      //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
-	      toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test']],
+	      //toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test','simpleupload']],
 	      //focus时自动清空初始化时的内容
 	      autoClearinitialContent:true,
 	      //关闭字数统计
@@ -146,7 +146,8 @@
 				initialFrameWidth:660,
 	      //默认的编辑区域高度
 	      initialFrameHeight:300,
-				textarea:'content'
+				textarea:'content',
+				serverUrl:'/admin/ueditor'
 		});
 		
 		//get cities

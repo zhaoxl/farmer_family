@@ -76,6 +76,8 @@ Route::group(['namespace' => 'Admin'], function()
 	Route::resource('/admin/work_evaluates', 'WorkEvaluatesController');
 	Route::resource('/admin/work_categories', 'WorkCategoriesController');
 	Route::resource('/admin/industries', 'IndustriesController');
+	Route::get('/admin/ueditor', 'UeditorController@index');
+	Route::post('/admin/ueditor', 'UeditorController@index');
 	Route::controller('/admin', 'IndexController');
 });
 Route::get('/admin', 'Admin\IndexController@index');

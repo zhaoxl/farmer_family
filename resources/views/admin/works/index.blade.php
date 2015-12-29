@@ -61,8 +61,8 @@
 									<td>
 										<a href="/admin/works/refresh?id={{$data->id}}">刷新</a>&nbsp;
 										<a href="/admin/works/top?id={{$data->id}}">置顶</a>&nbsp;
-										<a href="#">查看</a>&nbsp;
-										<a href="#">删除</a>
+										<a href="/admin/works/{{$data->id}}/edit">编辑</a>&nbsp;
+										<a href="javascript:deleteItem({{$data->id}});">删除</a>
 									</td>
 		            </tr>
 								@endforeach
@@ -75,4 +75,18 @@
 		</row>
   </div>		
 					
+	<script type="text/javascript">
+	function deleteItem(id) {
+		if (confirm('确定删除?')) {
+	    $.ajax({
+	      type: "DELETE",
+	      url: '/admin/works/' + id,
+				data: {'_token': '{{ csrf_token() }}'},
+	      success: function(result) {
+	        location.reload();
+	      }
+	    });
+	  }
+	}
+	</script>
 @endsection

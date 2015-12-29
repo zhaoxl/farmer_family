@@ -37,7 +37,7 @@
 								  <div class="col-sm-6">
 										<select name="work_category"class="form-control">
 											@foreach ($work_categories as $work_category)
-												<option value="{{ $work_category->up_id }}" {{$data->id == $data->sub_work_category_id ? 'selected' : ''}}>{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
+												<option value="{{ $work_category->id }}" {{$work_category->id == $data->work_category_id ? 'selected' : ''}}>{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
 											@endforeach
 										</select>
 								  </div>
@@ -52,6 +52,16 @@
 												<option value="{{ $industry->id }}">{{ $industry->full_name }}</option>
 											@endforeach
 										</select>
+								  </div>
+								</div>
+            
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">服务时间</label>
+								  <div class="col-sm-6">
+										<input type="text" name="start_at" class="text date" id="start_at" />
+										<label>到</label>
+										<input type="text" name="end_at" class="text date" id="end_at" />
+										<label><input type="checkbox" name="date_long" value="1" id="date_long"/>长期</label>
 								  </div>
 								</div>
             
@@ -93,16 +103,6 @@
 								  <div class="col-sm-6">
 				 						<input type="text" name="price" class="text" id="price_txt" />/天
 				 						<label><input type="checkbox" name="price_negotiable" value="1" id="price_negotiable"/>面议</label>
-								  </div>
-								</div>
-            
-		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">服务时间</label>
-								  <div class="col-sm-6">
-										<input type="text" name="start_at" class="text date" id="start_at" />
-										<label>到</label>
-										<input type="text" name="end_at" class="text date" id="end_at" />
-										<label><input type="checkbox" name="date_long" value="1" id="date_long"/>长期</label>
 								  </div>
 								</div>
             
@@ -151,7 +151,7 @@
 			'editor',
 			{
 	      //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
-	      toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test']],
+	      //toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold','test','simpleupload']],
 	      //focus时自动清空初始化时的内容
 	      autoClearinitialContent:true,
 	      //关闭字数统计
@@ -162,7 +162,8 @@
 				initialFrameWidth:660,
 	      //默认的编辑区域高度
 	      initialFrameHeight:300,
-				textarea:'content'
+				textarea:'content',
+				serverUrl:'/admin/ueditor'
 		});
 		
 		//get cities
