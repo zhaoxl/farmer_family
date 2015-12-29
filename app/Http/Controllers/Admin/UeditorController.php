@@ -9,7 +9,7 @@ class UeditorController extends BaseController {
 
 	public function index(Request $request)
 	{
-		date_default_timezone_set("Asia/chongqing");
+		date_default_timezone_set("Asia/Chongqing");
 		$CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", "", file_get_contents("../app/Http/Controllers/Admin/ueditor/config.json")), true);
 		$action = $request['action'];
 		
