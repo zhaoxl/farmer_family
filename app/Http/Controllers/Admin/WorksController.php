@@ -119,52 +119,53 @@ class WorksController extends BaseController {
 		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
 		$user_id = $request['user_id'];
 				
-		if(empty($title))
-		{
-			$request->session()->flash('error', '请输入标题');
-			return redirect()->back();
-		}
-		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
-		{
-			$request->session()->flash('error', '请选择工作区域');
-			return redirect()->back();
-		}
-		if(empty($address))
-		{
-			$request->session()->flash('error', '请输入详细地址');
-			return redirect()->back();
-		}
-		if(empty($industry))
-		{
-			$request->session()->flash('error', '请选择行业');
-			return redirect()->back();
-		}
-		if(empty($work_category))
-		{
-			$request->session()->flash('error', '请选择工作工种');
-			return redirect()->back();
-		}
-		if(empty($start_at) || empty($end_at))
-		{
-			if(empty($request['date_long']))
-			{
-				$request->session()->flash('error', '请选择服务时间');
-				return redirect()->back();
-			}
-		}
-		if(empty($price))
-		{
-			if(empty($request['price_negotiable']))
-			{
-				$request->session()->flash('error', '请输入服务报酬');
-				return redirect()->back();
-			}
-		}
-		if(empty($people_number))
-		{
-			$request->session()->flash('error', '请输入服务人数');
-			return redirect()->back();
-		}
+		// if(empty($title))
+	// 	{
+	// 		$request->session()->flash('error', '请输入标题');
+	// 		return redirect()->back();
+	// 	}
+	// 	if(is_null($area_province) || is_null($area_city) || is_null($area_street))
+	// 	{
+	// 		$request->session()->flash('error', '请选择工作区域');
+	// 		return redirect()->back();
+	// 	}
+	// 	if(empty($address))
+	// 	{
+	// 		$request->session()->flash('error', '请输入详细地址');
+	// 		return redirect()->back();
+	// 	}
+	// 	if(empty($industry))
+	// 	{
+	// 		$request->session()->flash('error', '请选择行业');
+	// 		return redirect()->back();
+	// 	}
+	// 	if(empty($work_category))
+	// 	{
+	// 		$request->session()->flash('error', '请选择工作工种');
+	// 		return redirect()->back();
+	// 	}
+	// 	if(empty($start_at) || empty($end_at))
+	// 	{
+	// 		if(empty($request['date_long']))
+	// 		{
+	// 			$request->session()->flash('error', '请选择服务时间');
+	// 			return redirect()->back();
+	// 		}
+	// 	}
+	// 	if(empty($price))
+	// 	{
+	// 		if(empty($request['price_negotiable']))
+	// 		{
+	// 			$request->session()->flash('error', '请输入服务报酬');
+	// 			return redirect()->back();
+	// 		}
+	// 	}
+	// 	if(empty($people_number))
+	// 	{
+	// 		$request->session()->flash('error', '请输入服务人数');
+	// 		return redirect()->back();
+	// 	}
+		
 		$work = new \App\Work(array('user_id' => $user_id, 'work_category_id' => $work_category, 'industry_id' => $industry, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content));
 		if(!empty($start_at))
 		{
@@ -246,52 +247,53 @@ class WorksController extends BaseController {
 		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
 		$user_id = $request['user_id'];
 				
-		if(empty($title))
-		{
-			$request->session()->flash('error', '请输入标题');
-			return redirect()->back();
-		}
-		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
-		{
-			$request->session()->flash('error', '请选择工作区域');
-			return redirect()->back();
-		}
-		if(empty($address))
-		{
-			$request->session()->flash('error', '请输入详细地址');
-			return redirect()->back();
-		}
-		if(empty($industry))
-		{
-			$request->session()->flash('error', '请选择行业');
-			return redirect()->back();
-		}
-		if(empty($work_category))
-		{
-			$request->session()->flash('error', '请选择工作工种');
-			return redirect()->back();
-		}
-		if(empty($start_at) || empty($end_at))
-		{
-			if(empty($request['date_long']))
-			{
-				$request->session()->flash('error', '请选择服务时间');
-				return redirect()->back();
-			}
-		}
-		if(empty($price))
-		{
-			if(empty($request['price_negotiable']))
-			{
-				$request->session()->flash('error', '请输入服务报酬');
-				return redirect()->back();
-			}
-		}
-		if(empty($people_number))
-		{
-			$request->session()->flash('error', '请输入服务人数');
-			return redirect()->back();
-		}
+		// if(empty($title))
+// 		{
+// 			$request->session()->flash('error', '请输入标题');
+// 			return redirect()->back();
+// 		}
+// 		if(is_null($area_province) || is_null($area_city) || is_null($area_street))
+// 		{
+// 			$request->session()->flash('error', '请选择工作区域');
+// 			return redirect()->back();
+// 		}
+// 		if(empty($address))
+// 		{
+// 			$request->session()->flash('error', '请输入详细地址');
+// 			return redirect()->back();
+// 		}
+// 		if(empty($industry))
+// 		{
+// 			$request->session()->flash('error', '请选择行业');
+// 			return redirect()->back();
+// 		}
+// 		if(empty($work_category))
+// 		{
+// 			$request->session()->flash('error', '请选择工作工种');
+// 			return redirect()->back();
+// 		}
+// 		if(empty($start_at) || empty($end_at))
+// 		{
+// 			if(empty($request['date_long']))
+// 			{
+// 				$request->session()->flash('error', '请选择服务时间');
+// 				return redirect()->back();
+// 			}
+// 		}
+// 		if(empty($price))
+// 		{
+// 			if(empty($request['price_negotiable']))
+// 			{
+// 				$request->session()->flash('error', '请输入服务报酬');
+// 				return redirect()->back();
+// 			}
+// 		}
+// 		if(empty($people_number))
+// 		{
+// 			$request->session()->flash('error', '请输入服务人数');
+// 			return redirect()->back();
+// 		}
+
 		$work = \App\Work::find($id);
 		$work->user_id = $user_id;
 		$work->work_category_id = $work_category;
