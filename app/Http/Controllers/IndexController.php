@@ -12,11 +12,7 @@ class IndexController extends Controller {
 	{
 		$staffs = \App\Staff::orderBy(\DB::raw('updated_at, is_top'), 'desc')->take(10)->get();
 		$works = \App\Work::orderBy(\DB::raw('updated_at, is_top'), 'desc')->take(10)->get();
-		$settings = array();
-		$system_settings = \App\SystemSetting::get();
-		$system_settings->each(function($setting) use (&$settings){
-			$settings[$setting->key] = $setting->val;
-		});
+		
 		
 		// $current_city = \Cookie::get('current_city');
 // 		$current_city_code = \Cookie::get('current_city_code');
@@ -44,7 +40,7 @@ class IndexController extends Controller {
 		$current_city_code = "110000";
 		$cookie1 = \Cookie::forever('current_city', $current_city);
 		$cookie2 = \Cookie::forever('current_city_code', $current_city_code);
-		$view = view('index')->with('staffs', $staffs)->with('works', $works)->with('city_name', $current_city)->with('current_city_code', $current_city_code)->with('settings', $settings);
+		$view = view('index')->with('staffs', $staffs)->with('works', $works)->with('city_name', $current_city)->with('current_city_code', $current_city_code);
 		
 		$response = new \Illuminate\Http\Response($view);
 		$response->withCookie($cookie1)->withCookie($cookie2);

@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>猫眼360</title>
-	<link href="{{ asset('/css/base.css') }}" rel="stylesheet">
+@extends('new_base')
+
+@section('css')
 	<link href="{{ asset('/css/index.css') }}" rel="stylesheet">
-</head>
-<body>
-	<?php echo View::make('partials.index_header') ?>
+@endsection
+
+@section('content')
 	<div id="index">
 		<div class="context">
 			<a href="/auth/create" class="reg_btn reg_btn1">
@@ -110,18 +105,12 @@
 		<div class="bottom_ad">
 			<img src="/images/index_bottom_ad.jpg" />
 		</div>
-		<div class="footer">
-			<div class="desc">
-				{{$settings['footer']}}
-			</div>
-			<div class="context">
-				 {{$settings['site_name']}}&nbsp;&nbsp;&nbsp;&nbsp;地址：{{$settings['address']}}&nbsp;&nbsp;&nbsp;&nbsp;联系电话：{{$settings['telphone']}}&nbsp;&nbsp;&nbsp;&nbsp;邮箱：{{$settings['email']}}
-			</div>
-		</div>
 	</div>
+@endsection
+
+@section('js')
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/custom-form-elements.js"></script>
 	<script type="text/javascript" src="{{ asset('/js/jquery.validate.min.js') }}" ></script>
 	<script src="/js/index.js"></script>
-</body>
-</html>
+@endsection

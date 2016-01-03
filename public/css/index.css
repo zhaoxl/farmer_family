@@ -1,13 +1,7 @@
-.header{width: 1100px; height: 64px; margin: auto auto; background: white;}
-.header .logo{width: 453px; height: 53px; background: url('/images/logo.jpg');}
-.header .logo .area{margin: 24px auto auto 310px; float: left;}
-.header .logo .area a{color: white; text-decoration: underline;}
-.error{color: red;}
-a{color: #727272;}
-body{color: #727272;}
 
-#index{width: 1099px; height: 310px; margin: auto auto; background: url('/images/index_bg.jpg') 0px -100px;}
-#index>.context{width: 100%; height: 312px;}
+
+#index{width: 1099px; margin: auto auto;}
+#index>.context{width: 100%; height: 312px; background: url('/images/index_bg.jpg') 0px -100px;}
 #index .login_box{width: 205px; height: 207px; float: right; margin: 50px 176px auto auto;}
 #index .login_box [type=checkbox]{vertical-align: text-top;}
 #index .login_box [type=text]{border: 0px;}

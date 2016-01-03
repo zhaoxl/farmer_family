@@ -13,8 +13,10 @@ class StaffsController extends Controller {
 		$area_province = $request['area_province'];
 		$area_city = $request['area_city'];
 		$area_cities = null;
+		$address = $request['address'];
 		$category_id = $request['category_id'];
-		$gender = $request['gender'];
+		$gender_m = $request['gender_m'];
+		$gender_f = $request['gender_f'];
 		$age_start = $request['age_start'];
 		$age_end = $request['age_end'];
 
@@ -42,9 +44,16 @@ class StaffsController extends Controller {
 		{
 			$staffs = $staffs->where('staffs.sub_work_category_id', '=', $category_id);
 		}
-		if(!empty($gender))
+		if(empty($gender_m) || empty($gender_f))
 		{
-			$staffs = $staffs->where('users.gender', '=', $gender);
+			if(!empty($gender_m))
+			{
+				$staffs = $staffs->where('users.gender', '=', 'male');
+			}
+			if(!empty($gender_f))
+			{
+				$staffs = $staffs->where('users.gender', '=', 'fmale');
+			}
 		}
 		if(!empty($age_start))
 		{
@@ -57,6 +66,10 @@ class StaffsController extends Controller {
 			$date = date('Y');
 			$date = date('Y',(strtotime ( '-'.$age_end.' year' , strtotime ( $date) ) ));
 			$staffs = $staffs->where(\DB::raw('YEAR(users.birthday)'), '>=', $date);
+		}
+		if(!empty($address))
+		{
+			$staffs = $staffs->where("staffs.address", 'LIKE', '%'.$address.'%');
 		}
 		
 		$staffs = $staffs->paginate(4);
