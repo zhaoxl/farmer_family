@@ -104,7 +104,7 @@ class StaffsController extends BaseController {
 		$area_street = $request['area_street'];
 		$area_name = $request['area_name'];
 		$address = $request['address'];
-		$work_category = isset($request['work_category']) ? $request['work_category'] : '';
+		$work_category = isset($request['work_category']) ? $request['work_category'] : null;
 		$start_at = $request['start_at'];
 		$end_at = $request['end_at'];
 		$user_id = $request['user_id'];
@@ -122,16 +122,24 @@ class StaffsController extends BaseController {
 // 			$request->session()->flash('error', '请输入详细地址');
 // 			return redirect()->back();
 // 		}
-// 		if(empty($work_category))
-// 		{
-// 			$request->session()->flash('error', '请选择期望工作工种');
-// 			return redirect()->back();
-// 		}
+		if(empty($work_category))
+		{
+			$request->session()->flash('error', '请选择工种');
+			return redirect()->back();
+		}
 // 		if(empty($start_at) || empty($end_at))
 // 		{
 // 			$request->session()->flash('error', '请选择可工作时间');
 // 			return redirect()->back();
 // 		}
+	if(empty($start_at))
+	{
+		$start_at = null;	
+	}
+	if(empty($end_at))
+	{
+		$end_at = null;	
+	}
 		
 		$staff = \App\Staff::create(array('user_id' => $user_id, 'work_category_id' => $work_category, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'start_at' => $start_at, 'end_at' => $end_at, 'title' => $title, 'contacts' => $contacts, 'mobile' => $mobile, 'content' => $content));
 		$request->session()->flash('success', '添加成功');
@@ -208,16 +216,24 @@ class StaffsController extends BaseController {
 // 			$request->session()->flash('error', '请输入详细地址');
 // 			return redirect()->back();
 // 		}
-// 		if(empty($work_category))
-// 		{
-// 			$request->session()->flash('error', '请选择期望工作工种');
-// 			return redirect()->back();
-// 		}
+		if(empty($work_category))
+		{
+			$request->session()->flash('error', '请选择工种');
+			return redirect()->back();
+		}
 // 		if(empty($start_at) || empty($end_at))
 // 		{
 // 			$request->session()->flash('error', '请选择可工作时间');
 // 			return redirect()->back();
 // 		}
+		if(empty($start_at))
+		{
+			$start_at = null;	
+		}
+		if(empty($end_at))
+		{
+			$end_at = null;	
+		}
 		
 		$staff = \App\Staff::find($id);
 		$staff->user_id = $user_id;

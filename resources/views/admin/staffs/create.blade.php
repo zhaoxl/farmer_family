@@ -37,7 +37,7 @@
 								  <div class="col-sm-6">
 										<select name="work_category"class="form-control">
 											@foreach ($work_categories as $work_category)
-												<option value="{{ $work_category->up_id }}" {{$data->id == $data->sub_work_category_id ? 'selected' : ''}}>{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
+												<option value="{{ $work_category->id }}" {{$work_category->id == $data->work_category_id ? 'selected' : ''}}>{{$work_category->up_id == 0 ? '' : '--'}}{{ $work_category->name }}</option>
 											@endforeach
 										</select>
 								  </div>

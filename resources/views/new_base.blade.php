@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>猫眼360</title>
 	<link href="{{ asset('/css/base.css') }}" rel="stylesheet">
+	<script src="/js/jquery.min.js"></script>
 	@yield('css')
 </head>
 <body>
