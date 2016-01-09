@@ -9,6 +9,7 @@ class StaffsController extends Controller {
 	
 	public function index(Request $request)
 	{
+		$title = $request['title'];
 		$day = $request['day'];
 		$area_province = $request['area_province'];
 		$area_city = $request['area_city'];
@@ -70,6 +71,10 @@ class StaffsController extends Controller {
 		if(!empty($address))
 		{
 			$staffs = $staffs->where("staffs.address", 'LIKE', '%'.$address.'%');
+		}
+		if(!empty($title))
+		{
+			$staffs = $staffs->where("staffs.title", 'LIKE', '%'.$title.'%');
 		}
 		
 		$staffs = $staffs->paginate(4);

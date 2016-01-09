@@ -9,11 +9,17 @@ class WorksController extends Controller {
 
 	public function index(Request $request)
 	{
+		$title = $request['title'];
 		$day = $request['day'];
 		$category_id = $request['category_id'];
 		$area_province = $request['area_province'];
 		$area_city = $request['area_city'];
 		$area_cities = null;
+		$age_start = $request['age_start'];
+		$age_end = $request['age_end'];
+		$address = $request['address'];
+		$gender_m = $request['gender_m'];
+		$gender_f = $request['gender_f'];
 		
 		$works = \App\Work::select('users.*', 'works.*')->join('users', 'users.id', '=', 'works.user_id');
 		if(!empty($day))
@@ -34,6 +40,38 @@ class WorksController extends Controller {
 		{
 			$works = $works->where('works.province', $area_province);
 		}
+		if(!empty($title))
+		{
+			$works = $works->where("works.title", 'LIKE', '%'.$title.'%');
+		}
+		if(!empty($age_start))
+		{
+			$date = date('Y');
+			$date = date('Y',(strtotime ( '-'.$age_start.' year' , strtotime ( $date) ) ));
+			$works = $works->where(\DB::raw('YEAR(users.birthday)'), '<=', $date);
+		}
+		if(!empty($age_end))
+		{
+			$date = date('Y');
+			$date = date('Y',(strtotime ( '-'.$age_end.' year' , strtotime ( $date) ) ));
+			$works = $works->where(\DB::raw('YEAR(users.birthday)'), '>=', $date);
+		}
+		if(!empty($address))
+		{
+			$works = $works->where("works.address", 'LIKE', '%'.$address.'%');
+		}
+		if(empty($gender_m) || empty($gender_f))
+		{
+			if(!empty($gender_m))
+			{
+				$works = $works->where('users.gender', '=', 'male');
+			}
+			if(!empty($gender_f))
+			{
+				$works = $works->where('users.gender', '=', 'fmale');
+			}
+		}
+		
 		if(!empty($area_province))
 		{
 			$area_cities = \App\AreaCity::where('provincecode', '=', $area_province)->orderBy('sort', 'asc')->get(array('id','code', 'name', 'id'));

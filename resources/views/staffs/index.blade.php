@@ -46,7 +46,7 @@
 					</div>
 					<div class="attr">
 						<label>服务项目：</label>
-						<input type="text" />
+						<input type="text" name="title" />
 					</div>
 						<input type="submit" class="submit" value="搜索" />
 				</div>
@@ -66,7 +66,7 @@
 							<p class="col_1">
 								男&nbsp;&nbsp;&nbsp;&nbsp;
 								@if(!is_null($staff->user))
-								{{$staff->user->age()}}岁
+								{{$staff->user->age()}}
 								@endif
 							</p>
 							<p class="col_2">{{$staff->workCategoryName()}}</p>

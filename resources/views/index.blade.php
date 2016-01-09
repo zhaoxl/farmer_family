@@ -51,7 +51,7 @@
 								<a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">
 									<span class="block1">{{$staff->user->name}}</span>
 									<span class="block1">{{$staff->user->gender}}</span>
-									<span class="block1">{{$staff->user->age()}}岁</span>
+									<span class="block1">{{$staff->user->age()}}</span>
 									<span class="block3">{{substr($user->workCategoryNames(), 0, 39)}}</span>
 									<span class="block1">【{{date('Y-m-d', strtotime($staff->created_at))}}】</span>
 								</a>

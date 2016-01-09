@@ -93,6 +93,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	
 	public function age()
 	{
-		return floor((time() - strtotime($this->birthday))/31556926);
+		if(is_null($this->birthday))
+		{
+			return "";
+		}
+		return floor((time() - strtotime($this->birthday))/31556926)."岁";
 	}
 }

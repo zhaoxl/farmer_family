@@ -80,7 +80,7 @@
 					</div>
 					<div class="clearfix"></div>
 					<div class="body">
-						{{$staff->content}}
+						{!!strip_tags($staff->content, "<p><div><ul><li><span><img><table><tr><td><h1><h2><h3><h4><h5>")!!}
 					</div>
 				</div>
 			</div>
