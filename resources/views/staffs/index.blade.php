@@ -37,11 +37,11 @@
 					<div class="attr">
 						<label>性别要求：</label>
 						<label>
-							<input type="checkbox" name="gender_m" value="male" {{Request::get('gender_m') == 'male' ? 'checked' : ''}} />&nbsp;男
+							<input type="checkbox" name="gender_m" value="男" {{Request::get('gender_m') == '男' ? 'checked' : ''}} />&nbsp;男
 						</label>
 						&nbsp;&nbsp;
 						<label>
-							<input type="checkbox" name="gender_f" value="fmale" {{Request::get('gender_f') == 'fmale' ? 'checked' : ''}} />&nbsp;女
+							<input type="checkbox" name="gender_f" value="女" {{Request::get('gender_f') == '女' ? 'checked' : ''}} />&nbsp;女
 						</label>
 					</div>
 					<div class="attr">

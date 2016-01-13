@@ -39,7 +39,7 @@ class Work extends Model {
 			$company = $this->company;
 			if(is_null($company))
 			{
-				return '公司不存在';
+				return '';
 			}
 			return $company->company_name;
 		}

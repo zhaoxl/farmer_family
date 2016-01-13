@@ -18,6 +18,12 @@ class StaffsController extends BaseController {
 		if(!is_null($request['title'])){
 			$datas = $datas->where("title", 'LIKE', '%'.$request['title'].'%');
 		}
+		if(!is_null($request['user_id'])){
+			$datas = $datas->where("user_id", '=', $request['user_id']);
+		}
+		if(!is_null($request['mobile'])){
+			$datas = $datas->where("mobile", 'LIKE', '%'.$request['mobile'].'%');
+		}
 		if(!is_null($request['excel']))
 		{			
 			$index = 0;

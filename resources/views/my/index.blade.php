@@ -157,13 +157,13 @@
 				<td width="40%" class="select_sex">
 					<div class="radio">
 						<label>
-							<input type="radio" name="gender" id="blankRadio1"  checked="checked" value="男" aria-label="男" {{$user->gender == 'male' ? 'checked' : ''}} />
+							<input type="radio" name="gender" id="blankRadio1"  checked="checked" value="男" aria-label="男" {{$user->gender == '男' ? 'checked' : ''}} />
 							男
 						</label>
 					</div>
 					<div class="radio">
 						<label>
-							<input type="radio" name="gender" id="blankRadio1" value="女" aria-label="女" {{$user->gender == 'female' ? 'checked' : ''}} />
+							<input type="radio" name="gender" id="blankRadio1" value="女" aria-label="女" {{$user->gender == '女' ? 'checked' : ''}} />
 							女
 						</label>
 					</div>

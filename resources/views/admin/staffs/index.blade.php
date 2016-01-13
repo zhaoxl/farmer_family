@@ -7,8 +7,8 @@
 	<div class="panel-body" style="padding-bottom: 0px">
     <form id="form1" class="form-inline">
       <div class="form-group">
-        <label for="exampleInputEmail2" class="sr-only">标题</label>
         <input type="text" placeholder="标题" name="title" id="exampleInputEmail2" class="form-control" value="{{Request::input('title')}}" />
+        <input type="text" placeholder="手机号" name="mobile" id="exampleInputEmail3" class="form-control" value="{{Request::input('mobile')}}" />
       </div>
       <button class="btn btn-primary" type="submit">搜索</button>
       <button class="btn btn-default" type="submit" id="export_excel_btn" name="excel" value="excel">导出Excel</button>
@@ -24,6 +24,7 @@
 		            <tr>
 		              <th>#</th>
 		              <th>发布人</th>
+		              <th>手机号</th>
 		              <th>标题</th>
 		              <th>期望工作区域</th>
 		              <th>工种</th>
@@ -39,6 +40,7 @@
 		            <tr>
 		              <td>{{$data->id}}</td>
 		              <td>{{is_null($data->user) ? '' : $data->user->name}}</td>
+		              <td>{{$data->mobile}}</td>
 		              <td>{{$data->title}}</td>
 									<td>{{$data->area_name}}</td>
 		              <td>{{$data->workCategoryName()}}</td>

@@ -49,11 +49,11 @@ class StaffsController extends Controller {
 		{
 			if(!empty($gender_m))
 			{
-				$staffs = $staffs->where('users.gender', '=', 'male');
+				$staffs = $staffs->where('users.gender', '=', '男');
 			}
 			if(!empty($gender_f))
 			{
-				$staffs = $staffs->where('users.gender', '=', 'fmale');
+				$staffs = $staffs->where('users.gender', '=', '女');
 			}
 		}
 		if(!empty($age_start))

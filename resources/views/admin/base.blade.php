@@ -61,7 +61,6 @@
 						<li><a href="/admin/users/create"><i class="fa fa-caret-right"></i> 添加用户</a></li>
           </ul>
         </li>
-        <li><a href="/admin/operation_logs"><i class="fa fa-suitcase"></i> <span>后台操作记录</span></a></li>
         <li class="nav-parent"><a href=""><i class="fa fa-bug"></i> <span>发布信息管理</span></a>
           <ul class="children">
             <li><a href="/admin/works/create"><i class="fa fa-caret-right"></i> 发布雇人信息</a></li>
@@ -88,6 +87,7 @@
           </ul>
         </li>
         <li><a href="/admin/settings"><i class="fa fa-suitcase"></i> <span>系统设置</span></a></li>
+        <li><a href="/admin/operation_logs"><i class="fa fa-suitcase"></i> <span>后台操作记录</span></a></li>
       </ul>
       
       <div class="infosummary">

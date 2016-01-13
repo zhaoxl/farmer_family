@@ -64,11 +64,11 @@ class WorksController extends Controller {
 		{
 			if(!empty($gender_m))
 			{
-				$works = $works->where('users.gender', '=', 'male');
+				$works = $works->where('users.gender', '=', '男');
 			}
 			if(!empty($gender_f))
 			{
-				$works = $works->where('users.gender', '=', 'fmale');
+				$works = $works->where('users.gender', '=', '女');
 			}
 		}
 		

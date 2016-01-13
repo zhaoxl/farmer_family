@@ -143,8 +143,8 @@
 				<span><p class="require">*</p>性别：</span>
 			</div>
 			<div class="input radios">
-				<label><input type="radio" name="gender" value="male" checked>&nbsp;&nbsp;男</label>
-				<label><input type="radio" name="gender" value="female">&nbsp;&nbsp;女</label>
+				<label><input type="radio" name="gender" value="男" checked>&nbsp;&nbsp;男</label>
+				<label><input type="radio" name="gender" value="女">&nbsp;&nbsp;女</label>
 			</div>
 			<div class="valid_notice">
 				

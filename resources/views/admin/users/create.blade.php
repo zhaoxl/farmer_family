@@ -108,7 +108,7 @@
 											  <label for="disabledinput" class="col-sm-3 control-label">生日</label>
 											  <div class="col-sm-6">
 												 <div class="input-group">
-					                 <input type="text" id="datepicker" placeholder="yyyy-mm-dd" class="form-control hasDatepicker" name="birthday" value="{{$data->birthday}}">
+					                 <input type="text" id="datepicker" placeholder="yyyy-mm-dd" class="form-control" name="birthday" value="{{$data->birthday}}">
 					                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 					               </div>
 											  </div>
