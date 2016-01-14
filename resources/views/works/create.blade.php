@@ -74,7 +74,7 @@
 					</div>
 					<div class="input">
 						<input type="text" name="address" class="text address_text" />
-						<div id="map_box" style="width: 500px; height: 400px; margin-left: 154px">
+						<div id="map_box" style="width: 500px; height: 400px; margin-left: 154px; display: none">
 							<div id="allmap"></div>
 						</div>
 						<span class="error">
@@ -107,7 +107,16 @@
 						<label><input type="checkbox" name="price_negotiable" value="1" id="price_negotiable"/>面议</label>
 					</div>
 				</div>
-				
+
+				<div class="row">
+					<div class="title">
+						工作经验：
+					</div>
+					<div class="input">
+						<input type="text" name="work_experience" id="work_experience" class="text" />
+						年以上
+					</div>
+				</div>
 				<div class="row">
 					<div class="title">
 						服务时间：
@@ -120,6 +129,27 @@
 						<label><input type="checkbox" name="date_long" value="1" id="date_long"/>长期</label>
 					</div>
 					<div class="notice">
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						年龄要求：
+					</div>
+					<div class="input">
+						<label>从</label>
+						<input type="text" name="age_start" id="age_start" class="text date" />
+						<label>到</label>
+						<input type="text" name="age_end" id="age_end" class="text date" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						性别要求：
+					</div>
+					<div class="input">
+						<label><input type="radio" name="gender" value="不限" checked>&nbsp;&nbsp;不限</label>
+						<label><input type="radio" name="gender" value="男">&nbsp;&nbsp;男</label>
+						<label><input type="radio" name="gender" value="女">&nbsp;&nbsp;女</label>
 					</div>
 				</div>
 				<div class="row">
@@ -173,7 +203,7 @@
 		var map = new BMap.Map("allmap");  // 创建Map实例
 		$(function(){
 			$("[name=address]").click(function(){
-				if($("#area_city").val() == "")
+				if($("#area_city").val() == null || $("#area_city").val() == "")
 				{
 					return false;
 				}

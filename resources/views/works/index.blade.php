@@ -60,16 +60,9 @@
 					@foreach ($works as $work)
 					<li>
 						<span class="time">发布时间 {{date('Y-m-d', strtotime($work->created_at))}}</span>
-						<span class="stars">好评度&nbsp;&nbsp;&nbsp;&nbsp;<span class="star star{{ceil($work->starCount())}}"></span></span>
 						<span class="desc">
-							<p class="col_1">▪{{$work->name}}</p>
-							<p class="col_1">
-								男&nbsp;&nbsp;&nbsp;&nbsp;
-								@if(!is_null($work->user))
-								{{$work->user->age()}}
-								@endif
-							</p>
-							<p class="col_2">{{$work->workCategoryName()}}</p>
+							<p class="col_2">雇主：{{$work->name}}</p>
+							<p class="col_2">招聘：{{$work->workCategoryName()}}</p>
 							<p class="col_2">电话：{{$work->mobile}}</p>
 							<p class="col_3">地址：{{$work->address}}</p>
 							<p class="col_1"><a href="/works/{{$work->id}}" target="_blank">查看详情>></a></p>

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AddAddressToStaffs' => $baseDir . '/database/migrations/2015_09_20_040747_add_address_to_staffs.php',
     'AddAddressToWorks' => $baseDir . '/database/migrations/2015_09_26_125122_add_address_to_works.php',
+    'AddAgeToWorks' => $baseDir . '/database/migrations/2016_01_14_143607_add_age_to_works.php',
     'AddContentToStaffs' => $baseDir . '/database/migrations/2015_09_27_105641_add_content_to_staffs.php',
     'AddContentToWorks' => $baseDir . '/database/migrations/2015_09_26_130458_add_content_to_works.php',
     'AddDeletedAtToUsers' => $baseDir . '/database/migrations/2015_11_07_132051_add_deleted_at_to_users.php',

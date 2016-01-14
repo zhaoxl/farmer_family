@@ -51,7 +51,7 @@
 					</div>
 					<div class="input">
 						<input type="text" name="address" class="text address_text" />
-						<div id="map_box" style="width: 500px; height: 400px; margin-left: 154px">
+						<div id="map_box" style="width: 500px; height: 400px; margin-left: 154px; display: none">
 							<div id="allmap"></div>
 						</div>
 					</div>
@@ -115,7 +115,7 @@
 		var map = new BMap.Map("allmap");  // 创建Map实例
 		$(function(){
 			$("[name=address]").click(function(){
-				if($("#area_city").val() == "")
+				if($("#area_city").val() == null || $("#area_city").val() == "")
 				{
 					return false;
 				}

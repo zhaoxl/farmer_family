@@ -20,7 +20,7 @@
 					</div>
 				</div>
 				<div class="date">
-					发布日期：2015-12-10
+					发布日期：{{date('Y-m-d', strtotime($staff->created_at))}}
 				</div>
 				<table class="desc">
 					<tr>

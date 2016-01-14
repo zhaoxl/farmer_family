@@ -128,6 +128,10 @@ class WorksController extends Controller {
 		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
 		$contacts = $request['contacts'];
 		$mobile = $request['mobile'];
+		$gender = $request['gender'];
+		$age_start = $request['age_start'];
+		$age_end = $request['age_end'];
+		$work_experience = $request['work_experience'];
 		$user = \Auth::user()->get();
 				
 		if(empty($title))
@@ -168,7 +172,7 @@ class WorksController extends Controller {
 		{
 			return redirect()->back()->withErrors(['people_number' => '请输入服务人数']);
 		}
-		$work = new \App\Work(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'industry_id' => $industry_id, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content, 'contacts' => $contacts, 'mobile' => $mobile));
+		$work = new \App\Work(array('user_id' => $user->id, 'work_category_id' => $work_category_id, 'industry_id' => $industry_id, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content, 'contacts' => $contacts, 'mobile' => $mobile, 'gender' => $gender, 'age_start' => $age_start, 'age_end' => $age_end, 'work_experience' => $work_experience));
 		if(!empty($start_at))
 		{
 			$work->start_at = $start_at;
@@ -241,6 +245,10 @@ class WorksController extends Controller {
 		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
 		$contacts = $request['contacts'];
 		$mobile = $request['mobile'];
+		$gender = $request['gender'];
+		$age_start = $request['age_start'];
+		$age_end = $request['age_end'];
+		$work_experience = $request['work_experience'];
 		$user = \Auth::user()->get();
 				
 		if(empty($title))
@@ -307,8 +315,14 @@ class WorksController extends Controller {
 		{
 			$work->people_number = $people_number;
 		}
-		$work->save();
+
+		$work->gender = $gender;
+		$work->age_start = $age_start;
+		$work->age_end = $age_end;
+		$work->work_experience = $work_experience;
 		
-		return redirect('/my/sent-works');
+		$work->save();
+
+		return redirect('/works/'.$work->id);
 	}
 }

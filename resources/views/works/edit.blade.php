@@ -87,6 +87,9 @@
 					</div>
 					<div class="input">
 						<input type="text" name="address" class="text address_text" value="{{$work->address}}" />
+						<div id="map_box" style="width: 500px; height: 400px; margin-left: 154px; display: none">
+							<div id="allmap"></div>
+						</div>
 						<span class="error">
 							{{(count($errors) > 0 && $errors->default->has('address')) ? $errors->default->get('address')[0] : ''}}
 						</span>
@@ -117,7 +120,16 @@
 						<label><input type="checkbox" name="price_negotiable" value="{{$work->price_negotiable}}" id="price_negotiable"/>面议</label>
 					</div>
 				</div>
-				
+
+				<div class="row">
+					<div class="title">
+						工作经验：
+					</div>
+					<div class="input">
+						<input type="text" name="work_experience" id="work_experience" class="text" value="{{$work->work_experience}}" />
+						年以上
+					</div>
+				</div>
 				<div class="row">
 					<div class="title">
 						服务时间：
@@ -130,6 +142,27 @@
 						<label><input type="checkbox" name="date_long" value="1" id="date_long" {{is_null($work->start_at) && is_null($work->end_at) ? 'checked' : ''}}/>长期</label>
 					</div>
 					<div class="notice">
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						年龄要求：
+					</div>
+					<div class="input">
+						<label>从</label>
+						<input type="text" name="age_start" id="age_start" class="text" style="width: 125px" value="{{$work->age_start}}" />
+						<label>到</label>
+						<input type="text" name="age_end" id="age_end" class="text" style="width: 125px" value="{{$work->age_end}}" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="title">
+						性别要求：
+					</div>
+					<div class="input">
+						<label><input type="radio" name="gender" value="不限" {{$work->gender == "不限" ? "checked" : ''}}>&nbsp;&nbsp;不限</label>
+						<label><input type="radio" name="gender" value="男" {{$work->gender == "男" ? "checked" : ''}}>&nbsp;&nbsp;男</label>
+						<label><input type="radio" name="gender" value="女" {{$work->gender == "女" ? "checked" : ''}}>&nbsp;&nbsp;女</label>
 					</div>
 				</div>
 				<div class="row">
@@ -175,7 +208,35 @@
 	alert('保存成功！');
 	</script>
 	@endif
-	
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lXeAbeMF4NG6YczveCyamS6T"></script>
+	<style type="text/css" media="screen">
+		#allmap{width: 500px;height: 400px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript">
+		var map = new BMap.Map("allmap");  // 创建Map实例
+		$(function(){
+			$("[name=address]").click(function(){
+				if($("#area_city").val() == null || $("#area_city").val() == "")
+				{
+					return false;
+				}
+				$("#map_box").show();
+				map.centerAndZoom($("#area_city").find("option:selected").text(), 12);      // 初始化地图,用城市名设置地图中心点
+				//单击获取点击的经纬度
+				var geoc = new BMap.Geocoder();    
+
+				map.addEventListener("click", function(e){
+					var pt = e.point;
+					geoc.getLocation(pt, function(rs){
+						var addComp = rs.addressComponents;
+						$("[name=address]").val(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+						$("#map_box").hide().blur();
+					});        
+				});
+			});
+			
+		});
+	</script>
 	<script type="text/javascript" src="{{ asset('/js/jquery.validate.min.js') }}" ></script>
 	<script>
 		var validate = $("#create_form").validate({

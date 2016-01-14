@@ -20,57 +20,79 @@
 					</div>
 				</div>
 				<div class="date">
-					发布日期：2015-12-10
+					发布日期：{{date('Y-m-d', strtotime($work->created_at))}}
 				</div>
-				<table class="desc">
-					<tr>
-						<td width="300">
-							姓名：{{$user->name}}
-						</td>
-						<td rowspan="8" class="map">
-							<div id="address_map" class="photo">
-								<div id="allmap">
-						
-								</div>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							性别：{{$user->gender == 'm' ? '男' : '女'}}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							年龄：{{$user->age()}}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							电话：{{$user->mobile}}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							地址：{{$work->address}}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							籍贯：{{$user->hometown}}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							QQ号：{{$user->qq}}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							微信号：{{$user->weixin}}
-						</td>
-					</tr>
-				</table>
+				<br />
+				<br />
+				<div class="desc_box">
+					<h4>招聘需求</h4>
+					<table class="desc">
+						<tr>
+							<td width="300">
+								工种类别：{{$work->workCategoryName()}}
+							</td>
+						</tr>
+						<tr>
+							<td width="300">
+								性别要求：{{$work->gender}}
+							</td>
+						</tr>
+						<tr>
+							<td width="300">
+								年龄要求：{{$work->age_start}}—{{$work->age_end}}岁
+							</td>
+						</tr>
+						<tr>
+							<td width="300">
+								工作经验：{{$work->work_experience}}年以上
+							</td>
+						</tr>
+						<tr>
+							<td width="300">
+								工作区域：{{$work->address}}
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="desc_box">
+					<h4>雇主信息</h4>
+					<table class="desc">
+						<tr>
+							<td width="300">
+								雇主：{{$user->name}}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								行业：{{$work->industryName()}}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								电话：{{$user->mobile}}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								邮箱：{{$user->email}}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								地址：{{$work->address}}
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div id="address_map" class="map_preview">
+					<div id="allmap">
+			
+					</div>
+				</div>
+				<div class="clearfix"></div>
+				
+				
 				<div class="content">
 					<div class="head">
 						<div class="title">
@@ -101,9 +123,6 @@
 		<script src="/js/jquery-ui/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
 
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lXeAbeMF4NG6YczveCyamS6T"></script>
-		<style type="text/css" media="screen">
-			#allmap{width: 400px;height: 350px;overflow: hidden;margin:0;font-family:"微软雅黑";}
-		</style>
 		<script type="text/javascript">
 	// 百度地图API功能
 		var map = new BMap.Map("allmap");

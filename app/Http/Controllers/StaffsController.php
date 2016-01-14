@@ -229,6 +229,6 @@ class StaffsController extends Controller {
 		$staff->mobile = $mobile;
 		$staff->save();
 
-		return redirect('/my/staffs');
+		return redirect('/staffs/'.$staff->id);
 	}
 }

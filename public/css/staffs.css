@@ -56,8 +56,11 @@ body{background: #F6F6F6;}
 
 #staffs .context .show .title .stars .dianping{display: inline-block; width: 98px; height: 32px; border: none; color: white; line-height: 32px; background: #43B790; font-size: 14px; text-align: center;}
 #staffs .context .show .date{font-size: 20px; margin-top: 10px;}
-#staffs .context .show .desc{margin: 20px auto auto 20px;}
+#staffs .context .show .desc_box{width: 240px; float: left}
+#staffs .context .show .desc{margin: 20px auto auto 0px;}
 #staffs .context .show .desc tr td{padding-top: 15px;}
+#staffs .context .show .map_preview{width: 300px; float: left;}
+#staffs .context .show .map_preview #allmap{width: 300px;height: 230px;overflow: hidden;margin:0;font-family:"微软雅黑";}
 #staffs .context .show .desc .map{padding-left: 50px; padding-top: 50px; vertical-align: top;}
 #staffs .context .show .content{margin-top: 30px;}
 #staffs .context .show .content .head .title{width: 104px; line-height: 44px; border-top: solid 3px #44B790; color: #44B790; text-align: center; font-size: 14px; font-weight: normal; float: left;}
