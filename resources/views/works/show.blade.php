@@ -39,12 +39,18 @@
 						</tr>
 						<tr>
 							<td width="300">
-								年龄要求：{{$work->age_start}}—{{$work->age_end}}岁
+								年龄要求：
+								@if(!is_null($work->age_start))
+									{{$work->age_start}}—{{$work->age_end}}岁
+								@endif
 							</td>
 						</tr>
 						<tr>
 							<td width="300">
-								工作经验：{{$work->work_experience}}年以上
+								工作经验：
+								@if(!is_null($work->work_experience))
+									{{$work->work_experience}}年以上
+								@endif
 							</td>
 						</tr>
 						<tr>
