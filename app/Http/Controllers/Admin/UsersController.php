@@ -185,7 +185,7 @@ class UsersController extends BaseController {
 		$user->city = $request['city'];
 		$user->street = $request['street'];
 		$user->area_name = $request['area_name'];
-		if(!is_null($request['birthday']))
+		if(!empty($request['birthday']))
 		{
 			$user->birthday = $request['birthday'];
 		}
