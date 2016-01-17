@@ -292,19 +292,6 @@
       }
     });
 		
-		$( "#age_start" ).datepicker({
-			dateFormat: 'yy-mm-dd',
-      onClose: function( selectedDate ) {
-        $( "#age_end" ).datepicker( "option", "minDate", selectedDate );
-      }
-    });
-		
-		$( "#age_end" ).datepicker({
-			dateFormat: 'yy-mm-dd',
-      onClose: function( selectedDate ) {
-        $( "#age_start" ).datepicker( "option", "minDate", selectedDate );
-      }
-    });
 	});
 </script>
 @endsection
