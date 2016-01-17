@@ -53,7 +53,7 @@
 									<span class="block0_5">{{$staff->user->gender}}</span>
 									<span class="block0_5">{{$staff->user->age()}}</span>
 									<span class="block1_5">{{substr($staff->workCategoryName(), 0, 39)}}</span>
-									<span class="block2_2">{{substr($staff->address, 0, 33)}}</span>
+									<span class="block2">{{substr($staff->address, 0, 33)}}</span>
 									<span class="block1_5" style="text-align: right">【{{date('Y-m-d', strtotime($staff->created_at))}}】</span>
 								</a>
 							</li>
