@@ -50,10 +50,11 @@
 							<li>
 								<a href="/staffs/{{$staff->id}}" class="{{$staff->flag ? 'hot':''}}">
 									<span class="block1">{{$staff->user->name}}</span>
-									<span class="block1">{{$staff->user->gender}}</span>
-									<span class="block1">{{$staff->user->age()}}</span>
-									<span class="block3">{{substr($user->workCategoryNames(), 0, 39)}}</span>
-									<span class="block1">【{{date('Y-m-d', strtotime($staff->created_at))}}】</span>
+									<span class="block0_5">{{$staff->user->gender}}</span>
+									<span class="block0_5">{{$staff->user->age()}}</span>
+									<span class="block1">{{substr($staff->workCategoryName(), 0, 39)}}</span>
+									<span class="block2_5">{{substr($staff->address, 0, 33)}}</span>
+									<span class="block1_5" style="text-align: right">【{{date('Y-m-d', strtotime($staff->created_at))}}】</span>
 								</a>
 							</li>
 							@endif
@@ -78,7 +79,7 @@
 						@if(!is_null($user))
 							<li>
 								<a href="/works/{{$work->id}}" class="{{$work->flag ? 'hot':''}}">
-									<span class="block3">
+									<span class="block2">
 									<?php #企业用户?>
 									@if($user->category == 1)
 									{{substr($work->companyName(), 0, 30)}}
@@ -87,9 +88,10 @@
 									{{$work->name}}
 									@endif
 									</span>
-									<span class="block3">{{substr($work->work_category_name, 0, 30)}}</span>
+									<span class="block1">{{substr($work->workCategoryName(), 0, 30)}}</span>
+									<span class="block2_5">{{substr($work->address, 0, 30)}}</span>
 								</a>
-								<span class="block1">【{{date('Y-m-d', strtotime($work->created_at))}}】</span>
+								<span class="block1_5" style="text-align: right">【{{date('Y-m-d', strtotime($work->created_at))}}】</span>
 							</li>
 							@endif
 						@endforeach

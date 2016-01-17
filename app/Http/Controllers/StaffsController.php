@@ -20,6 +20,7 @@ class StaffsController extends Controller {
 		$gender_f = $request['gender_f'];
 		$age_start = $request['age_start'];
 		$age_end = $request['age_end'];
+		$work_category = $request['work_category'];
 
 		$staffs = \App\Staff::select('users.*', 'staffs.*')->join('users', 'users.id', '=', 'staffs.user_id');
 		
@@ -75,6 +76,10 @@ class StaffsController extends Controller {
 		if(!empty($title))
 		{
 			$staffs = $staffs->where("staffs.title", 'LIKE', '%'.$title.'%');
+		}
+		if(!empty($work_category))
+		{
+			$staffs = $staffs->join('work_categories', 'work_categories.id', '=', 'staffs.work_category_id')->where("work_categories.full_name", 'LIKE', '%'.$work_category.'%');
 		}
 		
 		$staffs = $staffs->paginate(4);

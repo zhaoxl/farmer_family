@@ -123,6 +123,10 @@ class WorksController extends BaseController {
 		$work_category = isset($request['work_category']) ? $request['work_category'] : '';
 		$start_at = isset($request['start_at']) ? $request['start_at'] : '';
 		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
+		$gender = $request['gender'];
+		$age_start = $request['age_start'];
+		$age_end = $request['age_end'];
+		$work_experience = $request['work_experience'];
 		$user_id = $request['user_id'];
 				
 		// if(empty($title))
@@ -172,7 +176,7 @@ class WorksController extends BaseController {
 	// 		return redirect()->back();
 	// 	}
 		
-		$work = new \App\Work(array('user_id' => $user_id, 'work_category_id' => $work_category, 'industry_id' => $industry, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content));
+		$work = new \App\Work(array('user_id' => $user_id, 'work_category_id' => $work_category, 'industry_id' => $industry, 'province' => $area_province, 'city' => $area_city, 'street' => $area_street, 'area_name' => $area_name, 'address' => $address, 'title' => $title, 'price' => $price, 'content' => $content, 'gender' => $gender, 'age_start' => $age_start, 'age_end' => $age_end, 'work_experience' => $work_experience));
 		if(!empty($start_at))
 		{
 			$work->start_at = $start_at;
@@ -251,6 +255,10 @@ class WorksController extends BaseController {
 		$work_category = isset($request['work_category']) ? $request['work_category'] : '';
 		$start_at = isset($request['start_at']) ? $request['start_at'] : '';
 		$end_at = isset($request['end_at']) ? $request['end_at'] : '';
+		$gender = $request['gender'];
+		$age_start = $request['age_start'];
+		$age_end = $request['age_end'];
+		$work_experience = $request['work_experience'];
 		$user_id = $request['user_id'];
 				
 		// if(empty($title))
@@ -325,6 +333,12 @@ class WorksController extends BaseController {
 		{
 			$work->people_number = $people_number;
 		}
+		
+		$work->gender = $gender;
+		$work->age_start = $age_start;
+		$work->age_end = $age_end;
+		$work->work_experience = $work_experience;
+		
 		$work->save();
 		
 		$request->session()->flash('success', '保存成功');

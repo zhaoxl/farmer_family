@@ -30,7 +30,7 @@
 					</div>
 					<div class="attr">
 						<label>所在区域：</label>
-						<input type="text" name="address" />
+						<input type="text" name="address" value="{{Request::get('address')}}" />
 					</div>
 				</div>
 				<div class="row">
@@ -46,7 +46,7 @@
 					</div>
 					<div class="attr">
 						<label>服务项目：</label>
-						<input type="text" name="title" />
+						<input type="text" name="work_category" value="{{Request::get('work_category')}}" />
 					</div>
 						<input type="submit" class="submit" value="搜索" />
 				</div>

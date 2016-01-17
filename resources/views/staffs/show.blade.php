@@ -12,7 +12,7 @@
 		<div class="context">
 			<div class="show">
 				<div class="title">
-					服务项目：{{$staff->title}}&nbsp;·&nbsp;
+					服务项目：{{$staff->workCategoryName()}}&nbsp;·&nbsp;
 					<div class="stars">
 						好评度&nbsp;&nbsp;<span class="star star{{ceil($staff->starCount())}}"></span>
 						&nbsp;&nbsp;

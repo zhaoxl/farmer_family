@@ -22,8 +22,11 @@
 #index .base_list .list ul{list-style: inside none square;}
 #index .base_list .list ul li{line-height: 24px;}
 #index .base_list span{display: inline-table;}
+#index .base_list .list .block0_5{width: 34px ;}
 #index .base_list .list .block1{width: 68px ;}
+#index .base_list .list .block1_5{width: 102px ;}
 #index .base_list .list .block2{width: 136px ;}
+#index .base_list .list .block2_5{width: 170px ;}
 #index .base_list .list .block3{width: 204px ;}
 #index .base_list .list .block4{width: 272px ;}
 #index .base_list .list .block5{width: 340px ;}

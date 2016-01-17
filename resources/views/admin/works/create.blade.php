@@ -54,6 +54,15 @@
 										</select>
 								  </div>
 								</div>
+
+						
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">工作经验</label>
+								  <div class="col-sm-6">
+										<input type="text" name="work_experience" id="work_experience" class="text" />
+										年以上
+								  </div>
+								</div>
             
 		            <div class="form-group">
 								  <label for="disabledinput" class="col-sm-3 control-label">服务时间</label>
@@ -62,6 +71,15 @@
 										<label>到</label>
 										<input type="text" name="end_at" class="text date" id="end_at" />
 										<label><input type="checkbox" name="date_long" value="1" id="date_long"/>长期</label>
+								  </div>
+								</div>
+
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">年龄要求</label>
+								  <div class="col-sm-6">
+										<input type="text" name="age_start" class="text date" id="age_start" />
+										<label>到</label>
+										<input type="text" name="age_end" class="text date" id="age_end" />
 								  </div>
 								</div>
             
@@ -94,7 +112,10 @@
 		            <div class="form-group">
 								  <label for="disabledinput" class="col-sm-3 control-label">详细地址</label>
 								  <div class="col-sm-6">
-									 <input type="text" class="form-control" placeholder="详细地址" name="address" value="{{$data->address}}">
+									  <input type="text" class="form-control" placeholder="详细地址" name="address" value="{{$data->address}}">
+									 	<div id="map_box" style="width: 500px; height: 400px; display: none">
+									 		<div id="allmap"></div>
+										</div>
 								  </div>
 								</div>
             
@@ -103,6 +124,15 @@
 								  <div class="col-sm-6">
 				 						<input type="text" name="price" class="text" id="price_txt" />/天
 				 						<label><input type="checkbox" name="price_negotiable" value="1" id="price_negotiable"/>面议</label>
+								  </div>
+								</div>
+            
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">性别要求</label>
+								  <div class="col-sm-6">
+										<label><input type="radio" name="gender" value="不限" checked>&nbsp;&nbsp;不限</label>
+										<label><input type="radio" name="gender" value="男">&nbsp;&nbsp;男</label>
+										<label><input type="radio" name="gender" value="女">&nbsp;&nbsp;女</label>
 								  </div>
 								</div>
             
@@ -137,7 +167,36 @@
 @endsection
 
 @section('js')
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lXeAbeMF4NG6YczveCyamS6T"></script>
+<style type="text/css" media="screen">
+	#allmap{width: 500px;height: 400px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+</style>
+<script type="text/javascript">
+	var map = new BMap.Map("allmap");  // 创建Map实例
+	$(function(){
+		$("[name=address]").click(function(){
+			if($("#area_city").val() == null || $("#area_city").val() == "")
+			{
+				return false;
+			}
+			$("#map_box").show();
+			map.centerAndZoom($("#area_city").find("option:selected").text(), 12);      // 初始化地图,用城市名设置地图中心点
+			//单击获取点击的经纬度
+			var geoc = new BMap.Geocoder();    
 
+			map.addEventListener("click", function(e){
+				var pt = e.point;
+				geoc.getLocation(pt, function(rs){
+					var addComp = rs.addressComponents;
+					$("[name=address]").val(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+					$("#map_box").hide().blur();
+				});        
+			});
+		});
+		
+	});
+</script>
+	
 <script type="text/javascript" charset="utf-8" src="/js/admin/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="/js/admin/ueditor/ueditor.all.js"> </script>
 
@@ -230,6 +289,20 @@
 			dateFormat: 'yy-mm-dd',
       onClose: function( selectedDate ) {
         $( "#start_at" ).datepicker( "option", "maxDate", selectedDate );
+      }
+    });
+		
+		$( "#age_start" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+      onClose: function( selectedDate ) {
+        $( "#age_end" ).datepicker( "option", "minDate", selectedDate );
+      }
+    });
+		
+		$( "#age_end" ).datepicker({
+			dateFormat: 'yy-mm-dd',
+      onClose: function( selectedDate ) {
+        $( "#age_start" ).datepicker( "option", "minDate", selectedDate );
       }
     });
 	});

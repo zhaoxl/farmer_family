@@ -69,6 +69,16 @@
 										</select>
 								  </div>
 								</div>
+            
+		            <div class="form-group">
+								  <label for="disabledinput" class="col-sm-3 control-label">详细地址</label>
+								  <div class="col-sm-6">
+ 								  	<input type="text" class="form-control" placeholder="详细地址" name="address" value="{{$data->address}}" />
+									 	<div id="map_box" style="width: 500px; height: 400px; display: none">
+									 		<div id="allmap"></div>
+										</div>
+								  </div>
+								</div>
 								
 		            <div class="form-group">
 								  <label for="disabledinput" class="col-sm-3 control-label">联系人</label>
@@ -81,13 +91,6 @@
 								  <label for="disabledinput" class="col-sm-3 control-label">联系方式</label>
 								  <div class="col-sm-6">
 									 <input type="text" class="form-control" placeholder="联系方式" name="mobile" value="{{$data->mobile}}">
-								  </div>
-								</div>
-            
-		            <div class="form-group">
-								  <label for="disabledinput" class="col-sm-3 control-label">详细地址</label>
-								  <div class="col-sm-6">
-									 <input type="text" class="form-control" placeholder="详细地址" name="address" value="{{$data->address}}">
 								  </div>
 								</div>
             
@@ -123,6 +126,35 @@
 @endsection
 
 @section('js')
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=lXeAbeMF4NG6YczveCyamS6T"></script>
+	<style type="text/css" media="screen">
+		#allmap{width: 500px;height: 400px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript">
+		var map = new BMap.Map("allmap");  // 创建Map实例
+		$(function(){
+			$("[name=address]").click(function(){
+				if($("#area_city").val() == null || $("#area_city").val() == "")
+				{
+					return false;
+				}
+				$("#map_box").show();
+				map.centerAndZoom($("#area_city").find("option:selected").text(), 12);      // 初始化地图,用城市名设置地图中心点
+				//单击获取点击的经纬度
+				var geoc = new BMap.Geocoder();    
+
+				map.addEventListener("click", function(e){
+					var pt = e.point;
+					geoc.getLocation(pt, function(rs){
+						var addComp = rs.addressComponents;
+						$("[name=address]").val(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+						$("#map_box").hide().blur();
+					});        
+				});
+			});
+			
+		});
+	</script>
 <script type="text/javascript" charset="utf-8" src="/js/admin/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="/js/admin/ueditor/ueditor.all.js"> </script>
 

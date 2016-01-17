@@ -20,8 +20,10 @@ class WorksController extends Controller {
 		$address = $request['address'];
 		$gender_m = $request['gender_m'];
 		$gender_f = $request['gender_f'];
+		$work_category = $request['work_category'];
 		
 		$works = \App\Work::select('users.*', 'works.*')->join('users', 'users.id', '=', 'works.user_id');
+		
 		if(!empty($day))
 		{
 			$date = date('Y-m-d');
@@ -70,6 +72,10 @@ class WorksController extends Controller {
 			{
 				$works = $works->where('users.gender', '=', '女');
 			}
+		}
+		if(!empty($work_category))
+		{
+			$works = $works->join('work_categories', 'work_categories.id', '=', 'works.work_category_id')->where("work_categories.full_name", 'LIKE', '%'.$work_category.'%');
 		}
 		
 		if(!empty($area_province))
